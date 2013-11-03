@@ -21,6 +21,9 @@
 		BBA3407C1826D6F700B6E4B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBA3405E1826D6F700B6E4B1 /* UIKit.framework */; };
 		BBA340841826D6F700B6E4B1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BBA340821826D6F700B6E4B1 /* InfoPlist.strings */; };
 		BBA340861826D6F700B6E4B1 /* MOATests.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA340851826D6F700B6E4B1 /* MOATests.m */; };
+		BBA34090182700FC00B6E4B1 /* 480x360.gif in Resources */ = {isa = PBXBuildFile; fileRef = BBA3408F182700FC00B6E4B1 /* 480x360.gif */; };
+		BBA34094182701F500B6E4B1 /* 320x200.gif in Resources */ = {isa = PBXBuildFile; fileRef = BBA34093182701F500B6E4B1 /* 320x200.gif */; };
+		BBA340961827024600B6E4B1 /* 320x170.gif in Resources */ = {isa = PBXBuildFile; fileRef = BBA340951827024600B6E4B1 /* 320x170.gif */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,9 @@
 		BBA340811826D6F700B6E4B1 /* MOATests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MOATests-Info.plist"; sourceTree = "<group>"; };
 		BBA340831826D6F700B6E4B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BBA340851826D6F700B6E4B1 /* MOATests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MOATests.m; sourceTree = "<group>"; };
+		BBA3408F182700FC00B6E4B1 /* 480x360.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 480x360.gif; sourceTree = "<group>"; };
+		BBA34093182701F500B6E4B1 /* 320x200.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 320x200.gif; sourceTree = "<group>"; };
+		BBA340951827024600B6E4B1 /* 320x170.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 320x170.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +118,7 @@
 		BBA340601826D6F700B6E4B1 /* MOA */ = {
 			isa = PBXGroup;
 			children = (
+				BBA340921827012C00B6E4B1 /* Placeholders */,
 				BBA340691826D6F700B6E4B1 /* AppDelegate.h */,
 				BBA3406A1826D6F700B6E4B1 /* AppDelegate.m */,
 				BBA3406C1826D6F700B6E4B1 /* Main.storyboard */,
@@ -150,6 +157,16 @@
 				BBA340821826D6F700B6E4B1 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BBA340921827012C00B6E4B1 /* Placeholders */ = {
+			isa = PBXGroup;
+			children = (
+				BBA340951827024600B6E4B1 /* 320x170.gif */,
+				BBA34093182701F500B6E4B1 /* 320x200.gif */,
+				BBA3408F182700FC00B6E4B1 /* 480x360.gif */,
+			);
+			name = Placeholders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,8 +245,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBA34090182700FC00B6E4B1 /* 480x360.gif in Resources */,
 				BBA340731826D6F700B6E4B1 /* Images.xcassets in Resources */,
 				BBA340651826D6F700B6E4B1 /* InfoPlist.strings in Resources */,
+				BBA34094182701F500B6E4B1 /* 320x200.gif in Resources */,
+				BBA340961827024600B6E4B1 /* 320x170.gif in Resources */,
 				BBA3406E1826D6F700B6E4B1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

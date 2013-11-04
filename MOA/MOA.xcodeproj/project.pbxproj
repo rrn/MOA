@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BB3179FD1827112F00CC9C38 /* ExploreMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3179FC1827112F00CC9C38 /* ExploreMainViewController.m */; };
+		BB317A031827799000CC9C38 /* FilterdExploreSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB317A021827799000CC9C38 /* FilterdExploreSearchViewController.m */; };
 		BBA3405B1826D6F700B6E4B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBA3405A1826D6F700B6E4B1 /* Foundation.framework */; };
 		BBA3405D1826D6F700B6E4B1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBA3405C1826D6F700B6E4B1 /* CoreGraphics.framework */; };
 		BBA3405F1826D6F700B6E4B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBA3405E1826D6F700B6E4B1 /* UIKit.framework */; };
@@ -37,6 +39,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BB3179FB1827112F00CC9C38 /* ExploreMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExploreMainViewController.h; sourceTree = "<group>"; };
+		BB3179FC1827112F00CC9C38 /* ExploreMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExploreMainViewController.m; sourceTree = "<group>"; };
+		BB317A011827799000CC9C38 /* FilterdExploreSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterdExploreSearchViewController.h; sourceTree = "<group>"; };
+		BB317A021827799000CC9C38 /* FilterdExploreSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterdExploreSearchViewController.m; sourceTree = "<group>"; };
 		BBA340571826D6F700B6E4B1 /* MOA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MOA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBA3405A1826D6F700B6E4B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BBA3405C1826D6F700B6E4B1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -126,6 +132,10 @@
 				BBA340701826D6F700B6E4B1 /* ViewController.m */,
 				BBA340721826D6F700B6E4B1 /* Images.xcassets */,
 				BBA340611826D6F700B6E4B1 /* Supporting Files */,
+				BB3179FB1827112F00CC9C38 /* ExploreMainViewController.h */,
+				BB3179FC1827112F00CC9C38 /* ExploreMainViewController.m */,
+				BB317A011827799000CC9C38 /* FilterdExploreSearchViewController.h */,
+				BB317A021827799000CC9C38 /* FilterdExploreSearchViewController.m */,
 			);
 			path = MOA;
 			sourceTree = "<group>";
@@ -270,6 +280,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BBA340711826D6F700B6E4B1 /* ViewController.m in Sources */,
+				BB3179FD1827112F00CC9C38 /* ExploreMainViewController.m in Sources */,
+				BB317A031827799000CC9C38 /* FilterdExploreSearchViewController.m in Sources */,
 				BBA3406B1826D6F700B6E4B1 /* AppDelegate.m in Sources */,
 				BBA340671826D6F700B6E4B1 /* main.m in Sources */,
 			);
@@ -480,6 +492,7 @@
 				BBA3408B1826D6F700B6E4B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BBA3408C1826D6F700B6E4B1 /* Build configuration list for PBXNativeTarget "MOATests" */ = {
 			isa = XCConfigurationList;
@@ -488,6 +501,7 @@
 				BBA3408E1826D6F700B6E4B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

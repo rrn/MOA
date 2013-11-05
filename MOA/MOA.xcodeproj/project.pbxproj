@@ -11,6 +11,7 @@
 		507B8E5E1828E1A7002365EF /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 507B8E5D1828E1A7002365EF /* menu.png */; };
 		507B8E611828E213002365EF /* VisitorInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 507B8E601828E213002365EF /* VisitorInfoViewController.m */; };
 		507B8E641828E2F4002365EF /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 507B8E631828E2F4002365EF /* SidebarViewController.m */; };
+		507B8E681828F355002365EF /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 507B8E671828F355002365EF /* MainViewController.m */; };
 		BB3179FD1827112F00CC9C38 /* ExploreMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3179FC1827112F00CC9C38 /* ExploreMainViewController.m */; };
 		BB317A031827799000CC9C38 /* FilterdExploreSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB317A021827799000CC9C38 /* FilterdExploreSearchViewController.m */; };
 		BBA3405B1826D6F700B6E4B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBA3405A1826D6F700B6E4B1 /* Foundation.framework */; };
@@ -20,7 +21,6 @@
 		BBA340671826D6F700B6E4B1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA340661826D6F700B6E4B1 /* main.m */; };
 		BBA3406B1826D6F700B6E4B1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA3406A1826D6F700B6E4B1 /* AppDelegate.m */; };
 		BBA3406E1826D6F700B6E4B1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BBA3406C1826D6F700B6E4B1 /* Main.storyboard */; };
-		BBA340711826D6F700B6E4B1 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBA340701826D6F700B6E4B1 /* ViewController.m */; };
 		BBA340731826D6F700B6E4B1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BBA340721826D6F700B6E4B1 /* Images.xcassets */; };
 		BBA3407A1826D6F700B6E4B1 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBA340791826D6F700B6E4B1 /* XCTest.framework */; };
 		BBA3407B1826D6F700B6E4B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBA3405A1826D6F700B6E4B1 /* Foundation.framework */; };
@@ -50,6 +50,8 @@
 		507B8E601828E213002365EF /* VisitorInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VisitorInfoViewController.m; sourceTree = "<group>"; };
 		507B8E621828E2F4002365EF /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
 		507B8E631828E2F4002365EF /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
+		507B8E661828F355002365EF /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		507B8E671828F355002365EF /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		BB3179FB1827112F00CC9C38 /* ExploreMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExploreMainViewController.h; sourceTree = "<group>"; };
 		BB3179FC1827112F00CC9C38 /* ExploreMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExploreMainViewController.m; sourceTree = "<group>"; };
 		BB317A011827799000CC9C38 /* FilterdExploreSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterdExploreSearchViewController.h; sourceTree = "<group>"; };
@@ -65,8 +67,6 @@
 		BBA340691826D6F700B6E4B1 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BBA3406A1826D6F700B6E4B1 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		BBA3406D1826D6F700B6E4B1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		BBA3406F1826D6F700B6E4B1 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		BBA340701826D6F700B6E4B1 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		BBA340721826D6F700B6E4B1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		BBA340781826D6F700B6E4B1 /* MOATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MOATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBA340791826D6F700B6E4B1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -157,9 +157,9 @@
 				BBA340691826D6F700B6E4B1 /* AppDelegate.h */,
 				BBA3406A1826D6F700B6E4B1 /* AppDelegate.m */,
 				BBA3406C1826D6F700B6E4B1 /* Main.storyboard */,
-				BBA3406F1826D6F700B6E4B1 /* ViewController.h */,
-				BBA340701826D6F700B6E4B1 /* ViewController.m */,
 				507B8E621828E2F4002365EF /* SidebarViewController.h */,
+				507B8E661828F355002365EF /* MainViewController.h */,
+				507B8E671828F355002365EF /* MainViewController.m */,
 				507B8E631828E2F4002365EF /* SidebarViewController.m */,
 				507B8E5F1828E213002365EF /* VisitorInfoViewController.h */,
 				507B8E601828E213002365EF /* VisitorInfoViewController.m */,
@@ -314,10 +314,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBA340711826D6F700B6E4B1 /* ViewController.m in Sources */,
 				BB3179FD1827112F00CC9C38 /* ExploreMainViewController.m in Sources */,
 				BB317A031827799000CC9C38 /* FilterdExploreSearchViewController.m in Sources */,
 				507B8E641828E2F4002365EF /* SidebarViewController.m in Sources */,
+				507B8E681828F355002365EF /* MainViewController.m in Sources */,
 				BBA3406B1826D6F700B6E4B1 /* AppDelegate.m in Sources */,
 				BBA340671826D6F700B6E4B1 /* main.m in Sources */,
 				507B8E611828E213002365EF /* VisitorInfoViewController.m in Sources */,

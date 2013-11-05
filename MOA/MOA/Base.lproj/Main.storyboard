@@ -187,7 +187,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gP9-TQ-KUi">
-                        <barButtonItem key="leftBarButtonItem" image="menu.png" id="nbf-ki-VGF"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="menu.png" id="nbf-ki-VGF"/>
                     </navigationItem>
                     <connections>
                         <outlet property="sidebarButton" destination="nbf-ki-VGF" id="5Ya-QO-SD5"/>

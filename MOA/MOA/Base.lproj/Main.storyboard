@@ -187,7 +187,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gP9-TQ-KUi">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="menu.png" id="nbf-ki-VGF"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="menu.png" id="nbf-ki-VGF"/>
                     </navigationItem>
                     <connections>
                         <outlet property="sidebarButton" destination="nbf-ki-VGF" id="5Ya-QO-SD5"/>
@@ -442,7 +442,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="vE1-mI-pRp"/>
                     <connections>
-                        <segue destination="Df8-Md-hrE" kind="custom" identifier="sw_rear" customClass="SWRevealViewControllerSegue" id="qFO-qc-5TX"/>
+                        <segue destination="Df8-Md-hrE" kind="custom" identifier="sw_right" customClass="SWRevealViewControllerSegue" id="qFO-qc-5TX"/>
                         <segue destination="3cz-mT-0U8" kind="custom" identifier="sw_front" customClass="SWRevealViewControllerSegue" id="GyF-Bh-APr"/>
                     </connections>
                 </viewController>

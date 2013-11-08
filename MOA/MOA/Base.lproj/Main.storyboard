@@ -162,11 +162,11 @@
             </objects>
             <point key="canvasLocation" x="1653" y="840"/>
         </scene>
-        <!--Navigation Controller - Item-->
+        <!--Navigation Controller - Dummy-->
         <scene sceneID="6Nc-md-ihJ">
             <objects>
                 <navigationController definesPresentationContext="YES" id="LA7-6x-4NF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="ohC-Fq-cwG"/>
+                    <tabBarItem key="tabBarItem" title="Dummy" image="menu.png" id="ohC-Fq-cwG"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="VLH-Bz-viy">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -393,11 +393,11 @@
             </objects>
             <point key="canvasLocation" x="45" y="-946"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation Controller - This Week-->
         <scene sceneID="bGU-yg-itD">
             <objects>
                 <navigationController id="3cz-mT-0U8" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="mostViewed" id="N5K-6b-dcw"/>
+                    <tabBarItem key="tabBarItem" title="This Week" image="menu.png" id="N5K-6b-dcw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mUW-k2-Qdd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -448,7 +448,7 @@
                         <viewControllerLayoutGuide type="bottom" id="k7X-oN-5hI"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="iez-fr-gQu">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -476,6 +476,7 @@
                     <connections>
                         <segue destination="3cz-mT-0U8" kind="relationship" relationship="viewControllers" id="npZ-bu-dL2"/>
                         <segue destination="LA7-6x-4NF" kind="relationship" relationship="viewControllers" id="Lwt-r7-GFO"/>
+                        <segue destination="zdB-FD-oZB" kind="relationship" relationship="viewControllers" id="Ak2-sS-BYl"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2D9-Zc-qkg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -501,10 +502,11 @@
             </objects>
             <point key="canvasLocation" x="1100" y="-1715"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation Controller - Visitor-->
         <scene sceneID="H9b-qE-oej">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zdB-FD-oZB" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Visitor" image="menu.png" id="kzw-Vn-Xgt"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xpR-aa-6sy">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -529,6 +531,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="T1q-hh-HKV"/>
+        <segue reference="npZ-bu-dL2"/>
+        <segue reference="Ak2-sS-BYl"/>
     </inferredMetricsTieBreakers>
 </document>

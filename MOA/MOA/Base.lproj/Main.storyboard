@@ -13,14 +13,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <label key="tableHeaderView" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search Item by:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="EGY-Pm-2av">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FilterCell" textLabel="8Ut-bY-ew8" style="IBUITableViewCellStyleDefault" id="iTQ-Pj-CO0">
-                                <rect key="frame" x="0.0" y="99" width="320" height="44"/>
+                                <rect key="frame" x="0.0" y="163" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="iTQ-Pj-CO0" id="oTi-AZ-xaX">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
@@ -52,7 +52,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KMD-lH-TQ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1100" y="-1715"/>
+            <point key="canvasLocation" x="1626" y="-1715"/>
         </scene>
         <!--Filterd Explore Search View Controller-->
         <scene sceneID="Keo-da-IoG">
@@ -82,7 +82,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="D3F-3z-mD1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1592" y="-1715"/>
+            <point key="canvasLocation" x="2118" y="-1715"/>
         </scene>
         <!--Whats On This Week View Controller - Visitor Info Controller-->
         <scene sceneID="Mej-uh-pfd">
@@ -281,7 +281,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="kcg-3N-BfQ" kind="custom" customClass="SWRevealViewControllerSegue" id="my5-vZ-U0c"/>
+                                    <segue destination="FeJ-ju-YDU" kind="custom" customClass="SWRevealViewControllerSegue" id="my5-vZ-U0c"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell4" id="oXT-Xc-nc4">
@@ -481,6 +481,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2D9-Zc-qkg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-81" y="-28"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="yuu-X7-YIA">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FeJ-ju-YDU" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="e21-Wg-Yk3"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="zWu-2y-SL3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="kcg-3N-BfQ" kind="relationship" relationship="rootViewController" id="IB2-dy-fIT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="64i-nq-amz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1100" y="-1715"/>
         </scene>
     </scenes>
     <resources>

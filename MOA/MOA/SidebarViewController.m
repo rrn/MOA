@@ -35,7 +35,7 @@
     self.tableView.backgroundColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
     self.tableView.separatorColor = [UIColor colorWithWhite:0.15f alpha:0.2f];
     
-    _menuItems = @[@"Cell0", @"Cell1", @"Cell2", @"Cell3", @"Cell4", @"Cell5", @"Cell6", @"Cell7"];
+    _menuItems = @[@"Cell0", @"Cell1", @"Cell2", @"Explore Our Collections", @"Cell4", @"Cell5", @"Cell6", @"Cell7"];
     
     
 }
@@ -49,10 +49,10 @@
         UINavigationController *destViewController = (UINavigationController*)segue.destinationViewController;
         destViewController.title = [[_menuItems objectAtIndex:indexPath.row] capitalizedString];
     
-        if ( [segue isKindOfClass: [SWRevealViewControllerSegue class]] ) {
-            SWRevealViewControllerSegue *swSegue = (SWRevealViewControllerSegue*) segue;
+    if ( [segue isKindOfClass: [SWRevealViewControllerSegue class]] ) {
+        SWRevealViewControllerSegue *swSegue = (SWRevealViewControllerSegue*) segue;
         
-            swSegue.performBlock = ^(SWRevealViewControllerSegue* rvc_segue, UIViewController* svc, UIViewController* dvc) {
+        swSegue.performBlock = ^(SWRevealViewControllerSegue* rvc_segue, UIViewController* svc, UIViewController* dvc) {
             
             UINavigationController* navController = (UINavigationController*)self.revealViewController.frontViewController;
             [navController setViewControllers: @[dvc] animated: NO ];

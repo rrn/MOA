@@ -8,7 +8,9 @@
 
 #import "SidebarViewController.h"
 #import "SWRevealViewController.h"
-//#import "WhatsOnThisWeekViewController.h"
+#import "AppDelegate.h"
+#import "WhatsOnThisWeekViewController.h"
+#import "VisitorInfoViewController.h"
 
 
 
@@ -42,24 +44,60 @@
 
 - (void) prepareForSegue: (UIStoryboardSegue *) segue sender: (id) sender
 {
-
-    
-        // Set the title of navigation bar by using the menu items
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        UINavigationController *destViewController = (UINavigationController*)segue.destinationViewController;
-        destViewController.title = [[_menuItems objectAtIndex:indexPath.row] capitalizedString];
-    
-    if ( [segue isKindOfClass: [SWRevealViewControllerSegue class]] ) {
+    // Make sure we are using the SWRevealViewControllerSegue
+    if ( [segue isKindOfClass: [SWRevealViewControllerSegue class]] )
+    {
         SWRevealViewControllerSegue *swSegue = (SWRevealViewControllerSegue*) segue;
         
-        swSegue.performBlock = ^(SWRevealViewControllerSegue* rvc_segue, UIViewController* svc, UIViewController* dvc) {
+        swSegue.performBlock = ^(SWRevealViewControllerSegue* rvc_segue, UIViewController* svc, UIViewController* dvc)
+        {
+            // The name of our view controller we want to navigate to
+            NSString *vcName = @"";
             
-            UINavigationController* navController = (UINavigationController*)self.revealViewController.frontViewController;
-            [navController setViewControllers: @[dvc] animated: NO ];
-            [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated: YES];
+            // Set the name of the Storyboard ID we want to switch to
+            if ([segue.identifier isEqualToString:@"showThisWeek"])
+            {
+                // get the UITabBarController
+                vcName = @"TabBar";
+                UITabBarController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
+                [self.revealViewController setFrontViewController:vcNew];
+                [self.revealViewController setFrontViewPosition:FrontViewPositionLeft];
+                
+                // select index 0, which is THIS WEEK AT MOA
+                [vcNew setSelectedIndex:0];
+                
+                // ** EXTRA CODE PLEASE DONT REMOVE FOR NOW - DIANA **
+                //[vcNew.tabBarController.view setHidden:FALSE];
+                //AppDelegate *appDelegate = (AppDelegate*) [[UIApplication sharedApplication] delegate];
+                //[appDelegate Set:1];
+                //[self.revealViewController setFrontViewController:vcNew];
+                //[self.revealViewController setFrontViewPosition:FrontViewPositionLeft];
+                //[self.parentViewController.tabBarController setSelectedIndex:0];
+                //[self.tabBarController setSelectedIndex:1];
+                //[self.tabBarController.view setNeedsDisplay];
+                
+            } else if ([segue.identifier isEqualToString:@"showVisitor"]){
+                
+                // get the UITabBarController
+                vcName = @"TabBar";
+                UITabBarController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
+                [self.revealViewController setFrontViewController:vcNew];
+                [self.revealViewController setFrontViewPosition:FrontViewPositionLeft];
+                
+                // select index 2, which is VISITOR INFORMATION PAGE
+                [vcNew setSelectedIndex:2];
+            } else  if ([segue.identifier isEqualToString:@"showExplore"]) {
+                vcName = @"Explore";
+                UIViewController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
+                
+                // Swap out the Front view controller and display
+                [self.revealViewController setFrontViewController:vcNew];
+                [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated: YES];
+                
+            }
         };
-        
     }
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -89,5 +127,7 @@
     
     return cell;
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{}
 
 @end

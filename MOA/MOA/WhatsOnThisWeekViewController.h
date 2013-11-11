@@ -11,4 +11,8 @@
 @interface WhatsOnThisWeekViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 
+
+
 @end
+
+BOOL selectIt;

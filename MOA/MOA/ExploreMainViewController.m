@@ -8,6 +8,7 @@
 
 #import "ExploreMainViewController.h"
 #import "FilterdExploreSearchViewController.h"
+#import "SWRevealViewController.h"
 
 
 @interface ExploreMainViewController ()
@@ -33,6 +34,15 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
     tableData = [NSArray arrayWithObjects:@"Object Type", @"Place Made", @"Culture", @"Made By", @"Category", nil];
+    
+    self.title = @"Explore Our Collection";
+    
+    // Set the side bar button action. When it's tapped, it'll show up the sidebar.
+    _sidebarButton.target = self.revealViewController;
+    _sidebarButton.action = @selector(rightRevealToggle:);
+    
+    // Set the gesture
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -40,6 +50,7 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
+
 
 - (void)didReceiveMemoryWarning
 {

@@ -46,14 +46,19 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Item" id="ezO-XQ-BH5"/>
-                    <navigationItem key="navigationItem" id="cM7-vx-dcK"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="cM7-vx-dcK">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="menu.png" id="XgO-sW-CLj"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="sidebarButton" destination="XgO-sW-CLj" id="Lev-1U-NBJ"/>
                         <outlet property="view" destination="jcq-uG-RJP" id="4fy-BD-Z5v"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KMD-lH-TQ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2696" y="-1707"/>
+            <point key="canvasLocation" x="2288" y="-1715"/>
         </scene>
         <!--Filterd Explore Search View Controller-->
         <scene sceneID="Keo-da-IoG">
@@ -136,7 +141,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oDG-82-ggX" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2268" y="-184"/>
+            <point key="canvasLocation" x="2272" y="-116"/>
         </scene>
         <!--Table View Controller - Root View Controller-->
         <scene sceneID="O4e-53-XIn">
@@ -285,27 +290,20 @@
                                     <segue destination="FeJ-ju-YDU" kind="custom" identifier="showExplore" customClass="SWRevealViewControllerSegue" id="PS2-VE-2nm"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell4" id="oXT-Xc-nc4">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell4" id="oXT-Xc-nc4">
                                 <rect key="frame" x="0.0" y="198" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="oXT-Xc-nc4" id="bdA-fq-KfV">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" misplaced="YES" text="Visitor Information" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vCA-zg-QpY">
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Visitor Information" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vCA-zg-QpY">
                                             <rect key="frame" x="100" y="11" width="280" height="22"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="280" id="qHV-QS-K75"/>
-                                            </constraints>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="18"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="vCA-zg-QpY" secondAttribute="trailing" constant="-60" id="TKg-se-cOW"/>
-                                        <constraint firstItem="vCA-zg-QpY" firstAttribute="top" secondItem="bdA-fq-KfV" secondAttribute="top" constant="11" id="WMT-yF-ge0"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <segue destination="mHV-0a-uqN" kind="custom" identifier="showVisitor" customClass="SWRevealViewControllerSegue" id="A9d-PQ-Zkm"/>
@@ -399,7 +397,6 @@
         <!--Navigation Controller - This week at MOA-->
         <scene sceneID="bGU-yg-itD">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hV2-AE-0bg" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="This week at MOA" title="This week at MOA" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3cz-mT-0U8" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="This Week" image="menu.png" id="N5K-6b-dcw"/>
                     <toolbarItems/>
@@ -416,6 +413,7 @@
                         <segue destination="KWj-Fo-7xq" kind="relationship" relationship="rootViewController" id="aXI-LP-bbq"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hV2-AE-0bg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1731" y="-116"/>
         </scene>

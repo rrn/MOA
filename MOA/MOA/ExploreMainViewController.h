@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ExploreMainViewController : UITableViewController
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 
 @end

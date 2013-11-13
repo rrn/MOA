@@ -61,7 +61,7 @@
                 vcName = @"TabBar";
                 UITabBarController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
                 [self.revealViewController setFrontViewController:vcNew];
-                [self.revealViewController setFrontViewPosition:FrontViewPositionLeft];
+                [self.revealViewController setFrontViewPosition:FrontViewPositionLeft animated:YES];
                 
                 // select index 0, which is THIS WEEK AT MOA
                 [vcNew setSelectedIndex:0];
@@ -82,17 +82,20 @@
                 vcName = @"TabBar";
                 UITabBarController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
                 [self.revealViewController setFrontViewController:vcNew];
-                [self.revealViewController setFrontViewPosition:FrontViewPositionLeft];
+                [self.revealViewController setFrontViewPosition:FrontViewPositionLeft animated:YES];
                 
-                // select index 2, which is VISITOR INFORMATION PAGE
-                [vcNew setSelectedIndex:2];
+                // select index 1, which is VISITOR INFORMATION PAGE
+                [vcNew setSelectedIndex:1];
+                
             } else  if ([segue.identifier isEqualToString:@"showExplore"]) {
-                vcName = @"Explore";
-                UIViewController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
+                vcName = @"TabBar";
+                UITabBarController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
                 
                 // Swap out the Front view controller and display
                 [self.revealViewController setFrontViewController:vcNew];
-                [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated: YES];
+                [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated:YES];
+                
+                [vcNew setSelectedIndex:2];
                 
             }
         };

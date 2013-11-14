@@ -1,29 +1,25 @@
 //
-//  ExploreMainViewController.m
+//  FilteredViewViewController.m
 //  MOA
 //
-//  Created by Sukhi Mann on 11/3/2013.
+//  Created by Sukhi Mann on 11/14/2013.
 //  Copyright (c) 2013 Museum of Anthropology UBC. All rights reserved.
 //
 
-#import "ExploreMainViewController.h"
 #import "FilteredViewViewController.h"
-#import "SWRevealViewController.h"
+#import "TagAdditionViewController.h"
 
-
-@interface ExploreMainViewController ()
+@interface FilteredViewViewController ()
 
 @end
 
-@implementation ExploreMainViewController
-{
-    NSArray *tableData;
-}
+@implementation FilteredViewViewController
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
+        // Custom initialization
     }
     return self;
 }
@@ -31,18 +27,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    
-    tableData = [NSArray arrayWithObjects:@"Object Type", @"Place Made", @"Culture", @"Made By", @"Category", nil];
-    
-    self.title = @"Explore Our Collection";
-    
-    // Set the side bar button action. When it's tapped, it'll show up the sidebar.
-    _sidebarButton.target = self.revealViewController;
-    _sidebarButton.action = @selector(rightRevealToggle:);
-    
-    // Set the gesture
-    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -50,7 +34,6 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
-
 
 - (void)didReceiveMemoryWarning
 {
@@ -62,38 +45,39 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+
     // Return the number of sections.
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+
     // Return the number of rows in the section.
-    return [tableData count];
+    return 26;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"FilterCell";
+    static NSString *CellIdentifier = @"AZ";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
-    
     // Configure the cell...
-    cell.textLabel.text = [tableData objectAtIndex:indexPath.row];
+    NSInteger ascii = 65 + indexPath.row;
+    cell.textLabel.text = [NSString stringWithFormat:@"%c", ascii];
     return cell;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    
-    FilteredViewViewController *destViewController = segue.destinationViewController;
-    destViewController.title = [tableData objectAtIndex:indexPath.row];
+    TagAdditionViewController *destViewController = segue.destinationViewController;
+    NSInteger ascii = 65 + indexPath.row;
+    destViewController.title = [NSString stringWithFormat:@"%c", ascii];
 }
-
 
 /*
 // Override to support conditional editing of the table view.
@@ -116,13 +100,14 @@
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
 }
+*/
 
-
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
+/*
+// Override to support rearranging the table view.
+- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+{
+}
+*/
 
 /*
 // Override to support conditional rearranging of the table view.
@@ -142,6 +127,7 @@
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
 }
-*/
+
+ */
 
 @end

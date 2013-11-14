@@ -13,8 +13,9 @@
 		507B8E6E1829793A002365EF /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 507B8E6D1829793A002365EF /* SWRevealViewController.m */; };
 		507B8E7018299BCE002365EF /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 507B8E6F18299BCE002365EF /* menu.png */; };
 		50CCCA14182C54D200384881 /* WhatsOnThisWeekViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CCCA13182C54D200384881 /* WhatsOnThisWeekViewController.m */; };
+		BB0E65911835737F00163652 /* FilteredViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0E65901835737F00163652 /* FilteredViewViewController.m */; };
+		BB0E6597183575E200163652 /* TagAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0E6596183575E200163652 /* TagAdditionViewController.m */; };
 		BB3179FD1827112F00CC9C38 /* ExploreMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3179FC1827112F00CC9C38 /* ExploreMainViewController.m */; };
-		BB317A031827799000CC9C38 /* FilterdExploreSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB317A021827799000CC9C38 /* FilterdExploreSearchViewController.m */; };
 		BBA3405B1826D6F700B6E4B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBA3405A1826D6F700B6E4B1 /* Foundation.framework */; };
 		BBA3405D1826D6F700B6E4B1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBA3405C1826D6F700B6E4B1 /* CoreGraphics.framework */; };
 		BBA3405F1826D6F700B6E4B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBA3405E1826D6F700B6E4B1 /* UIKit.framework */; };
@@ -55,10 +56,12 @@
 		507B8E6F18299BCE002365EF /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		50CCCA12182C54D100384881 /* WhatsOnThisWeekViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhatsOnThisWeekViewController.h; sourceTree = "<group>"; };
 		50CCCA13182C54D200384881 /* WhatsOnThisWeekViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhatsOnThisWeekViewController.m; sourceTree = "<group>"; };
+		BB0E658F1835737F00163652 /* FilteredViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilteredViewViewController.h; sourceTree = "<group>"; };
+		BB0E65901835737F00163652 /* FilteredViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilteredViewViewController.m; sourceTree = "<group>"; };
+		BB0E6595183575E200163652 /* TagAdditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagAdditionViewController.h; sourceTree = "<group>"; };
+		BB0E6596183575E200163652 /* TagAdditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagAdditionViewController.m; sourceTree = "<group>"; };
 		BB3179FB1827112F00CC9C38 /* ExploreMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExploreMainViewController.h; sourceTree = "<group>"; };
 		BB3179FC1827112F00CC9C38 /* ExploreMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExploreMainViewController.m; sourceTree = "<group>"; };
-		BB317A011827799000CC9C38 /* FilterdExploreSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilterdExploreSearchViewController.h; sourceTree = "<group>"; };
-		BB317A021827799000CC9C38 /* FilterdExploreSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilterdExploreSearchViewController.m; sourceTree = "<group>"; };
 		BBA340571826D6F700B6E4B1 /* MOA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MOA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBA3405A1826D6F700B6E4B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BBA3405C1826D6F700B6E4B1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -164,6 +167,8 @@
 				50CCCA13182C54D200384881 /* WhatsOnThisWeekViewController.m */,
 				507B8E621828E2F4002365EF /* SidebarViewController.h */,
 				507B8E661828F355002365EF /* MainViewController.h */,
+				BB0E6595183575E200163652 /* TagAdditionViewController.h */,
+				BB0E6596183575E200163652 /* TagAdditionViewController.m */,
 				507B8E671828F355002365EF /* MainViewController.m */,
 				507B8E631828E2F4002365EF /* SidebarViewController.m */,
 				507B8E5F1828E213002365EF /* VisitorInfoViewController.h */,
@@ -172,8 +177,8 @@
 				BBA340611826D6F700B6E4B1 /* Supporting Files */,
 				BB3179FB1827112F00CC9C38 /* ExploreMainViewController.h */,
 				BB3179FC1827112F00CC9C38 /* ExploreMainViewController.m */,
-				BB317A011827799000CC9C38 /* FilterdExploreSearchViewController.h */,
-				BB317A021827799000CC9C38 /* FilterdExploreSearchViewController.m */,
+				BB0E658F1835737F00163652 /* FilteredViewViewController.h */,
+				BB0E65901835737F00163652 /* FilteredViewViewController.m */,
 			);
 			path = MOA;
 			sourceTree = "<group>";
@@ -321,7 +326,8 @@
 			files = (
 				BB3179FD1827112F00CC9C38 /* ExploreMainViewController.m in Sources */,
 				50CCCA14182C54D200384881 /* WhatsOnThisWeekViewController.m in Sources */,
-				BB317A031827799000CC9C38 /* FilterdExploreSearchViewController.m in Sources */,
+				BB0E65911835737F00163652 /* FilteredViewViewController.m in Sources */,
+				BB0E6597183575E200163652 /* TagAdditionViewController.m in Sources */,
 				507B8E641828E2F4002365EF /* SidebarViewController.m in Sources */,
 				507B8E6E1829793A002365EF /* SWRevealViewController.m in Sources */,
 				507B8E681828F355002365EF /* MainViewController.m in Sources */,

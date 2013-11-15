@@ -15,6 +15,8 @@
 		50CCCA14182C54D200384881 /* WhatsOnThisWeekViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CCCA13182C54D200384881 /* WhatsOnThisWeekViewController.m */; };
 		BB0E65911835737F00163652 /* FilteredViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0E65901835737F00163652 /* FilteredViewViewController.m */; };
 		BB0E6597183575E200163652 /* TagAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0E6596183575E200163652 /* TagAdditionViewController.m */; };
+		BB0E659A1835926800163652 /* TagList.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0E65991835926800163652 /* TagList.m */; };
+		BB0E659D1835A61300163652 /* SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0E659C1835A61300163652 /* SplashScreen.m */; };
 		BB3179FD1827112F00CC9C38 /* ExploreMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3179FC1827112F00CC9C38 /* ExploreMainViewController.m */; };
 		BBA3405B1826D6F700B6E4B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBA3405A1826D6F700B6E4B1 /* Foundation.framework */; };
 		BBA3405D1826D6F700B6E4B1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBA3405C1826D6F700B6E4B1 /* CoreGraphics.framework */; };
@@ -60,6 +62,10 @@
 		BB0E65901835737F00163652 /* FilteredViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilteredViewViewController.m; sourceTree = "<group>"; };
 		BB0E6595183575E200163652 /* TagAdditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagAdditionViewController.h; sourceTree = "<group>"; };
 		BB0E6596183575E200163652 /* TagAdditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagAdditionViewController.m; sourceTree = "<group>"; };
+		BB0E65981835926800163652 /* TagList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagList.h; sourceTree = "<group>"; };
+		BB0E65991835926800163652 /* TagList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagList.m; sourceTree = "<group>"; };
+		BB0E659B1835A61300163652 /* SplashScreen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplashScreen.h; sourceTree = "<group>"; };
+		BB0E659C1835A61300163652 /* SplashScreen.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashScreen.m; sourceTree = "<group>"; };
 		BB3179FB1827112F00CC9C38 /* ExploreMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExploreMainViewController.h; sourceTree = "<group>"; };
 		BB3179FC1827112F00CC9C38 /* ExploreMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExploreMainViewController.m; sourceTree = "<group>"; };
 		BBA340571826D6F700B6E4B1 /* MOA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MOA.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -163,6 +169,8 @@
 				BBA340691826D6F700B6E4B1 /* AppDelegate.h */,
 				BBA3406A1826D6F700B6E4B1 /* AppDelegate.m */,
 				BBA3406C1826D6F700B6E4B1 /* Main.storyboard */,
+				BB0E65981835926800163652 /* TagList.h */,
+				BB0E65991835926800163652 /* TagList.m */,
 				50CCCA12182C54D100384881 /* WhatsOnThisWeekViewController.h */,
 				50CCCA13182C54D200384881 /* WhatsOnThisWeekViewController.m */,
 				507B8E621828E2F4002365EF /* SidebarViewController.h */,
@@ -179,6 +187,8 @@
 				BB3179FC1827112F00CC9C38 /* ExploreMainViewController.m */,
 				BB0E658F1835737F00163652 /* FilteredViewViewController.h */,
 				BB0E65901835737F00163652 /* FilteredViewViewController.m */,
+				BB0E659B1835A61300163652 /* SplashScreen.h */,
+				BB0E659C1835A61300163652 /* SplashScreen.m */,
 			);
 			path = MOA;
 			sourceTree = "<group>";
@@ -324,8 +334,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BB0E659D1835A61300163652 /* SplashScreen.m in Sources */,
 				BB3179FD1827112F00CC9C38 /* ExploreMainViewController.m in Sources */,
 				50CCCA14182C54D200384881 /* WhatsOnThisWeekViewController.m in Sources */,
+				BB0E659A1835926800163652 /* TagList.m in Sources */,
 				BB0E65911835737F00163652 /* FilteredViewViewController.m in Sources */,
 				BB0E6597183575E200163652 /* TagAdditionViewController.m in Sources */,
 				507B8E641828E2F4002365EF /* SidebarViewController.m in Sources */,

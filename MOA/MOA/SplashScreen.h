@@ -1,5 +1,5 @@
 //
-//  TagAdditionViewController.h
+//  SplashScreen.h
 //  MOA
 //
 //  Created by Sukhi Mann on 11/14/2013.
@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TagList.h"
 
-@interface TagAdditionViewController : UITableViewController
-
-@property (strong, nonatomic) IBOutlet UITableView *tagTable;
+@interface SplashScreen : UIViewController
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityLoader;
 
 @end

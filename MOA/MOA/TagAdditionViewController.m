@@ -14,6 +14,12 @@
 
 @implementation TagAdditionViewController
 
+{
+    NSMutableArray *characterList;
+}
+
+@synthesize tagTable;
+
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
@@ -26,6 +32,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    characterList = [[NSMutableArray alloc] init];
+    [self readItemJson:[self title]];
+    
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -50,22 +59,73 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [characterList count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
     // Configure the cell...
+    cell.textLabel.text = [characterList objectAtIndex:indexPath.row];
     return cell;
+}
+
+- (void)readItemJson:(NSString *)operation{
+    
+    NSInteger tempNumber = self.navigationController.viewControllers.count;
+    NSString *previousTitle = [[self.navigationController.viewControllers objectAtIndex:tempNumber-2] title];
+    
+  
+    NSArray *entireTagArrary = [[NSArray alloc] init];
+    if([previousTitle isEqualToString:@"Places"]){
+        
+        entireTagArrary = [[TagList sharedInstance] placesTags];
+        
+    }
+    else if([previousTitle isEqualToString:@"Object Type"]){
+        
+        entireTagArrary = [[TagList sharedInstance] objectTypeTags];
+        
+    }
+    else if([previousTitle isEqualToString:@"Cultures"]){
+        
+        entireTagArrary = [[TagList sharedInstance] culturesTags];
+        
+    }
+    else if([previousTitle isEqualToString:@"Materials"]){
+        
+        entireTagArrary = [[TagList sharedInstance] materialsTags];
+        
+    }
+    else if([previousTitle isEqualToString:@"People"]){
+        
+        entireTagArrary = [[TagList sharedInstance] peopleTags];
+        
+    }
+    
+    for(int i=0; i < [entireTagArrary count]; i++){
+       
+        if(![[[entireTagArrary objectAtIndex:i] lowercaseString] hasPrefix:self.title.lowercaseString] && [characterList count] > 0){
+            [tagTable reloadData];
+            return;
+        }
+        
+        if([[[entireTagArrary objectAtIndex:i] lowercaseString] hasPrefix:self.title.lowercaseString]){
+            
+            [characterList addObject:[entireTagArrary objectAtIndex:i]];
+            
+        }
+    }
+    
+    [tagTable reloadData];
+    return;
 }
 
 /*

@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TagList.h"
 
 @interface FilteredViewViewController : UITableViewController
 

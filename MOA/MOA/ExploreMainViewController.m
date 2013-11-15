@@ -33,7 +33,7 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
-    tableData = [NSArray arrayWithObjects:@"Object Type", @"Place Made", @"Culture", @"Made By", @"Category", nil];
+    tableData = [NSArray arrayWithObjects:@"Object Type", @"Places", @"Cultures", @"Materials", @"People", nil];
     
     self.title = @"Explore Our Collection";
     

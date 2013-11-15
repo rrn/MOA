@@ -45,7 +45,7 @@
     for(int i=0; i < [entireTagArrary count]; i++){
         
         NSDictionary *temp = [entireTagArrary objectAtIndex:i];
-        [[TagList sharedInstance].objectTypeTags addObject:[temp objectForKey:@"name"]];
+        [[TagList sharedInstance].objectTypeTags addObject:[[temp objectForKey:@"name"] capitalizedString]];
 
     }
 }
@@ -67,7 +67,7 @@
     for(int i=0; i < [entireTagArrary count]; i++){
         
         NSDictionary *temp = [entireTagArrary objectAtIndex:i];
-        [[TagList sharedInstance].peopleTags addObject:[temp objectForKey:@"name"]];
+        [[TagList sharedInstance].peopleTags addObject:[[temp objectForKey:@"name"] capitalizedString]];
         
     }
 }
@@ -89,7 +89,7 @@
     for(int i=0; i < [entireTagArrary count]; i++){
         
         NSDictionary *temp = [entireTagArrary objectAtIndex:i];
-        [[TagList sharedInstance].placesTags addObject:[temp objectForKey:@"name"]];
+        [[TagList sharedInstance].placesTags addObject:[[temp objectForKey:@"name"] capitalizedString]];
         
     }
 }
@@ -112,7 +112,7 @@
     for(int i=0; i < [entireTagArrary count]; i++){
         
         NSDictionary *temp = [entireTagArrary objectAtIndex:i];
-        [[TagList sharedInstance].materialsTags addObject:[temp objectForKey:@"name"]];
+        [[TagList sharedInstance].materialsTags addObject:[[temp objectForKey:@"name"] capitalizedString]];
         
     }
 }
@@ -136,7 +136,7 @@
     for(int i=0; i < [entireTagArrary count]; i++){
         
         NSDictionary *temp = [entireTagArrary objectAtIndex:i];
-        [[TagList sharedInstance].culturesTags addObject:[temp objectForKey:@"name"]];
+        [[TagList sharedInstance].culturesTags addObject:[[temp objectForKey:@"name"] capitalizedString]];
         
     }
 }

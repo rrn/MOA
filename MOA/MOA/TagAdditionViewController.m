@@ -32,6 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tagTable.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
     characterList = [[NSMutableArray alloc] init];
     [self readItemJson:[self title]];
     

@@ -8,7 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface VisitorInfoViewController : UIViewController
+@interface VisitorInfoViewController : UIViewController {
+
+    NSDictionary *cafeHoursData;
+    
+}
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+@property (nonatomic, weak) IBOutlet UILabel *cafeHoursLabel;
 
 @end

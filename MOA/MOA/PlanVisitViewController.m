@@ -1,19 +1,19 @@
 //
-//  VisitorInfoViewController.m
+//  PlanVisitViewController.m
 //  MOA
 //
-//  Created by Diana Sutandie on 11/5/2013.
+//  Created by Marilyn Edgar on 11/16/2013.
 //  Copyright (c) 2013 Museum of Anthropology UBC. All rights reserved.
 //
 
-#import "VisitorInfoViewController.h"
+#import "PlanVisitViewController.h"
 #import "SWRevealViewController.h"
 
-@interface VisitorInfoViewController ()
+@interface PlanVisitViewController ()
 
 @end
 
-@implementation VisitorInfoViewController
+@implementation PlanVisitViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,9 +27,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-   
-    self.title = @"Visitor Information";
+	
+    self.title = @"Plan a Visit";
     
     // Side bar button code - set action and gesture (swipe)
     _sidebarButton.target = self.revealViewController;
@@ -63,13 +62,14 @@
                 strCafeHours = [strCafeHours stringByAppendingString:((NSString*)[cafeHoursData objectForKey:key])];
                 if (index  != 0)
                     index = 0;
-                    strCafeHours = [strCafeHours stringByAppendingString:@"\n"];
+                strCafeHours = [strCafeHours stringByAppendingString:@"\n"];
             }
         }
-         NSLog(@"%@", strCafeHours);
+        NSLog(@"%@", strCafeHours);
     }
     self.cafeHoursLabel.text = strCafeHours;
     
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,9 +82,7 @@
 {
     // release any instance variable to avoid memory leak
     
-
+    
 }
-
-
 
 @end

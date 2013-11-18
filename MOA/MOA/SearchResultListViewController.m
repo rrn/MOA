@@ -66,7 +66,7 @@
     
     if([tempCatogeryType isEqualToString:@"Places"]){
         
-       catogeryType = @"locations";
+       catogeryType = @"made+in";
         
     }
     else if([tempCatogeryType isEqualToString:@"Object Type"]){
@@ -77,24 +77,26 @@
     }
     else if([tempCatogeryType isEqualToString:@"Cultures"]){
         
-        catogeryType = @"cultures";
+        catogeryType = @"culture";
         
         
         
     }
     else if([tempCatogeryType isEqualToString:@"Materials"]){
         
-        catogeryType = @"materials";
+        catogeryType = @"made+of";
         
         
         
     }
     else if([tempCatogeryType isEqualToString:@"People"]){
         
-        catogeryType = @"people";
+        catogeryType = @"person";
         
         
     }
+    
+    searchType = [searchType stringByReplacingOccurrencesOfString:@" " withString:@"+"];
 
     NSString *jsonString = [ [NSString alloc]
                             initWithContentsOfURL:[ [NSURL alloc] initWithString:[NSString stringWithFormat:@"http://www.rrnpilot.org/items.json?filters=held+at+MOA:+University+of+British+Columbia,+%@+%@", catogeryType,searchType]]
@@ -122,7 +124,7 @@
     
     cell = [cv dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
     NSArray *digitalObjects = [[itemList objectAtIndex:indexPath.row] objectForKey:@"digital_objects"];
-    NSLog(@"%@", digitalObjects);
+    
     if ([digitalObjects count] > 0){
     NSString *imageUrl = [[digitalObjects objectAtIndex:0] objectForKey:@"thumbnail_url"];
     

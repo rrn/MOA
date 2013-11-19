@@ -8,6 +8,8 @@
 
 #import "PlanVisitViewController.h"
 #import "SWRevealViewController.h"
+#import "DBDataList.h"
+#import "DBData.h"
 
 @interface PlanVisitViewController ()
 
@@ -15,11 +17,15 @@
 
 @implementation PlanVisitViewController
 
+@synthesize datas;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    
     if (self) {
         // Custom initialization
+        
     }
     return self;
 }
@@ -35,8 +41,14 @@
     _sidebarButton.action = @selector(rightRevealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
-    // Get the info from DB
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: @"http://localhost/eece419/home.php"]];
+    DBDataList *data = [[DBDataList alloc]init];
+    self.datas = [data getCafeHours];
+    self.cafeHoursLabel.text = ((DBData *) [self.datas objectAtIndex: 0]).cafeHoursDay;
+    NSLog(@"%@", self.cafeHoursLabel.text);
+   
+    
+    // *** CODE TO PULL INFO FROM DB, DO NOT DELETE ***
+    /*NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: @"http://localhost/eece419/home.php"]];
     NSError         * e;
     NSData      *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&e];
     NSString *strResult = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
@@ -67,7 +79,7 @@
         }
         NSLog(@"%@", strCafeHours);
     }
-    self.cafeHoursLabel.text = strCafeHours;
+    self.cafeHoursLabel.text = strCafeHours;*/
     
 
 }

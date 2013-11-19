@@ -12,6 +12,10 @@
 		507B8E6E1829793A002365EF /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 507B8E6D1829793A002365EF /* SWRevealViewController.m */; };
 		507B8E7018299BCE002365EF /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 507B8E6F18299BCE002365EF /* menu.png */; };
 		50CCCA14182C54D200384881 /* WhatsOnThisWeekViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CCCA13182C54D200384881 /* WhatsOnThisWeekViewController.m */; };
+		50FA4065183B714900EC0CEC /* MOA.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 50FA4064183B714900EC0CEC /* MOA.sqlite */; };
+		50FA4068183B71A200EC0CEC /* DBDataList.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FA4067183B71A200EC0CEC /* DBDataList.m */; };
+		50FA406B183B71FA00EC0CEC /* DBData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FA406A183B71FA00EC0CEC /* DBData.m */; };
+		50FA4071183B778F00EC0CEC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA4070183B778F00EC0CEC /* libsqlite3.dylib */; };
 		BB0E65911835737F00163652 /* FilteredViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0E65901835737F00163652 /* FilteredViewViewController.m */; };
 		BB0E6597183575E200163652 /* TagAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0E6596183575E200163652 /* TagAdditionViewController.m */; };
 		BB0E659A1835926800163652 /* TagList.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0E65991835926800163652 /* TagList.m */; };
@@ -59,6 +63,12 @@
 		507B8E6F18299BCE002365EF /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		50CCCA12182C54D100384881 /* WhatsOnThisWeekViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhatsOnThisWeekViewController.h; sourceTree = "<group>"; };
 		50CCCA13182C54D200384881 /* WhatsOnThisWeekViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhatsOnThisWeekViewController.m; sourceTree = "<group>"; };
+		50FA4064183B714900EC0CEC /* MOA.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = MOA.sqlite; sourceTree = "<group>"; };
+		50FA4066183B71A200EC0CEC /* DBDataList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBDataList.h; path = ../DBDataList.h; sourceTree = "<group>"; };
+		50FA4067183B71A200EC0CEC /* DBDataList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBDataList.m; path = ../DBDataList.m; sourceTree = "<group>"; };
+		50FA4069183B71FA00EC0CEC /* DBData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBData.h; path = ../DBData.h; sourceTree = "<group>"; };
+		50FA406A183B71FA00EC0CEC /* DBData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBData.m; path = ../DBData.m; sourceTree = "<group>"; };
+		50FA4070183B778F00EC0CEC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		BB0E658F1835737F00163652 /* FilteredViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilteredViewViewController.h; sourceTree = "<group>"; };
 		BB0E65901835737F00163652 /* FilteredViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilteredViewViewController.m; sourceTree = "<group>"; };
 		BB0E6595183575E200163652 /* TagAdditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagAdditionViewController.h; sourceTree = "<group>"; };
@@ -105,6 +115,7 @@
 			files = (
 				BBA3405D1826D6F700B6E4B1 /* CoreGraphics.framework in Frameworks */,
 				BBA3405F1826D6F700B6E4B1 /* UIKit.framework in Frameworks */,
+				50FA4071183B778F00EC0CEC /* libsqlite3.dylib in Frameworks */,
 				BBA3405B1826D6F700B6E4B1 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -143,6 +154,7 @@
 		BBA3404E1826D6F700B6E4B1 = {
 			isa = PBXGroup;
 			children = (
+				50FA4064183B714900EC0CEC /* MOA.sqlite */,
 				BBA340601826D6F700B6E4B1 /* MOA */,
 				BBA3407F1826D6F700B6E4B1 /* MOATests */,
 				BBA340591826D6F700B6E4B1 /* Frameworks */,
@@ -162,6 +174,7 @@
 		BBA340591826D6F700B6E4B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				50FA4070183B778F00EC0CEC /* libsqlite3.dylib */,
 				BBA3405A1826D6F700B6E4B1 /* Foundation.framework */,
 				BBA3405C1826D6F700B6E4B1 /* CoreGraphics.framework */,
 				BBA3405E1826D6F700B6E4B1 /* UIKit.framework */,
@@ -173,6 +186,10 @@
 		BBA340601826D6F700B6E4B1 /* MOA */ = {
 			isa = PBXGroup;
 			children = (
+				50FA4066183B71A200EC0CEC /* DBDataList.h */,
+				50FA4067183B71A200EC0CEC /* DBDataList.m */,
+				50FA4069183B71FA00EC0CEC /* DBData.h */,
+				50FA406A183B71FA00EC0CEC /* DBData.m */,
 				507B8E651828EBE4002365EF /* Library */,
 				BBA340921827012C00B6E4B1 /* Placeholders */,
 				BBA340691826D6F700B6E4B1 /* AppDelegate.h */,
@@ -324,6 +341,7 @@
 			files = (
 				E438ACCD183AD8AE0078FD2F /* plan_a_visit.jpg in Resources */,
 				BBA34090182700FC00B6E4B1 /* 480x360.gif in Resources */,
+				50FA4065183B714900EC0CEC /* MOA.sqlite in Resources */,
 				BBA340731826D6F700B6E4B1 /* Images.xcassets in Resources */,
 				BBA340651826D6F700B6E4B1 /* InfoPlist.strings in Resources */,
 				BBA34094182701F500B6E4B1 /* 320x200.gif in Resources */,
@@ -349,7 +367,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BB0E65A018371AA100163652 /* SearchResultListViewController.m in Sources */,
+				50FA4068183B71A200EC0CEC /* DBDataList.m in Sources */,
 				BB0E659D1835A61300163652 /* SplashScreen.m in Sources */,
+				50FA406B183B71FA00EC0CEC /* DBData.m in Sources */,
 				BB3179FD1827112F00CC9C38 /* ExploreMainViewController.m in Sources */,
 				E438ACC9183877E10078FD2F /* VisitorInfoViewController.m in Sources */,
 				50CCCA14182C54D200384881 /* WhatsOnThisWeekViewController.m in Sources */,
@@ -491,6 +511,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MOA/MOA-Prefix.pch";
 				INFOPLIST_FILE = "MOA/MOA-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/deborah/Documents/UBC/FALL2013/EECE419/MOA/MOA,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -504,6 +528,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MOA/MOA-Prefix.pch";
 				INFOPLIST_FILE = "MOA/MOA-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/Users/deborah/Documents/UBC/FALL2013/EECE419/MOA/MOA,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

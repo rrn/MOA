@@ -19,4 +19,4 @@
 @end
 
 NSMutableArray *visitorInformationArray;
-NSString *parkingData;
+NSMutableArray *parkingInformationArray;

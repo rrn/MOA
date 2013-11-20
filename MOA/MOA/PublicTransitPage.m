@@ -1,18 +1,18 @@
 //
-//  ParkingPage.m
+//  PublicTransitPage.m
 //  MOA
 //
 //  Created by Diana Sutandie on 11/19/2013.
 //  Copyright (c) 2013 Museum of Anthropology UBC. All rights reserved.
 //
 
-#import "ParkingPage.h"
+#import "PublicTransitPage.h"
 
-@interface ParkingPage ()
+@interface PublicTransitPage ()
 
 @end
 
-@implementation ParkingPage
+@implementation PublicTransitPage
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,14 +26,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Parking & Directions";
-    self.description.text = [parkingInformationArray objectAtIndex:0]; //index 0 contains parking description
-    
-    // we want to be able to scroll
-    //[self.scroll setScrollEnabled:YES];
-    //[self.scroll setContentSize:CGSizeMake(320, 700)];
-    
-	
+	self.title = @"Parking & Directions";
+    NSLog(@"%@", [parkingInformationArray objectAtIndex:1]);
+    self.description.text = [parkingInformationArray objectAtIndex:1];
 }
 
 - (void)didReceiveMemoryWarning

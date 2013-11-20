@@ -1,15 +1,15 @@
 //
-//  ParkingPage.h
+//  FromLowerMainland.h
 //  MOA
 //
-//  Created by Diana Sutandie on 11/19/2013.
+//  Created by Diana Sutandie on 11/20/2013.
 //  Copyright (c) 2013 Museum of Anthropology UBC. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 #import "Global.h"
 
-@interface ParkingPage : UIViewController
+@interface FromLowerMainland : UIViewController
 
 @property (nonatomic, weak) IBOutlet UILabel *description;
 @property (nonatomic, weak) IBOutlet UIScrollView *scroll;

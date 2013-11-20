@@ -13,8 +13,10 @@
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+- (void)remoteDBDataInitialization;
 
 @end
 
 NSMutableArray *visitorInformationArray;
-NSString *parkingData;
+NSMutableArray *parkingInformationArray;
+

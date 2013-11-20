@@ -1,5 +1,5 @@
 //
-//  ParkingPage.h
+//  PublicTransitPage.h
 //  MOA
 //
 //  Created by Diana Sutandie on 11/19/2013.
@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Global.h"
 
-@interface ParkingPage : UIViewController
+@interface PublicTransitPage : UIViewController
 
 @property (nonatomic, weak) IBOutlet UILabel *description;
 @property (nonatomic, weak) IBOutlet UIScrollView *scroll;

@@ -9,7 +9,8 @@
 #ifndef MOA_Global_h
 #define MOA_Global_h
 
+// static data before DB implementation
 extern NSMutableArray *visitorInformationArray;
-extern NSString *parkingData;
+extern NSMutableArray *parkingInformationArray;
 
 #endif

@@ -14,6 +14,9 @@
 		50CCCA14182C54D200384881 /* WhatsOnThisWeekViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CCCA13182C54D200384881 /* WhatsOnThisWeekViewController.m */; };
 		50F52903183C91D7002A463C /* DirectionParkingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F52902183C91D7002A463C /* DirectionParkingViewController.m */; };
 		50F52909183C984D002A463C /* ParkingPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F52908183C984D002A463C /* ParkingPage.m */; };
+		50F5290C183CA359002A463C /* PublicTransitPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F5290B183CA359002A463C /* PublicTransitPage.m */; };
+		50F5290F183CA37B002A463C /* FromAirportPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F5290E183CA37B002A463C /* FromAirportPage.m */; };
+		50F52912183CA38F002A463C /* FromLowerMainland.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F52911183CA38F002A463C /* FromLowerMainland.m */; };
 		50FA4065183B714900EC0CEC /* MOA.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 50FA4064183B714900EC0CEC /* MOA.sqlite */; };
 		50FA4068183B71A200EC0CEC /* DBDataList.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FA4067183B71A200EC0CEC /* DBDataList.m */; };
 		50FA406B183B71FA00EC0CEC /* DBData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FA406A183B71FA00EC0CEC /* DBData.m */; };
@@ -70,6 +73,12 @@
 		50F52902183C91D7002A463C /* DirectionParkingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionParkingViewController.m; sourceTree = "<group>"; };
 		50F52907183C984D002A463C /* ParkingPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParkingPage.h; path = ../ParkingPage.h; sourceTree = "<group>"; };
 		50F52908183C984D002A463C /* ParkingPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ParkingPage.m; path = ../ParkingPage.m; sourceTree = "<group>"; };
+		50F5290A183CA359002A463C /* PublicTransitPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PublicTransitPage.h; sourceTree = "<group>"; };
+		50F5290B183CA359002A463C /* PublicTransitPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PublicTransitPage.m; sourceTree = "<group>"; };
+		50F5290D183CA37B002A463C /* FromAirportPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FromAirportPage.h; path = ../FromAirportPage.h; sourceTree = "<group>"; };
+		50F5290E183CA37B002A463C /* FromAirportPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FromAirportPage.m; path = ../FromAirportPage.m; sourceTree = "<group>"; };
+		50F52910183CA38E002A463C /* FromLowerMainland.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FromLowerMainland.h; path = ../FromLowerMainland.h; sourceTree = "<group>"; };
+		50F52911183CA38F002A463C /* FromLowerMainland.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FromLowerMainland.m; path = ../FromLowerMainland.m; sourceTree = "<group>"; };
 		50FA4064183B714900EC0CEC /* MOA.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = MOA.sqlite; sourceTree = "<group>"; };
 		50FA4066183B71A200EC0CEC /* DBDataList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBDataList.h; path = ../DBDataList.h; sourceTree = "<group>"; };
 		50FA4067183B71A200EC0CEC /* DBDataList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBDataList.m; path = ../DBDataList.m; sourceTree = "<group>"; };
@@ -164,6 +173,12 @@
 		50F52904183C97C4002A463C /* VisitorInformation */ = {
 			isa = PBXGroup;
 			children = (
+				50F5290A183CA359002A463C /* PublicTransitPage.h */,
+				50F5290B183CA359002A463C /* PublicTransitPage.m */,
+				50F5290D183CA37B002A463C /* FromAirportPage.h */,
+				50F5290E183CA37B002A463C /* FromAirportPage.m */,
+				50F52910183CA38E002A463C /* FromLowerMainland.h */,
+				50F52911183CA38F002A463C /* FromLowerMainland.m */,
 				50F52907183C984D002A463C /* ParkingPage.h */,
 				50F52908183C984D002A463C /* ParkingPage.m */,
 				E438ACC7183877E10078FD2F /* VisitorInfoViewController.h */,
@@ -402,9 +417,12 @@
 				BB0E65A018371AA100163652 /* SearchResultListViewController.m in Sources */,
 				50FA4068183B71A200EC0CEC /* DBDataList.m in Sources */,
 				BB0E659D1835A61300163652 /* SplashScreen.m in Sources */,
+				50F5290C183CA359002A463C /* PublicTransitPage.m in Sources */,
 				50FA406B183B71FA00EC0CEC /* DBData.m in Sources */,
+				50F52912183CA38F002A463C /* FromLowerMainland.m in Sources */,
 				BB3179FD1827112F00CC9C38 /* ExploreMainViewController.m in Sources */,
 				E438ACC9183877E10078FD2F /* VisitorInfoViewController.m in Sources */,
+				50F5290F183CA37B002A463C /* FromAirportPage.m in Sources */,
 				50CCCA14182C54D200384881 /* WhatsOnThisWeekViewController.m in Sources */,
 				50F52909183C984D002A463C /* ParkingPage.m in Sources */,
 				BB0E659A1835926800163652 /* TagList.m in Sources */,

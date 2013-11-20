@@ -569,18 +569,6 @@
             </objects>
             <point key="canvasLocation" x="2204" y="-974"/>
         </scene>
-        <!--Sidebar View Controller - Plan a Visit-->
-        <scene sceneID="NZP-Gh-rUv">
-            <objects>
-                <viewController title="Plan a Visit" id="7td-g3-hPR" customClass="SidebarViewController" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="fGT-sz-Bnl"/>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Zfd-Ap-BCC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2332" y="-1671"/>
-        </scene>
         <!--Plan Visit View Controller-->
         <scene sceneID="9Pr-1K-1ZJ">
             <objects>
@@ -603,6 +591,9 @@
                                         <state key="normal" title="Directions &amp; Parking">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="10t-WQ-84x" kind="push" id="j3o-ge-z70"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Museum of Anthropology at University of British Columbia " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="259" translatesAutoresizingMaskIntoConstraints="NO" id="XJs-wE-uf6">
                                         <rect key="frame" x="32" y="195" width="259" height="58"/>
@@ -665,7 +656,89 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0gI-yf-bdl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2791" y="-1233"/>
+            <point key="canvasLocation" x="2695" y="-974"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="2g7-xg-oxY">
+            <objects>
+                <viewController id="10t-WQ-84x" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="C6O-2G-u2a"/>
+                        <viewControllerLayoutGuide type="bottom" id="CQw-Zp-Yp7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lnj-D7-cK2">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MOA is located on the campus of the University of British Columbia, 20 minutes from downtown Vancouver." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="307" translatesAutoresizingMaskIntoConstraints="NO" id="pZK-XX-KcM">
+                                <rect key="frame" x="7" y="65" width="307" height="72"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nj2-1C-A5B">
+                                <rect key="frame" x="87" y="191" width="123" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                <state key="normal" title="Parking">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="SBD-xO-9YK" kind="push" id="Bzt-KL-Ehl"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="N9X-mM-xcl"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="LUg-0b-Asi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3151" y="-974"/>
+        </scene>
+        <!--Parking Page-->
+        <scene sceneID="vAV-9I-jTP">
+            <objects>
+                <viewController id="SBD-xO-9YK" customClass="ParkingPage" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YV7-RF-vJY"/>
+                        <viewControllerLayoutGuide type="bottom" id="UnH-do-JwL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="nk6-gf-Hpq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parking" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zmx-D3-uW7">
+                                <rect key="frame" x="20" y="80" width="104" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="104" id="e8B-qM-ARy"/>
+                                    <constraint firstAttribute="height" constant="37" id="pF4-z7-9A1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Tk9-AM-KSv">
+                                <rect key="frame" x="20" y="91" width="280" height="387"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Zmx-D3-uW7" firstAttribute="leading" secondItem="nk6-gf-Hpq" secondAttribute="leading" constant="20" symbolic="YES" id="QKx-t2-NoF"/>
+                            <constraint firstItem="Zmx-D3-uW7" firstAttribute="top" secondItem="YV7-RF-vJY" secondAttribute="bottom" constant="16" id="zuQ-gE-2J1"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="W0d-88-Xuq"/>
+                    <connections>
+                        <outlet property="description" destination="Tk9-AM-KSv" id="eWh-FG-qZy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XXY-tk-ano" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3606" y="-981"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="arT-Yp-JoJ">

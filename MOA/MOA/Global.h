@@ -10,5 +10,6 @@
 #define MOA_Global_h
 
 extern NSMutableArray *visitorInformationArray;
+extern NSString *parkingData;
 
 #endif

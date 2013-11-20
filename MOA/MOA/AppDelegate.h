@@ -17,3 +17,4 @@
 @end
 
 NSMutableArray *visitorInformationArray;
+NSString *parkingData;

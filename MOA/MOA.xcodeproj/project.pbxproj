@@ -12,6 +12,8 @@
 		507B8E6E1829793A002365EF /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 507B8E6D1829793A002365EF /* SWRevealViewController.m */; };
 		507B8E7018299BCE002365EF /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 507B8E6F18299BCE002365EF /* menu.png */; };
 		50CCCA14182C54D200384881 /* WhatsOnThisWeekViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CCCA13182C54D200384881 /* WhatsOnThisWeekViewController.m */; };
+		50F52903183C91D7002A463C /* DirectionParkingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F52902183C91D7002A463C /* DirectionParkingViewController.m */; };
+		50F52909183C984D002A463C /* ParkingPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F52908183C984D002A463C /* ParkingPage.m */; };
 		50FA4065183B714900EC0CEC /* MOA.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 50FA4064183B714900EC0CEC /* MOA.sqlite */; };
 		50FA4068183B71A200EC0CEC /* DBDataList.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FA4067183B71A200EC0CEC /* DBDataList.m */; };
 		50FA406B183B71FA00EC0CEC /* DBData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FA406A183B71FA00EC0CEC /* DBData.m */; };
@@ -64,6 +66,10 @@
 		507B8E6F18299BCE002365EF /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		50CCCA12182C54D100384881 /* WhatsOnThisWeekViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhatsOnThisWeekViewController.h; sourceTree = "<group>"; };
 		50CCCA13182C54D200384881 /* WhatsOnThisWeekViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhatsOnThisWeekViewController.m; sourceTree = "<group>"; };
+		50F52901183C91D7002A463C /* DirectionParkingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionParkingViewController.h; sourceTree = "<group>"; };
+		50F52902183C91D7002A463C /* DirectionParkingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionParkingViewController.m; sourceTree = "<group>"; };
+		50F52907183C984D002A463C /* ParkingPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParkingPage.h; path = ../ParkingPage.h; sourceTree = "<group>"; };
+		50F52908183C984D002A463C /* ParkingPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ParkingPage.m; path = ../ParkingPage.m; sourceTree = "<group>"; };
 		50FA4064183B714900EC0CEC /* MOA.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = MOA.sqlite; sourceTree = "<group>"; };
 		50FA4066183B71A200EC0CEC /* DBDataList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBDataList.h; path = ../DBDataList.h; sourceTree = "<group>"; };
 		50FA4067183B71A200EC0CEC /* DBDataList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBDataList.m; path = ../DBDataList.m; sourceTree = "<group>"; };
@@ -155,6 +161,34 @@
 			name = Library;
 			sourceTree = "<group>";
 		};
+		50F52904183C97C4002A463C /* VisitorInformation */ = {
+			isa = PBXGroup;
+			children = (
+				50F52907183C984D002A463C /* ParkingPage.h */,
+				50F52908183C984D002A463C /* ParkingPage.m */,
+				E438ACC7183877E10078FD2F /* VisitorInfoViewController.h */,
+				E438ACC8183877E10078FD2F /* VisitorInfoViewController.m */,
+				E438ACC418386F930078FD2F /* PlanVisitViewController.h */,
+				E438ACC518386F930078FD2F /* PlanVisitViewController.m */,
+				50F52901183C91D7002A463C /* DirectionParkingViewController.h */,
+				50F52902183C91D7002A463C /* DirectionParkingViewController.m */,
+			);
+			name = VisitorInformation;
+			sourceTree = "<group>";
+		};
+		50F52905183C97DC002A463C /* LocalDatabase */ = {
+			isa = PBXGroup;
+			children = (
+				50FA4072183B7F6600EC0CEC /* DBRemoteUpdater.h */,
+				50FA4073183B7F6600EC0CEC /* DBRemoteUpdater.m */,
+				50FA4066183B71A200EC0CEC /* DBDataList.h */,
+				50FA4067183B71A200EC0CEC /* DBDataList.m */,
+				50FA4069183B71FA00EC0CEC /* DBData.h */,
+				50FA406A183B71FA00EC0CEC /* DBData.m */,
+			);
+			name = LocalDatabase;
+			sourceTree = "<group>";
+		};
 		BBA3404E1826D6F700B6E4B1 = {
 			isa = PBXGroup;
 			children = (
@@ -190,34 +224,26 @@
 		BBA340601826D6F700B6E4B1 /* MOA */ = {
 			isa = PBXGroup;
 			children = (
-				50FA4066183B71A200EC0CEC /* DBDataList.h */,
-				50FA4067183B71A200EC0CEC /* DBDataList.m */,
-				50FA4069183B71FA00EC0CEC /* DBData.h */,
-				50FA406A183B71FA00EC0CEC /* DBData.m */,
+				50F52904183C97C4002A463C /* VisitorInformation */,
 				507B8E651828EBE4002365EF /* Library */,
 				BBA340921827012C00B6E4B1 /* Placeholders */,
 				BBA340691826D6F700B6E4B1 /* AppDelegate.h */,
 				BBA3406A1826D6F700B6E4B1 /* AppDelegate.m */,
 				50FA407C183C811100EC0CEC /* Global.h */,
+				50F52905183C97DC002A463C /* LocalDatabase */,
 				BBA3406C1826D6F700B6E4B1 /* Main.storyboard */,
 				BB0E65981835926800163652 /* TagList.h */,
 				BB0E65991835926800163652 /* TagList.m */,
 				50CCCA12182C54D100384881 /* WhatsOnThisWeekViewController.h */,
 				50CCCA13182C54D200384881 /* WhatsOnThisWeekViewController.m */,
 				507B8E621828E2F4002365EF /* SidebarViewController.h */,
+				507B8E631828E2F4002365EF /* SidebarViewController.m */,
 				BB0E659E18371AA100163652 /* SearchResultListViewController.h */,
 				BB0E659F18371AA100163652 /* SearchResultListViewController.m */,
 				507B8E661828F355002365EF /* MainViewController.h */,
+				507B8E671828F355002365EF /* MainViewController.m */,
 				BB0E6595183575E200163652 /* TagAdditionViewController.h */,
 				BB0E6596183575E200163652 /* TagAdditionViewController.m */,
-				507B8E671828F355002365EF /* MainViewController.m */,
-				507B8E631828E2F4002365EF /* SidebarViewController.m */,
-				E438ACC7183877E10078FD2F /* VisitorInfoViewController.h */,
-				E438ACC8183877E10078FD2F /* VisitorInfoViewController.m */,
-				E438ACC418386F930078FD2F /* PlanVisitViewController.h */,
-				E438ACC518386F930078FD2F /* PlanVisitViewController.m */,
-				50FA4072183B7F6600EC0CEC /* DBRemoteUpdater.h */,
-				50FA4073183B7F6600EC0CEC /* DBRemoteUpdater.m */,
 				BBA340721826D6F700B6E4B1 /* Images.xcassets */,
 				BBA340611826D6F700B6E4B1 /* Supporting Files */,
 				BB3179FB1827112F00CC9C38 /* ExploreMainViewController.h */,
@@ -380,7 +406,9 @@
 				BB3179FD1827112F00CC9C38 /* ExploreMainViewController.m in Sources */,
 				E438ACC9183877E10078FD2F /* VisitorInfoViewController.m in Sources */,
 				50CCCA14182C54D200384881 /* WhatsOnThisWeekViewController.m in Sources */,
+				50F52909183C984D002A463C /* ParkingPage.m in Sources */,
 				BB0E659A1835926800163652 /* TagList.m in Sources */,
+				50F52903183C91D7002A463C /* DirectionParkingViewController.m in Sources */,
 				50FA4074183B7F6600EC0CEC /* DBRemoteUpdater.m in Sources */,
 				BB0E65911835737F00163652 /* FilteredViewViewController.m in Sources */,
 				BB0E6597183575E200163652 /* TagAdditionViewController.m in Sources */,

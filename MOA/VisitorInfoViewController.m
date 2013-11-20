@@ -59,6 +59,7 @@
         NSLog(@"Error parsing JSON: %@", e);
     } else {
         NSDictionary *info;
+        NSString *keyName = @"";
         //visitorInformationArray = [[NSMutableArray alloc]init];
         int index = 0;
         for(NSDictionary *item in jsonArray) {
@@ -79,6 +80,16 @@
                         } else {
                             index++;
                             strPulledData = [strPulledData stringByAppendingString:@" : "];
+                        }
+                        
+                        // this contains description for Parking
+                        if ([keyName isEqualToString:@"Parking"]){
+                            parkingData = (NSString*)[info objectForKey:keyInfo];
+                            keyName = @"Default";
+                        }
+                        
+                        if ([(NSString*)[info objectForKey:keyInfo] isEqualToString:@"Parking"]){
+                            keyName = @"Parking";
                         }
                     } // data will be extracted in the form of "key : values"
                 }

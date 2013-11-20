@@ -41,7 +41,9 @@
     _sidebarButton.action = @selector(rightRevealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
-    
+    // we want to be able to scroll
+    [self.scrollView setScrollEnabled:YES];
+    [self.scrollView setContentSize:CGSizeMake(320, 700)];
     
     
     /* // pull data from local database

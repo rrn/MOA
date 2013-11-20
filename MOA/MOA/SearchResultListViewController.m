@@ -262,7 +262,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     NSIndexPath *selectedCell = [[self.collectionView indexPathsForSelectedItems] lastObject];
     ItemPageController *destinationViewController = [segue destinationViewController];
     destinationViewController.data = itemList;
-    destinationViewController.itemNumber = selectedCell.row;
+    destinationViewController.itemNumber = selectedCell.section;
 }
 
 @end

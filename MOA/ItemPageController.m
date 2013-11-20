@@ -48,7 +48,6 @@
     self.itemDescriptionTextView = [[UITextView alloc] initWithFrame:CGRectMake(screenWidth/20, 300, screenWidth -(2*screenWidth)/20, 200)];
     self.itemDescriptionTextView.scrollEnabled = NO;
     
-    
     NSArray *digitalObjects = [[data objectAtIndex:itemNumber] objectForKey:@"digital_objects"];
     NSString *imageUrl = [[digitalObjects objectAtIndex:0] objectForKey:@"url"];
     NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: imageUrl]];

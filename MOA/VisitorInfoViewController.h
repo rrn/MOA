@@ -7,8 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Global.h"
 
-@interface VisitorInfoViewController : UITableViewController
+@interface VisitorInfoViewController : UITableViewController {
+    NSDictionary *pulledData;
+    NSMutableArray *datas;
+}
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 
 @end
+
+NSMutableArray *visitorInformationArray;

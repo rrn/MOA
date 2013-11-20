@@ -13,7 +13,9 @@
 
 @end
 
+
 @implementation VisitorInfoViewController
+
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -27,21 +29,65 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
     
     self.title = @"Visitor Information";
     
-    // Set the side bar button action. When it's tapped, it'll show up the sidebar.
+    // Sidebar menu code
     _sidebarButton.target = self.revealViewController;
     _sidebarButton.action = @selector(rightRevealToggle:);
-    
-    // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
- 
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: @"http://localhost/eece419/home.php"]];
+    NSError         * e;
+    NSData      *remoteData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&e];
+    NSString *strResult = [[NSString alloc] initWithData:remoteData encoding:NSUTF8StringEncoding];
+    NSData *jsonData = [strResult dataUsingEncoding:NSUTF8StringEncoding];
+    e = nil;
+    NSString *strPulledData = @"";
+    NSArray *jsonArray = [NSJSONSerialization JSONObjectWithData: jsonData options: NSJSONReadingMutableContainers error: &e];
+    
+    // regarding visitor Information data:
+    // [0] : cafe hours
+    // [1] : parking and directions
+    if (!jsonArray) {
+        NSLog(@"Error parsing JSON: %@", e);
+    } else {
+        NSDictionary *info;
+        //visitorInformationArray = [[NSMutableArray alloc]init];
+        int index = 0;
+        for(NSDictionary *item in jsonArray) {
+            pulledData = item;
+            NSEnumerator *enumerator = [pulledData keyEnumerator];
+            id key;
+            while((key = [enumerator nextObject])){
+                strPulledData = @"";
+                for (NSDictionary *temp in [pulledData objectForKey:key]){
+                    info = temp;
+                    NSEnumerator *enumInfo = [info keyEnumerator];
+                    id keyInfo;
+                    while((keyInfo = [enumInfo nextObject])){
+                        strPulledData = [strPulledData stringByAppendingString:((NSString*)[info objectForKey:keyInfo])];
+                        if (index != 0) {
+                            index = 0;
+                            strPulledData = [strPulledData stringByAppendingString:@"\n"];
+                        } else {
+                            index++;
+                            strPulledData = [strPulledData stringByAppendingString:@" : "];
+                        }
+                    } // data will be extracted in the form of "key : values"
+                }
+                NSLog(@"%@", strPulledData);
+                NSString *parsedData = strPulledData;
+                [visitorInformationArray addObject:parsedData];
+            }
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning

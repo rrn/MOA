@@ -16,6 +16,7 @@
 		50FA4068183B71A200EC0CEC /* DBDataList.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FA4067183B71A200EC0CEC /* DBDataList.m */; };
 		50FA406B183B71FA00EC0CEC /* DBData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FA406A183B71FA00EC0CEC /* DBData.m */; };
 		50FA4071183B778F00EC0CEC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA4070183B778F00EC0CEC /* libsqlite3.dylib */; };
+		50FA4074183B7F6600EC0CEC /* DBRemoteUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FA4073183B7F6600EC0CEC /* DBRemoteUpdater.m */; };
 		BB0E65911835737F00163652 /* FilteredViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0E65901835737F00163652 /* FilteredViewViewController.m */; };
 		BB0E6597183575E200163652 /* TagAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0E6596183575E200163652 /* TagAdditionViewController.m */; };
 		BB0E659A1835926800163652 /* TagList.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0E65991835926800163652 /* TagList.m */; };
@@ -69,6 +70,9 @@
 		50FA4069183B71FA00EC0CEC /* DBData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBData.h; path = ../DBData.h; sourceTree = "<group>"; };
 		50FA406A183B71FA00EC0CEC /* DBData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBData.m; path = ../DBData.m; sourceTree = "<group>"; };
 		50FA4070183B778F00EC0CEC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		50FA4072183B7F6600EC0CEC /* DBRemoteUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBRemoteUpdater.h; sourceTree = "<group>"; };
+		50FA4073183B7F6600EC0CEC /* DBRemoteUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBRemoteUpdater.m; sourceTree = "<group>"; };
+		50FA407C183C811100EC0CEC /* Global.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
 		BB0E658F1835737F00163652 /* FilteredViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilteredViewViewController.h; sourceTree = "<group>"; };
 		BB0E65901835737F00163652 /* FilteredViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilteredViewViewController.m; sourceTree = "<group>"; };
 		BB0E6595183575E200163652 /* TagAdditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagAdditionViewController.h; sourceTree = "<group>"; };
@@ -194,6 +198,7 @@
 				BBA340921827012C00B6E4B1 /* Placeholders */,
 				BBA340691826D6F700B6E4B1 /* AppDelegate.h */,
 				BBA3406A1826D6F700B6E4B1 /* AppDelegate.m */,
+				50FA407C183C811100EC0CEC /* Global.h */,
 				BBA3406C1826D6F700B6E4B1 /* Main.storyboard */,
 				BB0E65981835926800163652 /* TagList.h */,
 				BB0E65991835926800163652 /* TagList.m */,
@@ -211,6 +216,8 @@
 				E438ACC8183877E10078FD2F /* VisitorInfoViewController.m */,
 				E438ACC418386F930078FD2F /* PlanVisitViewController.h */,
 				E438ACC518386F930078FD2F /* PlanVisitViewController.m */,
+				50FA4072183B7F6600EC0CEC /* DBRemoteUpdater.h */,
+				50FA4073183B7F6600EC0CEC /* DBRemoteUpdater.m */,
 				BBA340721826D6F700B6E4B1 /* Images.xcassets */,
 				BBA340611826D6F700B6E4B1 /* Supporting Files */,
 				BB3179FB1827112F00CC9C38 /* ExploreMainViewController.h */,
@@ -374,6 +381,7 @@
 				E438ACC9183877E10078FD2F /* VisitorInfoViewController.m in Sources */,
 				50CCCA14182C54D200384881 /* WhatsOnThisWeekViewController.m in Sources */,
 				BB0E659A1835926800163652 /* TagList.m in Sources */,
+				50FA4074183B7F6600EC0CEC /* DBRemoteUpdater.m in Sources */,
 				BB0E65911835737F00163652 /* FilteredViewViewController.m in Sources */,
 				BB0E6597183575E200163652 /* TagAdditionViewController.m in Sources */,
 				507B8E641828E2F4002365EF /* SidebarViewController.m in Sources */,

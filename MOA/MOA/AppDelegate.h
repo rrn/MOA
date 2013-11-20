@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Global.h"
+
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
 @end
+
+NSMutableArray *visitorInformationArray;

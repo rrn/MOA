@@ -13,7 +13,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
+    visitorInformationArray = [[NSMutableArray alloc] init];
     // Override point for customization after application launch.
     return YES;
 }

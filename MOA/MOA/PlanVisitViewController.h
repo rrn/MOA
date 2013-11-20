@@ -8,16 +8,22 @@
 
 #import <UIKit/UIKit.h>
 #import "DBDataList.h"
+#import "Global.h"
+
+
 
 @interface PlanVisitViewController : UIViewController {
     
     NSDictionary *cafeHoursData;
     NSMutableArray *datas;
-    
+
 }
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (nonatomic, weak) IBOutlet UILabel *cafeHoursLabel;
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
 @property (nonatomic, retain) NSMutableArray *datas;
 
 
 @end
+
+NSMutableArray *visitorInformationArray;

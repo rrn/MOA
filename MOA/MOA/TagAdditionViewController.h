@@ -12,5 +12,6 @@
 @interface TagAdditionViewController : UITableViewController
 
 @property (strong, nonatomic) IBOutlet UITableView *tagTable;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;
 
 @end

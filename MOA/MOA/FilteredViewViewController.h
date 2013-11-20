@@ -10,5 +10,6 @@
 #import "TagList.h"
 
 @interface FilteredViewViewController : UITableViewController
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;
 
 @end

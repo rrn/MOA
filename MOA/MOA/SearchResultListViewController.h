@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ItemLayout.h"
+#import "BHAlbum.h"
+#import "BHPhoto.h"
 
-@interface SearchResultListViewController : UICollectionViewController
-@property (strong, nonatomic) IBOutlet UICollectionView *theCollectionView;
+@interface SearchResultListViewController : UICollectionViewController <UICollectionViewDataSource, UICollectionViewDelegate>
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;
+@property (weak, nonatomic) IBOutlet ItemLayout *itemViewLayout;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityLoader;
 
 @end

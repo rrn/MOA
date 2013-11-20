@@ -35,6 +35,12 @@
 		BBA34090182700FC00B6E4B1 /* 480x360.gif in Resources */ = {isa = PBXBuildFile; fileRef = BBA3408F182700FC00B6E4B1 /* 480x360.gif */; };
 		BBA34094182701F500B6E4B1 /* 320x200.gif in Resources */ = {isa = PBXBuildFile; fileRef = BBA34093182701F500B6E4B1 /* 320x200.gif */; };
 		BBA340961827024600B6E4B1 /* 320x170.gif in Resources */ = {isa = PBXBuildFile; fileRef = BBA340951827024600B6E4B1 /* 320x170.gif */; };
+		BBC78D68183B4FF7004D867F /* ItemPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC78D67183B4FF7004D867F /* ItemPageController.m */; };
+		BBC78D6B183C3F77004D867F /* ItemLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC78D6A183C3F77004D867F /* ItemLayout.m */; };
+		BBC78D6E183C41E9004D867F /* ItemViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC78D6D183C41E9004D867F /* ItemViewCell.m */; };
+		BBC78D73183C46CB004D867F /* BHAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC78D70183C46CB004D867F /* BHAlbum.m */; };
+		BBC78D74183C46CB004D867F /* BHPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC78D72183C46CB004D867F /* BHPhoto.m */; };
+		BBC78D77183C4B82004D867F /* BHAlbumTitleReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC78D76183C4B82004D867F /* BHAlbumTitleReusableView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +97,18 @@
 		BBA3408F182700FC00B6E4B1 /* 480x360.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 480x360.gif; sourceTree = "<group>"; };
 		BBA34093182701F500B6E4B1 /* 320x200.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 320x200.gif; sourceTree = "<group>"; };
 		BBA340951827024600B6E4B1 /* 320x170.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 320x170.gif; sourceTree = "<group>"; };
+		BBC78D66183B4FF7004D867F /* ItemPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemPageController.h; path = ../ItemPageController.h; sourceTree = "<group>"; };
+		BBC78D67183B4FF7004D867F /* ItemPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemPageController.m; path = ../ItemPageController.m; sourceTree = "<group>"; };
+		BBC78D69183C3F77004D867F /* ItemLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemLayout.h; sourceTree = "<group>"; };
+		BBC78D6A183C3F77004D867F /* ItemLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemLayout.m; sourceTree = "<group>"; };
+		BBC78D6C183C41E9004D867F /* ItemViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemViewCell.h; sourceTree = "<group>"; };
+		BBC78D6D183C41E9004D867F /* ItemViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemViewCell.m; sourceTree = "<group>"; };
+		BBC78D6F183C46CB004D867F /* BHAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHAlbum.h; sourceTree = "<group>"; };
+		BBC78D70183C46CB004D867F /* BHAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHAlbum.m; sourceTree = "<group>"; };
+		BBC78D71183C46CB004D867F /* BHPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHPhoto.h; sourceTree = "<group>"; };
+		BBC78D72183C46CB004D867F /* BHPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHPhoto.m; sourceTree = "<group>"; };
+		BBC78D75183C4B82004D867F /* BHAlbumTitleReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHAlbumTitleReusableView.h; sourceTree = "<group>"; };
+		BBC78D76183C4B82004D867F /* BHAlbumTitleReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHAlbumTitleReusableView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,10 +195,20 @@
 				50CCCA12182C54D100384881 /* WhatsOnThisWeekViewController.h */,
 				50CCCA13182C54D200384881 /* WhatsOnThisWeekViewController.m */,
 				507B8E621828E2F4002365EF /* SidebarViewController.h */,
+				BBC78D6C183C41E9004D867F /* ItemViewCell.h */,
+				BBC78D6F183C46CB004D867F /* BHAlbum.h */,
+				BBC78D70183C46CB004D867F /* BHAlbum.m */,
+				BBC78D71183C46CB004D867F /* BHPhoto.h */,
+				BBC78D72183C46CB004D867F /* BHPhoto.m */,
+				BBC78D6D183C41E9004D867F /* ItemViewCell.m */,
 				BB0E659E18371AA100163652 /* SearchResultListViewController.h */,
 				BB0E659F18371AA100163652 /* SearchResultListViewController.m */,
 				507B8E661828F355002365EF /* MainViewController.h */,
 				BB0E6595183575E200163652 /* TagAdditionViewController.h */,
+				BBC78D66183B4FF7004D867F /* ItemPageController.h */,
+				BBC78D67183B4FF7004D867F /* ItemPageController.m */,
+				BBC78D69183C3F77004D867F /* ItemLayout.h */,
+				BBC78D6A183C3F77004D867F /* ItemLayout.m */,
 				BB0E6596183575E200163652 /* TagAdditionViewController.m */,
 				507B8E671828F355002365EF /* MainViewController.m */,
 				507B8E631828E2F4002365EF /* SidebarViewController.m */,
@@ -194,6 +222,8 @@
 				BB0E65901835737F00163652 /* FilteredViewViewController.m */,
 				BB0E659B1835A61300163652 /* SplashScreen.h */,
 				BB0E659C1835A61300163652 /* SplashScreen.m */,
+				BBC78D75183C4B82004D867F /* BHAlbumTitleReusableView.h */,
+				BBC78D76183C4B82004D867F /* BHAlbumTitleReusableView.m */,
 			);
 			path = MOA;
 			sourceTree = "<group>";
@@ -339,18 +369,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBC78D77183C4B82004D867F /* BHAlbumTitleReusableView.m in Sources */,
 				BB0E65A018371AA100163652 /* SearchResultListViewController.m in Sources */,
 				BB0E659D1835A61300163652 /* SplashScreen.m in Sources */,
 				BB3179FD1827112F00CC9C38 /* ExploreMainViewController.m in Sources */,
+				BBC78D6E183C41E9004D867F /* ItemViewCell.m in Sources */,
 				50CCCA14182C54D200384881 /* WhatsOnThisWeekViewController.m in Sources */,
 				BB0E659A1835926800163652 /* TagList.m in Sources */,
+				BBC78D6B183C3F77004D867F /* ItemLayout.m in Sources */,
+				BBC78D68183B4FF7004D867F /* ItemPageController.m in Sources */,
 				BB0E65911835737F00163652 /* FilteredViewViewController.m in Sources */,
 				BB0E6597183575E200163652 /* TagAdditionViewController.m in Sources */,
 				507B8E641828E2F4002365EF /* SidebarViewController.m in Sources */,
 				507B8E6E1829793A002365EF /* SWRevealViewController.m in Sources */,
 				507B8E681828F355002365EF /* MainViewController.m in Sources */,
 				BBA3406B1826D6F700B6E4B1 /* AppDelegate.m in Sources */,
+				BBC78D74183C46CB004D867F /* BHPhoto.m in Sources */,
 				BBA340671826D6F700B6E4B1 /* main.m in Sources */,
+				BBC78D73183C46CB004D867F /* BHAlbum.m in Sources */,
 				507B8E611828E213002365EF /* VisitorInfoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -478,6 +514,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MOA/MOA-Prefix.pch";
 				INFOPLIST_FILE = "MOA/MOA-Info.plist";
@@ -491,6 +528,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MOA/MOA-Prefix.pch";
 				INFOPLIST_FILE = "MOA/MOA-Info.plist";

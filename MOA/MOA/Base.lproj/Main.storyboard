@@ -494,7 +494,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="57o-dM-QCi" kind="push" id="sAA-wV-lSB"/>
+                                            <segue destination="QdZ-xG-iwy" kind="push" id="7pr-j7-AMc"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="eZa-cY-I0m" style="IBUITableViewCellStyleDefault" id="uWk-EH-o9m">
@@ -513,9 +513,6 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
-                                        <connections>
-                                            <segue destination="QdZ-xG-iwy" kind="push" id="u3Q-2i-xVa"/>
-                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Ifx-iq-y84" style="IBUITableViewCellStyleDefault" id="GyI-PQ-QIt">
                                         <rect key="frame" x="0.0" y="187" width="320" height="44"/>
@@ -573,98 +570,9 @@
             <point key="canvasLocation" x="2204" y="-974"/>
         </scene>
         <!--Plan Visit View Controller-->
-        <scene sceneID="9Pr-1K-1ZJ">
-            <objects>
-                <viewController id="57o-dM-QCi" customClass="PlanVisitViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jdj-2F-FLa"/>
-                        <viewControllerLayoutGuide type="bottom" id="4dg-th-cM1"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Y2T-Du-t4I">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sp9-NL-ZbW">
-                                <rect key="frame" x="0.0" y="60" width="320" height="462"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Z98-Gv-zlD">
-                                        <rect key="frame" x="47" y="305" width="218" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Directions &amp; Parking">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="10t-WQ-84x" kind="push" id="j3o-ge-z70"/>
-                                        </connections>
-                                    </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Museum of Anthropology at University of British Columbia " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="259" translatesAutoresizingMaskIntoConstraints="NO" id="XJs-wE-uf6">
-                                        <rect key="frame" x="32" y="195" width="259" height="58"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="58" id="J3m-u8-807"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="AppleSDGothicNeo-Regular" family="Apple SD Gothic Neo" pointSize="18"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="plan_a_visit.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="dfn-VW-4Y9">
-                                        <rect key="frame" x="20" y="20" width="283" height="167"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="167" id="sRe-Re-4kk"/>
-                                        </constraints>
-                                    </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6393 NW Marine Drive Vancouver BC" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="181" translatesAutoresizingMaskIntoConstraints="NO" id="GXN-vK-d0D">
-                                        <rect key="frame" x="71" y="235" width="181" height="62"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="181" id="xEo-04-RNa"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="Z98-Gv-zlD" firstAttribute="top" secondItem="XJs-wE-uf6" secondAttribute="bottom" constant="52" id="1h9-yR-AhC"/>
-                                    <constraint firstItem="Z98-Gv-zlD" firstAttribute="top" secondItem="GXN-vK-d0D" secondAttribute="bottom" constant="8" symbolic="YES" id="AmI-bL-42u"/>
-                                    <constraint firstAttribute="trailing" secondItem="dfn-VW-4Y9" secondAttribute="trailing" constant="17" id="EjP-k9-dJs"/>
-                                    <constraint firstItem="XJs-wE-uf6" firstAttribute="leading" secondItem="Sp9-NL-ZbW" secondAttribute="leading" constant="32" id="JWD-Ia-Zi0"/>
-                                    <constraint firstItem="dfn-VW-4Y9" firstAttribute="leading" secondItem="Sp9-NL-ZbW" secondAttribute="leading" constant="20" symbolic="YES" id="cAm-NH-k48"/>
-                                    <constraint firstItem="dfn-VW-4Y9" firstAttribute="top" secondItem="Sp9-NL-ZbW" secondAttribute="top" constant="20" symbolic="YES" id="ftl-cN-j3h"/>
-                                    <constraint firstItem="XJs-wE-uf6" firstAttribute="top" secondItem="dfn-VW-4Y9" secondAttribute="bottom" constant="8" symbolic="YES" id="mEQ-iN-ui2"/>
-                                    <constraint firstItem="Z98-Gv-zlD" firstAttribute="leading" secondItem="Sp9-NL-ZbW" secondAttribute="leading" constant="47" id="oDE-vV-6vQ"/>
-                                    <constraint firstAttribute="bottom" secondItem="Z98-Gv-zlD" secondAttribute="bottom" constant="127" id="rrf-li-JeD"/>
-                                    <constraint firstItem="GXN-vK-d0D" firstAttribute="centerX" secondItem="XJs-wE-uf6" secondAttribute="centerX" id="tAk-vA-Wki"/>
-                                    <constraint firstItem="GXN-vK-d0D" firstAttribute="leading" secondItem="Sp9-NL-ZbW" secondAttribute="leading" constant="71" id="wOe-Xa-ESR"/>
-                                    <constraint firstAttribute="trailing" secondItem="Z98-Gv-zlD" secondAttribute="trailing" constant="55" id="wS6-m3-sfD"/>
-                                    <constraint firstItem="GXN-vK-d0D" firstAttribute="top" secondItem="dfn-VW-4Y9" secondAttribute="bottom" constant="48" id="wdd-Jo-Iw2"/>
-                                    <constraint firstItem="XJs-wE-uf6" firstAttribute="centerX" secondItem="dfn-VW-4Y9" secondAttribute="centerX" id="weT-wO-7Zn"/>
-                                </constraints>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="4dg-th-cM1" firstAttribute="top" secondItem="Sp9-NL-ZbW" secondAttribute="bottom" constant="2" id="8Fd-re-ddY"/>
-                            <constraint firstItem="Sp9-NL-ZbW" firstAttribute="leading" secondItem="Y2T-Du-t4I" secondAttribute="leading" id="OTx-4e-rBO"/>
-                            <constraint firstAttribute="trailing" secondItem="Sp9-NL-ZbW" secondAttribute="trailing" id="Pzm-va-Ksy"/>
-                            <constraint firstItem="Sp9-NL-ZbW" firstAttribute="top" secondItem="Y2T-Du-t4I" secondAttribute="top" constant="60" id="bHK-i6-y7N"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="1c9-bJ-jUf"/>
-                    <connections>
-                        <outlet property="scrollView" destination="Sp9-NL-ZbW" id="I0E-ap-Kg0"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0gI-yf-bdl" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2695" y="-974"/>
-        </scene>
-        <!--Accordion View Controller-->
         <scene sceneID="G3i-5j-OQP">
             <objects>
-                <tableViewController id="QdZ-xG-iwy" customClass="AccordionViewController" sceneMemberID="viewController">
+                <tableViewController id="QdZ-xG-iwy" customClass="PlanVisitViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="XYP-xE-Sne">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -697,7 +605,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3c3-QG-30q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2695" y="-267"/>
+            <point key="canvasLocation" x="2733" y="-974"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="2g7-xg-oxY">
@@ -985,7 +893,6 @@
     </scenes>
     <resources>
         <image name="menu.png" width="28" height="20"/>
-        <image name="plan_a_visit.jpg" width="3072" height="2124"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

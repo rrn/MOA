@@ -11,7 +11,10 @@
 
 
 
-@interface PlanVisitViewController : UIViewController {
+@interface PlanVisitViewController : UITableViewController
+{
+    bool sectionopen[4];
+    NSMutableIndexSet *expandedSections;
     
     NSDictionary *cafeHoursData;
     NSMutableArray *datas;

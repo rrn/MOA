@@ -29,8 +29,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    
     self.title = @"Visitor Information";
     
     // Sidebar menu code
@@ -39,40 +37,41 @@
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: @"http://localhost/eece419/remoteData.php"]];
-    NSError         * e;
-    NSData      *remoteData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&e];
+    NSError * e;
+    NSData *remoteData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&e];
     NSString *strRemoteData = [[NSString alloc] initWithData:remoteData encoding:NSUTF8StringEncoding];
     NSData *jsonData = [strRemoteData dataUsingEncoding:NSUTF8StringEncoding];
-    
-    e = nil;
+    e = nil; // reset e variable
     NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&e];
     NSEnumerator *mainEnumerator = [jsonDict keyEnumerator];
-    id key;
-    NSArray *tableArray;
+    id key; NSArray *tableArray;
     while (key = [mainEnumerator nextObject]){
         tableArray = [jsonDict objectForKey:key];
         for (NSDictionary *attribute in tableArray){
             NSEnumerator *attEnum = [attribute keyEnumerator];
             id attKey;
             while (attKey = [attEnum nextObject]){
-                //do sth : pKey going to be rate etc, so need to insert to the array
+                //attKey going to be rate etc, so need to insert to the array
                 if ([key isEqualToString:@"rates_general"]){
-                    // add to rates general array
-                } else if ([key isEqualToString:@"rates_group"]){
-                    // add to rates group array
+                    [ratesGeneralArray addObject:[attribute objectForKey:attKey]];
+                } else if ([key isEqualToString:@"rates_groups"]){
+                    [ratesGroupArray addObject:[attribute objectForKey:attKey]];
                 } else if ([key isEqualToString:@"cafe_hours"]) {
-                    if ([attKey isEqualToString:@"Hours"])
-                        [cafeHoursArray addObject:[attribute objectForKey:attKey]];
+                    [cafeHoursArray addObject:[attribute objectForKey:attKey]];
                 } else if ([key isEqualToString:@"parking_and_directions"]){
                     if ([attKey isEqualToString:@"Description"])
                         [parkingInformationArray addObject:[attribute objectForKey:attKey]];
                 } else if ([key isEqualToString:@"general_hours"]) {
-                    // add to general hours array
+                    [generalHoursArray addObject:[attribute objectForKey:attKey]];
+                } else if ([key isEqualToString:@"general_text"]) {
+                    [generalTextArray addObject:[attribute objectForKey:attKey]];
                 }
             }
             //do somethig
         }
     }
+    
+    NSLog(@"%@", ratesGeneralArray);
    }
 
 - (void)didReceiveMemoryWarning

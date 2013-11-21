@@ -17,7 +17,10 @@
 
 @end
 
-NSMutableArray *visitorInformationArray;
 NSMutableArray *parkingInformationArray;
 NSMutableArray *cafeHoursArray;
+NSMutableArray *ratesGeneralArray;
+NSMutableArray *ratesGroupArray;
+NSMutableArray *generalTextArray;
+NSMutableArray *generalHoursArray;
 

@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "DBDataList.h"
-#import "Global.h"
 
 
 
@@ -25,5 +24,3 @@
 
 
 @end
-
-NSMutableArray *visitorInformationArray;

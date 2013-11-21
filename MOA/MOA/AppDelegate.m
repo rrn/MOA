@@ -13,9 +13,16 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    visitorInformationArray = [[NSMutableArray alloc] init];
     // Override point for customization after application launch.
+    [self remoteDBDataInitialization];
     return YES;
+}
+
+- (void)remoteDBDataInitialization
+{
+    visitorInformationArray = [[NSMutableArray alloc] init];
+    parkingInformationArray = [[NSMutableArray alloc] init];
+
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

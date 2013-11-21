@@ -42,6 +42,7 @@
 		E438ACC618386F930078FD2F /* PlanVisitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E438ACC518386F930078FD2F /* PlanVisitViewController.m */; };
 		E438ACC9183877E10078FD2F /* VisitorInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E438ACC8183877E10078FD2F /* VisitorInfoViewController.m */; };
 		E438ACCD183AD8AE0078FD2F /* plan_a_visit.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E438ACCC183AD8AE0078FD2F /* plan_a_visit.jpg */; };
+		E48B16D9183C9B1A0047BBA4 /* AccordionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E48B16D8183C9B1A0047BBA4 /* AccordionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,8 @@
 		E438ACC7183877E10078FD2F /* VisitorInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VisitorInfoViewController.h; path = ../VisitorInfoViewController.h; sourceTree = "<group>"; };
 		E438ACC8183877E10078FD2F /* VisitorInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VisitorInfoViewController.m; path = ../VisitorInfoViewController.m; sourceTree = "<group>"; };
 		E438ACCC183AD8AE0078FD2F /* plan_a_visit.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = plan_a_visit.jpg; path = ../plan_a_visit.jpg; sourceTree = "<group>"; };
+		E48B16D7183C9B1A0047BBA4 /* AccordionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccordionViewController.h; sourceTree = "<group>"; };
+		E48B16D8183C9B1A0047BBA4 /* AccordionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccordionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -200,6 +203,8 @@
 				BBA3406A1826D6F700B6E4B1 /* AppDelegate.m */,
 				50FA407C183C811100EC0CEC /* Global.h */,
 				BBA3406C1826D6F700B6E4B1 /* Main.storyboard */,
+				E48B16D7183C9B1A0047BBA4 /* AccordionViewController.h */,
+				E48B16D8183C9B1A0047BBA4 /* AccordionViewController.m */,
 				BB0E65981835926800163652 /* TagList.h */,
 				BB0E65991835926800163652 /* TagList.m */,
 				50CCCA12182C54D100384881 /* WhatsOnThisWeekViewController.h */,
@@ -378,6 +383,7 @@
 				BB0E659D1835A61300163652 /* SplashScreen.m in Sources */,
 				50FA406B183B71FA00EC0CEC /* DBData.m in Sources */,
 				BB3179FD1827112F00CC9C38 /* ExploreMainViewController.m in Sources */,
+				E48B16D9183C9B1A0047BBA4 /* AccordionViewController.m in Sources */,
 				E438ACC9183877E10078FD2F /* VisitorInfoViewController.m in Sources */,
 				50CCCA14182C54D200384881 /* WhatsOnThisWeekViewController.m in Sources */,
 				BB0E659A1835926800163652 /* TagList.m in Sources */,

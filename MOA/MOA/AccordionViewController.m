@@ -14,24 +14,48 @@
 
 @implementation AccordionViewController
 {
+    NSArray *sectionData;
     NSArray *tableData;
+    
+    NSString *locationData;
+
 }
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
-        // Custom initialization
     }
     return self;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canCollapseSection:(NSInteger)section
+{
+    //if (section>0)
+    return YES;
+    
+    //return NO;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if (!expandedSections)
+    {
+        expandedSections = [[NSMutableIndexSet alloc] init];
+    }
+    
+    
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
-    tableData = [NSArray arrayWithObjects:@"Location",@"Directions & Parking", @"Hours", @"Rates", nil];
+    sectionData = [NSArray arrayWithObjects:@"Location",@"Directions & Parking", @"Hours", @"Rates", nil];
+//    
+//    tableData = [NSArray arrayWithObjects:@"1",@"2", @"3", @"4", nil];
+//    
+    locationData = @"6393 NW Marine Drive Vancouver BC";
+    
+    self.title = @"Plan a Visit";
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
@@ -50,51 +74,158 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
 #warning Potentially incomplete method implementation.
-    return 1;
+    return 4;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 4;
+    //return [tableData count];
+    if ([self tableView:tableView canCollapseSection:section])
+    {
+        //section is expanded
+        if ([expandedSections containsIndex:section])
+        {
+            // return rows when expanded
+            if ( section == 1 ) {
+                return 7;
+            }
+            else {
+                return 2;
+            }
+        }
+        
+        return 1; // only top row showing
+    }
+    
+    // Return the number of rows in the section.
+    return 1;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath  {
-	if (sectionopen[indexPath.row]) {
-		return 240;///it's open
-	} else {
-		return 45;///it's closed
-	}
-    
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath  {
+//	if (sectionopen[indexPath.row]) {
+//		return 240;///it's open
+//	} else {
+//		return 45;///it's closed
+//	}
+//    
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"VisitCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (cell == nil)
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier:CellIdentifier];
+    }
+    
     
     // Configure the cell...
-    cell.textLabel.text= [tableData objectAtIndex:indexPath.row];
+    if ([self tableView:tableView canCollapseSection:indexPath.section])
+    {
+        if (!indexPath.row)
+        {
+            // first row
+            cell.textLabel.text = sectionData[indexPath.section]; // only top row showing
+        }
+        else
+        {
+            // all other rows
+            cell.textLabel.text = @"Some Detail";
+            //cell.textLabel.text = detailText:indexPath.section and:indexPath.row;
+            cell.accessoryView = nil;
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        }
+    }
+    else
+    {
+        cell.accessoryView = nil;
+        cell.textLabel.text = @"Normal Cell";
+        
+    }
+    
     return cell;
     
+//    cell.textLabel.text = [sectionData objectAtIndex:indexPath.row];
+//    return cell;
     
-    UITableViewCell *mycell;
-	mycell.textLabel.text= @"Section Name";
-	return mycell;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	///turn them all off
-	sectionopen[0]=NO;
-	sectionopen[1]=NO;
-	sectionopen[2]=NO;
-	sectionopen[3]=NO;
+//- (NSString *)detailText:(NSInteger)sectionIndex and:(NSInteger)rowIndex
+//{
+//    if (sectionIndex == 0) {
+//        return locationData;
+//    }
+//}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
-	///open this one
-	sectionopen[indexPath.row]=YES;
-    
-	///animate the opening and expand the row
-	[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
+    if ([self tableView:tableView canCollapseSection:indexPath.section])
+    {
+        if (!indexPath.row)
+        {
+            // only first row toggles exapand/collapse
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
+            
+            NSInteger section = indexPath.section;
+            BOOL currentlyExpanded = [expandedSections containsIndex:section];
+            NSInteger rows;
+            
+            NSMutableArray *tmpArray = [NSMutableArray array];
+            
+            if (currentlyExpanded)
+            {
+                rows = [self tableView:tableView numberOfRowsInSection:section];
+                [expandedSections removeIndex:section];
+                
+            }
+            else
+            {
+                [expandedSections addIndex:section];
+                rows = [self tableView:tableView numberOfRowsInSection:section];
+            }
+            
+            for (int i=1; i<rows; i++)
+            {
+                NSIndexPath *tmpIndexPath = [NSIndexPath indexPathForRow:i
+                                                               inSection:section];
+                [tmpArray addObject:tmpIndexPath];
+            }
+            
+            if (currentlyExpanded)
+            {
+                [tableView deleteRowsAtIndexPaths:tmpArray
+                                 withRowAnimation:UITableViewRowAnimationTop];
+            }
+            else
+            {
+                [tableView insertRowsAtIndexPaths:tmpArray
+                                 withRowAnimation:UITableViewRowAnimationTop];
+            }
+        }
+    }
 }
+//    
+//    bool currentlySelected = YES;
+//    
+//    //check if closing the currently open
+//    if ( sectionopen[indexPath.row]) {
+//        currentlySelected = NO;
+//    }
+//    
+//	///turn them all off
+//	sectionopen[0]=NO;
+//	sectionopen[1]=NO;
+//	sectionopen[2]=NO;
+//	sectionopen[3]=NO;
+//    
+//	///open this one
+//	sectionopen[indexPath.row]=currentlySelected;
+//    
+//	///animate the opening and expand the row
+//	[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationFade];
 
 
 

@@ -670,16 +670,16 @@
             </objects>
             <point key="canvasLocation" x="2829" y="-1589"/>
         </scene>
-        <!--Accordian View Controller-->
+        <!--Accordion View Controller-->
         <scene sceneID="TKb-Gn-ncl">
             <objects>
-                <tableViewController id="6jj-Qf-Wf4" customClass="AccordianViewController" sceneMemberID="viewController">
+                <tableViewController id="6jj-Qf-Wf4" customClass="AccordionViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="gaA-xk-eHn">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="1Ij-OV-maL" style="IBUITableViewCellStyleDefault" id="9D0-Um-YBC">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="VisitCell" textLabel="1Ij-OV-maL" style="IBUITableViewCellStyleDefault" id="9D0-Um-YBC">
                                 <rect key="frame" x="0.0" y="119" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9D0-Um-YBC" id="3gz-9n-dgi">

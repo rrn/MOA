@@ -10,7 +10,8 @@
 
 @interface AccordionViewController : UITableViewController
 {
-    bool sectionopen[4]; 
+    bool sectionopen[4];
+    NSMutableIndexSet *expandedSections;
 }
 
 @end

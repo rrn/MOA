@@ -20,8 +20,12 @@
 
 - (void)remoteDBDataInitialization
 {
-    visitorInformationArray = [[NSMutableArray alloc] init];
     parkingInformationArray = [[NSMutableArray alloc] init];
+    cafeHoursArray = [[NSMutableArray alloc]init];
+    generalTextArray = [[NSMutableArray alloc]init];
+    ratesGeneralArray = [[NSMutableArray alloc]init];
+    ratesGroupArray = [[NSMutableArray alloc]init];
+    generalHoursArray = [[NSMutableArray alloc]init];
 
 }
 							

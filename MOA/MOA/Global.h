@@ -10,7 +10,11 @@
 #define MOA_Global_h
 
 // static data before DB implementation
-extern NSMutableArray *visitorInformationArray;
 extern NSMutableArray *parkingInformationArray;
+extern NSMutableArray *cafeHoursArray;
+extern NSMutableArray *ratesGeneralArray;
+extern NSMutableArray *ratesGroupArray;
+extern NSMutableArray *generalTextArray;
+extern NSMutableArray *generalHoursArray;
 
 #endif

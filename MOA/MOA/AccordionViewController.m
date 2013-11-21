@@ -15,11 +15,18 @@
 @implementation AccordionViewController
 {
     NSArray *sectionData;
-    NSArray *tableData;
+    NSArray *tableData;//mark to remove
     
     NSString *locationData;
 
 }
+
+//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    UIImageView* imageView = [[UIImageView alloc] initWithImage:
+//                              [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Supporting Files/IMAGE/plan_a_vist" ofType:@"jpg"]]];
+//    return imageView;
+//}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -46,14 +53,14 @@
         expandedSections = [[NSMutableIndexSet alloc] init];
     }
     
-    
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
     sectionData = [NSArray arrayWithObjects:@"Location",@"Directions & Parking", @"Hours", @"Rates", nil];
-//    
+    
+    locationData = @"Museum of Anthropology at University of British Columbia 6393 NW Marine Drive Vancouver BC";
+
+    
 //    tableData = [NSArray arrayWithObjects:@"1",@"2", @"3", @"4", nil];
-//    
-    locationData = @"6393 NW Marine Drive Vancouver BC";
     
     self.title = @"Plan a Visit";
     // Uncomment the following line to preserve selection between presentations.
@@ -131,11 +138,29 @@
         }
         else
         {
+            if (indexPath.section == 1 ){
+                cell.textLabel.text = @"button TExt ";
+            }
+            
+            else {
+                if (indexPath.section == 0 ) {
+                    if (indexPath.row == 0) {
+                        cell.textLabel.text = locationData;
+                    }
+                }
+                
+                else {
+                    cell.textLabel.text = @"Some Detail";
+                }
+                
+                
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
+
             // all other rows
-            cell.textLabel.text = @"Some Detail";
             //cell.textLabel.text = detailText:indexPath.section and:indexPath.row;
             cell.accessoryView = nil;
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            //cell.accessoryType = UITableViewCellAccessoryNone;
         }
     }
     else

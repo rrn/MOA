@@ -22,6 +22,7 @@
 {
     visitorInformationArray = [[NSMutableArray alloc] init];
     parkingInformationArray = [[NSMutableArray alloc] init];
+    cafeHoursArray = [[NSMutableArray alloc]init];
 
 }
 							

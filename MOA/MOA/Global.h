@@ -12,5 +12,6 @@
 // static data before DB implementation
 extern NSMutableArray *visitorInformationArray;
 extern NSMutableArray *parkingInformationArray;
+extern NSMutableArray *cafeHoursArray;
 
 #endif

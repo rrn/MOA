@@ -20,3 +20,4 @@
 
 NSMutableArray *visitorInformationArray;
 NSMutableArray *parkingInformationArray;
+NSMutableArray *cafeHoursArray;

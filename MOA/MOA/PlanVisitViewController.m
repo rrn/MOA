@@ -197,6 +197,16 @@
                                  withRowAnimation:UITableViewRowAnimationTop];
             }
         }
+        
+        else {
+            if(indexPath.row == 3)
+            {
+                UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"parkingViewController"];
+                [self.navigationController pushViewController:viewController animated:YES];
+            }
+            
+            
+        }
     }
 }
 

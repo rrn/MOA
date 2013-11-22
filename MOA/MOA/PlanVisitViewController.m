@@ -18,6 +18,7 @@
 @implementation PlanVisitViewController {
     
     NSArray *sectionData;
+    NSArray *rowData;
     
     NSString *locationData;
 
@@ -53,6 +54,33 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
     sectionData = [NSArray arrayWithObjects:@"Location",@"Directions & Parking", @"Hours", @"Rates", nil];
+    
+    rowData = [NSArray arrayWithObjects:[NSMutableArray array],[NSMutableArray array], [NSMutableArray array],[NSMutableArray array], nil];
+    
+    NSArray *location;
+    location = [NSArray arrayWithObjects:@"Blank", @"Label1", nil];
+    
+//    for (int i = 0; i < sizeof(location); i++){
+//        [[rowData objectAtIndex:0] addObject:[location objectAtIndex:i]];
+//    }
+    
+    // 0 : location
+    [[rowData objectAtIndex:0] addObject:@"Blank"];
+    [[rowData objectAtIndex:0] addObject:@"Label1"];
+    // 1 : directions and parking
+    [[rowData objectAtIndex:1] addObject:@"Blank"];
+    [[rowData objectAtIndex:1] addObject:@"Label2"];
+    [[rowData objectAtIndex:1] addObject:@"Label3"];
+    [[rowData objectAtIndex:1] addObject:@"Label4"];
+    [[rowData objectAtIndex:1] addObject:@"Label5"];
+    [[rowData objectAtIndex:1] addObject:@"Label6"];
+    [[rowData objectAtIndex:1] addObject:@"Label7"];
+    // 2 : hours
+    [[rowData objectAtIndex:2] addObject:@"Blank"];
+    [[rowData objectAtIndex:2] addObject:@"Label8"];
+    // 3 : rates
+    [[rowData objectAtIndex:3] addObject:@"Blank"];
+    [[rowData objectAtIndex:3] addObject:@"Label9"];
     
     self.title = @"Plan a Visit";
     
@@ -124,25 +152,33 @@
     }
     else
     {
-        if (indexPath.section == 1 ){
-            cell.textLabel.text = @"button TExt ";
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        }
+        cell.textLabel.text = [[rowData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
         
-        else {
-            if (indexPath.section == 0 ) {
-                if (indexPath.row == 0) {
-                    cell.textLabel.text = locationData;
-                }
-            }
-            
-            else {
-                cell.textLabel.text = @"Some Detail";
-            }
-            
-            
-            cell.accessoryType = UITableViewCellAccessoryNone;
-        }
+        
+        cell.accessoryType = UITableViewCellAccessoryNone;
+        
+        //NSLog(@"Row Data Array: %@", [[rowData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row]);
+
+        
+//        if (indexPath.section == 1 ){
+//            cell.textLabel.text = @"button TExt ";
+//            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//        }
+//        
+//        else {
+//            if (indexPath.section == 0 ) {
+//                if (indexPath.row == 0) {
+//                    cell.textLabel.text = locationData;
+//                }
+//            }
+//            
+//            else {
+//                cell.textLabel.text = @"Some Detail";
+//            }
+//            
+//            
+//            cell.accessoryType = UITableViewCellAccessoryNone;
+//        }
         
         // all other rows
         cell.accessoryView = nil;

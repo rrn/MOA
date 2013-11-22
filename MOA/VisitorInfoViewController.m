@@ -71,8 +71,7 @@
         }
     }
     
-    NSLog(@"%@", ratesGeneralArray);
-   }
+}
 
 - (void)didReceiveMemoryWarning
 {

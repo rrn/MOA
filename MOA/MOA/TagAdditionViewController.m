@@ -8,6 +8,7 @@
 
 #import "TagAdditionViewController.h"
 #import "SearchResultListViewController.h"
+#import "SWRevealViewController.h"
 
 @interface TagAdditionViewController ()
 
@@ -38,11 +39,13 @@
     [self readItemJson:[self title]];
     
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // Set the side bar button action. When it's tapped, it'll show up the sidebar.
+    _sideBarButton.target = self.revealViewController;
+    _sideBarButton.action = @selector(rightRevealToggle:);
+    
+    // Set the gesture
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    
 }
 
 - (void)didReceiveMemoryWarning

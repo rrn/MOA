@@ -263,6 +263,10 @@
 				507B8E661828F355002365EF /* MainViewController.h */,
 				507B8E671828F355002365EF /* MainViewController.m */,
 				BB0E6595183575E200163652 /* TagAdditionViewController.h */,
+				BBC78D66183B4FF7004D867F /* ItemPageController.h */,
+				BBC78D67183B4FF7004D867F /* ItemPageController.m */,
+				BBC78D69183C3F77004D867F /* ItemLayout.h */,
+				BBC78D6A183C3F77004D867F /* ItemLayout.m */,
 				BB0E6596183575E200163652 /* TagAdditionViewController.m */,
 				BBA340721826D6F700B6E4B1 /* Images.xcassets */,
 				BBA340611826D6F700B6E4B1 /* Supporting Files */,
@@ -272,6 +276,8 @@
 				BB0E65901835737F00163652 /* FilteredViewViewController.m */,
 				BB0E659B1835A61300163652 /* SplashScreen.h */,
 				BB0E659C1835A61300163652 /* SplashScreen.m */,
+				BBC78D75183C4B82004D867F /* BHAlbumTitleReusableView.h */,
+				BBC78D76183C4B82004D867F /* BHAlbumTitleReusableView.m */,
 			);
 			path = MOA;
 			sourceTree = "<group>";
@@ -419,6 +425,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BBC78D77183C4B82004D867F /* BHAlbumTitleReusableView.m in Sources */,
 				BB0E65A018371AA100163652 /* SearchResultListViewController.m in Sources */,
 				50FA4068183B71A200EC0CEC /* DBDataList.m in Sources */,
 				BB0E659D1835A61300163652 /* SplashScreen.m in Sources */,
@@ -441,6 +448,7 @@
 				507B8E6E1829793A002365EF /* SWRevealViewController.m in Sources */,
 				507B8E681828F355002365EF /* MainViewController.m in Sources */,
 				BBA3406B1826D6F700B6E4B1 /* AppDelegate.m in Sources */,
+				BBC78D74183C46CB004D867F /* BHPhoto.m in Sources */,
 				BBA340671826D6F700B6E4B1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -568,6 +576,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MOA/MOA-Prefix.pch";
 				INFOPLIST_FILE = "MOA/MOA-Info.plist";
@@ -585,6 +594,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MOA/MOA-Prefix.pch";
 				INFOPLIST_FILE = "MOA/MOA-Info.plist";

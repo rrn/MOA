@@ -25,6 +25,21 @@
 
 - (void)viewDidLoad
 {
+    [self.scroll setScrollEnabled:YES];
+    [self.scroll setContentSize:CGSizeMake(320, 700)];
+    
+    NSMutableString* text = [NSMutableString stringWithFormat:@""];
+    bool foundShopDescription = FALSE;
+    for (int index = 0; index < [generalTextArray count]; index++){
+        if (foundShopDescription == TRUE){
+            text = [generalTextArray objectAtIndex:index];
+        }
+        if ([[generalTextArray objectAtIndex:index] isEqualToString:@"Shop"]){
+            foundShopDescription = TRUE;
+        }
+    }
+    self.description.text = text;
+
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }

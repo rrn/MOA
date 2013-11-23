@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Global.h"
 
 @interface MOAShopViewController : UIViewController
 
@@ -14,3 +15,5 @@
 @property (nonatomic, weak) IBOutlet UIScrollView *scroll;
 
 @end
+
+NSMutableArray* generalTextArray;

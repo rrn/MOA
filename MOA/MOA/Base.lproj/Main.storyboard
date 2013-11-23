@@ -532,6 +532,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="Qj3-zr-euJ" kind="push" id="tz4-p9-7dw"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Ifx-iq-y84" style="IBUITableViewCellStyleDefault" id="GyI-PQ-QIt">
                                         <rect key="frame" x="0.0" y="187" width="320" height="44"/>
@@ -629,6 +632,75 @@
             </objects>
             <point key="canvasLocation" x="2663" y="-974"/>
         </scene>
+        <!--Shop View Controller-->
+        <scene sceneID="u0u-Fb-Yo1">
+            <objects>
+                <viewController id="Qj3-zr-euJ" customClass="MOAShopViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="zEx-57-eKN"/>
+                        <viewControllerLayoutGuide type="bottom" id="w9B-RJ-Igg"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="AOE-5R-9s5">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="MOA Shop" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V3v-DL-Nro">
+                                <rect key="frame" x="20" y="76" width="163" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="26"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WtK-ia-KOo">
+                                <rect key="frame" x="0.0" y="113" width="320" height="455"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shop-1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="red-ag-lvH">
+                                        <rect key="frame" x="11" y="14" width="298" height="170"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="170" id="KD3-dM-1dV"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="298" translatesAutoresizingMaskIntoConstraints="NO" id="Jp9-2D-3DA">
+                                        <rect key="frame" x="11" y="202" width="298" height="204"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="204" id="Yay-8v-gPN"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="red-ag-lvH" firstAttribute="top" secondItem="WtK-ia-KOo" secondAttribute="top" constant="14" id="BVp-sU-u0k"/>
+                                    <constraint firstItem="Jp9-2D-3DA" firstAttribute="top" secondItem="red-ag-lvH" secondAttribute="bottom" constant="18" id="EQC-Cy-vK7"/>
+                                    <constraint firstAttribute="bottom" secondItem="Jp9-2D-3DA" secondAttribute="bottom" constant="49" id="gpK-sO-Etr"/>
+                                    <constraint firstItem="Jp9-2D-3DA" firstAttribute="centerX" secondItem="WtK-ia-KOo" secondAttribute="centerX" id="iT0-hQ-FRM"/>
+                                    <constraint firstItem="red-ag-lvH" firstAttribute="leading" secondItem="WtK-ia-KOo" secondAttribute="leading" constant="11" id="isq-JT-ST2"/>
+                                    <constraint firstItem="Jp9-2D-3DA" firstAttribute="leading" secondItem="red-ag-lvH" secondAttribute="leading" id="jyp-GH-cS9"/>
+                                    <constraint firstItem="Jp9-2D-3DA" firstAttribute="trailing" secondItem="red-ag-lvH" secondAttribute="trailing" id="nzG-G0-STQ"/>
+                                    <constraint firstAttribute="trailing" secondItem="red-ag-lvH" secondAttribute="trailing" constant="11" id="y6T-qQ-pkd"/>
+                                </constraints>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="WtK-ia-KOo" secondAttribute="trailing" id="8tD-GC-I8H"/>
+                            <constraint firstAttribute="bottom" secondItem="WtK-ia-KOo" secondAttribute="bottom" id="BWX-2N-yC3"/>
+                            <constraint firstItem="WtK-ia-KOo" firstAttribute="top" secondItem="zEx-57-eKN" secondAttribute="bottom" constant="49" id="li4-Wk-8OW"/>
+                            <constraint firstItem="WtK-ia-KOo" firstAttribute="leading" secondItem="AOE-5R-9s5" secondAttribute="leading" id="mr6-f6-43Q"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="nh8-pJ-fxd"/>
+                    <connections>
+                        <outlet property="description" destination="Jp9-2D-3DA" id="rhC-sz-H3x"/>
+                        <outlet property="scroll" destination="WtK-ia-KOo" id="Ywl-Zk-gqJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aTm-eB-Mqe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2192" y="-220"/>
+        </scene>
         <!--CafeMOA View Controller-->
         <scene sceneID="XYr-gK-Qa9">
             <objects>
@@ -646,10 +718,10 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cafe-1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="WYh-mX-VDS">
-                                        <rect key="frame" x="20" y="7" width="272" height="168"/>
+                                        <rect key="frame" x="8" y="7" width="303" height="168"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="272" id="KZK-ea-bMG"/>
+                                            <constraint firstAttribute="width" constant="303" id="KZK-ea-bMG"/>
                                             <constraint firstAttribute="height" constant="168" id="f2S-b8-2XL"/>
                                         </constraints>
                                     </imageView>
@@ -665,11 +737,11 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="2Xy-6M-uvC" firstAttribute="top" secondItem="WYh-mX-VDS" secondAttribute="bottom" constant="13" id="EY7-0M-hpo"/>
-                                    <constraint firstAttribute="trailing" secondItem="WYh-mX-VDS" secondAttribute="trailing" constant="28" id="IXh-W8-38G"/>
-                                    <constraint firstItem="WYh-mX-VDS" firstAttribute="leading" secondItem="XCv-1I-nHb" secondAttribute="leading" constant="20" symbolic="YES" id="MEa-Fb-IzU"/>
-                                    <constraint firstItem="2Xy-6M-uvC" firstAttribute="trailing" secondItem="WYh-mX-VDS" secondAttribute="trailing" id="TjD-qr-ykl"/>
+                                    <constraint firstAttribute="trailing" secondItem="WYh-mX-VDS" secondAttribute="trailing" constant="9" id="IXh-W8-38G"/>
+                                    <constraint firstItem="WYh-mX-VDS" firstAttribute="leading" secondItem="XCv-1I-nHb" secondAttribute="leading" constant="8" id="MEa-Fb-IzU"/>
+                                    <constraint firstItem="2Xy-6M-uvC" firstAttribute="trailing" secondItem="WYh-mX-VDS" secondAttribute="trailing" constant="-19" id="TjD-qr-ykl"/>
                                     <constraint firstAttribute="bottom" secondItem="2Xy-6M-uvC" secondAttribute="bottom" constant="-21" id="oLv-6q-JET"/>
-                                    <constraint firstItem="WYh-mX-VDS" firstAttribute="leading" secondItem="2Xy-6M-uvC" secondAttribute="leading" id="qOz-lR-IRB"/>
+                                    <constraint firstItem="WYh-mX-VDS" firstAttribute="leading" secondItem="2Xy-6M-uvC" secondAttribute="leading" constant="-12" id="qOz-lR-IRB"/>
                                     <constraint firstItem="WYh-mX-VDS" firstAttribute="top" secondItem="XCv-1I-nHb" secondAttribute="top" constant="7" id="vy1-SY-w6H"/>
                                 </constraints>
                             </scrollView>
@@ -983,6 +1055,7 @@
     <resources>
         <image name="cafe-1.jpg" width="5502" height="3667"/>
         <image name="menu.png" width="28" height="20"/>
+        <image name="shop-1.jpg" width="1800" height="1200"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

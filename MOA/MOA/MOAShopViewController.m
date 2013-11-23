@@ -33,12 +33,17 @@
     for (int index = 0; index < [generalTextArray count]; index++){
         if (foundShopDescription == TRUE){
             text = [generalTextArray objectAtIndex:index];
+            break;
         }
         if ([[generalTextArray objectAtIndex:index] isEqualToString:@"Shop"]){
             foundShopDescription = TRUE;
         }
     }
+    
+    self.title = @"MOA Shop";
+    self.description.numberOfLines = 0;
     self.description.text = text;
+    [self.description sizeToFit];
 
     [super viewDidLoad];
 	// Do any additional setup after loading the view.

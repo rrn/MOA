@@ -28,6 +28,17 @@
     [self.scroll setScrollEnabled:YES];
     [self.scroll setContentSize:CGSizeMake(320, 700)];
     
+    NSString* descriptionText = @"";
+    bool foundCafeDescription = false;
+    for (int index = 0; index < [generalTextArray count]; index++){
+        if (foundCafeDescription == true){
+            descriptionText = [generalTextArray objectAtIndex:index];
+            break;
+        }
+        if ([[generalTextArray objectAtIndex:index] isEqualToString:@"Cafe"]){
+            foundCafeDescription = true;
+        }
+    }
     NSMutableString* cafeHoursStr = [NSMutableString stringWithFormat:@"Hours:\n\n"];
     NSMutableString* day_temp = [NSMutableString stringWithFormat:@""];
     NSMutableString* hours_temp = [NSMutableString stringWithFormat:@""];
@@ -39,16 +50,20 @@
         [cafeHoursStr appendString:hours_temp];
         [cafeHoursStr appendString:@"\n"];
     }
+    self.title = @"Cafe MOA";
+    self.description.text = descriptionText;
     self.hours.text = cafeHoursStr;
     [super viewDidLoad];
-    
-	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+}
+
+// this code is needed since iOS 7 has different layout
+- (void) viewDidLayoutSubviews {
+   [self.scroll setContentSize:CGSizeMake(320, 700)];
 }
 
 @end

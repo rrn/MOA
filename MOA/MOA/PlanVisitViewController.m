@@ -60,26 +60,18 @@
     NSArray *location;
     location = [NSArray arrayWithObjects:@"Blank", @"Label1", nil];
     
-//    for (int i = 0; i < sizeof(location); i++){
-//        [[rowData objectAtIndex:0] addObject:[location objectAtIndex:i]];
-//    }
-    
-    // 0 : location
-    [[rowData objectAtIndex:0] addObject:@"Blank"];
-    [[rowData objectAtIndex:0] addObject:@"Label1"];
-    // 1 : directions and parking
-    [[rowData objectAtIndex:1] addObject:@"Blank"];
+    [[rowData objectAtIndex:0] addObject:@"Blank"];  // 0 : location
+    [[rowData objectAtIndex:0] addObject:@"Museum of Anthropology at University of British Columbia 6393 NW Marine Drive Vancouver BC"];
+    [[rowData objectAtIndex:1] addObject:@"Blank"];         // 1 : directions and parking
     [[rowData objectAtIndex:1] addObject:@"Label2"];
-    [[rowData objectAtIndex:1] addObject:@"Label3"];
-    [[rowData objectAtIndex:1] addObject:@"Label4"];
-    [[rowData objectAtIndex:1] addObject:@"Label5"];
-    [[rowData objectAtIndex:1] addObject:@"Label6"];
-    [[rowData objectAtIndex:1] addObject:@"Label7"];
-    // 2 : hours
-    [[rowData objectAtIndex:2] addObject:@"Blank"];
+    [[rowData objectAtIndex:1] addObject:@"Get Directions to MOA"];
+    [[rowData objectAtIndex:1] addObject:@"Parking"];
+    [[rowData objectAtIndex:1] addObject:@"Public Transit"];
+    [[rowData objectAtIndex:1] addObject:@"From Vancouver and Lower Mainland"];
+    [[rowData objectAtIndex:1] addObject:@"From Vancouver International Airport"];
+    [[rowData objectAtIndex:2] addObject:@"Blank"];      // 2 : hours
     [[rowData objectAtIndex:2] addObject:@"Label8"];
-    // 3 : rates
-    [[rowData objectAtIndex:3] addObject:@"Blank"];
+    [[rowData objectAtIndex:3] addObject:@"Blank"];     // 3 : rates
     [[rowData objectAtIndex:3] addObject:@"Label9"];
     
     self.title = @"Plan a Visit";
@@ -153,6 +145,9 @@
     else
     {
         cell.textLabel.text = [[rowData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
+        if (indexPath.section == 0 && indexPath.row == 1){
+            cell.textLabel.numberOfLines = 5;
+        }
         
         
         cell.accessoryType = UITableViewCellAccessoryNone;

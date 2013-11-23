@@ -12,6 +12,13 @@
 		507B8E6E1829793A002365EF /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 507B8E6D1829793A002365EF /* SWRevealViewController.m */; };
 		507B8E7018299BCE002365EF /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 507B8E6F18299BCE002365EF /* menu.png */; };
 		50CCCA14182C54D200384881 /* WhatsOnThisWeekViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CCCA13182C54D200384881 /* WhatsOnThisWeekViewController.m */; };
+		50CEBBEA183FF4950005B0F9 /* ItemPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CEBBE9183FF4950005B0F9 /* ItemPageController.m */; };
+		50CEBBEC184031310005B0F9 /* SearchResultListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0E659F18371AA100163652 /* SearchResultListViewController.m */; };
+		50CEBBF3184043990005B0F9 /* BHAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CEBBEE184043990005B0F9 /* BHAlbum.m */; };
+		50CEBBF4184043990005B0F9 /* BHAlbumTitleReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CEBBF0184043990005B0F9 /* BHAlbumTitleReusableView.m */; };
+		50CEBBF5184043990005B0F9 /* BHPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CEBBF2184043990005B0F9 /* BHPhoto.m */; };
+		50CEBBFA1840442A0005B0F9 /* ItemLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CEBBF71840442A0005B0F9 /* ItemLayout.m */; };
+		50CEBBFB1840442A0005B0F9 /* ItemViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CEBBF91840442A0005B0F9 /* ItemViewCell.m */; };
 		50F52903183C91D7002A463C /* DirectionParkingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F52902183C91D7002A463C /* DirectionParkingViewController.m */; };
 		50F52909183C984D002A463C /* ParkingPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F52908183C984D002A463C /* ParkingPage.m */; };
 		50F5290C183CA359002A463C /* PublicTransitPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F5290B183CA359002A463C /* PublicTransitPage.m */; };
@@ -26,7 +33,6 @@
 		BB0E6597183575E200163652 /* TagAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0E6596183575E200163652 /* TagAdditionViewController.m */; };
 		BB0E659A1835926800163652 /* TagList.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0E65991835926800163652 /* TagList.m */; };
 		BB0E659D1835A61300163652 /* SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0E659C1835A61300163652 /* SplashScreen.m */; };
-		BB0E65A018371AA100163652 /* SearchResultListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0E659F18371AA100163652 /* SearchResultListViewController.m */; };
 		BB3179FD1827112F00CC9C38 /* ExploreMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3179FC1827112F00CC9C38 /* ExploreMainViewController.m */; };
 		BBA3405B1826D6F700B6E4B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBA3405A1826D6F700B6E4B1 /* Foundation.framework */; };
 		BBA3405D1826D6F700B6E4B1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBA3405C1826D6F700B6E4B1 /* CoreGraphics.framework */; };
@@ -70,6 +76,18 @@
 		507B8E6F18299BCE002365EF /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		50CCCA12182C54D100384881 /* WhatsOnThisWeekViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhatsOnThisWeekViewController.h; sourceTree = "<group>"; };
 		50CCCA13182C54D200384881 /* WhatsOnThisWeekViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhatsOnThisWeekViewController.m; sourceTree = "<group>"; };
+		50CEBBE8183FF4950005B0F9 /* ItemPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemPageController.h; sourceTree = "<group>"; };
+		50CEBBE9183FF4950005B0F9 /* ItemPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ItemPageController.m; sourceTree = "<group>"; };
+		50CEBBED184043990005B0F9 /* BHAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHAlbum.h; sourceTree = "<group>"; };
+		50CEBBEE184043990005B0F9 /* BHAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHAlbum.m; sourceTree = "<group>"; };
+		50CEBBEF184043990005B0F9 /* BHAlbumTitleReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHAlbumTitleReusableView.h; sourceTree = "<group>"; };
+		50CEBBF0184043990005B0F9 /* BHAlbumTitleReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHAlbumTitleReusableView.m; sourceTree = "<group>"; };
+		50CEBBF1184043990005B0F9 /* BHPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BHPhoto.h; sourceTree = "<group>"; };
+		50CEBBF2184043990005B0F9 /* BHPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BHPhoto.m; sourceTree = "<group>"; };
+		50CEBBF61840442A0005B0F9 /* ItemLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemLayout.h; path = MOA/ItemLayout.h; sourceTree = "<group>"; };
+		50CEBBF71840442A0005B0F9 /* ItemLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemLayout.m; path = MOA/ItemLayout.m; sourceTree = "<group>"; };
+		50CEBBF81840442A0005B0F9 /* ItemViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemViewCell.h; path = MOA/ItemViewCell.h; sourceTree = "<group>"; };
+		50CEBBF91840442A0005B0F9 /* ItemViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemViewCell.m; path = MOA/ItemViewCell.m; sourceTree = "<group>"; };
 		50F52901183C91D7002A463C /* DirectionParkingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionParkingViewController.h; sourceTree = "<group>"; };
 		50F52902183C91D7002A463C /* DirectionParkingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionParkingViewController.m; sourceTree = "<group>"; };
 		50F52907183C984D002A463C /* ParkingPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParkingPage.h; path = ../ParkingPage.h; sourceTree = "<group>"; };
@@ -210,6 +228,12 @@
 		BBA3404E1826D6F700B6E4B1 = {
 			isa = PBXGroup;
 			children = (
+				50CEBBF61840442A0005B0F9 /* ItemLayout.h */,
+				50CEBBF71840442A0005B0F9 /* ItemLayout.m */,
+				50CEBBF81840442A0005B0F9 /* ItemViewCell.h */,
+				50CEBBF91840442A0005B0F9 /* ItemViewCell.m */,
+				50CEBBE8183FF4950005B0F9 /* ItemPageController.h */,
+				50CEBBE9183FF4950005B0F9 /* ItemPageController.m */,
 				50FA4064183B714900EC0CEC /* MOA.sqlite */,
 				BBA340601826D6F700B6E4B1 /* MOA */,
 				BBA3407F1826D6F700B6E4B1 /* MOATests */,
@@ -260,13 +284,15 @@
 				507B8E631828E2F4002365EF /* SidebarViewController.m */,
 				BB0E659E18371AA100163652 /* SearchResultListViewController.h */,
 				BB0E659F18371AA100163652 /* SearchResultListViewController.m */,
+				50CEBBED184043990005B0F9 /* BHAlbum.h */,
+				50CEBBEE184043990005B0F9 /* BHAlbum.m */,
+				50CEBBEF184043990005B0F9 /* BHAlbumTitleReusableView.h */,
+				50CEBBF0184043990005B0F9 /* BHAlbumTitleReusableView.m */,
+				50CEBBF1184043990005B0F9 /* BHPhoto.h */,
+				50CEBBF2184043990005B0F9 /* BHPhoto.m */,
 				507B8E661828F355002365EF /* MainViewController.h */,
 				507B8E671828F355002365EF /* MainViewController.m */,
 				BB0E6595183575E200163652 /* TagAdditionViewController.h */,
-				BBC78D66183B4FF7004D867F /* ItemPageController.h */,
-				BBC78D67183B4FF7004D867F /* ItemPageController.m */,
-				BBC78D69183C3F77004D867F /* ItemLayout.h */,
-				BBC78D6A183C3F77004D867F /* ItemLayout.m */,
 				BB0E6596183575E200163652 /* TagAdditionViewController.m */,
 				BBA340721826D6F700B6E4B1 /* Images.xcassets */,
 				BBA340611826D6F700B6E4B1 /* Supporting Files */,
@@ -276,8 +302,6 @@
 				BB0E65901835737F00163652 /* FilteredViewViewController.m */,
 				BB0E659B1835A61300163652 /* SplashScreen.h */,
 				BB0E659C1835A61300163652 /* SplashScreen.m */,
-				BBC78D75183C4B82004D867F /* BHAlbumTitleReusableView.h */,
-				BBC78D76183C4B82004D867F /* BHAlbumTitleReusableView.m */,
 			);
 			path = MOA;
 			sourceTree = "<group>";
@@ -425,8 +449,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBC78D77183C4B82004D867F /* BHAlbumTitleReusableView.m in Sources */,
-				BB0E65A018371AA100163652 /* SearchResultListViewController.m in Sources */,
 				50FA4068183B71A200EC0CEC /* DBDataList.m in Sources */,
 				BB0E659D1835A61300163652 /* SplashScreen.m in Sources */,
 				50F5290C183CA359002A463C /* PublicTransitPage.m in Sources */,
@@ -441,6 +463,9 @@
 				BB0E659A1835926800163652 /* TagList.m in Sources */,
 				50F52903183C91D7002A463C /* DirectionParkingViewController.m in Sources */,
 				50FA4074183B7F6600EC0CEC /* DBRemoteUpdater.m in Sources */,
+				50CEBBFB1840442A0005B0F9 /* ItemViewCell.m in Sources */,
+				50CEBBEC184031310005B0F9 /* SearchResultListViewController.m in Sources */,
+				50CEBBEA183FF4950005B0F9 /* ItemPageController.m in Sources */,
 				BB0E65911835737F00163652 /* FilteredViewViewController.m in Sources */,
 				BB0E6597183575E200163652 /* TagAdditionViewController.m in Sources */,
 				507B8E641828E2F4002365EF /* SidebarViewController.m in Sources */,
@@ -448,7 +473,10 @@
 				507B8E6E1829793A002365EF /* SWRevealViewController.m in Sources */,
 				507B8E681828F355002365EF /* MainViewController.m in Sources */,
 				BBA3406B1826D6F700B6E4B1 /* AppDelegate.m in Sources */,
-				BBC78D74183C46CB004D867F /* BHPhoto.m in Sources */,
+				50CEBBF5184043990005B0F9 /* BHPhoto.m in Sources */,
+				50CEBBFA1840442A0005B0F9 /* ItemLayout.m in Sources */,
+				50CEBBF3184043990005B0F9 /* BHAlbum.m in Sources */,
+				50CEBBF4184043990005B0F9 /* BHAlbumTitleReusableView.m in Sources */,
 				BBA340671826D6F700B6E4B1 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -19,6 +19,12 @@
 		50CEBBF5184043990005B0F9 /* BHPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CEBBF2184043990005B0F9 /* BHPhoto.m */; };
 		50CEBBFA1840442A0005B0F9 /* ItemLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CEBBF71840442A0005B0F9 /* ItemLayout.m */; };
 		50CEBBFB1840442A0005B0F9 /* ItemViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CEBBF91840442A0005B0F9 /* ItemViewCell.m */; };
+		50CEBC001841463A0005B0F9 /* cafe-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50CEBBFC1841463A0005B0F9 /* cafe-1.jpg */; };
+		50CEBC011841463A0005B0F9 /* cafe.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 50CEBBFD1841463A0005B0F9 /* cafe.JPG */; };
+		50CEBC021841463A0005B0F9 /* shop-1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50CEBBFE1841463A0005B0F9 /* shop-1.jpg */; };
+		50CEBC031841463A0005B0F9 /* shop.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50CEBBFF1841463A0005B0F9 /* shop.jpg */; };
+		50CEBC061841467D0005B0F9 /* CafeMOAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CEBC051841467D0005B0F9 /* CafeMOAViewController.m */; };
+		50CEBC09184146980005B0F9 /* MOAShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CEBC08184146980005B0F9 /* MOAShopViewController.m */; };
 		50F52903183C91D7002A463C /* DirectionParkingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F52902183C91D7002A463C /* DirectionParkingViewController.m */; };
 		50F52909183C984D002A463C /* ParkingPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F52908183C984D002A463C /* ParkingPage.m */; };
 		50F5290C183CA359002A463C /* PublicTransitPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F5290B183CA359002A463C /* PublicTransitPage.m */; };
@@ -88,6 +94,14 @@
 		50CEBBF71840442A0005B0F9 /* ItemLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemLayout.m; path = MOA/ItemLayout.m; sourceTree = "<group>"; };
 		50CEBBF81840442A0005B0F9 /* ItemViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemViewCell.h; path = MOA/ItemViewCell.h; sourceTree = "<group>"; };
 		50CEBBF91840442A0005B0F9 /* ItemViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemViewCell.m; path = MOA/ItemViewCell.m; sourceTree = "<group>"; };
+		50CEBBFC1841463A0005B0F9 /* cafe-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "cafe-1.jpg"; sourceTree = "<group>"; };
+		50CEBBFD1841463A0005B0F9 /* cafe.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cafe.JPG; sourceTree = "<group>"; };
+		50CEBBFE1841463A0005B0F9 /* shop-1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "shop-1.jpg"; sourceTree = "<group>"; };
+		50CEBBFF1841463A0005B0F9 /* shop.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = shop.jpg; sourceTree = "<group>"; };
+		50CEBC041841467D0005B0F9 /* CafeMOAViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CafeMOAViewController.h; sourceTree = "<group>"; };
+		50CEBC051841467D0005B0F9 /* CafeMOAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CafeMOAViewController.m; sourceTree = "<group>"; };
+		50CEBC07184146980005B0F9 /* MOAShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOAShopViewController.h; sourceTree = "<group>"; };
+		50CEBC08184146980005B0F9 /* MOAShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOAShopViewController.m; sourceTree = "<group>"; };
 		50F52901183C91D7002A463C /* DirectionParkingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionParkingViewController.h; sourceTree = "<group>"; };
 		50F52902183C91D7002A463C /* DirectionParkingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionParkingViewController.m; sourceTree = "<group>"; };
 		50F52907183C984D002A463C /* ParkingPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParkingPage.h; path = ../ParkingPage.h; sourceTree = "<group>"; };
@@ -176,6 +190,10 @@
 		507B8E5C1828E188002365EF /* IMAGE */ = {
 			isa = PBXGroup;
 			children = (
+				50CEBBFC1841463A0005B0F9 /* cafe-1.jpg */,
+				50CEBBFD1841463A0005B0F9 /* cafe.JPG */,
+				50CEBBFE1841463A0005B0F9 /* shop-1.jpg */,
+				50CEBBFF1841463A0005B0F9 /* shop.jpg */,
 				E438ACCC183AD8AE0078FD2F /* plan_a_visit.jpg */,
 				507B8E6F18299BCE002365EF /* menu.png */,
 			);
@@ -208,6 +226,10 @@
 				E438ACC518386F930078FD2F /* PlanVisitViewController.m */,
 				50F52901183C91D7002A463C /* DirectionParkingViewController.h */,
 				50F52902183C91D7002A463C /* DirectionParkingViewController.m */,
+				50CEBC041841467D0005B0F9 /* CafeMOAViewController.h */,
+				50CEBC051841467D0005B0F9 /* CafeMOAViewController.m */,
+				50CEBC07184146980005B0F9 /* MOAShopViewController.h */,
+				50CEBC08184146980005B0F9 /* MOAShopViewController.m */,
 			);
 			name = VisitorInformation;
 			sourceTree = "<group>";
@@ -423,13 +445,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				E438ACCD183AD8AE0078FD2F /* plan_a_visit.jpg in Resources */,
+				50CEBC031841463A0005B0F9 /* shop.jpg in Resources */,
 				BBA34090182700FC00B6E4B1 /* 480x360.gif in Resources */,
 				50FA4065183B714900EC0CEC /* MOA.sqlite in Resources */,
 				BBA340731826D6F700B6E4B1 /* Images.xcassets in Resources */,
+				50CEBC001841463A0005B0F9 /* cafe-1.jpg in Resources */,
+				50CEBC021841463A0005B0F9 /* shop-1.jpg in Resources */,
 				BBA340651826D6F700B6E4B1 /* InfoPlist.strings in Resources */,
 				BBA34094182701F500B6E4B1 /* 320x200.gif in Resources */,
 				507B8E7018299BCE002365EF /* menu.png in Resources */,
 				BBA340961827024600B6E4B1 /* 320x170.gif in Resources */,
+				50CEBC011841463A0005B0F9 /* cafe.JPG in Resources */,
 				BBA3406E1826D6F700B6E4B1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -464,6 +490,7 @@
 				50F52903183C91D7002A463C /* DirectionParkingViewController.m in Sources */,
 				50FA4074183B7F6600EC0CEC /* DBRemoteUpdater.m in Sources */,
 				50CEBBFB1840442A0005B0F9 /* ItemViewCell.m in Sources */,
+				50CEBC061841467D0005B0F9 /* CafeMOAViewController.m in Sources */,
 				50CEBBEC184031310005B0F9 /* SearchResultListViewController.m in Sources */,
 				50CEBBEA183FF4950005B0F9 /* ItemPageController.m in Sources */,
 				BB0E65911835737F00163652 /* FilteredViewViewController.m in Sources */,
@@ -472,6 +499,7 @@
 				E438ACC618386F930078FD2F /* PlanVisitViewController.m in Sources */,
 				507B8E6E1829793A002365EF /* SWRevealViewController.m in Sources */,
 				507B8E681828F355002365EF /* MainViewController.m in Sources */,
+				50CEBC09184146980005B0F9 /* MOAShopViewController.m in Sources */,
 				BBA3406B1826D6F700B6E4B1 /* AppDelegate.m in Sources */,
 				50CEBBF5184043990005B0F9 /* BHPhoto.m in Sources */,
 				50CEBBFA1840442A0005B0F9 /* ItemLayout.m in Sources */,

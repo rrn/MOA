@@ -549,6 +549,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="m96-Ek-27F" kind="push" id="yBj-2m-JS3"/>
+                                        </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="4tD-x3-etY" style="IBUITableViewCellStyleDefault" id="xCb-ZQ-uR9">
                                         <rect key="frame" x="0.0" y="231" width="320" height="44"/>
@@ -625,6 +628,76 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3c3-QG-30q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2663" y="-974"/>
+        </scene>
+        <!--CafeMOA View Controller-->
+        <scene sceneID="XYr-gK-Qa9">
+            <objects>
+                <viewController id="m96-Ek-27F" customClass="CafeMOAViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nlb-gs-Dwm"/>
+                        <viewControllerLayoutGuide type="bottom" id="TGF-SI-zwj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="5Al-yr-mi7">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XCv-1I-nHb">
+                                <rect key="frame" x="0.0" y="107" width="320" height="418"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cafe-1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="WYh-mX-VDS">
+                                        <rect key="frame" x="20" y="7" width="272" height="168"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="272" id="KZK-ea-bMG"/>
+                                            <constraint firstAttribute="height" constant="168" id="f2S-b8-2XL"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="272" translatesAutoresizingMaskIntoConstraints="NO" id="2Xy-6M-uvC">
+                                        <rect key="frame" x="20" y="188" width="272" height="251"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="251" id="SQ7-IZ-z1N"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="2Xy-6M-uvC" firstAttribute="top" secondItem="WYh-mX-VDS" secondAttribute="bottom" constant="13" id="EY7-0M-hpo"/>
+                                    <constraint firstAttribute="trailing" secondItem="WYh-mX-VDS" secondAttribute="trailing" constant="28" id="IXh-W8-38G"/>
+                                    <constraint firstItem="WYh-mX-VDS" firstAttribute="leading" secondItem="XCv-1I-nHb" secondAttribute="leading" constant="20" symbolic="YES" id="MEa-Fb-IzU"/>
+                                    <constraint firstItem="2Xy-6M-uvC" firstAttribute="trailing" secondItem="WYh-mX-VDS" secondAttribute="trailing" id="TjD-qr-ykl"/>
+                                    <constraint firstAttribute="bottom" secondItem="2Xy-6M-uvC" secondAttribute="bottom" constant="-21" id="oLv-6q-JET"/>
+                                    <constraint firstItem="WYh-mX-VDS" firstAttribute="leading" secondItem="2Xy-6M-uvC" secondAttribute="leading" id="qOz-lR-IRB"/>
+                                    <constraint firstItem="WYh-mX-VDS" firstAttribute="top" secondItem="XCv-1I-nHb" secondAttribute="top" constant="7" id="vy1-SY-w6H"/>
+                                </constraints>
+                            </scrollView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cafe MOA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rCx-Ga-raL">
+                                <rect key="frame" x="20" y="71" width="135" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="XCv-1I-nHb" firstAttribute="leading" secondItem="5Al-yr-mi7" secondAttribute="leading" id="MBU-3J-JsT"/>
+                            <constraint firstAttribute="bottom" secondItem="XCv-1I-nHb" secondAttribute="bottom" constant="43" id="b9o-8h-TON"/>
+                            <constraint firstAttribute="trailing" secondItem="XCv-1I-nHb" secondAttribute="trailing" id="mRI-cd-sdL"/>
+                            <constraint firstItem="XCv-1I-nHb" firstAttribute="top" secondItem="nlb-gs-Dwm" secondAttribute="bottom" constant="43" id="z3Y-DU-fZB"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="CGn-XM-WEv"/>
+                    <connections>
+                        <outlet property="hours" destination="2Xy-6M-uvC" id="LEI-u5-oqC"/>
+                        <outlet property="scroll" destination="XCv-1I-nHb" id="XHi-Oh-ipr"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kqr-mW-rns" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2663" y="-257"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="2g7-xg-oxY">
@@ -908,6 +981,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="cafe-1.jpg" width="5502" height="3667"/>
         <image name="menu.png" width="28" height="20"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

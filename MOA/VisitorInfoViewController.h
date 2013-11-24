@@ -12,6 +12,7 @@
 @interface VisitorInfoViewController : UITableViewController {
     NSDictionary *pulledData;
     NSMutableArray *datas;
+    NSString *strRemoteData;
 }
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;

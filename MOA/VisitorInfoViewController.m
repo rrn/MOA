@@ -8,9 +8,11 @@
 
 #import "VisitorInfoViewController.h"
 #import "SWRevealViewController.h"
+#import "NSString_stripHtml.h"
 
 @interface VisitorInfoViewController ()
 
+-(void) validateJSONString;
 @end
 
 
@@ -36,13 +38,19 @@
     _sidebarButton.action = @selector(rightRevealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: @"http://localhost/eece419/remoteData.php"]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: @"http://pluto.moa.ubc.ca/_mobile_app_remoteData.php"]];
     NSError * e;
     NSData *remoteData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&e];
-    NSString *strRemoteData = [[NSString alloc] initWithData:remoteData encoding:NSUTF8StringEncoding];
+    strRemoteData =[[NSString alloc] initWithData:remoteData encoding:NSUTF8StringEncoding];
+    [self validateJSONString]; //sometimes data are returned in HTML form, we need to validate
     NSData *jsonData = [strRemoteData dataUsingEncoding:NSUTF8StringEncoding];
     e = nil; // reset e variable
-    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData options:kNilOptions error:&e];
+    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&e];
+
+    if (e) {
+        NSLog(@"Error serializing %@", e);
+    }
+    NSLog(@"Dictionary %@", jsonDict);
     NSEnumerator *mainEnumerator = [jsonDict keyEnumerator];
     id key; NSArray *tableArray;
     while (key = [mainEnumerator nextObject]){
@@ -67,9 +75,39 @@
                     [generalTextArray addObject:[attribute objectForKey:attKey]];
                 }
             }
-            //do somethig
         }
     }
+    // testing purpose only
+    //NSLog(@"%@", generalTextArray);
+    
+}
+
+-(void) validateJSONString{
+    
+    // sometimes remote data are returned in HTML form, and
+    // we cannot remove HTML tags by stripping all the tags using regular expression
+    // since the body of JSON contains HTML tags
+    // so we have to do manually by removing beginning and end HTML tags
+    
+    NSMutableString *strToValidate = [strRemoteData copy];
+    
+    //remove the initial html tag
+    if ([strToValidate rangeOfString:@"<body>"].location == NSNotFound) {
+        NSLog(@"Data is Good: Returned JSON String does not have end HTML tags");
+    } else {
+        int startingOffset = [strToValidate rangeOfString:@"{"].location;
+        strToValidate = [[strToValidate substringFromIndex:startingOffset] copy];
+    }
+    
+    //remove the end tag
+    if ([strToValidate rangeOfString:@"</body>"].location == NSNotFound){
+        NSLog(@"Data is Good: Returned JSON String does not have end HTML tags");
+    } else {
+        int endingOffset = [strToValidate rangeOfString:@"</body>"].location;
+        strToValidate = [[strToValidate substringWithRange:NSMakeRange(0, endingOffset)] copy];
+    }
+    
+    strRemoteData = strToValidate;
     
 }
 

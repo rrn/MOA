@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		505040F11841F7BA0041EE74 /* NSString_stripHtml.m in Sources */ = {isa = PBXBuildFile; fileRef = 505040F01841F7BA0041EE74 /* NSString_stripHtml.m */; };
 		507121551841CB6900DDFC47 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507121541841CB6900DDFC47 /* MessageUI.framework */; };
 		507B8E641828E2F4002365EF /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 507B8E631828E2F4002365EF /* SidebarViewController.m */; };
 		507B8E681828F355002365EF /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 507B8E671828F355002365EF /* MainViewController.m */; };
@@ -79,6 +80,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		505040EF1841F7BA0041EE74 /* NSString_stripHtml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString_stripHtml.h; sourceTree = "<group>"; };
+		505040F01841F7BA0041EE74 /* NSString_stripHtml.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_stripHtml.m; sourceTree = "<group>"; };
 		507121541841CB6900DDFC47 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		507B8E621828E2F4002365EF /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
 		507B8E631828E2F4002365EF /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
@@ -205,6 +208,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		505040EE1841F7780041EE74 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				505040EF1841F7BA0041EE74 /* NSString_stripHtml.h */,
+				505040F01841F7BA0041EE74 /* NSString_stripHtml.m */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
 		507B8E5C1828E188002365EF /* IMAGE */ = {
 			isa = PBXGroup;
 			children = (
@@ -315,6 +327,7 @@
 		BBA340601826D6F700B6E4B1 /* MOA */ = {
 			isa = PBXGroup;
 			children = (
+				505040EE1841F7780041EE74 /* Helper */,
 				50F52904183C97C4002A463C /* VisitorInformation */,
 				507B8E651828EBE4002365EF /* Library */,
 				BBA340921827012C00B6E4B1 /* Placeholders */,
@@ -531,6 +544,7 @@
 				507B8E641828E2F4002365EF /* SidebarViewController.m in Sources */,
 				E438ACC618386F930078FD2F /* PlanVisitViewController.m in Sources */,
 				507B8E6E1829793A002365EF /* SWRevealViewController.m in Sources */,
+				505040F11841F7BA0041EE74 /* NSString_stripHtml.m in Sources */,
 				507B8E681828F355002365EF /* MainViewController.m in Sources */,
 				50CEBC09184146980005B0F9 /* MOAShopViewController.m in Sources */,
 				BBA3406B1826D6F700B6E4B1 /* AppDelegate.m in Sources */,

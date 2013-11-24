@@ -26,12 +26,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Parking & Directions";
+    self.title = @"Parking";
     self.description.text = [parkingInformationArray objectAtIndex:0]; //index 0 contains parking description
     
     // we want to be able to scroll
-    //[self.scroll setScrollEnabled:YES];
-    //[self.scroll setContentSize:CGSizeMake(320, 700)];
+    [self.scroll setScrollEnabled:YES];
+    [self.scroll setContentSize:CGSizeMake(320, 600)];
     
 	
 }
@@ -40,6 +40,12 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+// this code is needed since iOS 7 has different layout
+- (void) viewDidLayoutSubviews {
+    [self.scroll setContentSize:CGSizeMake(320, 600)];
 }
 
 @end

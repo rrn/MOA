@@ -26,8 +26,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Parking & Directions";
+    self.title = @"Directions";
 	self.description.text = [parkingInformationArray objectAtIndex:3];
+    
+    [self.scroll setScrollEnabled:YES];
+    [self.scroll setContentSize:CGSizeMake(320, 600)];
 }
 
 - (void)didReceiveMemoryWarning
@@ -35,5 +38,11 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+// this code is needed since iOS 7 has different layout
+- (void) viewDidLayoutSubviews {
+    [self.scroll setContentSize:CGSizeMake(320, 600)];
+}
+
 
 @end

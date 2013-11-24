@@ -13,8 +13,13 @@
 @interface ContactUsViewController : UIViewController
 
 @property (nonatomic, weak) IBOutlet UITextView* myView;
--(IBAction)buttonPressed:(id)sender;
+@property (nonatomic, weak) IBOutlet UITextView* webLink;
 
 
 @end
+
+UITextView *phone2;
+UITextView *phone1;
+
+
 

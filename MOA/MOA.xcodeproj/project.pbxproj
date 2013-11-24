@@ -513,6 +513,7 @@
 				50F52912183CA38F002A463C /* FromLowerMainland.m in Sources */,
 				BB3179FD1827112F00CC9C38 /* ExploreMainViewController.m in Sources */,
 				E48B16D9183C9B1A0047BBA4 /* AccordionViewController.m in Sources */,
+				E48B16DC18413EE40047BBA4 /* LocationPage.m in Sources */,
 				50CB96C718417862003B7DCC /* ContactUsViewController.m in Sources */,
 				E438ACC9183877E10078FD2F /* VisitorInfoViewController.m in Sources */,
 				50F5290F183CA37B002A463C /* FromAirportPage.m in Sources */,

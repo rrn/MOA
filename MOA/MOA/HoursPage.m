@@ -1,18 +1,18 @@
 //
-//  FromLowerMainland.m
+//  HoursPage.m
 //  MOA
 //
-//  Created by Diana Sutandie on 11/20/2013.
+//  Created by Marilyn Edgar on 11/23/2013.
 //  Copyright (c) 2013 Museum of Anthropology UBC. All rights reserved.
 //
 
-#import "FromLowerMainland.h"
+#import "HoursPage.h"
 
-@interface FromLowerMainland ()
+@interface HoursPage ()
 
 @end
 
-@implementation FromLowerMainland
+@implementation HoursPage
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,11 +26,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Directions";
-    self.description.text = [parkingInformationArray objectAtIndex:2];
+	// Do any additional setup after loading the view.
     
-    [self.scroll setScrollEnabled:YES];
-    [self.scroll setContentSize:CGSizeMake(320, 700)];
+    self.title = @"Hours";
+    
+    //TODO: build info into table of hours
+    self.description.text = [cafeHoursArray objectAtIndex:0];
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,11 +39,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-// this code is needed since iOS 7 has different layout
-- (void) viewDidLayoutSubviews {
-    [self.scroll setContentSize:CGSizeMake(320, 600)];
-}
-
 
 @end

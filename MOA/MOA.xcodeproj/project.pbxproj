@@ -54,6 +54,9 @@
 		E438ACC9183877E10078FD2F /* VisitorInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E438ACC8183877E10078FD2F /* VisitorInfoViewController.m */; };
 		E438ACCD183AD8AE0078FD2F /* plan_a_visit.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E438ACCC183AD8AE0078FD2F /* plan_a_visit.jpg */; };
 		E48B16D9183C9B1A0047BBA4 /* AccordionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E48B16D8183C9B1A0047BBA4 /* AccordionViewController.m */; };
+		E48B16DC18413EE40047BBA4 /* LocationPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E48B16DB18413EE40047BBA4 /* LocationPage.m */; };
+		E48B16DF1841426A0047BBA4 /* HoursPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E48B16DE1841426A0047BBA4 /* HoursPage.m */; };
+		E48B16E21841445D0047BBA4 /* RatesPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E48B16E11841445D0047BBA4 /* RatesPage.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -146,6 +149,12 @@
 		E438ACCC183AD8AE0078FD2F /* plan_a_visit.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = plan_a_visit.jpg; path = ../plan_a_visit.jpg; sourceTree = "<group>"; };
 		E48B16D7183C9B1A0047BBA4 /* AccordionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccordionViewController.h; sourceTree = "<group>"; };
 		E48B16D8183C9B1A0047BBA4 /* AccordionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccordionViewController.m; sourceTree = "<group>"; };
+		E48B16DA18413EE40047BBA4 /* LocationPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationPage.h; sourceTree = "<group>"; };
+		E48B16DB18413EE40047BBA4 /* LocationPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationPage.m; sourceTree = "<group>"; };
+		E48B16DD1841426A0047BBA4 /* HoursPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HoursPage.h; sourceTree = "<group>"; };
+		E48B16DE1841426A0047BBA4 /* HoursPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoursPage.m; sourceTree = "<group>"; };
+		E48B16E01841445D0047BBA4 /* RatesPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatesPage.h; sourceTree = "<group>"; };
+		E48B16E11841445D0047BBA4 /* RatesPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatesPage.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,6 +217,12 @@
 				E438ACC518386F930078FD2F /* PlanVisitViewController.m */,
 				50F52901183C91D7002A463C /* DirectionParkingViewController.h */,
 				50F52902183C91D7002A463C /* DirectionParkingViewController.m */,
+				E48B16DA18413EE40047BBA4 /* LocationPage.h */,
+				E48B16DB18413EE40047BBA4 /* LocationPage.m */,
+				E48B16DD1841426A0047BBA4 /* HoursPage.h */,
+				E48B16DE1841426A0047BBA4 /* HoursPage.m */,
+				E48B16E01841445D0047BBA4 /* RatesPage.h */,
+				E48B16E11841445D0047BBA4 /* RatesPage.m */,
 			);
 			name = VisitorInformation;
 			sourceTree = "<group>";
@@ -451,11 +466,13 @@
 			files = (
 				50FA4068183B71A200EC0CEC /* DBDataList.m in Sources */,
 				BB0E659D1835A61300163652 /* SplashScreen.m in Sources */,
+				E48B16E21841445D0047BBA4 /* RatesPage.m in Sources */,
 				50F5290C183CA359002A463C /* PublicTransitPage.m in Sources */,
 				50FA406B183B71FA00EC0CEC /* DBData.m in Sources */,
 				50F52912183CA38F002A463C /* FromLowerMainland.m in Sources */,
 				BB3179FD1827112F00CC9C38 /* ExploreMainViewController.m in Sources */,
 				E48B16D9183C9B1A0047BBA4 /* AccordionViewController.m in Sources */,
+				E48B16DC18413EE40047BBA4 /* LocationPage.m in Sources */,
 				E438ACC9183877E10078FD2F /* VisitorInfoViewController.m in Sources */,
 				50F5290F183CA37B002A463C /* FromAirportPage.m in Sources */,
 				50CCCA14182C54D200384881 /* WhatsOnThisWeekViewController.m in Sources */,
@@ -476,6 +493,7 @@
 				50CEBBF5184043990005B0F9 /* BHPhoto.m in Sources */,
 				50CEBBFA1840442A0005B0F9 /* ItemLayout.m in Sources */,
 				50CEBBF3184043990005B0F9 /* BHAlbum.m in Sources */,
+				E48B16DF1841426A0047BBA4 /* HoursPage.m in Sources */,
 				50CEBBF4184043990005B0F9 /* BHAlbumTitleReusableView.m in Sources */,
 				BBA340671826D6F700B6E4B1 /* main.m in Sources */,
 			);

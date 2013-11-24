@@ -11,6 +11,8 @@
 #import "DBDataList.h"
 #import "DBData.h"
 
+#define DegreesToRadians(x) (M_PI * x / 180.0)
+
 @interface PlanVisitViewController ()
 
 @end
@@ -57,9 +59,6 @@
     
     rowData = [NSArray arrayWithObjects:[NSMutableArray array],[NSMutableArray array], [NSMutableArray array],[NSMutableArray array], nil];
     
-    NSArray *location;
-    location = [NSArray arrayWithObjects:@"Blank", @"Label1", nil];
-    
     [[rowData objectAtIndex:0] addObject:@"Blank"];// 0 : location
     [[rowData objectAtIndex:0] addObject:@"Museum of Anthropology at University of British Columbia 6393 NW Marine Drive Vancouver BC"];
     [[rowData objectAtIndex:1] addObject:@"Blank"];// 1 : directions and parking
@@ -67,8 +66,8 @@
     [[rowData objectAtIndex:1] addObject:@"Get Directions to MOA"];
     [[rowData objectAtIndex:1] addObject:@"Parking"];
     [[rowData objectAtIndex:1] addObject:@"Public Transit"];
-    [[rowData objectAtIndex:1] addObject:@"From Vancouver and Lower Mainland"];
-    [[rowData objectAtIndex:1] addObject:@"From Vancouver International Airport"];
+    [[rowData objectAtIndex:1] addObject:@"From Vancouver"];
+    [[rowData objectAtIndex:1] addObject:@"From YVR"];
     [[rowData objectAtIndex:2] addObject:@"Blank"];// 2 : hours
     [[rowData objectAtIndex:2] addObject:@"Label8"];
     [[rowData objectAtIndex:3] addObject:@"Blank"];// 3 : rates
@@ -143,17 +142,22 @@
             // first row
             cell.textLabel.text = sectionData[indexPath.section]; // only top row showing
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell.accessoryView = nil;
         }
         else
         {
             // accordion sub rows
-            cell.textLabel.text = [[rowData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
-            cell.accessoryType = UITableViewCellAccessoryNone;
+            if (indexPath.section == 1 && indexPath.row == 1)
+            {
+                cell.textLabel.numberOfLines = 5;
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
+            else
+            {
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            }
             cell.accessoryView = nil;
-//            if (indexPath.section == 0 && indexPath.row == 1)
-//            {
-//                cell.textLabel.numberOfLines = 5;
-//            }
+            cell.textLabel.text = [[rowData objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
         }
     }
     else

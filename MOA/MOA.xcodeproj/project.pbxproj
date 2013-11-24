@@ -63,6 +63,7 @@
 		E48B16DC18413EE40047BBA4 /* LocationPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E48B16DB18413EE40047BBA4 /* LocationPage.m */; };
 		E48B16DF1841426A0047BBA4 /* HoursPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E48B16DE1841426A0047BBA4 /* HoursPage.m */; };
 		E48B16E21841445D0047BBA4 /* RatesPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E48B16E11841445D0047BBA4 /* RatesPage.m */; };
+		E4D391D11841989800043AEB /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D391D01841989800043AEB /* Constants.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,6 +170,8 @@
 		E48B16DE1841426A0047BBA4 /* HoursPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoursPage.m; sourceTree = "<group>"; };
 		E48B16E01841445D0047BBA4 /* RatesPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatesPage.h; sourceTree = "<group>"; };
 		E48B16E11841445D0047BBA4 /* RatesPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatesPage.m; sourceTree = "<group>"; };
+		E4D391CF1841983000043AEB /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		E4D391D01841989800043AEB /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -309,6 +312,8 @@
 				BBA340691826D6F700B6E4B1 /* AppDelegate.h */,
 				BBA3406A1826D6F700B6E4B1 /* AppDelegate.m */,
 				50FA407C183C811100EC0CEC /* Global.h */,
+				E4D391CF1841983000043AEB /* Constants.h */,
+				E4D391D01841989800043AEB /* Constants.m */,
 				50F52905183C97DC002A463C /* LocalDatabase */,
 				BBA3406C1826D6F700B6E4B1 /* Main.storyboard */,
 				E48B16D7183C9B1A0047BBA4 /* AccordionViewController.h */,
@@ -495,6 +500,7 @@
 				E48B16E21841445D0047BBA4 /* RatesPage.m in Sources */,
 				50F5290C183CA359002A463C /* PublicTransitPage.m in Sources */,
 				50FA406B183B71FA00EC0CEC /* DBData.m in Sources */,
+				E4D391D11841989800043AEB /* Constants.m in Sources */,
 				50F52912183CA38F002A463C /* FromLowerMainland.m in Sources */,
 				BB3179FD1827112F00CC9C38 /* ExploreMainViewController.m in Sources */,
 				E48B16D9183C9B1A0047BBA4 /* AccordionViewController.m in Sources */,

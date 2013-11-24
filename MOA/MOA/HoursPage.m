@@ -7,6 +7,7 @@
 //
 
 #import "HoursPage.h"
+#import "Constants.h"
 
 @interface HoursPage ()
 
@@ -30,8 +31,24 @@
     
     self.title = @"Hours";
     
-    //TODO: build info into table of hours
-    self.description.text = [cafeHoursArray objectAtIndex:0];
+    NSMutableString* hoursStr = [NSMutableString stringWithFormat:@"Hours:\n\n"];
+    NSMutableString* day_temp = [NSMutableString stringWithFormat:@""];
+    NSMutableString* hours_temp = [NSMutableString stringWithFormat:@""];
+    for (int i = 0; i < 14; i++){
+        day_temp = [generalHoursArray objectAtIndex:i]; i++;
+        hours_temp = [generalHoursArray objectAtIndex:i];
+        [hoursStr appendString:day_temp];
+        [hoursStr appendString:@" : "];
+        [hoursStr appendString:hours_temp];
+        [hoursStr appendString:@"\n"];
+    }
+    for (int j = 14; j < [generalHoursArray count]; j++)
+    {
+        [hoursStr appendString:[generalHoursArray objectAtIndex:j]];
+        [hoursStr appendString:@"\n"];
+    }
+    
+    self.description.text = hoursStr;
 }
 
 - (void)didReceiveMemoryWarning

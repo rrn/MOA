@@ -15,4 +15,4 @@
 
 @end
 
-NSMutableArray *cafeHoursArray;
+NSMutableArray *generalHoursArray;

@@ -8,7 +8,6 @@
 
 #import "VisitorInfoViewController.h"
 #import "SWRevealViewController.h"
-#import "NSString_stripHtml.h"
 
 @interface VisitorInfoViewController ()
 
@@ -50,7 +49,7 @@
     if (e) {
         NSLog(@"Error serializing %@", e);
     }
-    NSLog(@"Dictionary %@", jsonDict);
+    NSLog(@"%@",jsonDict);
     NSEnumerator *mainEnumerator = [jsonDict keyEnumerator];
     id key; NSArray *tableArray;
     while (key = [mainEnumerator nextObject]){
@@ -78,7 +77,7 @@
         }
     }
     // testing purpose only
-    //NSLog(@"%@", generalTextArray);
+    //NSLog(@"%@", ratesGroupArray);
     
 }
 

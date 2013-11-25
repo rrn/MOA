@@ -27,6 +27,8 @@
 {
     [super viewDidLoad];
     self.title = @"Directions";
+    self.description.editable = NO;
+    self.description.dataDetectorTypes = UIDataDetectorTypeLink;
 	self.description.text = [parkingInformationArray objectAtIndex:3];
     
     [self.scroll setScrollEnabled:YES];

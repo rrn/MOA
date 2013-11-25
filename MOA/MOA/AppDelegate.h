@@ -7,9 +7,20 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Global.h"
+
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+- (void)remoteDBDataInitialization;
 
 @end
+
+NSMutableArray *parkingInformationArray;
+NSMutableArray *cafeHoursArray;
+NSMutableArray *ratesGeneralArray;
+NSMutableArray *ratesGroupArray;
+NSMutableArray *generalTextArray;
+NSMutableArray *generalHoursArray;
+

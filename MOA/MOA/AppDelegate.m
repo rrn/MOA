@@ -13,9 +13,20 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
     // Override point for customization after application launch.
+    [self remoteDBDataInitialization];
     return YES;
+}
+
+- (void)remoteDBDataInitialization
+{
+    parkingInformationArray = [[NSMutableArray alloc] init];
+    cafeHoursArray = [[NSMutableArray alloc]init];
+    generalTextArray = [[NSMutableArray alloc]init];
+    ratesGeneralArray = [[NSMutableArray alloc]init];
+    ratesGroupArray = [[NSMutableArray alloc]init];
+    generalHoursArray = [[NSMutableArray alloc]init];
+
 }
 							
 - (void)applicationWillResignActive:(UIApplication *)application

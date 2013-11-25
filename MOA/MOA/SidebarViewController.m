@@ -66,16 +66,6 @@
                 // select index 0, which is THIS WEEK AT MOA
                 [vcNew setSelectedIndex:0];
                 
-                // ** EXTRA CODE PLEASE DONT REMOVE FOR NOW - DIANA **
-                //[vcNew.tabBarController.view setHidden:FALSE];
-                //AppDelegate *appDelegate = (AppDelegate*) [[UIApplication sharedApplication] delegate];
-                //[appDelegate Set:1];
-                //[self.revealViewController setFrontViewController:vcNew];
-                //[self.revealViewController setFrontViewPosition:FrontViewPositionLeft];
-                //[self.parentViewController.tabBarController setSelectedIndex:0];
-                //[self.tabBarController setSelectedIndex:1];
-                //[self.tabBarController.view setNeedsDisplay];
-                
             } else if ([segue.identifier isEqualToString:@"showVisitor"]){
                 
                 // get the UITabBarController

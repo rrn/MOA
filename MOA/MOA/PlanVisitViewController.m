@@ -149,6 +149,7 @@
             // accordion sub rows
             if (indexPath.section == 1 && indexPath.row == 1)
             {
+                cell.userInteractionEnabled = NO;
                 cell.textLabel.numberOfLines = 5;
                 cell.accessoryType = UITableViewCellAccessoryNone;
             }
@@ -268,5 +269,18 @@
     }
         
 }
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath  {
+	if (indexPath.section == 1 && indexPath.row == 1)
+    {
+		return 120;///it's open
+	}
+    else
+    {
+		return 45;///it's closed
+	}
+    
+}
+
 
 @end

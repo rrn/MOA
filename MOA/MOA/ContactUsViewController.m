@@ -54,7 +54,7 @@
 }
 
 -(void)urlInitialization{
-    _webLink.text = @"Contact us at www.moa.ubc.ca";
+    _webLink.text = @"www.moa.ubc.ca";
     _webLink.editable = NO;
     _webLink.dataDetectorTypes = UIDataDetectorTypeLink;
 }

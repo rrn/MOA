@@ -37,8 +37,8 @@
     NSMutableString* description_tmp = [NSMutableString stringWithFormat:@""];
     NSMutableString* rate_tmp = [NSMutableString stringWithFormat:@""];
     for (int i = 0; i < [ratesGeneralArray count]; i++){
-        description_tmp = [ratesGeneralArray objectAtIndex:i]; i++;
-        rate_tmp = [ratesGeneralArray objectAtIndex:i];
+        rate_tmp = [ratesGeneralArray objectAtIndex:i]; i++;
+        description_tmp = [ratesGeneralArray objectAtIndex:i];
         [ratesStr appendString:description_tmp];
         [ratesStr appendString:@" : "];
         [ratesStr appendString:rate_tmp];
@@ -46,20 +46,16 @@
     }
     [ratesStr appendString:@"\n\n"];
     [ratesStr appendString:@"Group Rates:\n\n"];
-    for (int j = 0; j < 6; j++){
-        description_tmp = [ratesGroupArray objectAtIndex:j]; j++;
-        rate_tmp = [ratesGroupArray objectAtIndex:j];
+    for (int j = 0; j < [ratesGroupArray count]; j++){
+        rate_tmp = [ratesGroupArray objectAtIndex:j]; j++;
+        description_tmp = [ratesGroupArray objectAtIndex:j];
         [ratesStr appendString:description_tmp];
         [ratesStr appendString:@" : "];
         [ratesStr appendString:rate_tmp];
         [ratesStr appendString:@"\n"];
     }
-    for (int k = 7; k < [ratesGroupArray count]; k++)
-    {
-        [ratesStr appendString:[ratesGroupArray objectAtIndex:k]];
-    }
-    
-    
+    self.description.editable = NO;
+    self.description.dataDetectorTypes = UIDataDetectorTypePhoneNumber;
     self.description.text = ratesStr;
 }
 

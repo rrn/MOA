@@ -11,8 +11,8 @@
 
 @interface CafeMOAViewController : UIViewController
 
-@property (nonatomic, weak) IBOutlet UILabel *hours;
-@property (nonatomic, weak) IBOutlet UILabel *description;
+@property (nonatomic, weak) IBOutlet UITextView *hours;
+@property (nonatomic, weak) IBOutlet UITextView *description;
 @property (nonatomic, weak) IBOutlet UIScrollView *scroll;
 
 @end

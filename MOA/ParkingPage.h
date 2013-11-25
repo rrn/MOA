@@ -11,7 +11,7 @@
 
 @interface ParkingPage : UIViewController
 
-@property (nonatomic, weak) IBOutlet UILabel *description;
+@property (nonatomic, weak) IBOutlet UITextView *description;
 @property (nonatomic, weak) IBOutlet UIScrollView *scroll;
 
 @end

@@ -31,7 +31,7 @@
     
     self.title = @"Hours";
     
-    NSMutableString* hoursStr = [NSMutableString stringWithFormat:@"Hours:\n\n"];
+    NSMutableString* hoursStr = [NSMutableString stringWithFormat:@""];
     NSMutableString* day_temp = [NSMutableString stringWithFormat:@""];
     NSMutableString* hours_temp = [NSMutableString stringWithFormat:@""];
     for (int i = 0; i < 14; i++){

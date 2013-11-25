@@ -87,6 +87,8 @@
     
     float height = self.itemNameLabel.frame.size.height + self.idNumberLabel.frame.size.height + self.displayItemImageView.frame.size.height + self.itemDescriptionTextView.frame.size.height+40;
     
+    self.itemDescriptionTextView.editable = NO;
+    
 
     float bottom_inset = self.tabBarController.tabBar.frame.size.height;
     

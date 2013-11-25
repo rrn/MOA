@@ -17,6 +17,10 @@
 @end
 
 @implementation ItemPageController
+{
+    NSMutableString *generalDescription2;
+    NSMutableString *generalDescription3;
+}
 
 @synthesize data, itemNumber;
 
@@ -49,17 +53,30 @@
     self.itemDescriptionTextView.scrollEnabled = NO;
     
     NSArray *digitalObjects = [[data objectAtIndex:itemNumber] objectForKey:@"digital_objects"];
-    NSString *imageUrl = [[digitalObjects objectAtIndex:0] objectForKey:@"url"];
-    NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: imageUrl]];
+
+    generalDescription2 = [[NSMutableString alloc] initWithFormat:@""];
+    [generalDescription2 appendFormat:@"\n"];
+    [self generalDescription2Text];
     
-    self.displayItemImageView.image = [[UIImage alloc] initWithData:imageData];
+    generalDescription3 = [[NSMutableString alloc] initWithFormat:@""];
+    [generalDescription3 appendFormat:@"\n"];
+    [self generalDescription3Text];
+    
+    
+    if([digitalObjects count] > 0){
+        NSString *imageUrl = [[digitalObjects objectAtIndex:0] objectForKey:@"url"];
+        NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: imageUrl]];
+        self.displayItemImageView.image = [[UIImage alloc] initWithData:imageData];
+    }
+    
     self.displayItemImageView.contentMode = UIViewContentModeScaleAspectFit;
     self.itemNameLabel.text =[[data objectAtIndex:itemNumber] objectForKey:@"name"];
     self.idNumberLabel.text =[[data objectAtIndex:itemNumber] objectForKey:@"identification_number"];
     
     NSArray *institution_notes = [[data objectAtIndex:itemNumber] objectForKey:@"institution_notes"];
     
-    self.itemDescriptionTextView.text= [NSString stringWithFormat:@"%@",[[institution_notes objectAtIndex:0] objectForKey:@"text"]];
+    
+    self.itemDescriptionTextView.text= [NSString stringWithFormat:@"Description:\n%@\n\n %@\n %@",[[institution_notes objectAtIndex:0] objectForKey:@"text"], generalDescription2, generalDescription3];
     
     [[self theScrollView] addSubview:[self itemNameLabel]];
     [[self theScrollView] addSubview:[self idNumberLabel]];
@@ -80,6 +97,70 @@
     [self.theScrollView setContentSize:CGSizeMake(self.theScrollView.frame.size.width, height)];
     
 }
+
+- (void) generalDescription2Text
+{
+    NSArray *itemTypes = [[data objectAtIndex:itemNumber] objectForKey:@"item_types"];
+    NSArray *creators = [[data objectAtIndex:itemNumber] objectForKey:@"creators"];
+    NSArray *cultures = [[data objectAtIndex:itemNumber] objectForKey:@"cultures"];
+    NSArray *creationLocations = [[data objectAtIndex:itemNumber] objectForKey:@"creation_locations"];
+    NSArray *institutionTags = [[data objectAtIndex:itemNumber] objectForKey:@"institution_tags"];
+    
+    //Only add the Field Name and corresponding value if it not null in the feed
+    if([itemTypes count] >0){
+        if ([[[itemTypes objectAtIndex:0] objectForKey:@"name"] rangeOfString:@"null"].location ==NSNotFound){
+            [generalDescription2 appendFormat:@"Object Type: %@\n", [[itemTypes objectAtIndex:0] objectForKey:@"name"]];
+        }
+    }
+    if([creators count]  > 0){
+        if ([[[creators objectAtIndex:0] objectForKey:@"first_name"] rangeOfString:@"null"].location ==NSNotFound){
+            [generalDescription2 appendFormat:@"Created By: %@ %@\n", [[creators objectAtIndex:0] objectForKey:@"first_name"], [[creators objectAtIndex:0] objectForKey:@"last_name"]];
+        }
+    }
+    
+    if([cultures count]  > 0){
+        if ([[[cultures objectAtIndex:0] objectForKey:@"name"] rangeOfString:@"null"].location ==NSNotFound){
+            [generalDescription2 appendFormat:@"Culture: %@\n", [[cultures objectAtIndex:0] objectForKey:@"name"]];
+        }
+    }
+    
+    if([creationLocations count]  > 0){
+        if ([[[creationLocations objectAtIndex:0] objectForKey:@"name"] rangeOfString:@"null"].location ==NSNotFound){
+            [generalDescription2 appendFormat:@"Place Made: %@\n", [[creationLocations objectAtIndex:0] objectForKey:@"name"]];
+        }
+    }
+    
+    if([institutionTags count]  > 2){
+        if ([[[institutionTags objectAtIndex:2] objectForKey:@"name"] rangeOfString:@"null"].location ==NSNotFound){
+            [generalDescription2 appendFormat:@"Museum Location: %@\n", [[institutionTags objectAtIndex:2] objectForKey:@"text"]];
+        }
+    }
+}
+
+- (void) generalDescription3Text
+{
+    NSArray *materials = [[data objectAtIndex:itemNumber] objectForKey:@"materials"];
+    NSArray *institutionNotes = [[data objectAtIndex:itemNumber] objectForKey:@"institution_notes"];
+    
+    //Only add the Field Name and corresponding value if it not null in the feed
+    if([materials count] >0){
+        if ([[[materials objectAtIndex:0] objectForKey:@"name"] rangeOfString:@"null"].location ==NSNotFound){
+            [generalDescription3 appendFormat:@"Materials: %@\n", [[materials objectAtIndex:0] objectForKey:@"name"]];
+        }
+    }
+    if([institutionNotes count]  > 0){
+        if ([[[institutionNotes objectAtIndex:0] objectForKey:@"text"] rangeOfString:@"null"].location ==NSNotFound){
+            [generalDescription3 appendFormat:@"History of Use: %@\n", [[institutionNotes objectAtIndex:0] objectForKey:@"text"]];
+        }
+    }
+    
+    if([institutionNotes count]  > 1){
+        if ([[[institutionNotes objectAtIndex:1] objectForKey:@"text"] rangeOfString:@"null"].location ==NSNotFound){
+            [generalDescription3 appendFormat:@"Narrative: %@\n", [[institutionNotes objectAtIndex:1] objectForKey:@"text"]];
+        }
+    }
+}
+
 
 - (void)didReceiveMemoryWarning
 {

@@ -7,6 +7,7 @@
 //
 
 #import "ParkingPage.h"
+#import "SWRevealViewController.h"
 
 @interface ParkingPage ()
 
@@ -28,6 +29,11 @@
     [super viewDidLoad];
     self.title = @"Parking";
     self.description.text = [parkingInformationArray objectAtIndex:0]; //index 0 contains parking description
+    
+    // Sidebar menu code
+    _sidebarButton.target = self.revealViewController;
+    _sidebarButton.action = @selector(rightRevealToggle:);
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
     // we want to be able to scroll
     [self.scroll setScrollEnabled:YES];

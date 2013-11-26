@@ -7,6 +7,7 @@
 //
 
 #import "RatesPage.h"
+#import "SWRevealViewController.h"
 
 @interface RatesPage ()
 
@@ -29,6 +30,10 @@
 	// Do any additional setup after loading the view.
     self.title = @"Rates";
     
+    // Sidebar menu code
+    _sidebarButton.target = self.revealViewController;
+    _sidebarButton.action = @selector(rightRevealToggle:);
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
     [self.scroll setScrollEnabled:YES];
     [self.scroll setContentSize:CGSizeMake(320, 500)];

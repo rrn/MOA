@@ -7,6 +7,7 @@
 //
 
 #import "FromAirportPage.h"
+#import "SWRevealViewController.h"
 
 @interface FromAirportPage ()
 
@@ -30,6 +31,11 @@
     self.description.editable = NO;
     self.description.dataDetectorTypes = UIDataDetectorTypeLink;
 	self.description.text = [parkingInformationArray objectAtIndex:3];
+    
+    // Sidebar menu code
+    _sidebarButton.target = self.revealViewController;
+    _sidebarButton.action = @selector(rightRevealToggle:);
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
     [self.scroll setScrollEnabled:YES];
     [self.scroll setContentSize:CGSizeMake(320, 600)];

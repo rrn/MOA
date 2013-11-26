@@ -7,6 +7,7 @@
 //
 
 #import "FromLowerMainland.h"
+#import "SWRevealViewController.h"
 
 @interface FromLowerMainland ()
 
@@ -28,6 +29,11 @@
     [super viewDidLoad];
     self.title = @"Directions";
     self.description.text = [parkingInformationArray objectAtIndex:2];
+    
+    // Sidebar menu code
+    _sidebarButton.target = self.revealViewController;
+    _sidebarButton.action = @selector(rightRevealToggle:);
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
     [self.scroll setScrollEnabled:YES];
     [self.scroll setContentSize:CGSizeMake(320, 700)];

@@ -8,6 +8,7 @@
 
 #import "HoursPage.h"
 #import "Constants.h"
+#import "SWRevealViewController.h"
 
 @interface HoursPage ()
 
@@ -30,6 +31,11 @@
 	// Do any additional setup after loading the view.
     
     self.title = @"Hours";
+    
+    // Sidebar menu code
+    _sidebarButton.target = self.revealViewController;
+    _sidebarButton.action = @selector(rightRevealToggle:);
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
     NSMutableString* hoursStr = [NSMutableString stringWithFormat:@""];
     NSMutableString* day_temp = [NSMutableString stringWithFormat:@""];

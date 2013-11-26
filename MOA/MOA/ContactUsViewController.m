@@ -7,7 +7,7 @@
 //
 
 #import "ContactUsViewController.h"
-
+#import "SWRevealViewController.h"
 
 @interface ContactUsViewController ()
 
@@ -34,6 +34,13 @@
 {
     [self contentsInitialization];
     [super viewDidLoad];
+    
+    self.title = @"Contact Us";
+    
+    // Sidebar menu code
+    _sidebarButton.target = self.revealViewController;
+    _sidebarButton.action = @selector(rightRevealToggle:);
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
 }
 

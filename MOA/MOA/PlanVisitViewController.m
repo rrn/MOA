@@ -47,7 +47,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
+    
+    // Sidebar menu code
+    _sidebarButton.target = self.revealViewController;
+    _sidebarButton.action = @selector(rightRevealToggle:);
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    
     if (!expandedSections)
     {
         expandedSections = [[NSMutableIndexSet alloc] init];

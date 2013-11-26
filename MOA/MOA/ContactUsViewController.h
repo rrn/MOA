@@ -12,6 +12,7 @@
 
 @interface ContactUsViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (nonatomic, weak) IBOutlet UITextView* myView;
 @property (nonatomic, weak) IBOutlet UITextView* webLink;
 

@@ -7,6 +7,7 @@
 //
 
 #import "MOAShopViewController.h"
+#import "SWRevealViewController.h"
 
 @interface MOAShopViewController ()
 
@@ -27,6 +28,11 @@
 {
     [self.scroll setScrollEnabled:YES];
     [self.scroll setContentSize:CGSizeMake(320, 700)];
+    
+    // Sidebar menu code
+    _sidebarButton.target = self.revealViewController;
+    _sidebarButton.action = @selector(rightRevealToggle:);
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
     NSMutableString* text = [NSMutableString stringWithFormat:@""];
     bool foundShopDescription = FALSE;

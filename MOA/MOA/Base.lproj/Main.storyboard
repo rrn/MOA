@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="H5l-5b-yzz">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
         <!--Explore Main View Controller - Item-->
@@ -638,7 +638,13 @@
                             <outlet property="delegate" destination="QdZ-xG-iwy" id="74y-Mc-Cnz"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="mTU-du-b6o"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="mTU-du-b6o">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="menu.png" id="heg-3q-th9"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="sidebarButton" destination="heg-3q-th9" id="Q25-12-UWE"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3c3-QG-30q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -697,10 +703,14 @@
                             <constraint firstItem="WtK-ia-KOo" firstAttribute="top" secondItem="AOE-5R-9s5" secondAttribute="top" id="mE3-vG-Qnv"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="nh8-pJ-fxd"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="nh8-pJ-fxd">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="menu.png" id="iNC-PK-Prb"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="description" destination="Jp9-2D-3DA" id="rhC-sz-H3x"/>
                         <outlet property="scroll" destination="WtK-ia-KOo" id="Ywl-Zk-gqJ"/>
+                        <outlet property="sidebarButton" destination="iNC-PK-Prb" id="vrT-RY-DXd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aTm-eB-Mqe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -719,7 +729,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Keep in touch with MOA." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vek-SW-u1B">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Keep in touch with MOA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vek-SW-u1B">
                                 <rect key="frame" x="15" y="111" width="288" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="26"/>
@@ -791,9 +801,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="uTq-70-2Bk"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="uTq-70-2Bk">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="menu.png" id="Q2f-Np-V2Y"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="myView" destination="HY4-c0-gbd" id="78M-b0-Ec7"/>
+                        <outlet property="sidebarButton" destination="Q2f-Np-V2Y" id="5wX-p4-tl5"/>
                         <outlet property="webLink" destination="EbH-sb-lSS" id="dHH-B3-i0V"/>
                     </connections>
                 </viewController>
@@ -840,11 +854,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="CGn-XM-WEv"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="CGn-XM-WEv">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="menu.png" id="sQb-QC-sH4"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="description" destination="2fw-vX-FaI" id="qla-0e-2S6"/>
                         <outlet property="hours" destination="jrn-ag-43T" id="LnV-md-nCs"/>
                         <outlet property="scroll" destination="XCv-1I-nHb" id="XHi-Oh-ipr"/>
+                        <outlet property="sidebarButton" destination="sQb-QC-sH4" id="LbM-nd-iNU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kqr-mW-rns" userLabel="First Responder" sceneMemberID="firstResponder"/>

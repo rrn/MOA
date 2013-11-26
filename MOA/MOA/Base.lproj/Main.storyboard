@@ -996,8 +996,12 @@
                             <constraint firstAttribute="centerX" secondItem="ySS-6z-lQd" secondAttribute="centerX" id="8qD-7a-FPY"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="530-xA-EFo">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="menu.png" id="5mF-tc-H4u"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="description" destination="ySS-6z-lQd" id="FTQ-h4-BgG"/>
+                        <outlet property="sidebarButton" destination="5mF-tc-H4u" id="frT-Ck-ZjW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ygA-1V-2Iz" userLabel="First Responder" sceneMemberID="firstResponder"/>

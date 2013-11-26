@@ -7,6 +7,7 @@
 //
 
 #import "LocationPage.h"
+#import "SWRevealViewController.h"
 
 @interface LocationPage ()
 
@@ -28,6 +29,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.title = @"Location";
+    
+    // Sidebar menu code
+    _sidebarButton.target = self.revealViewController;
+    _sidebarButton.action = @selector(rightRevealToggle:);
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
     self.description.text = @"Museum of Anthropology at University of British Columbia 6393 NW Marine Drive Vancouver BC";
 }

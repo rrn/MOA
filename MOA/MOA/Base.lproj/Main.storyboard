@@ -671,40 +671,40 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shop-1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="red-ag-lvH">
-                                        <rect key="frame" x="11" y="16" width="298" height="170"/>
+                                        <rect key="frame" x="0.0" y="16" width="320" height="170"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="170" id="Yfd-KI-X7J"/>
+                                            <constraint firstAttribute="height" constant="170" id="8IV-fy-zZI"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="298" translatesAutoresizingMaskIntoConstraints="NO" id="Jp9-2D-3DA">
                                         <rect key="frame" x="11" y="202" width="298" height="251"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="251" id="xH7-p0-YwT"/>
+                                            <constraint firstAttribute="height" constant="251" id="6DO-t3-z4J"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="red-ag-lvH" firstAttribute="leading" secondItem="Jp9-2D-3DA" secondAttribute="leading" id="1Gl-mk-kek"/>
-                                    <constraint firstItem="Jp9-2D-3DA" firstAttribute="top" secondItem="red-ag-lvH" secondAttribute="bottom" constant="16" id="76x-wR-276"/>
-                                    <constraint firstItem="red-ag-lvH" firstAttribute="leading" secondItem="WtK-ia-KOo" secondAttribute="leading" constant="11" id="8lY-vr-BzB"/>
-                                    <constraint firstItem="Jp9-2D-3DA" firstAttribute="centerX" secondItem="WtK-ia-KOo" secondAttribute="centerX" id="DPs-J2-8XJ"/>
-                                    <constraint firstAttribute="trailing" secondItem="red-ag-lvH" secondAttribute="trailing" constant="11" id="DSB-si-wFM"/>
-                                    <constraint firstItem="red-ag-lvH" firstAttribute="top" secondItem="WtK-ia-KOo" secondAttribute="top" constant="16" id="Mgu-J0-Mnr"/>
-                                    <constraint firstItem="Jp9-2D-3DA" firstAttribute="trailing" secondItem="red-ag-lvH" secondAttribute="trailing" id="hUh-mE-pfi"/>
-                                    <constraint firstAttribute="bottom" secondItem="Jp9-2D-3DA" secondAttribute="bottom" constant="115" id="u0Z-4n-R8H"/>
+                                    <constraint firstItem="Jp9-2D-3DA" firstAttribute="leading" secondItem="WtK-ia-KOo" secondAttribute="leading" constant="11" id="1Ih-nI-coB"/>
+                                    <constraint firstAttribute="trailing" secondItem="red-ag-lvH" secondAttribute="trailing" id="3zg-fu-wBH"/>
+                                    <constraint firstItem="red-ag-lvH" firstAttribute="leading" secondItem="WtK-ia-KOo" secondAttribute="leading" id="FPS-Xn-ugd"/>
+                                    <constraint firstItem="Jp9-2D-3DA" firstAttribute="top" secondItem="red-ag-lvH" secondAttribute="bottom" constant="16" id="c0Q-0g-2it"/>
+                                    <constraint firstAttribute="bottom" secondItem="Jp9-2D-3DA" secondAttribute="bottom" constant="115" id="gBn-rt-mIE"/>
+                                    <constraint firstItem="red-ag-lvH" firstAttribute="top" secondItem="WtK-ia-KOo" secondAttribute="top" constant="16" id="gmP-Hp-cEa"/>
+                                    <constraint firstItem="Jp9-2D-3DA" firstAttribute="centerX" secondItem="WtK-ia-KOo" secondAttribute="centerX" id="ixB-7E-BMG"/>
+                                    <constraint firstItem="red-ag-lvH" firstAttribute="centerX" secondItem="Jp9-2D-3DA" secondAttribute="centerX" id="jRY-sD-gkR"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="WtK-ia-KOo" secondAttribute="trailing" id="4U1-h4-FFn"/>
-                            <constraint firstAttribute="bottom" secondItem="WtK-ia-KOo" secondAttribute="bottom" id="IU6-bk-EPl"/>
-                            <constraint firstItem="WtK-ia-KOo" firstAttribute="leading" secondItem="AOE-5R-9s5" secondAttribute="leading" id="blp-VD-IRk"/>
-                            <constraint firstItem="WtK-ia-KOo" firstAttribute="top" secondItem="AOE-5R-9s5" secondAttribute="top" id="mE3-vG-Qnv"/>
+                            <constraint firstAttribute="trailing" secondItem="WtK-ia-KOo" secondAttribute="trailing" id="Qhm-gD-mVg"/>
+                            <constraint firstItem="WtK-ia-KOo" firstAttribute="leading" secondItem="AOE-5R-9s5" secondAttribute="leading" id="erc-JJ-Ej9"/>
+                            <constraint firstAttribute="bottom" secondItem="WtK-ia-KOo" secondAttribute="bottom" id="gay-S2-D9u"/>
+                            <constraint firstItem="WtK-ia-KOo" firstAttribute="top" secondItem="AOE-5R-9s5" secondAttribute="top" id="ji6-9m-snP"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -836,13 +836,9 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cafe-1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="WYh-mX-VDS">
-                                        <rect key="frame" x="8" y="10" width="303" height="168"/>
+                                        <rect key="frame" x="0.0" y="10" width="320" height="168"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
-                                    <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="2" translatesAutoresizingMaskIntoConstraints="NO" id="C5J-wx-98S">
-                                        <rect key="frame" x="134" y="141" width="39" height="37"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </pageControl>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jrn-ag-43T">
                                         <rect key="frame" x="20" y="389" width="280" height="174"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>

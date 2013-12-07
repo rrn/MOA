@@ -37,6 +37,7 @@
 		50FA406B183B71FA00EC0CEC /* DBData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FA406A183B71FA00EC0CEC /* DBData.m */; };
 		50FA4071183B778F00EC0CEC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA4070183B778F00EC0CEC /* libsqlite3.dylib */; };
 		50FA4074183B7F6600EC0CEC /* DBRemoteUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FA4073183B7F6600EC0CEC /* DBRemoteUpdater.m */; };
+		50FD065A1852AA66007AB4E6 /* MOA_Splash_640x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FD06591852AA66007AB4E6 /* MOA_Splash_640x1136.png */; };
 		BB0E65911835737F00163652 /* FilteredViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0E65901835737F00163652 /* FilteredViewViewController.m */; };
 		BB0E6597183575E200163652 /* TagAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0E6596183575E200163652 /* TagAdditionViewController.m */; };
 		BB0E659A1835926800163652 /* TagList.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0E65991835926800163652 /* TagList.m */; };
@@ -130,6 +131,7 @@
 		50FA4072183B7F6600EC0CEC /* DBRemoteUpdater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBRemoteUpdater.h; sourceTree = "<group>"; };
 		50FA4073183B7F6600EC0CEC /* DBRemoteUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBRemoteUpdater.m; sourceTree = "<group>"; };
 		50FA407C183C811100EC0CEC /* Global.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
+		50FD06591852AA66007AB4E6 /* MOA_Splash_640x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MOA_Splash_640x1136.png; sourceTree = SOURCE_ROOT; };
 		BB0E658F1835737F00163652 /* FilteredViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilteredViewViewController.h; sourceTree = "<group>"; };
 		BB0E65901835737F00163652 /* FilteredViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilteredViewViewController.m; sourceTree = "<group>"; };
 		BB0E6595183575E200163652 /* TagAdditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagAdditionViewController.h; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 		507B8E5C1828E188002365EF /* IMAGE */ = {
 			isa = PBXGroup;
 			children = (
+				50FD06591852AA66007AB4E6 /* MOA_Splash_640x1136.png */,
 				50CEBBFC1841463A0005B0F9 /* cafe-1.jpg */,
 				50CEBBFD1841463A0005B0F9 /* cafe.JPG */,
 				50CEBBFE1841463A0005B0F9 /* shop-1.jpg */,
@@ -487,6 +490,7 @@
 				50FA4065183B714900EC0CEC /* MOA.sqlite in Resources */,
 				BBA340731826D6F700B6E4B1 /* Images.xcassets in Resources */,
 				50CEBC001841463A0005B0F9 /* cafe-1.jpg in Resources */,
+				50FD065A1852AA66007AB4E6 /* MOA_Splash_640x1136.png in Resources */,
 				50CEBC021841463A0005B0F9 /* shop-1.jpg in Resources */,
 				BBA340651826D6F700B6E4B1 /* InfoPlist.strings in Resources */,
 				BBA34094182701F500B6E4B1 /* 320x200.gif in Resources */,

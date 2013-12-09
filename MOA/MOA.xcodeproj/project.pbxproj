@@ -66,6 +66,7 @@
 		E48B16DC18413EE40047BBA4 /* LocationPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E48B16DB18413EE40047BBA4 /* LocationPage.m */; };
 		E48B16DF1841426A0047BBA4 /* HoursPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E48B16DE1841426A0047BBA4 /* HoursPage.m */; };
 		E48B16E21841445D0047BBA4 /* RatesPage.m in Sources */ = {isa = PBXBuildFile; fileRef = E48B16E11841445D0047BBA4 /* RatesPage.m */; };
+		E4B5A0CB185544A10047D9B8 /* ExhibitionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B5A0CA185544A10047D9B8 /* ExhibitionsViewController.m */; };
 		E4D391D11841989800043AEB /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D391D01841989800043AEB /* Constants.m */; };
 /* End PBXBuildFile section */
 
@@ -177,6 +178,8 @@
 		E48B16DE1841426A0047BBA4 /* HoursPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HoursPage.m; sourceTree = "<group>"; };
 		E48B16E01841445D0047BBA4 /* RatesPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatesPage.h; sourceTree = "<group>"; };
 		E48B16E11841445D0047BBA4 /* RatesPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatesPage.m; sourceTree = "<group>"; };
+		E4B5A0C9185544A10047D9B8 /* ExhibitionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExhibitionsViewController.h; sourceTree = "<group>"; };
+		E4B5A0CA185544A10047D9B8 /* ExhibitionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExhibitionsViewController.m; sourceTree = "<group>"; };
 		E4D391CF1841983000043AEB /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		E4D391D01841989800043AEB /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -336,6 +339,8 @@
 				E4D391D01841989800043AEB /* Constants.m */,
 				50F52905183C97DC002A463C /* LocalDatabase */,
 				BBA3406C1826D6F700B6E4B1 /* Main.storyboard */,
+				E4B5A0C9185544A10047D9B8 /* ExhibitionsViewController.h */,
+				E4B5A0CA185544A10047D9B8 /* ExhibitionsViewController.m */,
 				E48B16D7183C9B1A0047BBA4 /* AccordionViewController.h */,
 				E48B16D8183C9B1A0047BBA4 /* AccordionViewController.m */,
 				BB0E65981835926800163652 /* TagList.h */,
@@ -539,6 +544,7 @@
 				50CEBBEC184031310005B0F9 /* SearchResultListViewController.m in Sources */,
 				50CEBBEA183FF4950005B0F9 /* ItemPageController.m in Sources */,
 				BB0E65911835737F00163652 /* FilteredViewViewController.m in Sources */,
+				E4B5A0CB185544A10047D9B8 /* ExhibitionsViewController.m in Sources */,
 				BB0E6597183575E200163652 /* TagAdditionViewController.m in Sources */,
 				507B8E641828E2F4002365EF /* SidebarViewController.m in Sources */,
 				E438ACC618386F930078FD2F /* PlanVisitViewController.m in Sources */,

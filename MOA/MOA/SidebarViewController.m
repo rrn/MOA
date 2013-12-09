@@ -37,7 +37,7 @@
     self.tableView.backgroundColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
     self.tableView.separatorColor = [UIColor colorWithWhite:0.15f alpha:0.2f];
     
-    _menuItems = @[@"Cell0", @"Cell1", @"Cell2", @"Explore Our Collections", @"Cell4", @"Cell5", @"Cell6", @"Cell7"];
+    _menuItems = @[@"Cell0", @"Calendar", @"Cell2", @"Explore Our Collections", @"Cell4", @"Cell5", @"Cell6", @"Cell7"];
     
     
 }
@@ -66,7 +66,7 @@
                 // select index 0, which is THIS WEEK AT MOA
                 [vcNew setSelectedIndex:0];
                 
-            } else if ([segue.identifier isEqualToString:@"showVisitor"]){
+            } else if ([segue.identifier isEqualToString:@"showExplore"]){
                 
                 // get the UITabBarController
                 vcName = @"TabBar";
@@ -74,10 +74,10 @@
                 [self.revealViewController setFrontViewController:vcNew];
                 [self.revealViewController setFrontViewPosition:FrontViewPositionLeft animated:YES];
                 
-                // select index 1, which is VISITOR INFORMATION PAGE
+                // select index 1, which is Explore our Collections
                 [vcNew setSelectedIndex:1];
-                
-            } else  if ([segue.identifier isEqualToString:@"showExplore"]) {
+
+            } else  if ([segue.identifier isEqualToString:@"showExhibitions"]) {
                 vcName = @"TabBar";
                 UITabBarController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
                 
@@ -85,7 +85,19 @@
                 [self.revealViewController setFrontViewController:vcNew];
                 [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated:YES];
                 
+                // select index 2, which is Exhibitions
                 [vcNew setSelectedIndex:2];
+            
+            } else  if ([segue.identifier isEqualToString:@"showVisitor"]) {
+                vcName = @"TabBar";
+                UITabBarController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
+                
+                // Swap out the Front view controller and display
+                [self.revealViewController setFrontViewController:vcNew];
+                [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated:YES];
+                
+                // select index 3, which is Visitor Information
+                [vcNew setSelectedIndex:3];
                 
             }
         };

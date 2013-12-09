@@ -1,19 +1,19 @@
 //
-//  WhatsOnThisWeekViewController.m
+//  ExhibitionsViewController.m
 //  MOA
 //
-//  Created by Diana Sutandie on 11/7/2013.
+//  Created by Marilyn Edgar on 12/8/2013.
 //  Copyright (c) 2013 Museum of Anthropology UBC. All rights reserved.
 //
 
+#import "ExhibitionsViewController.h"
 #import "SWRevealViewController.h"
-#import "WhatsOnThisWeekViewController.h"
 
-@interface WhatsOnThisWeekViewController ()
+@interface ExhibitionsViewController ()
 
 @end
 
-@implementation WhatsOnThisWeekViewController
+@implementation ExhibitionsViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,7 +27,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+	
     // Set the side bar button action. When it's tapped, it'll show up the sidebar.
     _sidebarButton.target = self.revealViewController;
     _sidebarButton.action = @selector(rightRevealToggle:);
@@ -41,7 +41,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 
 @end

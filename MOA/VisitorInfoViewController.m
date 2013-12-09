@@ -30,7 +30,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.title = @"Visitor Information";
+    //self.title = @"Visitor Information";
     
     // Sidebar menu code
     _sidebarButton.target = self.revealViewController;

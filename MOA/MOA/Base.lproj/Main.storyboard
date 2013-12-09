@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
-        <!--Explore Main View Controller - Item-->
+        <!--Explore Main View Controller - Explore Our Collection-->
         <scene sceneID="4X4-zB-mdP">
             <objects>
                 <tableViewController id="kcg-3N-BfQ" customClass="ExploreMainViewController" sceneMemberID="viewController">
@@ -46,7 +46,7 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Item" id="ezO-XQ-BH5"/>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="cM7-vx-dcK">
+                    <navigationItem key="navigationItem" title="Explore Our Collection" id="cM7-vx-dcK">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="menu.png" id="XgO-sW-CLj"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -213,6 +213,22 @@
             </objects>
             <point key="canvasLocation" x="3546" y="-2347"/>
         </scene>
+        <!--Navigation Controller - Exhibitions-->
+        <scene sceneID="ZeT-hc-Psr">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="FSa-D8-vYi" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Exhibitions" image="menu.png" id="Ya4-yL-Xqf"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="dD5-lv-PwT">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="dcg-jU-hnK" kind="relationship" relationship="rootViewController" id="g7E-uy-kjA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u3A-nd-h0I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1728" y="-221"/>
+        </scene>
         <!--Whats On This Week View Controller - This week at MOA-->
         <scene sceneID="Mej-uh-pfd">
             <objects>
@@ -241,7 +257,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="JVO-ge-Ifu"/>
-                    <navigationItem key="navigationItem" id="gP9-TQ-KUi">
+                    <navigationItem key="navigationItem" title="This Week At MOA" id="gP9-TQ-KUi">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="menu.png" id="nbf-ki-VGF"/>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -252,6 +268,32 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oDG-82-ggX" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1768" y="512"/>
+        </scene>
+        <!--Exhibitions View Controller - Exhibitions-->
+        <scene sceneID="9Ny-Gj-W1U">
+            <objects>
+                <viewController id="dcg-jU-hnK" customClass="ExhibitionsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="eJq-q8-kPC"/>
+                        <viewControllerLayoutGuide type="bottom" id="Qdd-Uj-5sd"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Glc-rW-LG9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Exhibitions" id="8mF-kF-rkg">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="menu.png" id="x62-pS-ikN"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="sidebarButton" destination="x62-pS-ikN" id="CXN-Lo-TJM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n9j-FP-wR1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2204" y="-221"/>
         </scene>
         <!--Sidebar View Controller - Sidebar-->
         <scene sceneID="vdw-fa-DZy">
@@ -278,7 +320,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell1" id="fTp-L8-gt6">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Calendar" id="fTp-L8-gt6">
                                 <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fTp-L8-gt6" id="zpn-N5-a2r">
@@ -312,6 +354,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="FSa-D8-vYi" kind="custom" identifier="showExhibitions" customClass="SWRevealViewControllerSegue" id="B3C-bd-MPA"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Explore Our Collections" id="Bx6-yq-dBD">
                                 <rect key="frame" x="0.0" y="154" width="320" height="44"/>
@@ -416,7 +461,7 @@
         <scene sceneID="bGU-yg-itD">
             <objects>
                 <navigationController storyboardIdentifier="This week at MOA" title="This week at MOA" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3cz-mT-0U8" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="This Week At MOA" image="menu.png" id="N5K-6b-dcw"/>
+                    <tabBarItem key="tabBarItem" title="Calendar" image="menu.png" id="N5K-6b-dcw"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="mUW-k2-Qdd">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -487,7 +532,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UGi-8p-9gw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="116" y="-1368"/>
+            <point key="canvasLocation" x="116" y="-1340"/>
         </scene>
         <!--Visitor Info View Controller - Visitor Information-->
         <scene sceneID="nBu-cx-XNq">
@@ -594,7 +639,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="27v-45-g42">
+                    <navigationItem key="navigationItem" title="Visitor Information" id="27v-45-g42">
                         <barButtonItem key="rightBarButtonItem" title="Item" image="menu.png" id="d3D-ji-SAe"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
@@ -1220,19 +1265,20 @@
                     </tabBar>
                     <connections>
                         <segue destination="3cz-mT-0U8" kind="relationship" relationship="viewControllers" id="npZ-bu-dL2"/>
-                        <segue destination="mHV-0a-uqN" kind="relationship" relationship="viewControllers" id="UVY-js-OWf"/>
                         <segue destination="FeJ-ju-YDU" kind="relationship" relationship="viewControllers" id="KG7-G5-5Wz"/>
+                        <segue destination="FSa-D8-vYi" kind="relationship" relationship="viewControllers" id="8vC-Ii-8Vk"/>
+                        <segue destination="mHV-0a-uqN" kind="relationship" relationship="viewControllers" id="UVY-js-OWf"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2D9-Zc-qkg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="817" y="-963"/>
         </scene>
-        <!--Navigation Controller - Explore Our Collection-->
+        <!--Navigation Controller - Explore-->
         <scene sceneID="yuu-X7-YIA">
             <objects>
                 <navigationController storyboardIdentifier="Explore" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FeJ-ju-YDU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Explore Our Collection" image="menu.png" id="hPu-Os-Dmd"/>
+                    <tabBarItem key="tabBarItem" title="Explore" image="menu.png" id="hPu-Os-Dmd"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="e21-Wg-Yk3"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zWu-2y-SL3">
@@ -1248,11 +1294,11 @@
             </objects>
             <point key="canvasLocation" x="1324" y="-2359"/>
         </scene>
-        <!--Navigation Controller - Visitor Information-->
+        <!--Navigation Controller - Info-->
         <scene sceneID="Gmq-4Q-cRA">
             <objects>
                 <navigationController storyboardIdentifier="visitorInfo" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="mHV-0a-uqN" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Visitor Information" image="menu.png" id="vq5-Uk-tuN"/>
+                    <tabBarItem key="tabBarItem" title="Info" image="menu.png" id="vq5-Uk-tuN"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ynu-Gh-xJ4">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -1281,8 +1327,9 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="A9d-PQ-Zkm"/>
         <segue reference="PS2-VE-2nm"/>
-        <segue reference="Fg8-ZP-Ic8"/>
+        <segue reference="npZ-bu-dL2"/>
+        <segue reference="A9d-PQ-Zkm"/>
+        <segue reference="B3C-bd-MPA"/>
     </inferredMetricsTieBreakers>
 </document>

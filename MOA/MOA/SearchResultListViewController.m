@@ -106,7 +106,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
         
         
         if ([digitalObjects count] > 0){
-            NSURL *imageUrl = [[NSURL alloc] initWithString:[[digitalObjects objectAtIndex:0] objectForKey:@"thumbnail_url"]];
+            NSURL *imageUrl = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"http:%@",[[digitalObjects objectAtIndex:0] objectForKey:@"thumbnail_url"]]];
             
             // there are up to 25 photos available to load from the code repository
             NSURL *photoURL = imageUrl;

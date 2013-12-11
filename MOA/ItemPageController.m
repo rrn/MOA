@@ -63,8 +63,10 @@
     [self generalDescription3Text];
     
     
+    
     if([digitalObjects count] > 0){
-        NSString *imageUrl = [[digitalObjects objectAtIndex:0] objectForKey:@"url"];
+        //http was dropped from feed so needed to be appended at front
+        NSString *imageUrl = [NSString stringWithFormat:@"http:%@",[[digitalObjects objectAtIndex:0] objectForKey:@"url"]];
         NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: imageUrl]];
         self.displayItemImageView.image = [[UIImage alloc] initWithData:imageData];
     }

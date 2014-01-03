@@ -13,6 +13,9 @@
     NSDictionary *pulledData;
     NSMutableArray *datas;
     NSString *strRemoteData;
+    
+    bool sectionopen[4];
+    NSMutableIndexSet *expandedSections;
 }
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;

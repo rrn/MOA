@@ -22,8 +22,6 @@
     NSArray *sectionData;
     NSArray *rowData;
     
-    NSString *locationData;
-
 }
 
 @synthesize datas;
@@ -106,7 +104,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //return [tableData count];
     if ([self tableView:tableView canCollapseSection:section])
     {
         //section is expanded

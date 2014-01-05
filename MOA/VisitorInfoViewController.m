@@ -283,7 +283,7 @@
         {
             if (indexPath.row == 1)
             {
-                UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"parkingViewController"];
+                UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"directionParkingViewController"];
                 [self.navigationController pushViewController:viewController animated:YES];
             }
             else if (indexPath.row == 2)

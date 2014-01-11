@@ -206,8 +206,15 @@
         if (!indexPath.row)
         {
             // first row
+            if (!indexPath.section)
+            {
+                cell.accessoryType = UITableViewCellAccessoryNone;
+            }
+            else
+            {
+                cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            }
             cell.textLabel.text = sectionData[indexPath.section]; // only top row showing
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.accessoryView = nil;
         }
         else

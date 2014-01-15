@@ -80,13 +80,10 @@
     UITextView *textV = [[UITextView alloc] initWithFrame:CGRectMake(5, 5, 290, stringSize.height+10)];
     
     NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    NSInteger cnt;
     CGFloat tabInterval = 150.0;
     paragraphStyle.defaultTabInterval = tabInterval;
     NSMutableArray *tabs = [NSMutableArray array];
-    for (cnt = 1; cnt < 2; cnt++) {    // Add 12 tab stops, at desired intervals...
-        [tabs addObject:[[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentLeft location:tabInterval * cnt options:nil]];
-    }
+    [tabs addObject:[[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentLeft location:tabInterval options:nil]];
     paragraphStyle.tabStops = tabs;
     textV.typingAttributes = [NSDictionary dictionaryWithObject:paragraphStyle forKey:NSParagraphStyleAttributeName];
     

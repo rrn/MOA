@@ -52,11 +52,21 @@
         day_temp = [cafeHoursArray objectAtIndex:i]; i++;
         hours_temp = [cafeHoursArray objectAtIndex:i];
         [cafeHoursStr appendString:day_temp];
-        [cafeHoursStr appendString:@" : "];
+        [cafeHoursStr appendString:@"\t: "];
         [cafeHoursStr appendString:hours_temp];
         [cafeHoursStr appendString:@"\n"];
     }
     self.title = @"Cafe MOA";
+    
+    // set the tab to align the "Hours" info
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    CGFloat tabInterval = 100.0;
+    paragraphStyle.defaultTabInterval = tabInterval;
+    NSMutableArray *tabs = [NSMutableArray array];
+    [tabs addObject:[[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentLeft location:tabInterval options:nil]]; // add tab stop
+    paragraphStyle.tabStops = tabs;
+    self.hours.typingAttributes = [NSDictionary dictionaryWithObject:paragraphStyle forKey:NSParagraphStyleAttributeName];
+    
     self.description.text = descriptionText;
     self.hours.text = cafeHoursStr;
     [super viewDidLoad];

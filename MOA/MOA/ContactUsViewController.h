@@ -10,17 +10,15 @@
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
 
-@interface ContactUsViewController : UIViewController
+@interface ContactUsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (nonatomic, weak) IBOutlet UITextView* myView;
-@property (nonatomic, weak) IBOutlet UITextView* webLink;
+
 
 
 @end
 
-UITextView *phone2;
-UITextView *phone1;
 
 
 

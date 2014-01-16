@@ -11,20 +11,32 @@
 
 @interface ContactUsViewController ()
 
--(void) phoneNumbersInitialization;
 -(void) emailInitialization;
--(void) contentsInitialization;
--(void) urlInitialization;
+-(NSMutableArray*) contactsDataArray;
 
 @end
 
 @implementation ContactUsViewController
 
+-(NSMutableArray*) contactsDataArray
+{
+    static NSMutableArray* theArray = nil;
+    if (theArray == nil)
+    {
+        theArray = [[NSMutableArray alloc] init];
+        [theArray addObject:@"Recorded msg(24hr)  \t604.822.5087"];
+        [theArray addObject:@"Reception  \t604.822.5932"];
+        [theArray addObject:@"Email   \tinfo@moa.ubc.ca"];
+        [theArray addObject:@"Fax \t604.822.2974"];
+        [theArray addObject:@"Web \twww.moa.ubc.ca"];
+    }
+    return theArray;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-
 
     }
     return self;
@@ -32,7 +44,6 @@
 
 - (void)viewDidLoad
 {
-    [self contentsInitialization];
     [super viewDidLoad];
     
     self.title = @"Contact Us";
@@ -44,10 +55,60 @@
     
 }
 
-- (void)contentsInitialization{
-    [self phoneNumbersInitialization];
-    [self emailInitialization];
-    [self urlInitialization];
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    // Number of sections
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // Number of rows is the number of time zones in the region for the specified section.
+    //Region *region = [regions objectAtIndex:section];
+    return 5;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    static NSString *MyIdentifier = @"Identifier";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier:MyIdentifier];
+    }
+    NSString *string= [self.contactsDataArray objectAtIndex:indexPath.row];
+    CGSize stringSize = [string sizeWithFont:[UIFont boldSystemFontOfSize:15] constrainedToSize:CGSizeMake(320, 9999) lineBreakMode:UILineBreakModeWordWrap];
+    
+    UITextView *textV = [[UITextView alloc] initWithFrame:CGRectMake(5, 5, 290, stringSize.height+10)];
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    CGFloat tabInterval = 150.0;
+    paragraphStyle.defaultTabInterval = tabInterval;
+    NSMutableArray *tabs = [NSMutableArray array];
+    [tabs addObject:[[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentLeft location:tabInterval options:nil]];
+    paragraphStyle.tabStops = tabs;
+    textV.typingAttributes = [NSDictionary dictionaryWithObject:paragraphStyle forKey:NSParagraphStyleAttributeName];
+    
+    textV.font = [UIFont systemFontOfSize:15.0];
+    textV.text = string;
+    textV.textColor = [UIColor blackColor];
+    textV.editable = NO;
+    switch (indexPath.row) {
+        case 0:
+            textV.dataDetectorTypes = UIDataDetectorTypePhoneNumber;
+            break;
+        case 1:
+            textV.dataDetectorTypes = UIDataDetectorTypePhoneNumber;
+            break;
+        case 2:
+            textV.dataDetectorTypes = UIDataDetectorTypeLink;
+            break;
+        case 4:
+            textV.dataDetectorTypes = UIDataDetectorTypeLink;
+        default:
+            break;
+    }
+    [cell.contentView addSubview:textV];
+    
+    return cell;
 }
 
 -(void)emailInitialization{
@@ -58,32 +119,6 @@
     singleTap.numberOfTapsRequired = 1;
     [_myView addGestureRecognizer:singleTap];
 
-}
-
--(void)urlInitialization{
-    _webLink.text = @"www.moa.ubc.ca";
-    _webLink.editable = NO;
-    _webLink.dataDetectorTypes = UIDataDetectorTypeLink;
-}
-
-
-- (void)phoneNumbersInitialization{
-    phone1 = [[UITextView alloc] initWithFrame:CGRectMake(166, 211, 123, 29)];
-    phone2 = [[UITextView alloc] initWithFrame:CGRectMake(166, 258, 123, 29)];
-    phone1.text = @"604.822.5087";
-    phone2.text = @"604.822.5932";
-    
-    NSArray *phoneNumbers = [NSArray arrayWithObjects: phone1, phone2, nil];
-    for (UITextView *phone in phoneNumbers){
-        phone.font = [UIFont systemFontOfSize:15];
-        phone.dataDetectorTypes = UIDataDetectorTypePhoneNumber;
-        phone.editable = NO;
-        phone.selectable = YES;
-        phone.scrollEnabled = NO;
-        phone.userInteractionEnabled = YES;
-        phone.delegate = self;
-        [self.view addSubview:phone];
-    }
 }
 
 - (void)singleTapRecognized:(UIGestureRecognizer *)gestureRecognizer {

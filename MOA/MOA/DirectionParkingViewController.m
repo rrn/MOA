@@ -12,7 +12,9 @@
 
 @end
 
-@implementation DirectionParkingViewController
+@implementation DirectionParkingViewController {
+        NSArray *rowData;
+}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -27,11 +29,11 @@
 {
     [super viewDidLoad];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    self.title = @"Directions & Parking";
+    
+    NSString *locationInfo = @"MOA is located on the campus of the University of British Columbia, 20 minutes from downtown Vancouver. Museum of Anthropology at University of British Columbia 6393 NW Marine Drive Vancouver BC";
+    
+    rowData = [NSArray arrayWithObjects:locationInfo, @"From YVR", @"From Lower Mainland", @"Public Transit", @"Parking", nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,23 +47,70 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 0;
+    return 5;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"DirParkCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
     // Configure the cell...
+    if (indexPath.row == 0)
+    {
+        cell.userInteractionEnabled = NO;
+        cell.textLabel.numberOfLines = 0;
+        cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    }
+    else
+    {
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    }
+    cell.textLabel.text = rowData[indexPath.row];
     
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath  {
+	if (indexPath.row == 0)
+    {
+		return 240;///it's open
+	}
+    else
+    {
+		return 45;///it's closed
+	}
+    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 1)
+    {
+        UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"airportViewController"];
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
+    else if (indexPath.row == 2)
+    {
+        UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"lowerMainlandViewController"];
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
+    else if (indexPath.row == 3)
+    {
+        UIViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"publicTransitViewController"];
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
+    else if (indexPath.row == 4)
+    {
+        UIViewController *viewController = [self.storyboard                                            instantiateViewControllerWithIdentifier:@"parkingViewController"];
+        [self.navigationController pushViewController:viewController animated:YES];
+    }
 }
 
 /*

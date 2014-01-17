@@ -63,7 +63,7 @@
     if (e) {
         NSLog(@"Error serializing %@", e);
     }
-    NSLog(@"%@",jsonDict);
+    //NSLog(@"%@",jsonDict);
     NSEnumerator *mainEnumerator = [jsonDict keyEnumerator];
     id key; NSArray *tableArray;
     while (key = [mainEnumerator nextObject]){

@@ -10,7 +10,7 @@
 
 @implementation DBData
 
-@synthesize cafeHoursDay;
-@synthesize cafeHoursHours;
+@synthesize Day;
+@synthesize Hours;
 
 @end

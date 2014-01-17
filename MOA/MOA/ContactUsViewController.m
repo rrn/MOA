@@ -8,6 +8,8 @@
 
 #import "ContactUsViewController.h"
 #import "SWRevealViewController.h"
+#import "DBDataList.h"
+#import "DBData.h"
 
 @interface ContactUsViewController ()
 
@@ -44,14 +46,20 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
+    
     
     self.title = @"Contact Us";
+    
+    DBDataList *myCafeData = [[DBDataList alloc]init];
+    visitorInformationArray = [myCafeData getCafeHours];
+    NSLog(@"%@", ((DBData *)[visitorInformationArray objectAtIndex:0]).Day);
     
     // Sidebar menu code
     _sidebarButton.target = self.revealViewController;
     _sidebarButton.action = @selector(rightRevealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    
+    [super viewDidLoad];
     
 }
 

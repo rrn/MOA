@@ -42,8 +42,8 @@
         while (sqlite3_step(sqlStatement)==SQLITE_ROW) {
             DBData *data = [[DBData alloc]init];
             
-            data.cafeHoursDay = [NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement,0)];
-            data.cafeHoursHours = [NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement,1)];
+            data.Day = [NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement,0)];
+            data.Hours = [NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement,1)];
             [cafeHoursData addObject:data];
         }
     }

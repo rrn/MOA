@@ -28,3 +28,4 @@ NSMutableArray *generalTextArray;
 NSMutableArray *ratesGeneralArray;
 NSMutableArray *ratesGroupArray;
 NSMutableArray *generalHoursArray;
+NSMutableArray *visitorInformationData;

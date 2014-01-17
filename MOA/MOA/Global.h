@@ -16,5 +16,6 @@ extern NSMutableArray *ratesGeneralArray;
 extern NSMutableArray *ratesGroupArray;
 extern NSMutableArray *generalTextArray;
 extern NSMutableArray *generalHoursArray;
+extern NSMutableArray *visitorInformationArray;
 
 #endif

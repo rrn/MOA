@@ -44,7 +44,7 @@
         day_temp = [generalHoursArray objectAtIndex:i]; i++;
         hours_temp = [generalHoursArray objectAtIndex:i];
         [hoursStr appendString:day_temp];
-        [hoursStr appendString:@" : "];
+        [hoursStr appendString:@"\t: "];
         [hoursStr appendString:hours_temp];
         [hoursStr appendString:@"\n"];
     }
@@ -53,6 +53,15 @@
         [hoursStr appendString:[generalHoursArray objectAtIndex:j]];
         [hoursStr appendString:@"\n"];
     }
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    CGFloat tabInterval = 150.0;
+    paragraphStyle.defaultTabInterval = tabInterval;
+    NSMutableArray *tabs = [NSMutableArray array];
+    [tabs addObject:[[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentLeft location:tabInterval options:nil]];
+    
+    paragraphStyle.tabStops = tabs;
+    self.description.typingAttributes = [NSDictionary dictionaryWithObject:paragraphStyle forKey:NSParagraphStyleAttributeName];
     
     self.description.text = hoursStr;
 }

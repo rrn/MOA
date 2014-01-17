@@ -45,7 +45,7 @@
         rate_tmp = [ratesGeneralArray objectAtIndex:i]; i++;
         description_tmp = [ratesGeneralArray objectAtIndex:i];
         [ratesStr appendString:description_tmp];
-        [ratesStr appendString:@" : "];
+        [ratesStr appendString:@"\t: "];
         [ratesStr appendString:rate_tmp];
         [ratesStr appendString:@"\n"];
     }
@@ -55,10 +55,24 @@
         rate_tmp = [ratesGroupArray objectAtIndex:j]; j++;
         description_tmp = [ratesGroupArray objectAtIndex:j];
         [ratesStr appendString:description_tmp];
-        [ratesStr appendString:@" : "];
+        // we don't want tabbed text on Notes, which is the last item
+        if (j == [ratesGroupArray count]-1) {
+            [ratesStr appendString:@" : "];
+        } else {
+            [ratesStr appendString:@"\t: "];
+        }
         [ratesStr appendString:rate_tmp];
         [ratesStr appendString:@"\n"];
     }
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    CGFloat tabInterval = 225.0;
+    paragraphStyle.defaultTabInterval = tabInterval;
+    NSMutableArray *tabs = [NSMutableArray array];
+    [tabs addObject:[[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentLeft location:tabInterval options:nil]];
+    paragraphStyle.tabStops = tabs;
+    self.description.typingAttributes = [NSDictionary dictionaryWithObject:paragraphStyle forKey:NSParagraphStyleAttributeName];
+    
     self.description.editable = NO;
     self.description.dataDetectorTypes = UIDataDetectorTypePhoneNumber;
     self.description.text = ratesStr;

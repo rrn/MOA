@@ -98,7 +98,7 @@
     float bottom_inset = self.tabBarController.tabBar.frame.size.height;
     
     self.displayItemImageView.image = [[UIImage alloc] init];
-    _imageLoading = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(screenWidth/2.0-10.0, 90, 20, 20)];
+    _imageLoading = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake((screenWidth -(2*screenWidth)/20)/2-10, 90, 20, 20)];
     _imageLoading.color = [UIColor grayColor];
     [self.displayItemImageView addSubview:_imageLoading];
     

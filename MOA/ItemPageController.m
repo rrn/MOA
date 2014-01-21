@@ -15,6 +15,8 @@
 @property (strong, nonatomic)  UITextView *itemDescriptionTextView;
 @property (strong, nonatomic)  UIImageView *displayItemImageView;
 @property (strong, nonatomic)  UIBarButtonItem *titleText;
+@property (strong, nonatomic)  UIBarButtonItem *nextItem;
+@property (strong, nonatomic)  UIBarButtonItem *previousItem;
 @property (strong, nonatomic) UIActivityIndicatorView* imageLoading;
 @end
 
@@ -39,6 +41,9 @@
     if(itemNumber>0){
         self.itemNumber--;
         [self pageSetup];
+        [_nextItem setEnabled:YES];
+        if(itemNumber==0)
+            [_previousItem setEnabled:NO];
     }
 }
 
@@ -46,6 +51,9 @@
     if(itemNumber<count){
         self.itemNumber++;
         [self pageSetup];
+        [_previousItem setEnabled:YES];
+        if(itemNumber+1==count)
+            [_nextItem setEnabled:NO];
     }
 }
 
@@ -61,12 +69,17 @@
     _sideBarButton.target = self.revealViewController;
     _sideBarButton.action = @selector(rightRevealToggle:);
     
-    UIBarButtonItem* nextItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(nextItem:)];
-    UIBarButtonItem* previousItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self action:@selector(previousItem:)];
+    _nextItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(nextItem:)];
+    _previousItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self action:@selector(previousItem:)];
     _titleText = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:self action:nil];
     _titleText.tintColor=[UIColor blackColor];
+    
+    if(itemNumber==0)
+        [_previousItem setEnabled:NO];
+    if(itemNumber+1==count)
+        [_nextItem setEnabled:NO];
 
-    self.navigationItem.rightBarButtonItems = @[_sideBarButton, nextItem, _titleText, previousItem];
+    self.navigationItem.rightBarButtonItems = @[_sideBarButton, _nextItem, _titleText, _previousItem];
     // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
@@ -84,14 +97,15 @@
     [[self theScrollView] addSubview:[self itemDescriptionTextView]];
     float bottom_inset = self.tabBarController.tabBar.frame.size.height;
     
+    self.displayItemImageView.image = [[UIImage alloc] init];
+    _imageLoading = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(screenWidth/2.0-10.0, 90, 20, 20)];
+    _imageLoading.color = [UIColor grayColor];
+    [self.displayItemImageView addSubview:_imageLoading];
+    
     self.theScrollView.contentInset=UIEdgeInsetsMake(0.0, 0.0, bottom_inset,0.0);
     
     [self.view addSubview:[self theScrollView]];
-    
-    self.displayItemImageView.image = [[UIImage alloc] init];
-    _imageLoading = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake((screenWidth/20+(screenWidth -(2*screenWidth)/20))/2, 145, 30,30)];
-    _imageLoading.color = [UIColor grayColor];
-    [self.displayItemImageView addSubview:_imageLoading];
+
     [self pageSetup];
 
     

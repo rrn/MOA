@@ -11,6 +11,7 @@
 #import "SWRevealViewController.h"
 #import "ItemViewCell.h"
 #import "BHAlbumTitleReusableView.h"
+#import "TagList.h"
 
 static NSString * const PhotoCellIdentifier = @"itemCell";
 static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
@@ -29,6 +30,8 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
 {
     NSArray *itemList;
     NSArray *imageList;
+    NSString *Type;
+    NSMutableArray *searchArray;
 }
 
 @synthesize activityLoader;
@@ -47,7 +50,23 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     [super viewDidLoad];
     
     
-    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"SELF contains [c] %@", [self title]];
+    searchArray = [[[[TagList sharedInstance] objectTypeTags] filteredArrayUsingPredicate:predicate] mutableCopy];
+    if([searchArray count] == 1)
+        Type = @"Object Type";
+    searchArray = [[[[TagList sharedInstance] placesTags] filteredArrayUsingPredicate:predicate] mutableCopy];
+    if([searchArray count] == 1)
+        Type = @"Places";
+    searchArray = [[[[TagList sharedInstance] culturesTags] filteredArrayUsingPredicate:predicate] mutableCopy];
+    if([searchArray count] == 1)
+        Type = @"Cultures";
+    searchArray = [[[[TagList sharedInstance] materialsTags] filteredArrayUsingPredicate:predicate] mutableCopy];
+    if([searchArray count] == 1)
+        Type = @"Materials";
+    searchArray = [[[[TagList sharedInstance] peopleTags] filteredArrayUsingPredicate:predicate] mutableCopy];
+    if([searchArray count] == 1)
+        Type = @"People;";
+
     
     // Set the side bar button action. When it's tapped, it'll show up the sidebar.
     _sideBarButton.target = self.revealViewController;
@@ -55,7 +74,6 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     
     // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    
     
     [activityLoader startAnimating];
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
@@ -153,9 +171,24 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
 
 - (void) downloadItemJsonFeed{
     
-    NSInteger tempNumber = self.navigationController.viewControllers.count;
-    NSString *tempCatogeryType = [[self.navigationController.viewControllers objectAtIndex:tempNumber-3] title];
-    NSString *searchType = [self title];
+    NSInteger tempNumber;
+    NSString *tempCatogeryType;
+    NSString *searchType ;
+
+    
+    if(self.navigationController.viewControllers.count <3){
+        tempNumber = self.navigationController.viewControllers.count;
+        searchType = [self title];
+        tempCatogeryType = Type;
+        
+    }else{
+        tempNumber = self.navigationController.viewControllers.count;
+        tempCatogeryType = [[self.navigationController.viewControllers objectAtIndex:tempNumber-3] title];
+        searchType = [self title];
+    }
+
+
+    
     
     NSString *catogeryType = [[NSString alloc]init];
     
@@ -263,6 +296,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     ItemPageController *destinationViewController = [segue destinationViewController];
     destinationViewController.data = itemList;
     destinationViewController.itemNumber = selectedCell.section;
+    destinationViewController.count = self.albums.count;
 }
 
 @end

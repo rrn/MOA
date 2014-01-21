@@ -769,6 +769,9 @@
                             <outlet property="delegate" destination="ME4-Xy-0db" id="hki-Wz-btM"/>
                         </connections>
                     </tableView>
+                    <navigationItem key="navigationItem" id="Gm7-Y2-oLf">
+                        <barButtonItem key="rightBarButtonItem" image="05_More_25px.png" id="hY2-pe-rXF"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pYl-UA-Xdd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

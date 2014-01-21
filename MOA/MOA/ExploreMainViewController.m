@@ -9,7 +9,8 @@
 #import "ExploreMainViewController.h"
 #import "FilteredViewViewController.h"
 #import "SWRevealViewController.h"
-
+#import "SearchResultListViewController.h"
+#import "TagList.h"
 
 @interface ExploreMainViewController ()
 
@@ -18,7 +19,12 @@
 @implementation ExploreMainViewController
 {
     NSArray *tableData;
+    NSMutableArray* searchArray;
+    NSArray *allTags;
+    NSIndexPath *selectedPath;
 }
+
+@synthesize searchBar;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -41,6 +47,13 @@
     
     // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    searchArray = [[NSMutableArray alloc] init];
+    allTags = [[TagList sharedInstance] objectTypeTags];
+    allTags = [allTags arrayByAddingObjectsFromArray:[[TagList sharedInstance] placesTags]];
+    allTags = [allTags arrayByAddingObjectsFromArray:[[TagList sharedInstance] materialsTags]];
+    allTags = [allTags arrayByAddingObjectsFromArray:[[TagList sharedInstance] culturesTags]];
+    allTags = [allTags arrayByAddingObjectsFromArray:[[TagList sharedInstance] peopleTags]];
+    selectedPath = [[NSIndexPath alloc]init];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -49,6 +62,29 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void)filterContentForSearchText: (NSString*) searchText{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"SELF contains [c] %@", searchText];
+    searchArray = [[allTags filteredArrayUsingPredicate:predicate] mutableCopy];
+}
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString{
+    [self filterContentForSearchText:searchString];
+    return YES;
+}
+
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    selectedPath = indexPath;
+
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        [self performSegueWithIdentifier:@"categoriesView" sender:self];
+    }
+    else{
+        [self performSegueWithIdentifier:@"alphabeticalView" sender: self];
+    }
+    [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -67,12 +103,20 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        return [searchArray count];
+    }
+    
     return [tableData count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"FilterCell";
+    static NSString *CellIdentifier;
+    
+    CellIdentifier = @"FilterCell";
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (cell == nil) {
@@ -80,16 +124,25 @@
     }
     
     // Configure the cell...
-    cell.textLabel.text = [tableData objectAtIndex:indexPath.row];
+    if (tableView == self.searchDisplayController.searchResultsTableView) {
+        cell.textLabel.text = [searchArray objectAtIndex:indexPath.row];
+    }else{
+        cell.textLabel.text = [tableData objectAtIndex:indexPath.row];
+    }
     return cell;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    
-    FilteredViewViewController *destViewController = segue.destinationViewController;
-    destViewController.title = [tableData objectAtIndex:indexPath.row];
+    if([[segue identifier] isEqualToString:@"categoriesView"]){
+        SearchResultListViewController *view = [segue destinationViewController];
+        view.title = [searchArray objectAtIndex:selectedPath.row];
+    }
+    else{
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        FilteredViewViewController *destViewController = segue.destinationViewController;
+        destViewController.title = [tableData objectAtIndex:indexPath.row];
+    }
 }
 
 

@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ExploreMainViewController : UITableViewController
+@interface ExploreMainViewController : UITableViewController <UISearchBarDelegate, UISearchDisplayDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+@property IBOutlet UISearchBar *searchBar;
 
 @end

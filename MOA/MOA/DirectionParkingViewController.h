@@ -10,4 +10,6 @@
 
 @interface DirectionParkingViewController : UITableViewController
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+
 @end

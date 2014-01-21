@@ -7,6 +7,7 @@
 //
 
 #import "DirectionParkingViewController.h"
+#import "SWRevealViewController.h"
 
 @interface DirectionParkingViewController ()
 
@@ -30,6 +31,12 @@
     [super viewDidLoad];
 
     self.title = @"Directions & Parking";
+    
+    // Sidebar menu code
+    _sidebarButton.target = self.revealViewController;
+    _sidebarButton.action = @selector(rightRevealToggle:);
+    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+
     
     NSString *locationInfo = @"MOA is located on the campus of the University of British Columbia, 20 minutes from downtown Vancouver. Museum of Anthropology at University of British Columbia 6393 NW Marine Drive Vancouver BC";
     

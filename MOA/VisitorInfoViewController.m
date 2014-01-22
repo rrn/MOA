@@ -49,7 +49,9 @@
     _sidebarButton.target = self.revealViewController;
     _sidebarButton.action = @selector(rightRevealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-
+    
+    // Request Data from sever
+    
     [self clearOldData];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: @"http://pluto.moa.ubc.ca/_mobile_app_remoteData.php"]];
     NSError * e;

@@ -100,6 +100,7 @@
 		507B8E6F18299BCE002365EF /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		50B40302188E71DA00697287 /* CrudOp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrudOp.h; sourceTree = "<group>"; };
 		50B40303188E71DA00697287 /* CrudOp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrudOp.m; sourceTree = "<group>"; };
+		50B4030B188F521A00697287 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		50CB96C518417862003B7DCC /* ContactUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactUsViewController.h; sourceTree = "<group>"; };
 		50CB96C618417862003B7DCC /* ContactUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactUsViewController.m; sourceTree = "<group>"; };
 		50CCCA12182C54D100384881 /* WhatsOnThisWeekViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhatsOnThisWeekViewController.h; sourceTree = "<group>"; };
@@ -176,7 +177,6 @@
 		BBA3408F182700FC00B6E4B1 /* 480x360.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 480x360.gif; sourceTree = "<group>"; };
 		BBA34093182701F500B6E4B1 /* 320x200.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 320x200.gif; sourceTree = "<group>"; };
 		BBA340951827024600B6E4B1 /* 320x170.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 320x170.gif; sourceTree = "<group>"; };
-		E434341B188B4F7F00922E7A /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = SOURCE_ROOT; };
 		E434341C188B4F7F00922E7A /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = SOURCE_ROOT; };
 		E434341E188B52FB00922E7A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E438ACC418386F930078FD2F /* PlanVisitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanVisitViewController.h; sourceTree = "<group>"; };
@@ -311,6 +311,7 @@
 		BBA3404E1826D6F700B6E4B1 = {
 			isa = PBXGroup;
 			children = (
+				50B4030B188F521A00697287 /* Reachability.h */,
 				50CEBBF61840442A0005B0F9 /* ItemLayout.h */,
 				50CEBBF71840442A0005B0F9 /* ItemLayout.m */,
 				50CEBBF81840442A0005B0F9 /* ItemViewCell.h */,

@@ -64,7 +64,10 @@
     
     DBDataList *myCafeData = [[DBDataList alloc]init];
     visitorInformationArray = [myCafeData getCafeHours];
-    NSLog(@"%@", ((DBData *)[visitorInformationArray objectAtIndex:0]).Day);
+    for (int i=0; i<7; i++) {
+        NSLog(@"%@", ((DBData *)[visitorInformationArray objectAtIndex:i]).Day);
+    }
+    
     
     // Sidebar menu code
     _sidebarButton.target = self.revealViewController;

@@ -11,13 +11,25 @@
 
 @implementation DBDataList
 
+-(NSString *)GetDocumentDirectory{
+    fileMgr = [NSFileManager defaultManager];
+    homeDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    
+    return homeDir;
+}
+
 - (NSMutableArray *) getCafeHours {
     
     NSMutableArray *cafeHoursData = [[NSMutableArray alloc] init];
     @try {
-        NSFileManager *fileMgr = [NSFileManager defaultManager];
+        //NSFileManager *fileMgr = [NSFileManager defaultManager];
         
-        NSString *dbPath = [[NSBundle mainBundle] pathForResource:@"MOA"ofType:@"sqlite"];
+        // check if the documents has file or not
+        NSString *dbPath = [self.GetDocumentDirectory stringByAppendingPathComponent:@"MOA.sqlite"];
+        if (![fileMgr fileExistsAtPath:dbPath]) {
+            dbPath = [[NSBundle mainBundle] pathForResource:@"MOA"ofType:@"sqlite"];
+            NSLog(@"%@", @"File not found, using bundle");
+        }
         BOOL success = [fileMgr fileExistsAtPath:dbPath];
         
         if(!success)

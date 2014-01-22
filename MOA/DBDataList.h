@@ -11,8 +11,11 @@
 
 @interface DBDataList : NSObject {
     sqlite3 *db;
+    NSFileManager *fileMgr;
+    NSString *homeDir;
 }
 
 - (NSMutableArray *) getCafeHours;
+-(NSString *)GetDocumentDirectory;
 
 @end

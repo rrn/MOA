@@ -11,11 +11,17 @@
 #import <MessageUI/MFMailComposeViewController.h>
 #import "Global.h"
 
-@interface ContactUsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface ContactUsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
+}
+
+
+
+
 
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (nonatomic, weak) IBOutlet UITextView* myView;
+- (IBAction)button:(id)sender;
 
 @end
 

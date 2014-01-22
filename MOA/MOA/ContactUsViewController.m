@@ -10,6 +10,7 @@
 #import "SWRevealViewController.h"
 #import "DBDataList.h"
 #import "DBData.h"
+#import "CrudOp.h"
 
 @interface ContactUsViewController ()
 
@@ -19,6 +20,17 @@
 @end
 
 @implementation ContactUsViewController
+
+
+- (IBAction)button:(id)sender {
+    CrudOp *dbCrud = [[CrudOp alloc] init];
+    NSMutableString *fldTxt = [NSMutableString stringWithString:@"Sat"];
+    NSMutableString *rowid = [NSMutableString stringWithString:@"7"];
+    
+    NSLog(@"%@", @"Inserting records");
+    [dbCrud UpdateRecords:fldTxt :rowid];
+    
+}
 
 -(NSMutableArray*) contactsDataArray
 {

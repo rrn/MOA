@@ -12,6 +12,7 @@
 		507B8E681828F355002365EF /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 507B8E671828F355002365EF /* MainViewController.m */; };
 		507B8E6E1829793A002365EF /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 507B8E6D1829793A002365EF /* SWRevealViewController.m */; };
 		507B8E7018299BCE002365EF /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 507B8E6F18299BCE002365EF /* menu.png */; };
+		50B40304188E71DA00697287 /* CrudOp.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B40303188E71DA00697287 /* CrudOp.m */; };
 		50CB96C718417862003B7DCC /* ContactUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CB96C618417862003B7DCC /* ContactUsViewController.m */; };
 		50CCCA14182C54D200384881 /* WhatsOnThisWeekViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CCCA13182C54D200384881 /* WhatsOnThisWeekViewController.m */; };
 		50CEBBEA183FF4950005B0F9 /* ItemPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CEBBE9183FF4950005B0F9 /* ItemPageController.m */; };
@@ -95,6 +96,8 @@
 		507B8E6C1829793A002365EF /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		507B8E6D1829793A002365EF /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		507B8E6F18299BCE002365EF /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
+		50B40302188E71DA00697287 /* CrudOp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrudOp.h; sourceTree = "<group>"; };
+		50B40303188E71DA00697287 /* CrudOp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrudOp.m; sourceTree = "<group>"; };
 		50CB96C518417862003B7DCC /* ContactUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactUsViewController.h; sourceTree = "<group>"; };
 		50CB96C618417862003B7DCC /* ContactUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactUsViewController.m; sourceTree = "<group>"; };
 		50CCCA12182C54D100384881 /* WhatsOnThisWeekViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhatsOnThisWeekViewController.h; sourceTree = "<group>"; };
@@ -382,6 +385,8 @@
 				BB0E65901835737F00163652 /* FilteredViewViewController.m */,
 				BB0E659B1835A61300163652 /* SplashScreen.h */,
 				BB0E659C1835A61300163652 /* SplashScreen.m */,
+				50B40302188E71DA00697287 /* CrudOp.h */,
+				50B40303188E71DA00697287 /* CrudOp.m */,
 			);
 			path = MOA;
 			sourceTree = "<group>";
@@ -577,6 +582,7 @@
 				50CEBBEA183FF4950005B0F9 /* ItemPageController.m in Sources */,
 				BB0E65911835737F00163652 /* FilteredViewViewController.m in Sources */,
 				E4B5A0CB185544A10047D9B8 /* ExhibitionsViewController.m in Sources */,
+				50B40304188E71DA00697287 /* CrudOp.m in Sources */,
 				BB0E6597183575E200163652 /* TagAdditionViewController.m in Sources */,
 				507B8E641828E2F4002365EF /* SidebarViewController.m in Sources */,
 				E438ACC618386F930078FD2F /* PlanVisitViewController.m in Sources */,

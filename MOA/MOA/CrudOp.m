@@ -18,6 +18,10 @@
 @synthesize title;
 
 
+void sqliteCallbackFunc(void *foo, const char* statement) {
+    NSLog(@"=> %s", statement);
+}
+
 -(NSString *)GetDocumentDirectory{
     fileMgr = [NSFileManager defaultManager];
     homeDir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
@@ -100,28 +104,91 @@
     
 }
 
--(void)UpdateRecords:(NSString *)txt :(NSMutableString *)utxt{
+-(void)UpdateRecords:(NSString *)txt :(NSMutableString *)utxt :(NSString *)type{
     
     fileMgr = [NSFileManager defaultManager];
     sqlite3_stmt *stmt=nil;
     sqlite3 *cruddb;
     
-    [self CopyDbToDocumentsFolder];
-    //insert
-    const char *sql = "Update cafe_hours set Day=(?) where rowid=(?)";
+    //[self CopyDbToDocumentsFolder];
     
-    //Open db
+    
     NSString *cruddatabase = [self.GetDocumentDirectory stringByAppendingPathComponent:@"MOA.sqlite"];
-    sqlite3_open([cruddatabase UTF8String], &cruddb);
-    sqlite3_prepare_v2(cruddb, "UPDATE cafe_hours set Day=? where rowid=?", -1, &stmt, NULL);
-    sqlite3_bind_text(stmt, 1, [txt UTF8String], -1, SQLITE_TRANSIENT);
-    sqlite3_bind_text(stmt, 2, [utxt UTF8String], -1, SQLITE_TRANSIENT);
+    const char *dbpath = [cruddatabase UTF8String];
     
-    sqlite3_step(stmt);
+    const char *sql= "";
+    if ([type isEqualToString:@"generalHours"]){
+        sql = "update general_hours Set Hours = ? Where Day=?";
+    } else if ([type isEqualToString:@"cafeHours"]){
+        sql = "update cafe_hours Set Hours=? Where Day=?";
+    } else if ([type isEqualToString:@"generalText"]){
+        sql = "update general_text Set description=? Where Identifier=?";
+    } else if ([type isEqualToString:@"rateGeneral"]){
+        sql = "update rates_general Set rate=? Where Description=?";
+    } else if ([type isEqualToString:@"rateGroups"]){
+        sql = "update rates_groups Set rate=? Where Description=?";
+    } else if ([type isEqualToString:@"parkingDirections"]){
+        sql = "update parking_and_directions Set Description=? Where Heading=?";
+    }
+    
+    
+    if(sqlite3_open(dbpath, &cruddb) == SQLITE_OK)
+    {
+        if(sqlite3_prepare_v2(cruddb, sql, 267, &stmt, NULL)==SQLITE_OK){
+            sqlite3_bind_text(stmt, 1, [txt UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_text(stmt, 2, [utxt UTF8String], -1, SQLITE_TRANSIENT);
+        }
+    }
+    char* errmsg;
+    sqlite3_trace(cruddb, sqliteCallbackFunc, NULL);
+    sqlite3_exec(cruddb, "COMMIT", NULL, NULL, &errmsg);
+    
+    if(SQLITE_DONE != sqlite3_step(stmt)){
+        NSLog(@"Error while updating. %s", sqlite3_errmsg(cruddb));
+    }
     sqlite3_finalize(stmt);
     sqlite3_close(cruddb);
     
-    [self CopyDbToTemporaryFolder];
+    //insert
+    /*if ([type isEqualToString:@"cafeHours"]){
+        sql = "Update cafe_hours set Hours=(?) where Day=(?)";
+    } else if ([type isEqualToString:@"generalHours"]){
+        sql = "UPDATE general_hours SET Hours=? WHERE Day=?";
+    } else {
+        sql = "Update cafe_hours set Hours=? where Day=?";
+    }*/
+    //Open db
+    
+    
+    /*NSString *cruddatabase = [self.GetDocumentDirectory stringByAppendingPathComponent:@"MOA.sqlite"];
+    sqlite3_open([cruddatabase UTF8String], &cruddb);
+    int rc;
+    
+    //char* sql2="";
+    /*if ([type isEqualToString:@"generalHours"]){
+        sql2= "UPDATE general_hours SET Hours=? WHERE Day=?";
+    } else {
+        sql2= "UPDATE cafe_hours SET Hours=? WHERE Day=?";
+    }*/
+    //char* sql2[] = {"UPDATE general_hours SET Hours=? WHERE Day=?"};
+    /*const char * sql2 = "UPDATE general_hours SET Hours=? WHERE Day=?";
+    if ((rc =sqlite3_prepare_v2(cruddb, sql2, -1, &stmt, NULL)) != SQLITE_OK){
+        NSLog(@"%d", rc );
+        NSLog(@"Error %s", sqlite3_errmsg(cruddb));
+    };
+    sqlite3_bind_text(stmt, 1, [txt UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 2, [utxt UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_trace(cruddb, sqliteCallbackFunc, NULL);
+    
+
+    
+    
+    if (sqlite3_step(stmt) != SQLITE_DONE)
+        NSLog(@"Error %s", sqlite3_errmsg(cruddb));
+    sqlite3_finalize(stmt);
+    sqlite3_close(cruddb);
+    
+    //[self CopyDbToTemporaryFolder];*/
     
 }
 -(void)DeleteRecords:(NSString *)txt{

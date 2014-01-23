@@ -28,7 +28,7 @@
     NSMutableString *rowid = [NSMutableString stringWithString:@"7"];
     
     NSLog(@"%@", @"Inserting records");
-    [dbCrud UpdateRecords:fldTxt :rowid];
+    //[dbCrud UpdateRecords:fldTxt :rowid];
     
 }
 

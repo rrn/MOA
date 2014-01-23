@@ -90,6 +90,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5068E1F0188FA48400FE009F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		507121541841CB6900DDFC47 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		507B8E621828E2F4002365EF /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
 		507B8E631828E2F4002365EF /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
@@ -100,7 +101,6 @@
 		507B8E6F18299BCE002365EF /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
 		50B40302188E71DA00697287 /* CrudOp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrudOp.h; sourceTree = "<group>"; };
 		50B40303188E71DA00697287 /* CrudOp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrudOp.m; sourceTree = "<group>"; };
-		50B4030B188F521A00697287 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		50CB96C518417862003B7DCC /* ContactUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactUsViewController.h; sourceTree = "<group>"; };
 		50CB96C618417862003B7DCC /* ContactUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactUsViewController.m; sourceTree = "<group>"; };
 		50CCCA12182C54D100384881 /* WhatsOnThisWeekViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhatsOnThisWeekViewController.h; sourceTree = "<group>"; };
@@ -311,7 +311,7 @@
 		BBA3404E1826D6F700B6E4B1 = {
 			isa = PBXGroup;
 			children = (
-				50B4030B188F521A00697287 /* Reachability.h */,
+				5068E1F0188FA48400FE009F /* Reachability.h */,
 				50CEBBF61840442A0005B0F9 /* ItemLayout.h */,
 				50CEBBF71840442A0005B0F9 /* ItemLayout.m */,
 				50CEBBF81840442A0005B0F9 /* ItemViewCell.h */,

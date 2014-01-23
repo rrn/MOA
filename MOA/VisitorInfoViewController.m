@@ -8,6 +8,7 @@
 
 #import "VisitorInfoViewController.h"
 #import "SWRevealViewController.h"
+#import "CrudOp.h"
 
 @interface VisitorInfoViewController ()
 
@@ -50,7 +51,9 @@
     _sidebarButton.action = @selector(rightRevealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
+    // if there is a network,
     // Request Data from sever
+    // else, load from DB
     
     [self clearOldData];
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: @"http://pluto.moa.ubc.ca/_mobile_app_remoteData.php"]];
@@ -66,6 +69,13 @@
         NSLog(@"Error serializing %@", e);
     }
     //NSLog(@"%@",jsonDict);
+    
+    // NEEDS TO PERFORM UPDATE IN HERE - UPDATE THE LOCAL DB
+    CrudOp *dbCrud = [[CrudOp alloc] init];
+    NSMutableString *day, *hours;
+    NSMutableString *description, *rate;
+    NSMutableString *heading, *identifier;
+    
     NSEnumerator *mainEnumerator = [jsonDict keyEnumerator];
     id key; NSArray *tableArray;
     while (key = [mainEnumerator nextObject]){
@@ -77,21 +87,46 @@
                 //attKey going to be rate etc, so need to insert to the array
                 if ([key isEqualToString:@"rates_general"]){
                     [ratesGeneralArray addObject:[attribute objectForKey:attKey]];
+                    description = [NSMutableString stringWithString:[attribute objectForKey:@"Description"]];
+                    rate = [NSMutableString stringWithString:[attribute objectForKey:@"Rate"]];
+                    [dbCrud UpdateRecords:rate :description :@"rateGeneral"];
+                    
                 } else if ([key isEqualToString:@"rates_groups"]){
                     [ratesGroupArray addObject:[attribute objectForKey:attKey]];
+                    description = [NSMutableString stringWithString:[attribute objectForKey:@"Description"]];
+                    rate = [NSMutableString stringWithString:[attribute objectForKey:@"Rate"]];
+                    [dbCrud UpdateRecords:rate :description :@"rateGroups"];
+                    
                 } else if ([key isEqualToString:@"cafe_hours"]) {
                     [cafeHoursArray addObject:[attribute objectForKey:attKey]];
+                    day = [NSMutableString stringWithString:[attribute objectForKey:@"Day"]];
+                    hours = [NSMutableString stringWithString:[attribute objectForKey:@"Hours"]];
+                    [dbCrud UpdateRecords:hours :day :@"cafeHours"];
+                    
                 } else if ([key isEqualToString:@"parking_and_directions"]){
+                    description = [NSMutableString stringWithString:[attribute objectForKey:@"Description"]];
+                    heading = [NSMutableString stringWithString:[attribute objectForKey:@"Heading"]];
+                    [dbCrud UpdateRecords:description :heading :@"parkingDirections"];
                     if ([attKey isEqualToString:@"Description"])
                         [parkingInformationArray addObject:[attribute objectForKey:attKey]];
+                    
                 } else if ([key isEqualToString:@"general_hours"]) {
                     [generalHoursArray addObject:[attribute objectForKey:attKey]];
+                    day = [NSMutableString stringWithString:[attribute objectForKey:@"Day"]];
+                    hours = [NSMutableString stringWithString:[attribute objectForKey:@"Hours"]];
+                    [dbCrud UpdateRecords:hours :day :@"generalHours"];
+                    
                 } else if ([key isEqualToString:@"general_text"]) {
                     [generalTextArray addObject:[attribute objectForKey:attKey]];
+                    description = [NSMutableString stringWithString:[attribute objectForKey:@"Description"]];
+                    identifier = [NSMutableString stringWithString:[attribute objectForKey:@"Identifier"]];
+                    [dbCrud UpdateRecords:identifier :description :@"generalText"];
                 }
             }
         }
     }
+    
+    // load from DB here
     
     
     //Accordion

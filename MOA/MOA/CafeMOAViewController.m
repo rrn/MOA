@@ -36,9 +36,20 @@
     _sidebarButton.action = @selector(rightRevealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
+    // no data yet - need to pull info
+    // is there connection? yes - pull from remote, update local DB as well
+    // no connection? pull from localDB
+    
     if ([cafeDescription length] == 0 || !cafeHoursArray || !cafeHoursArray.count){
+        // check if we have connection
+        // call this if we do
         [self PullFromRemote];
+        
+        // call this if we dont
+        CrudOp* database = [CrudOp alloc];
+        cafeHoursArray = database.PullFromLocalDB;
     }
+    
     NSString* descriptionText = cafeDescription;
     
     NSMutableString* cafeHoursStr = [NSMutableString stringWithFormat:@"Hours:\n\n"];

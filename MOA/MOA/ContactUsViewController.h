@@ -21,7 +21,6 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (nonatomic, weak) IBOutlet UITextView* myView;
-- (IBAction)button:(id)sender;
 
 @end
 

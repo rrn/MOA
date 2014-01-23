@@ -21,17 +21,6 @@
 
 @implementation ContactUsViewController
 
-
-- (IBAction)button:(id)sender {
-    /*CrudOp *dbCrud = [[CrudOp alloc] init];
-    NSMutableString *fldTxt = [NSMutableString stringWithString:@"Sat"];
-    NSMutableString *rowid = [NSMutableString stringWithString:@"7"];*/
-    
-    NSLog(@"%@", @"Inserting records");
-    //[dbCrud UpdateRecords:fldTxt :rowid];
-    
-}
-
 -(NSMutableArray*) contactsDataArray
 {
     static NSMutableArray* theArray = nil;

@@ -41,6 +41,7 @@
     return NO;
 }
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -50,105 +51,8 @@
     _sidebarButton.target = self.revealViewController;
     _sidebarButton.action = @selector(rightRevealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    
-    // if there is a network,
-    // Request Data from sever
-    // else, load from DB
-    
-    [self clearOldData];
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: @"http://pluto.moa.ubc.ca/_mobile_app_remoteData.php"]];
-    NSError * e;
-    NSData *remoteData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&e];
-    strRemoteData =[[NSString alloc] initWithData:remoteData encoding:NSUTF8StringEncoding];
-    [self validateJSONString]; //sometimes data are returned in HTML form, we need to validate
-    NSData *jsonData = [strRemoteData dataUsingEncoding:NSUTF8StringEncoding];
-    e = nil; // reset e variable
-    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&e];
+    //[self clearOldData];
 
-    if (e) {
-        NSLog(@"Error serializing %@", e);
-    }
-    //NSLog(@"%@",jsonDict);
-    
-    // NEEDS TO PERFORM UPDATE IN HERE - UPDATE THE LOCAL DB
-    CrudOp *dbCrud = [[CrudOp alloc] init];
-    NSMutableString *day, *hours;
-    NSMutableString *description, *rate;
-    NSMutableString *heading, *identifier;
-    NSMutableString *temp;
-    int rowIndex = 0;
-    
-    NSEnumerator *mainEnumerator = [jsonDict keyEnumerator];
-    id key; NSArray *tableArray;
-    while (key = [mainEnumerator nextObject]){
-        rowIndex = 1;
-        tableArray = [jsonDict objectForKey:key];
-        for (NSDictionary *attribute in tableArray){
-            NSEnumerator *attEnum = [attribute keyEnumerator];
-            id attKey;
-            while (attKey = [attEnum nextObject]){
-                // attKey going to be rate etc, so need to insert to the array
-                
-                // GENERAL RATES
-                if ([key isEqualToString:@"rates_general"]){
-                    description = [NSMutableString stringWithString:[attribute objectForKey:@"Description"]];
-                    rate = [NSMutableString stringWithString:[attribute objectForKey:@"Rate"]];
-                    temp = [NSMutableString stringWithFormat:@"%@ \t: %@\n", description, rate];
-                    [dbCrud UpdateRecords:rate :description : rowIndex :@"rateGeneral"];
-                    [ratesGeneralArray addObject:temp];
-                    
-                // GROUP RATES
-                } else if ([key isEqualToString:@"rates_groups"]){
-                    description = [NSMutableString stringWithString:[attribute objectForKey:@"Description"]];
-                    rate = [NSMutableString stringWithString:[attribute objectForKey:@"Rate"]];
-                    temp = [NSMutableString stringWithFormat:@"%@ \t: %@\n", description, rate];
-                    [ratesGroupArray addObject:temp];
-                    [dbCrud UpdateRecords:rate :description :rowIndex :@"rateGroups"];
-                
-                // CAFE HOURS
-                } else if ([key isEqualToString:@"cafe_hours"]) {
-                    day = [NSMutableString stringWithString:[attribute objectForKey:@"Day"]];
-                    hours = [NSMutableString stringWithString:[attribute objectForKey:@"Hours"]];
-                    temp = [NSMutableString stringWithFormat:@"%@ \t: %@\n", day, hours];
-                    [cafeHoursArray addObject:temp];
-                    [dbCrud UpdateRecords:hours :day :rowIndex :@"cafeHours"];
-                
-                // PARKING AND DIRECTIONS
-                } else if ([key isEqualToString:@"parking_and_directions"]){
-                    description = [NSMutableString stringWithString:[attribute objectForKey:@"Description"]];
-                    heading = [NSMutableString stringWithString:[attribute objectForKey:@"Heading"]];
-                    [dbCrud UpdateRecords:description :heading :rowIndex :@"parkingDirections"];
-                    [parkingInformationArray addObject:description];
-                    
-                // GENERAL HOURS
-                } else if ([key isEqualToString:@"general_hours"]) {
-                    day = [NSMutableString stringWithString:[attribute objectForKey:@"Day"]];
-                    hours = [NSMutableString stringWithString:[attribute objectForKey:@"Hours"]];
-                    temp = [NSMutableString stringWithFormat:@"%@ \t: %@\n", day, hours];
-                    [generalHoursArray addObject:temp];
-                    [dbCrud UpdateRecords:hours :day :rowIndex :@"generalHours"];
-                    
-                // GENERAL TEXT
-                } else if ([key isEqualToString:@"general_text"]) {
-                    description = [NSMutableString stringWithString:[attribute objectForKey:@"Description"]];
-                    identifier = [NSMutableString stringWithString:[attribute objectForKey:@"Identifier"]];
-                    if ([identifier isEqualToString:@"Cafe"])
-                        cafeDescription = description;
-                    else if ([identifier isEqualToString:@"Shop"])
-                        shopDescription = description;
-                    [dbCrud UpdateRecords:identifier :description :rowIndex :@"generalText"];
-                }
-                
-                // increase att key here
-                attKey = [attEnum nextObject];
-                rowIndex++;
-            }
-        }
-    }
-    
-    // load from DB here
-    
-    
     //Accordion
     if (!expandedSections)
     {
@@ -183,14 +87,14 @@
 
 }
 
--(void) validateJSONString{
-    
++(NSString*)ValidateJSONFormat:(NSString *)json
+{
     // sometimes remote data are returned in HTML form, and
     // we cannot remove HTML tags by stripping all the tags using regular expression
     // since the body of JSON contains HTML tags
     // so we have to do manually by removing beginning and end HTML tags
     
-    NSMutableString *strToValidate = [strRemoteData copy];
+    NSMutableString *strToValidate = [json copy];
     
     //remove the initial html tag
     if ([strToValidate rangeOfString:@"<body>"].location == NSNotFound) {
@@ -208,9 +112,28 @@
         strToValidate = [[strToValidate substringWithRange:NSMakeRange(0, endingOffset)] copy];
     }
     
-    strRemoteData = strToValidate;
-    
+    json = strToValidate;
+    return json;
 }
+
++(NSDictionary* )PullRemoteData:(NSString* )url
+{
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: @"http://pluto.moa.ubc.ca/_mobile_app_remoteData.php"]];
+    NSError * e;
+    NSData *remoteData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&e];
+    NSMutableString* strRemoteData =[[NSMutableString alloc] initWithData:remoteData encoding:NSUTF8StringEncoding];
+    //[self validateJSONString]; //sometimes data are returned in HTML form, we need to validate
+    strRemoteData = [NSMutableString stringWithString:[VisitorInfoViewController ValidateJSONFormat:strRemoteData]];
+    NSData *jsonData = [strRemoteData dataUsingEncoding:NSUTF8StringEncoding];
+    e = nil; // reset e variable
+    NSDictionary *jsonDict = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&e];
+    
+    if (e) {
+        NSLog(@"Error serializing %@", e);
+    }
+    return jsonDict;
+}
+
 
 - (void)didReceiveMemoryWarning
 {

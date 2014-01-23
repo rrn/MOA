@@ -20,6 +20,9 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 
++(NSDictionary *)PullRemoteData:(NSString*)url;
++(NSString*)ValidateJSONFormat:(NSString*)json;
+
 @end
 
 NSMutableArray *parkingInformationArray;

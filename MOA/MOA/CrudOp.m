@@ -104,7 +104,7 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     
 }
 
--(void)UpdateRecords:(NSString *)txt :(NSMutableString *)utxt :(NSString *)type{
+-(void)UpdateRecords:(NSString *)txt :(NSMutableString *)utxt :(int)indx :(NSString *)type{
     
     fileMgr = [NSFileManager defaultManager];
     sqlite3_stmt *stmt=nil;
@@ -118,17 +118,17 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     
     const char *sql= "";
     if ([type isEqualToString:@"generalHours"]){
-        sql = "update general_hours Set Hours = ? Where Day=?";
+        sql = "update general_hours Set Hours = ?, Day=? Where rowid=?";
     } else if ([type isEqualToString:@"cafeHours"]){
-        sql = "update cafe_hours Set Hours=? Where Day=?";
+        sql = "update cafe_hours Set Hours=?, Day=? Where rowid=?";
     } else if ([type isEqualToString:@"generalText"]){
-        sql = "update general_text Set description=? Where Identifier=?";
+        sql = "update general_text Set description=?, identifier=? Where rowid=?";
     } else if ([type isEqualToString:@"rateGeneral"]){
-        sql = "update rates_general Set rate=? Where Description=?";
+        sql = "update rates_general Set rate=?, description=? Where rowid=?";
     } else if ([type isEqualToString:@"rateGroups"]){
-        sql = "update rates_groups Set rate=? Where Description=?";
+        sql = "update rates_groups Set rate=?, description=? Where rowid=?";
     } else if ([type isEqualToString:@"parkingDirections"]){
-        sql = "update parking_and_directions Set Description=? Where Heading=?";
+        sql = "update parking_and_directions Set Description=?, heading=? Where rowid=?";
     }
     
     
@@ -137,6 +137,7 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
         if(sqlite3_prepare_v2(cruddb, sql, 267, &stmt, NULL)==SQLITE_OK){
             sqlite3_bind_text(stmt, 1, [txt UTF8String], -1, SQLITE_TRANSIENT);
             sqlite3_bind_text(stmt, 2, [utxt UTF8String], -1, SQLITE_TRANSIENT);
+            sqlite3_bind_int(stmt, 3, indx);
         }
     }
     char* errmsg;
@@ -148,47 +149,7 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     }
     sqlite3_finalize(stmt);
     sqlite3_close(cruddb);
-    
-    //insert
-    /*if ([type isEqualToString:@"cafeHours"]){
-        sql = "Update cafe_hours set Hours=(?) where Day=(?)";
-    } else if ([type isEqualToString:@"generalHours"]){
-        sql = "UPDATE general_hours SET Hours=? WHERE Day=?";
-    } else {
-        sql = "Update cafe_hours set Hours=? where Day=?";
-    }*/
-    //Open db
-    
-    
-    /*NSString *cruddatabase = [self.GetDocumentDirectory stringByAppendingPathComponent:@"MOA.sqlite"];
-    sqlite3_open([cruddatabase UTF8String], &cruddb);
-    int rc;
-    
-    //char* sql2="";
-    /*if ([type isEqualToString:@"generalHours"]){
-        sql2= "UPDATE general_hours SET Hours=? WHERE Day=?";
-    } else {
-        sql2= "UPDATE cafe_hours SET Hours=? WHERE Day=?";
-    }*/
-    //char* sql2[] = {"UPDATE general_hours SET Hours=? WHERE Day=?"};
-    /*const char * sql2 = "UPDATE general_hours SET Hours=? WHERE Day=?";
-    if ((rc =sqlite3_prepare_v2(cruddb, sql2, -1, &stmt, NULL)) != SQLITE_OK){
-        NSLog(@"%d", rc );
-        NSLog(@"Error %s", sqlite3_errmsg(cruddb));
-    };
-    sqlite3_bind_text(stmt, 1, [txt UTF8String], -1, SQLITE_TRANSIENT);
-    sqlite3_bind_text(stmt, 2, [utxt UTF8String], -1, SQLITE_TRANSIENT);
-    sqlite3_trace(cruddb, sqliteCallbackFunc, NULL);
-    
-
-    
-    
-    if (sqlite3_step(stmt) != SQLITE_DONE)
-        NSLog(@"Error %s", sqlite3_errmsg(cruddb));
-    sqlite3_finalize(stmt);
-    sqlite3_close(cruddb);
-    
-    //[self CopyDbToTemporaryFolder];*/
+ 
     
 }
 -(void)DeleteRecords:(NSString *)txt{

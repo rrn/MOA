@@ -32,7 +32,7 @@
 -(void)CopyDbToTemporaryFolder;
 
 -(void)InsertRecords:(NSMutableString *)txt :(NSMutableString*)txt2;
--(void)UpdateRecords:(NSString *)txt :(NSMutableString *) utxt :(NSString *)type;
+-(void)UpdateRecords:(NSString *)txt :(NSMutableString *) utxt :(int)indx :(NSString *)type;
 -(void)DeleteRecords:(NSString *)txt;
 
 

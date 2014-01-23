@@ -18,3 +18,4 @@
 @end
 
 NSMutableArray* generalTextArray;
+NSMutableString* shopDescription;

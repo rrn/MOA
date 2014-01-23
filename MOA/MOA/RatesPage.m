@@ -39,30 +39,13 @@
     [self.scroll setContentSize:CGSizeMake(320, 500)];
 
     NSMutableString* ratesStr = [NSMutableString stringWithFormat:@"General Rates:\n\n"];
-    NSMutableString* description_tmp = [NSMutableString stringWithFormat:@""];
-    NSMutableString* rate_tmp = [NSMutableString stringWithFormat:@""];
     for (int i = 0; i < [ratesGeneralArray count]; i++){
-        rate_tmp = [ratesGeneralArray objectAtIndex:i]; i++;
-        description_tmp = [ratesGeneralArray objectAtIndex:i];
-        [ratesStr appendString:description_tmp];
-        [ratesStr appendString:@"\t: "];
-        [ratesStr appendString:rate_tmp];
-        [ratesStr appendString:@"\n"];
+        [ratesStr appendString:[ratesGeneralArray objectAtIndex:i]];
     }
     [ratesStr appendString:@"\n\n"];
     [ratesStr appendString:@"Group Rates:\n\n"];
     for (int j = 0; j < [ratesGroupArray count]; j++){
-        rate_tmp = [ratesGroupArray objectAtIndex:j]; j++;
-        description_tmp = [ratesGroupArray objectAtIndex:j];
-        [ratesStr appendString:description_tmp];
-        // we don't want tabbed text on Notes, which is the last item
-        if (j == [ratesGroupArray count]-1) {
-            [ratesStr appendString:@" : "];
-        } else {
-            [ratesStr appendString:@"\t: "];
-        }
-        [ratesStr appendString:rate_tmp];
-        [ratesStr appendString:@"\n"];
+        [ratesStr appendString:[ratesGroupArray objectAtIndex:j]];
     }
     
     NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];

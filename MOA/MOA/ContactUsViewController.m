@@ -23,9 +23,9 @@
 
 
 - (IBAction)button:(id)sender {
-    CrudOp *dbCrud = [[CrudOp alloc] init];
+    /*CrudOp *dbCrud = [[CrudOp alloc] init];
     NSMutableString *fldTxt = [NSMutableString stringWithString:@"Sat"];
-    NSMutableString *rowid = [NSMutableString stringWithString:@"7"];
+    NSMutableString *rowid = [NSMutableString stringWithString:@"7"];*/
     
     NSLog(@"%@", @"Inserting records");
     //[dbCrud UpdateRecords:fldTxt :rowid];

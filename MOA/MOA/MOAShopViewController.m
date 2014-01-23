@@ -34,18 +34,8 @@
     _sidebarButton.action = @selector(rightRevealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
-    NSMutableString* text = [NSMutableString stringWithFormat:@""];
-    bool foundShopDescription = FALSE;
-    for (int index = 0; index < [generalTextArray count]; index++){
-        if (foundShopDescription == TRUE){
-            text = [generalTextArray objectAtIndex:index];
-            break;
-        }
-        if ([[generalTextArray objectAtIndex:index] isEqualToString:@"Shop"]){
-            foundShopDescription = TRUE;
-        }
-    }
-    
+    NSMutableString* text = shopDescription;
+
     self.title = @"MOA Shop";
     self.description.numberOfLines = 0;
     self.description.text = text;

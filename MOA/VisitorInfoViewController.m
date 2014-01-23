@@ -75,53 +75,73 @@
     NSMutableString *day, *hours;
     NSMutableString *description, *rate;
     NSMutableString *heading, *identifier;
+    NSMutableString *temp;
+    int rowIndex = 0;
     
     NSEnumerator *mainEnumerator = [jsonDict keyEnumerator];
     id key; NSArray *tableArray;
     while (key = [mainEnumerator nextObject]){
+        rowIndex = 1;
         tableArray = [jsonDict objectForKey:key];
         for (NSDictionary *attribute in tableArray){
             NSEnumerator *attEnum = [attribute keyEnumerator];
             id attKey;
             while (attKey = [attEnum nextObject]){
-                //attKey going to be rate etc, so need to insert to the array
+                // attKey going to be rate etc, so need to insert to the array
+                
+                // GENERAL RATES
                 if ([key isEqualToString:@"rates_general"]){
-                    [ratesGeneralArray addObject:[attribute objectForKey:attKey]];
                     description = [NSMutableString stringWithString:[attribute objectForKey:@"Description"]];
                     rate = [NSMutableString stringWithString:[attribute objectForKey:@"Rate"]];
-                    [dbCrud UpdateRecords:rate :description :@"rateGeneral"];
+                    temp = [NSMutableString stringWithFormat:@"%@ \t: %@\n", description, rate];
+                    [dbCrud UpdateRecords:rate :description : rowIndex :@"rateGeneral"];
+                    [ratesGeneralArray addObject:temp];
                     
+                // GROUP RATES
                 } else if ([key isEqualToString:@"rates_groups"]){
-                    [ratesGroupArray addObject:[attribute objectForKey:attKey]];
                     description = [NSMutableString stringWithString:[attribute objectForKey:@"Description"]];
                     rate = [NSMutableString stringWithString:[attribute objectForKey:@"Rate"]];
-                    [dbCrud UpdateRecords:rate :description :@"rateGroups"];
-                    
+                    temp = [NSMutableString stringWithFormat:@"%@ \t: %@\n", description, rate];
+                    [ratesGroupArray addObject:temp];
+                    [dbCrud UpdateRecords:rate :description :rowIndex :@"rateGroups"];
+                
+                // CAFE HOURS
                 } else if ([key isEqualToString:@"cafe_hours"]) {
-                    [cafeHoursArray addObject:[attribute objectForKey:attKey]];
                     day = [NSMutableString stringWithString:[attribute objectForKey:@"Day"]];
                     hours = [NSMutableString stringWithString:[attribute objectForKey:@"Hours"]];
-                    [dbCrud UpdateRecords:hours :day :@"cafeHours"];
-                    
+                    temp = [NSMutableString stringWithFormat:@"%@ \t: %@\n", day, hours];
+                    [cafeHoursArray addObject:temp];
+                    [dbCrud UpdateRecords:hours :day :rowIndex :@"cafeHours"];
+                
+                // PARKING AND DIRECTIONS
                 } else if ([key isEqualToString:@"parking_and_directions"]){
                     description = [NSMutableString stringWithString:[attribute objectForKey:@"Description"]];
                     heading = [NSMutableString stringWithString:[attribute objectForKey:@"Heading"]];
-                    [dbCrud UpdateRecords:description :heading :@"parkingDirections"];
-                    if ([attKey isEqualToString:@"Description"])
-                        [parkingInformationArray addObject:[attribute objectForKey:attKey]];
+                    [dbCrud UpdateRecords:description :heading :rowIndex :@"parkingDirections"];
+                    [parkingInformationArray addObject:description];
                     
+                // GENERAL HOURS
                 } else if ([key isEqualToString:@"general_hours"]) {
-                    [generalHoursArray addObject:[attribute objectForKey:attKey]];
                     day = [NSMutableString stringWithString:[attribute objectForKey:@"Day"]];
                     hours = [NSMutableString stringWithString:[attribute objectForKey:@"Hours"]];
-                    [dbCrud UpdateRecords:hours :day :@"generalHours"];
+                    temp = [NSMutableString stringWithFormat:@"%@ \t: %@\n", day, hours];
+                    [generalHoursArray addObject:temp];
+                    [dbCrud UpdateRecords:hours :day :rowIndex :@"generalHours"];
                     
+                // GENERAL TEXT
                 } else if ([key isEqualToString:@"general_text"]) {
-                    [generalTextArray addObject:[attribute objectForKey:attKey]];
                     description = [NSMutableString stringWithString:[attribute objectForKey:@"Description"]];
                     identifier = [NSMutableString stringWithString:[attribute objectForKey:@"Identifier"]];
-                    [dbCrud UpdateRecords:identifier :description :@"generalText"];
+                    if ([identifier isEqualToString:@"Cafe"])
+                        cafeDescription = description;
+                    else if ([identifier isEqualToString:@"Shop"])
+                        shopDescription = description;
+                    [dbCrud UpdateRecords:identifier :description :rowIndex :@"generalText"];
                 }
+                
+                // increase att key here
+                attKey = [attEnum nextObject];
+                rowIndex++;
             }
         }
     }

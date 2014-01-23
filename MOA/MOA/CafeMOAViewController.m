@@ -34,27 +34,11 @@
     _sidebarButton.action = @selector(rightRevealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
-    NSString* descriptionText = @"";
-    bool foundCafeDescription = false;
-    for (int index = 0; index < [generalTextArray count]; index++){
-        if (foundCafeDescription == true){
-            descriptionText = [generalTextArray objectAtIndex:index];
-            break;
-        }
-        if ([[generalTextArray objectAtIndex:index] isEqualToString:@"Cafe"]){
-            foundCafeDescription = true;
-        }
-    }
+    NSString* descriptionText = cafeDescription;
+    
     NSMutableString* cafeHoursStr = [NSMutableString stringWithFormat:@"Hours:\n\n"];
-    NSMutableString* day_temp = [NSMutableString stringWithFormat:@""];
-    NSMutableString* hours_temp = [NSMutableString stringWithFormat:@""];
     for (int i = 0; i < [cafeHoursArray count]; i++){
-        day_temp = [cafeHoursArray objectAtIndex:i]; i++;
-        hours_temp = [cafeHoursArray objectAtIndex:i];
-        [cafeHoursStr appendString:day_temp];
-        [cafeHoursStr appendString:@"\t: "];
-        [cafeHoursStr appendString:hours_temp];
-        [cafeHoursStr appendString:@"\n"];
+        [cafeHoursStr appendString:[cafeHoursArray objectAtIndex:i]];
     }
     self.title = @"Cafe MOA";
     

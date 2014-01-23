@@ -38,20 +38,8 @@
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
     NSMutableString* hoursStr = [NSMutableString stringWithFormat:@""];
-    NSMutableString* day_temp = [NSMutableString stringWithFormat:@""];
-    NSMutableString* hours_temp = [NSMutableString stringWithFormat:@""];
-    for (int i = 0; i < 14; i++){
-        day_temp = [generalHoursArray objectAtIndex:i]; i++;
-        hours_temp = [generalHoursArray objectAtIndex:i];
-        [hoursStr appendString:day_temp];
-        [hoursStr appendString:@"\t: "];
-        [hoursStr appendString:hours_temp];
-        [hoursStr appendString:@"\n"];
-    }
-    for (int j = 14; j < [generalHoursArray count]; j++)
-    {
-        [hoursStr appendString:[generalHoursArray objectAtIndex:j]];
-        [hoursStr appendString:@"\n"];
+    for (int i = 0; i < [generalHoursArray count]; i++){
+        [hoursStr appendString:[generalHoursArray objectAtIndex:i]];
     }
     
     NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];

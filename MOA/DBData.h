@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @interface DBData : NSObject {
-    NSString *cafeHoursDay;
-    NSString *cafeHoursHours;
+    NSString *Day;
+    NSString *Hours;
 }
 
-@property (nonatomic, retain) NSString *cafeHoursDay;
-@property (nonatomic, retain) NSString *cafeHoursHours;
+@property (nonatomic, retain) NSString *Day;
+@property (nonatomic, retain) NSString *Hours;
 
 @end

@@ -8,6 +8,8 @@
 
 #import "DirectionParkingViewController.h"
 #import "SWRevealViewController.h"
+#import "VisitorInfoViewController.h"
+#import "CrudOp.h"
 
 @interface DirectionParkingViewController ()
 
@@ -37,10 +39,48 @@
     _sidebarButton.action = @selector(rightRevealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 
+    if (!parkingInformationArray || !parkingInformationArray.count)
+        [self PullFromRemote];
     
     NSString *locationInfo = @"MOA is located on the campus of the University of British Columbia, 20 minutes from downtown Vancouver. Museum of Anthropology at University of British Columbia 6393 NW Marine Drive Vancouver BC";
     
     rowData = [NSArray arrayWithObjects:locationInfo, @"From YVR", @"From Lower Mainland", @"Public Transit", @"Parking", nil];
+}
+
+-(void) PullFromRemote
+{
+    NSDictionary* jsonDict = [VisitorInfoViewController PullRemoteData:@"http://pluto.moa.ubc.ca/_mobile_app_remoteData.php"];
+    // NEEDS TO PERFORM UPDATE IN HERE - UPDATE THE LOCAL DB
+    CrudOp *dbCrud = [[CrudOp alloc] init];
+    NSMutableString *description, *heading;
+    int rowIndex = 0;
+    
+    NSEnumerator *mainEnumerator = [jsonDict keyEnumerator];
+    id key; NSArray *tableArray;
+    while (key = [mainEnumerator nextObject]){
+        rowIndex = 1;
+        tableArray = [jsonDict objectForKey:key];
+        for (NSDictionary *attribute in tableArray){
+            NSEnumerator *attEnum = [attribute keyEnumerator];
+            id attKey;
+            while (attKey = [attEnum nextObject]){
+                // attKey going to be rate etc, so need to insert to the array
+                
+                // PARKING AND DIRECTIONS
+                if ([key isEqualToString:@"parking_and_directions"]){
+                    description = [NSMutableString stringWithString:[attribute objectForKey:@"Description"]];
+                    heading = [NSMutableString stringWithString:[attribute objectForKey:@"Heading"]];
+                    [dbCrud UpdateRecords:description :heading :rowIndex :@"parkingDirections"];
+                    [parkingInformationArray addObject:description];
+                   
+                }
+                // increase att key here
+                attKey = [attEnum nextObject];
+                rowIndex++;
+            }
+        }
+    }
+
 }
 
 - (void)didReceiveMemoryWarning

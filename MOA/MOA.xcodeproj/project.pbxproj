@@ -12,6 +12,7 @@
 		507B8E681828F355002365EF /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 507B8E671828F355002365EF /* MainViewController.m */; };
 		507B8E6E1829793A002365EF /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 507B8E6D1829793A002365EF /* SWRevealViewController.m */; };
 		507B8E7018299BCE002365EF /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 507B8E6F18299BCE002365EF /* menu.png */; };
+		50B40304188E71DA00697287 /* CrudOp.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B40303188E71DA00697287 /* CrudOp.m */; };
 		50CB96C718417862003B7DCC /* ContactUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CB96C618417862003B7DCC /* ContactUsViewController.m */; };
 		50CCCA14182C54D200384881 /* WhatsOnThisWeekViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CCCA13182C54D200384881 /* WhatsOnThisWeekViewController.m */; };
 		50CEBBEA183FF4950005B0F9 /* ItemPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CEBBE9183FF4950005B0F9 /* ItemPageController.m */; };
@@ -59,6 +60,8 @@
 		BBA34090182700FC00B6E4B1 /* 480x360.gif in Resources */ = {isa = PBXBuildFile; fileRef = BBA3408F182700FC00B6E4B1 /* 480x360.gif */; };
 		BBA34094182701F500B6E4B1 /* 320x200.gif in Resources */ = {isa = PBXBuildFile; fileRef = BBA34093182701F500B6E4B1 /* 320x200.gif */; };
 		BBA340961827024600B6E4B1 /* 320x170.gif in Resources */ = {isa = PBXBuildFile; fileRef = BBA340951827024600B6E4B1 /* 320x170.gif */; };
+		E434341D188B4F7F00922E7A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E434341C188B4F7F00922E7A /* Reachability.m */; };
+		E434341F188B52FB00922E7A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E434341E188B52FB00922E7A /* SystemConfiguration.framework */; };
 		E438ACC618386F930078FD2F /* PlanVisitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E438ACC518386F930078FD2F /* PlanVisitViewController.m */; };
 		E438ACC9183877E10078FD2F /* VisitorInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E438ACC8183877E10078FD2F /* VisitorInfoViewController.m */; };
 		E438ACCD183AD8AE0078FD2F /* plan_a_visit.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E438ACCC183AD8AE0078FD2F /* plan_a_visit.jpg */; };
@@ -87,6 +90,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5068E1F0188FA48400FE009F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		507121541841CB6900DDFC47 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		507B8E621828E2F4002365EF /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
 		507B8E631828E2F4002365EF /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SidebarViewController.m; sourceTree = "<group>"; };
@@ -95,6 +99,8 @@
 		507B8E6C1829793A002365EF /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		507B8E6D1829793A002365EF /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		507B8E6F18299BCE002365EF /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
+		50B40302188E71DA00697287 /* CrudOp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrudOp.h; sourceTree = "<group>"; };
+		50B40303188E71DA00697287 /* CrudOp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrudOp.m; sourceTree = "<group>"; };
 		50CB96C518417862003B7DCC /* ContactUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactUsViewController.h; sourceTree = "<group>"; };
 		50CB96C618417862003B7DCC /* ContactUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactUsViewController.m; sourceTree = "<group>"; };
 		50CCCA12182C54D100384881 /* WhatsOnThisWeekViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhatsOnThisWeekViewController.h; sourceTree = "<group>"; };
@@ -171,6 +177,8 @@
 		BBA3408F182700FC00B6E4B1 /* 480x360.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 480x360.gif; sourceTree = "<group>"; };
 		BBA34093182701F500B6E4B1 /* 320x200.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 320x200.gif; sourceTree = "<group>"; };
 		BBA340951827024600B6E4B1 /* 320x170.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 320x170.gif; sourceTree = "<group>"; };
+		E434341C188B4F7F00922E7A /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = SOURCE_ROOT; };
+		E434341E188B52FB00922E7A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E438ACC418386F930078FD2F /* PlanVisitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanVisitViewController.h; sourceTree = "<group>"; };
 		E438ACC518386F930078FD2F /* PlanVisitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanVisitViewController.m; sourceTree = "<group>"; };
 		E438ACC7183877E10078FD2F /* VisitorInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VisitorInfoViewController.h; path = ../VisitorInfoViewController.h; sourceTree = "<group>"; };
@@ -201,6 +209,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E434341F188B52FB00922E7A /* SystemConfiguration.framework in Frameworks */,
 				507121551841CB6900DDFC47 /* MessageUI.framework in Frameworks */,
 				BBA3405D1826D6F700B6E4B1 /* CoreGraphics.framework in Frameworks */,
 				BBA3405F1826D6F700B6E4B1 /* UIKit.framework in Frameworks */,
@@ -302,6 +311,7 @@
 		BBA3404E1826D6F700B6E4B1 = {
 			isa = PBXGroup;
 			children = (
+				5068E1F0188FA48400FE009F /* Reachability.h */,
 				50CEBBF61840442A0005B0F9 /* ItemLayout.h */,
 				50CEBBF71840442A0005B0F9 /* ItemLayout.m */,
 				50CEBBF81840442A0005B0F9 /* ItemViewCell.h */,
@@ -328,6 +338,7 @@
 		BBA340591826D6F700B6E4B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E434341E188B52FB00922E7A /* SystemConfiguration.framework */,
 				507121541841CB6900DDFC47 /* MessageUI.framework */,
 				50FA4070183B778F00EC0CEC /* libsqlite3.dylib */,
 				BBA3405A1826D6F700B6E4B1 /* Foundation.framework */,
@@ -382,6 +393,8 @@
 				BB0E65901835737F00163652 /* FilteredViewViewController.m */,
 				BB0E659B1835A61300163652 /* SplashScreen.h */,
 				BB0E659C1835A61300163652 /* SplashScreen.m */,
+				50B40302188E71DA00697287 /* CrudOp.h */,
+				50B40303188E71DA00697287 /* CrudOp.m */,
 			);
 			path = MOA;
 			sourceTree = "<group>";
@@ -563,6 +576,7 @@
 				BB3179FD1827112F00CC9C38 /* ExploreMainViewController.m in Sources */,
 				E48B16D9183C9B1A0047BBA4 /* AccordionViewController.m in Sources */,
 				E48B16DC18413EE40047BBA4 /* LocationPage.m in Sources */,
+				E434341D188B4F7F00922E7A /* Reachability.m in Sources */,
 				50CB96C718417862003B7DCC /* ContactUsViewController.m in Sources */,
 				E438ACC9183877E10078FD2F /* VisitorInfoViewController.m in Sources */,
 				50F5290F183CA37B002A463C /* FromAirportPage.m in Sources */,
@@ -577,6 +591,7 @@
 				50CEBBEA183FF4950005B0F9 /* ItemPageController.m in Sources */,
 				BB0E65911835737F00163652 /* FilteredViewViewController.m in Sources */,
 				E4B5A0CB185544A10047D9B8 /* ExhibitionsViewController.m in Sources */,
+				50B40304188E71DA00697287 /* CrudOp.m in Sources */,
 				BB0E6597183575E200163652 /* TagAdditionViewController.m in Sources */,
 				507B8E641828E2F4002365EF /* SidebarViewController.m in Sources */,
 				E438ACC618386F930078FD2F /* PlanVisitViewController.m in Sources */,

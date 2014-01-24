@@ -20,3 +20,4 @@
 
 NSMutableArray* cafeHoursArray;
 NSMutableArray* generalTextArray;
+NSMutableString* cafeDescription;

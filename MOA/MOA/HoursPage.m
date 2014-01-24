@@ -9,6 +9,8 @@
 #import "HoursPage.h"
 #import "Constants.h"
 #import "SWRevealViewController.h"
+#import "VisitorInfoViewController.h"
+#import "CrudOp.h"
 
 @interface HoursPage ()
 
@@ -37,21 +39,15 @@
     _sidebarButton.action = @selector(rightRevealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
-    NSMutableString* hoursStr = [NSMutableString stringWithFormat:@""];
-    NSMutableString* day_temp = [NSMutableString stringWithFormat:@""];
-    NSMutableString* hours_temp = [NSMutableString stringWithFormat:@""];
-    for (int i = 0; i < 14; i++){
-        day_temp = [generalHoursArray objectAtIndex:i]; i++;
-        hours_temp = [generalHoursArray objectAtIndex:i];
-        [hoursStr appendString:day_temp];
-        [hoursStr appendString:@"\t: "];
-        [hoursStr appendString:hours_temp];
-        [hoursStr appendString:@"\n"];
+    if (!generalHoursArray || !generalHoursArray.count){
+        [self PullFromRemote];
+        //CrudOp* database = [CrudOp alloc];
+        //generalHoursArray = [database PullFromLocalDB:@"general_hours"];
     }
-    for (int j = 14; j < [generalHoursArray count]; j++)
-    {
-        [hoursStr appendString:[generalHoursArray objectAtIndex:j]];
-        [hoursStr appendString:@"\n"];
+    
+    NSMutableString* hoursStr = [NSMutableString stringWithFormat:@""];
+    for (int i = 0; i < [generalHoursArray count]; i++){
+        [hoursStr appendString:[generalHoursArray objectAtIndex:i]];
     }
     
     NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
@@ -64,6 +60,43 @@
     self.description.typingAttributes = [NSDictionary dictionaryWithObject:paragraphStyle forKey:NSParagraphStyleAttributeName];
     
     self.description.text = hoursStr;
+}
+
+-(void)PullFromRemote
+{
+    NSDictionary* jsonDict = [VisitorInfoViewController PullRemoteData:@"http://pluto.moa.ubc.ca/_mobile_app_remoteData.php"];
+    // NEEDS TO PERFORM UPDATE IN HERE - UPDATE THE LOCAL DB
+    CrudOp *dbCrud = [[CrudOp alloc] init];
+    NSMutableString *day, *hours;
+    NSMutableString *temp;
+    int rowIndex = 0;
+    
+    NSEnumerator *mainEnumerator = [jsonDict keyEnumerator];
+    id key; NSArray *tableArray;
+    while (key = [mainEnumerator nextObject]){
+        rowIndex = 1;
+        tableArray = [jsonDict objectForKey:key];
+        for (NSDictionary *attribute in tableArray){
+            NSEnumerator *attEnum = [attribute keyEnumerator];
+            id attKey;
+            while (attKey = [attEnum nextObject]){
+                // attKey going to be rate etc, so need to insert to the array
+                
+                if ([key isEqualToString:@"general_hours"]) {
+                    day = [NSMutableString stringWithString:[attribute objectForKey:@"Day"]];
+                    hours = [NSMutableString stringWithString:[attribute objectForKey:@"Hours"]];
+                    temp = [NSMutableString stringWithFormat:@"%@ \t: %@\n", day, hours];
+                    [generalHoursArray addObject:temp];
+                    [dbCrud UpdateRecords:hours :day :rowIndex :@"generalHours"];
+                    
+                }
+                // increase att key here
+                attKey = [attEnum nextObject];
+                rowIndex++;
+            }
+        }
+    }
+
 }
 
 - (void)didReceiveMemoryWarning

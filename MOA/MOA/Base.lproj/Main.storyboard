@@ -773,6 +773,9 @@
                     <navigationItem key="navigationItem" id="Gm7-Y2-oLf">
                         <barButtonItem key="rightBarButtonItem" image="05_More_25px.png" id="hY2-pe-rXF"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="sidebarButton" destination="hY2-pe-rXF" id="aw6-dk-bco"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pYl-UA-Xdd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -141,7 +141,8 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
         }
     }
     char* errmsg;
-    sqlite3_trace(cruddb, sqliteCallbackFunc, NULL);
+    // uncomment this for trace
+    //sqlite3_trace(cruddb, sqliteCallbackFunc, NULL);
     sqlite3_exec(cruddb, "COMMIT", NULL, NULL, &errmsg);
     
     if(SQLITE_DONE != sqlite3_step(stmt)){

@@ -36,8 +36,13 @@
     _sidebarButton.action = @selector(rightRevealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
-    if ([shopDescription length] == 0){
+    // LOADING FROM DB
+    if (!generalTextArray || !generalTextArray.count){
         [self PullFromRemote];
+        //CrudOp* database = [CrudOp alloc];
+        //generalTextArray = [database PullFromLocalDB:@"general_text"];
+        //shopDescription = [generalTextArray objectAtIndex:0];
+
     }
     
     NSMutableString* text = shopDescription;

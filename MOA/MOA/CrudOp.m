@@ -172,7 +172,16 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     
 }
 
-- (NSMutableArray *) PullFromLocalDB {
+-(void)checkReturnCode: (int)rc{
+    if(rc != SQLITE_OK)
+    {
+        NSLog(@"Problem with prepare statement at PullFromLocalDB, rc = %d", rc);
+        //NSLog(@"%s SQLITE_ERROR '%s' (%1d)", __FUNCTION__, sqlite3_errmsg(db), sqlite3_errcode(db));
+    }
+}
+
+- (NSMutableArray *) PullFromLocalDB :(NSString*) tableName{
+    
     
     NSMutableString *data1, *data2;
     NSMutableString *temp;
@@ -196,25 +205,52 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
         {
             NSLog(@"An error has occured.");
         }
-        const char *sql = "SELECT Day, Hours FROM cafe_hours";
-        sqlite3_stmt *sqlStatement;
         
+        const char *sql;
+        int saveDataInDefaultFormat;
         
-        int x = sqlite3_prepare(db, sql, -1, &sqlStatement, NULL);
-        if(x != SQLITE_OK)
-        {
-            NSLog(@"%d", x);
-            NSLog(@"%s SQLITE_ERROR '%s' (%1d)", __FUNCTION__, sqlite3_errmsg(db), sqlite3_errcode(db));
-            NSLog(@"Problem with prepare statement");
+        if ([tableName isEqualToString:@"cafe_hours"]){
+            sql = "SELECT Day, Hours FROM cafe_hours";
+            saveDataInDefaultFormat = 1;
+        } else if ([tableName isEqualToString:@"general_text"]){
+            sql = "SELECT Identifier, Description FROM general_text";
+        } else if ([tableName isEqualToString:@"general_hours"]){
+            sql = "SELECT Day, Hours FROM general_hours";
+            saveDataInDefaultFormat = 1;
+        } else if ([tableName isEqualToString:@"parking_and_directions"]) {
+            sql = "SELECT Heading, Descriptions FROM parking_and_directions";
+        } else if ([tableName isEqualToString:@"rates_general"]){
+            sql = "SELECT Description, Rate FROM rates_general";
+            saveDataInDefaultFormat = 1;
+        } else if ([tableName isEqualToString:@"rates_groups"]){
+            sql = "SELECT Description, Rate FROM rates_groups";
+            saveDataInDefaultFormat = 1;
+        } else {
+            sql = "";
         }
-        while (sqlite3_step(sqlStatement)==SQLITE_ROW) {
-            //DBData *data = [[DBData alloc]init];
-            
-            data1 = [NSMutableString stringWithString:[NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement,0)]];
-            data2 = [NSMutableString stringWithString:[NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement,1)]];
-            temp = [NSMutableString stringWithFormat:@"%@ \t: %@\n", data1, data2];
-            
-            [returnedData addObject:temp];
+    
+        sqlite3_stmt *sqlStatement;
+        int rc = sqlite3_prepare(db, sql, -1, &sqlStatement, NULL);
+        [self checkReturnCode:rc];
+        
+        if (saveDataInDefaultFormat == 1){
+            while (sqlite3_step(sqlStatement)==SQLITE_ROW) {
+                
+                data1 = [NSMutableString stringWithString:[NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement,0)]];
+                data2 = [NSMutableString stringWithString:[NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement,1)]];
+                temp = [NSMutableString stringWithFormat:@"%@ \t: %@\n", data1, data2];
+                
+                [returnedData addObject:temp];
+            }
+        } else {
+            while (sqlite3_step(sqlStatement)==SQLITE_ROW) {
+                
+                data1 = [NSMutableString stringWithString:[NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement,0)]];
+                data2 = [NSMutableString stringWithString:[NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement,1)]];
+                //temp = [NSMutableString stringWithFormat:@"%@ \t: %@\n", data1, data2];
+                
+                [returnedData addObject:data2];
+            }
         }
     }
     @catch (NSException *exception) {

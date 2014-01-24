@@ -39,16 +39,23 @@
     // no data yet - need to pull info
     // is there connection? yes - pull from remote, update local DB as well
     // no connection? pull from localDB
-    
-    if ([cafeDescription length] == 0 || !cafeHoursArray || !cafeHoursArray.count){
+    // LOADING FROM DB
+    CrudOp* database = [CrudOp alloc];
+    if (!cafeHoursArray || !cafeHoursArray.count){
         // check if we have connection
         // call this if we do
         [self PullFromRemote];
         
         // call this if we dont
-        CrudOp* database = [CrudOp alloc];
-        cafeHoursArray = database.PullFromLocalDB;
+        //cafeHoursArray = [database PullFromLocalDB:@"cafe_hours"];
     }
+         
+    if (!generalTextArray || !generalTextArray.count){
+        [self PullFromRemote];
+        //generalTextArray = [database PullFromLocalDB:@"general_text"];
+        //cafeDescription = [generalTextArray objectAtIndex:1];
+    }
+    
     
     NSString* descriptionText = cafeDescription;
     
@@ -109,7 +116,7 @@
                         cafeDescription = description;
                     else if ([identifier isEqualToString:@"Shop"])
                         shopDescription = description;
-                    [dbCrud UpdateRecords:identifier :description :rowIndex :@"generalText"];
+                    [dbCrud UpdateRecords:description :identifier :rowIndex :@"generalText"];
                 }
                 
                 // increase att key here

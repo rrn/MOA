@@ -45,8 +45,15 @@
     // CHECK IF IT IS LOADED IF NOT, CHECK CONNECTIVITY
     // NO CONNECTION? LOCAL DB
     // CONNECTION? REMOTE.
+     CrudOp* database = [CrudOp alloc];
     if (!ratesGeneralArray || !ratesGeneralArray.count){
         [self PullFromRemote];
+        //ratesGeneralArray = [database PullFromLocalDB:@"rates_general"];
+    }
+    
+    if (!ratesGroupArray || !ratesGroupArray.count){
+        [self PullFromRemote];
+        //ratesGroupArray = [database PullFromLocalDB:@"rates_groups"];
     }
     
     NSMutableString* ratesStr = [NSMutableString stringWithFormat:@"General Rates:\n\n"];

@@ -41,6 +41,8 @@
     
     if (!generalHoursArray || !generalHoursArray.count){
         [self PullFromRemote];
+        //CrudOp* database = [CrudOp alloc];
+        //generalHoursArray = [database PullFromLocalDB:@"general_hours"];
     }
     
     NSMutableString* hoursStr = [NSMutableString stringWithFormat:@""];

@@ -5,10 +5,13 @@
 //  Created by Sukhi Mann on 11/14/2013.
 //  Copyright (c) 2013 Museum of Anthropology UBC. All rights reserved.
 //
+#define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+
 
 #import "TagAdditionViewController.h"
 #import "SearchResultListViewController.h"
 #import "SWRevealViewController.h"
+#import "Reachability.h"
 
 @interface TagAdditionViewController ()
 
@@ -20,7 +23,7 @@
     NSMutableArray *characterList;
 }
 
-@synthesize tagTable;
+@synthesize tagTable, activityLoader;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -38,7 +41,7 @@
     characterList = [[NSMutableArray alloc] init];
     [self readItemJson:[self title]];
     
-
+    
     // Set the side bar button action. When it's tapped, it'll show up the sidebar.
     _sideBarButton.target = self.revealViewController;
     _sideBarButton.action = @selector(rightRevealToggle:);
@@ -88,7 +91,38 @@
     NSInteger tempNumber = self.navigationController.viewControllers.count;
     NSString *previousTitle = [[self.navigationController.viewControllers objectAtIndex:tempNumber-2] title];
     
-  
+    [activityLoader setColor:[UIColor blackColor]];
+    
+    Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    
+    if(([[[TagList sharedInstance] placesTags] count] == 0 )|| ([[[TagList sharedInstance] objectTypeTags] count] == 0 ) ||
+       ([[[TagList sharedInstance] peopleTags] count] == 0 )|| ([[[TagList sharedInstance] culturesTags] count] == 0 )|| ([[[TagList sharedInstance] materialsTags] count] == 0 ))
+    {
+        [activityLoader setHidden:NO];
+        [activityLoader startAnimating];
+        if(internetStatus == NotReachable) {
+            
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle: @"Alert!"
+                                  message: @"There is no internet connection, item tags cannot be loaded."
+                                  delegate: self
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+        else{
+            
+            [self performSelectorOnMainThread:@selector(fetchedData:)
+                                   withObject:NULL waitUntilDone:YES];
+            
+        }
+        [activityLoader stopAnimating];
+        [activityLoader setHidden:YES];
+    }
+    
+    
+    
     NSArray *entireTagArrary = [[NSArray alloc] init];
     if([previousTitle isEqualToString:@"Places"]){
         
@@ -117,7 +151,7 @@
     }
     
     for(int i=0; i < [entireTagArrary count]; i++){
-       
+        
         if(![[[entireTagArrary objectAtIndex:i] lowercaseString] hasPrefix:self.title.lowercaseString] && [characterList count] > 0){
             [tagTable reloadData];
             return;
@@ -134,49 +168,59 @@
     return;
 }
 
+-(void)fetchedData:(NSData *)responseData{
+    NSLog(@"data downloaded");
+    [TagList downloadCulturesJson];
+    [TagList downloadMaterialsJson];
+    [TagList downloadPeopleJson];
+    [TagList downloadPlacesJson];
+    [TagList downloadObjectJson];
+    [NSThread sleepForTimeInterval:1.0f];
+}
+
 //-(void) tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath{
-//    
+//
 //    [self performSegueWithIdentifier:@"searchResult" sender:self];
 //}
 
 /*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+ // Override to support conditional editing of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the specified item to be editable.
+ return YES;
+ }
+ */
 
 /*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
+ // Override to support editing the table view.
+ - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ if (editingStyle == UITableViewCellEditingStyleDelete) {
+ // Delete the row from the data source
+ [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+ }
+ else if (editingStyle == UITableViewCellEditingStyleInsert) {
+ // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+ }
+ }
+ */
 
 /*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
+ // Override to support rearranging the table view.
+ - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
+ {
+ }
+ */
 
 /*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
+ // Override to support conditional rearranging of the table view.
+ - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+ {
+ // Return NO if you do not want the item to be re-orderable.
+ return YES;
+ }
+ */
 
 
 #pragma mark - Navigation

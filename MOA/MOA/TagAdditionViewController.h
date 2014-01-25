@@ -13,5 +13,6 @@
 
 @property (strong, nonatomic) IBOutlet UITableView *tagTable;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityLoader;
 
 @end

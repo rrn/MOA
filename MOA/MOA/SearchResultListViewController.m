@@ -12,6 +12,7 @@
 #import "ItemViewCell.h"
 #import "BHAlbumTitleReusableView.h"
 #import "TagList.h"
+#import "Reachability.h"
 
 static NSString * const PhotoCellIdentifier = @"itemCell";
 static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
@@ -66,7 +67,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     searchArray = [[[[TagList sharedInstance] peopleTags] filteredArrayUsingPredicate:predicate] mutableCopy];
     if([searchArray count] == 1)
         Type = @"People;";
-
+    
     
     // Set the side bar button action. When it's tapped, it'll show up the sidebar.
     _sideBarButton.target = self.revealViewController;
@@ -75,22 +76,39 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
-    [activityLoader startAnimating];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        // No explicit autorelease pool needed here.
-        // The code runs in background, not strangling
-        // the main run loop.
-        [self fetchedData];
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            // This will be called on the main thread, so that
-            // you can update the UI, for example.
-            [activityLoader stopAnimating];
-            activityLoader.hidden =YES;
-            
-            [self.collectionView reloadData];
+    
+    Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    
+    if(internetStatus == NotReachable) {
+        activityLoader.hidden=YES;
+        
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"Alert!"
+                              message: @"There is no internet connection, certain features will not be fully functional."
+                              delegate: self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+    else{
+        [activityLoader startAnimating];
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            // No explicit autorelease pool needed here.
+            // The code runs in background, not strangling
+            // the main run loop.
+            [self fetchedData];
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                // This will be called on the main thread, so that
+                // you can update the UI, for example.
+                [activityLoader stopAnimating];
+                activityLoader.hidden =YES;
+                
+                [self.collectionView reloadData];
+            });
         });
-    });
-
+    }
+    
     
 }
 
@@ -98,17 +116,19 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-//    dispatch_async(kBgQueue, ^{
-//        [self performSelectorOnMainThread:@selector(fetchedData:)
-//                               withObject:NULL waitUntilDone:YES];
-//    });
-
+    //    dispatch_async(kBgQueue, ^{
+    //        [self performSelectorOnMainThread:@selector(fetchedData:)
+    //                               withObject:NULL waitUntilDone:YES];
+    //    });
+    
 }
 -(void)fetchedData{
     
+    
     [self downloadItemJsonFeed];
+    
     //[NSThread sleepForTimeInterval:1.0f];
-
+    
     self.collectionView.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
     [self.collectionView registerClass:[ItemViewCell class]
             forCellWithReuseIdentifier:PhotoCellIdentifier];
@@ -147,7 +167,6 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     [self.collectionView registerClass:[BHAlbumTitleReusableView class]
             forSupplementaryViewOfKind:BHPhotoAlbumLayoutAlbumTitleKind
                    withReuseIdentifier:AlbumTitleIdentifier];
-
     
 }
 - (void)didReceiveMemoryWarning
@@ -174,7 +193,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     NSInteger tempNumber;
     NSString *tempCatogeryType;
     NSString *searchType ;
-
+    
     
     if(self.navigationController.viewControllers.count <3){
         tempNumber = self.navigationController.viewControllers.count;
@@ -186,8 +205,8 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
         tempCatogeryType = [[self.navigationController.viewControllers objectAtIndex:tempNumber-3] title];
         searchType = [self title];
     }
-
-
+    
+    
     
     
     NSString *catogeryType = [[NSString alloc]init];

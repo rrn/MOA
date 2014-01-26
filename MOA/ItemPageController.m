@@ -8,6 +8,7 @@
 
 #import "ItemPageController.h"
 #import "SWRevealViewController.h"
+#import "Reachability.h"
 
 @interface ItemPageController ()
 @property (strong, nonatomic)  UILabel *idNumberLabel;
@@ -78,19 +79,19 @@
         [_previousItem setEnabled:NO];
     if(itemNumber+1==count)
         [_nextItem setEnabled:NO];
-
+    
     self.navigationItem.rightBarButtonItems = @[_sideBarButton, _nextItem, _titleText, _previousItem];
     // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
     float screenWidth =[UIScreen mainScreen].bounds.size.width;
-
+    
     self.itemNameLabel =[[UILabel alloc] initWithFrame:CGRectMake(screenWidth/20, 10, screenWidth -screenWidth/20, 30)];
     self.idNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth/20, 50, screenWidth -screenWidth/20, 30)];
     self.displayItemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/20, 90, screenWidth -(2*screenWidth)/20, 200)];
     self.itemDescriptionTextView = [[UITextView alloc] initWithFrame:CGRectMake(screenWidth/20, 300, screenWidth -(2*screenWidth)/20, 200)];
     self.itemDescriptionTextView.scrollEnabled = NO;
-
+    
     [[self theScrollView] addSubview:[self itemNameLabel]];
     [[self theScrollView] addSubview:[self idNumberLabel]];
     [[self theScrollView] addSubview:[self displayItemImageView]];
@@ -105,16 +106,20 @@
     self.theScrollView.contentInset=UIEdgeInsetsMake(0.0, 0.0, bottom_inset,0.0);
     
     [self.view addSubview:[self theScrollView]];
-
+    
     [self pageSetup];
-
+    
     
 }
 
 -(void) downloadImage :(NSArray*)digitalObjects{
+    _imageLoading.hidden = NO;
+    [_imageLoading startAnimating];
+    
     NSString *imageUrl = [NSString stringWithFormat:@"http:%@",[[digitalObjects objectAtIndex:0] objectForKey:@"url"]];
     NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: imageUrl]];
     self.displayItemImageView.image = [UIImage imageWithData:imageData];
+    
     [_imageLoading stopAnimating];
     _imageLoading.hidden = YES;
 }
@@ -133,12 +138,27 @@
     [generalDescription3 appendFormat:@"\n"];
     [self generalDescription3Text];
     
-    _imageLoading.hidden = NO;
-    [_imageLoading startAnimating];
-    if([digitalObjects count] > 0){
-        //http was dropped from feed so needed to be appended at front
-        [self performSelectorInBackground:@selector(downloadImage:) withObject:digitalObjects];
+    Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    
+    if(internetStatus == NotReachable) {
+        
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"Alert!"
+                              message: @"There is no internet connection, item image cannot load."
+                              delegate: self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
     }
+    else{
+        if([digitalObjects count] > 0){
+            //http was dropped from feed so needed to be appended at front
+            [self performSelectorInBackground:@selector(downloadImage:) withObject:digitalObjects];
+        }
+    }
+
+
     
     self.displayItemImageView.contentMode = UIViewContentModeScaleAspectFit;
     self.itemNameLabel.text =[[data objectAtIndex:itemNumber] objectForKey:@"name"];
@@ -149,7 +169,7 @@
     
     self.itemDescriptionTextView.text= [NSString stringWithFormat:@"Description:\n%@\n\n %@\n %@",[[institution_notes objectAtIndex:0] objectForKey:@"text"], generalDescription2, generalDescription3];
     
-
+    
     
     [self.itemDescriptionTextView sizeToFit];
     

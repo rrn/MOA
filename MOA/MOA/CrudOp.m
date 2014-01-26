@@ -214,12 +214,12 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
             sql = "SELECT Day, Hours FROM cafe_hours";
             saveDataInDefaultFormat = 1;
         } else if ([tableName isEqualToString:@"general_text"]){
-            sql = "SELECT Identifier, Description FROM general_text";
+            sql = "SELECT Description, Identifier FROM general_text";
         } else if ([tableName isEqualToString:@"general_hours"]){
             sql = "SELECT Day, Hours FROM general_hours";
             saveDataInDefaultFormat = 1;
         } else if ([tableName isEqualToString:@"parking_and_directions"]) {
-            sql = "SELECT Heading, Descriptions FROM parking_and_directions";
+            sql = "SELECT Heading, Description FROM parking_and_directions";
         } else if ([tableName isEqualToString:@"rates_general"]){
             sql = "SELECT Description, Rate FROM rates_general";
             saveDataInDefaultFormat = 1;

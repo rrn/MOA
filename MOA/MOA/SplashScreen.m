@@ -9,6 +9,7 @@
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
 #import "SplashScreen.h"
+#import "Reachability.h"
 
 @interface SplashScreen ()
 
@@ -35,10 +36,27 @@
 -(void)viewDidAppear:(BOOL)animated{
     [activityLoader startAnimating];
     
-    dispatch_async(kBgQueue, ^{
-        [self performSelectorOnMainThread:@selector(fetchedData:)
-        withObject:NULL waitUntilDone:YES];
-       });
+    
+    Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    
+    if(internetStatus == NotReachable) {
+        
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"Alert!"
+                              message: @"There is no internet connection, certain features will not be fully functional."
+                              delegate: self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+    else{
+        dispatch_async(kBgQueue, ^{
+            [self performSelectorOnMainThread:@selector(fetchedData:)
+                                   withObject:NULL waitUntilDone:YES];
+        });
+        
+    }
     
     UIViewController *test = [self.storyboard instantiateViewControllerWithIdentifier:@"SWRevealViewController"];
     [self presentViewController:test animated:YES completion:NULL];

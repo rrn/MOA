@@ -10,6 +10,7 @@
 #import "SWRevealViewController.h"
 #import "VisitorInfoViewController.h"
 #import "CrudOp.h"
+#import "Reachability.h"
 
 @interface MOAShopViewController ()
 
@@ -36,14 +37,26 @@
     _sidebarButton.action = @selector(rightRevealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
-    // LOADING FROM DB
-    if (!generalTextArray || !generalTextArray.count){
-        [self PullFromRemote];
-        //CrudOp* database = [CrudOp alloc];
-        //generalTextArray = [database PullFromLocalDB:@"general_text"];
-        //shopDescription = [generalTextArray objectAtIndex:0];
-
+    
+    if (!shopDescription){
+        if (!generalTextArray || !generalTextArray.count){
+            
+            Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.com"];
+            NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+            
+            if (internetStatus == NotReachable){
+                CrudOp* database = [CrudOp alloc];
+                generalTextArray = [database PullFromLocalDB:@"general_text"];
+                shopDescription = [generalTextArray objectAtIndex:0];
+            } else {
+                [self PullFromRemote];
+            }
+        } else {
+            shopDescription = [generalTextArray objectAtIndex:0];
+        }
     }
+    
+    
     
     NSMutableString* text = shopDescription;
 

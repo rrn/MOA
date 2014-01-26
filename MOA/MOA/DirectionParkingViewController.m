@@ -10,6 +10,7 @@
 #import "SWRevealViewController.h"
 #import "VisitorInfoViewController.h"
 #import "CrudOp.h"
+#import "Reachability.h"
 
 @interface DirectionParkingViewController ()
 
@@ -39,8 +40,18 @@
     _sidebarButton.action = @selector(rightRevealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 
-    if (!parkingInformationArray || !parkingInformationArray.count)
-        [self PullFromRemote];
+    if (!parkingInformationArray || !parkingInformationArray.count) {
+        
+        Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.com"];
+        NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    
+        if (internetStatus == NotReachable){
+            CrudOp* database = [CrudOp alloc];
+            parkingInformationArray = [database PullFromLocalDB:@"parking_and_directions"];
+        } else {
+            [self PullFromRemote];
+        }
+    }
     
     NSString *locationInfo = @"MOA is located on the campus of the University of British Columbia, 20 minutes from downtown Vancouver. Museum of Anthropology at University of British Columbia 6393 NW Marine Drive Vancouver BC";
     

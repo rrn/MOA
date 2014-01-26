@@ -7,6 +7,7 @@
 //
 
 #import "ExhibitionsViewController.h"
+#import "ExhibitChildViewController.h"
 #import "SWRevealViewController.h"
 #import "Reachability.h"
 
@@ -29,20 +30,86 @@
 {
     [super viewDidLoad];
 	
-    // Set the side bar button action. When it's tapped, it'll show up the sidebar.
-    _sidebarButton.target = self.revealViewController;
-    _sidebarButton.action = @selector(rightRevealToggle:);
+//    // Set the side bar button action. When it's tapped, it'll show up the sidebar.
+//    _sidebarButton.target = self.revealViewController;
+//    _sidebarButton.action = @selector(rightRevealToggle:);
+//    
+//    // Set the gesture
+//    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
-    // Set the gesture
-    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    self.description.text = @"Inserted Text";
-    [self checkForNetwork];
+    self.pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+    
+    // Page View Controller
+    self.pageController.dataSource = self;
+    [[self.pageController view] setFrame:[[self view] bounds]];
+    
+    ExhibitChildViewController *initialViewController = [self viewControllerAtIndex:0];
+    
+    NSArray *viewControllers = [NSArray arrayWithObject:initialViewController];
+    
+    [self.pageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    
+    [self addChildViewController:self.pageController];
+    [[self view] addSubview:[self.pageController view]];
+    [self.pageController didMoveToParentViewController:self];
+    
+    //self.description.text = @"Inserted Text";
+    //[self checkForNetwork];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
+    
+    NSUInteger index = [(ExhibitChildViewController *)viewController index];
+    
+    if (index == 0) {
+        return nil;
+    }
+    
+    index--;
+    
+    return [self viewControllerAtIndex:index];
+    
+}
+
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
+    
+    NSUInteger index = [(ExhibitChildViewController *)viewController index];
+    
+    
+    index++;
+    
+    if (index == 5) {
+        return nil;
+    }
+    
+    return [self viewControllerAtIndex:index];
+    
+}
+
+- (ExhibitChildViewController *)viewControllerAtIndex:(NSUInteger)index {
+    
+    UIStoryboard* sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ExhibitChildViewController *childViewController = [sb instantiateViewControllerWithIdentifier:@"exhibitChildViewController"];
+    childViewController.index = index;
+    
+    return childViewController;
+    
+}
+
+- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {
+    // The number of items reflected in the page indicator.
+    return 5;
+}
+
+- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
+    // The selected item reflected in the page indicator.
+    return 0;
 }
 
 - (void)checkForNetwork

@@ -11,6 +11,7 @@
 #import "SWRevealViewController.h"
 #import "VisitorInfoViewController.h"
 #import "CrudOp.h"
+#import "Reachability.h"
 
 @interface HoursPage ()
 
@@ -40,9 +41,16 @@
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
     if (!generalHoursArray || !generalHoursArray.count){
-        [self PullFromRemote];
-        //CrudOp* database = [CrudOp alloc];
-        //generalHoursArray = [database PullFromLocalDB:@"general_hours"];
+        
+        Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.com"];
+        NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+        
+        if (internetStatus == NotReachable){
+            CrudOp* database = [CrudOp alloc];
+            generalHoursArray = [database PullFromLocalDB:@"general_hours"];
+        } else {
+            [self PullFromRemote];
+        }
     }
     
     NSMutableString* hoursStr = [NSMutableString stringWithFormat:@""];

@@ -10,6 +10,7 @@
 #import "SWRevealViewController.h"
 #import "VisitorInfoViewController.h"
 #import "CrudOp.h"
+#import "Reachability.h"
 
 @interface RatesPage ()
 
@@ -45,15 +46,23 @@
     // CHECK IF IT IS LOADED IF NOT, CHECK CONNECTIVITY
     // NO CONNECTION? LOCAL DB
     // CONNECTION? REMOTE.
-     CrudOp* database = [CrudOp alloc];
-    if (!ratesGeneralArray || !ratesGeneralArray.count){
-        [self PullFromRemote];
-        //ratesGeneralArray = [database PullFromLocalDB:@"rates_general"];
-    }
     
-    if (!ratesGroupArray || !ratesGroupArray.count){
-        [self PullFromRemote];
-        //ratesGroupArray = [database PullFromLocalDB:@"rates_groups"];
+    
+    
+    
+    CrudOp* database = [CrudOp alloc];
+    if (!ratesGeneralArray || !ratesGeneralArray.count ||
+        !ratesGroupArray || !ratesGroupArray.count){
+        
+        Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.com"];
+        NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+        
+        if (internetStatus == NotReachable){
+            ratesGeneralArray = [database PullFromLocalDB:@"rates_general"];
+            ratesGroupArray = [database PullFromLocalDB:@"rates_groups"];
+        } else {
+            [self PullFromRemote];
+        }
     }
     
     NSMutableString* ratesStr = [NSMutableString stringWithFormat:@"General Rates:\n\n"];

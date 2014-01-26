@@ -10,6 +10,7 @@
 #import "SWRevealViewController.h"
 #import "VisitorInfoViewController.h"
 #import "CrudOp.h"
+#import "Reachability.h"
 
 @interface CafeMOAViewController ()
 
@@ -36,24 +37,35 @@
     _sidebarButton.action = @selector(rightRevealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
-    // no data yet - need to pull info
-    // is there connection? yes - pull from remote, update local DB as well
-    // no connection? pull from localDB
-    // LOADING FROM DB
+
     CrudOp* database = [CrudOp alloc];
     if (!cafeHoursArray || !cafeHoursArray.count){
-        // check if we have connection
-        // call this if we do
-        [self PullFromRemote];
         
-        // call this if we dont
-        //cafeHoursArray = [database PullFromLocalDB:@"cafe_hours"];
+        Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.com"];
+        NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+        
+        if (internetStatus == NotReachable){
+            cafeHoursArray = [database PullFromLocalDB:@"cafe_hours"];
+        } else {
+            [self PullFromRemote];
+        }
+        
     }
          
-    if (!generalTextArray || !generalTextArray.count){
-        [self PullFromRemote];
-        //generalTextArray = [database PullFromLocalDB:@"general_text"];
-        //cafeDescription = [generalTextArray objectAtIndex:1];
+    if (!cafeDescription){
+        if (!generalTextArray || !generalTextArray.count) {
+            Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.com"];
+            NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+            
+            if (internetStatus == NotReachable){
+                generalTextArray = [database PullFromLocalDB:@"general_text"];
+                cafeDescription = [generalTextArray objectAtIndex:1];
+            } else {
+                [self PullFromRemote];
+            }
+        } else {
+            cafeDescription = [generalTextArray objectAtIndex:1];
+        }
     }
     
     

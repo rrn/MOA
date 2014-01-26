@@ -322,16 +322,6 @@
             </objects>
             <point key="canvasLocation" x="2204" y="-221"/>
         </scene>
-        <!--Page View Controller-->
-        <scene sceneID="aHA-1I-81L">
-            <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="pageCurl" navigationOrientation="horizontal" spineLocation="min" id="esI-wx-WF4" sceneMemberID="viewController">
-                    <keyCommands/>
-                </pageViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8lb-d4-6ju" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3599" y="-215"/>
-        </scene>
         <!--Exhibit Child View Controller-->
         <scene sceneID="wch-0Q-5Qz">
             <objects>
@@ -361,7 +351,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iOq-KW-w9O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2616" y="-193"/>
+            <point key="canvasLocation" x="2586" y="-221"/>
         </scene>
         <!--Sidebar View Controller - Sidebar-->
         <scene sceneID="vdw-fa-DZy">

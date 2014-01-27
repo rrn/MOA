@@ -9,7 +9,13 @@
 #import "ExhibitionsViewController.h"
 #import "ExhibitChildViewController.h"
 #import "SWRevealViewController.h"
+#import "VisitorInfoViewController.h"
 #import "Reachability.h"
+#import "Global.h"
+#import "Util.h"
+#import "Exhibition.h"
+#import "CrudOp.h"
+
 
 @interface ExhibitionsViewController ()
 
@@ -22,6 +28,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        NSLog(@"%@", @"initWithNibNameEx is called");
     }
     return self;
 }
@@ -36,6 +43,7 @@
     
     // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    [self PullFromRemote];
     
     self.pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     
@@ -76,6 +84,8 @@
     return [self viewControllerAtIndex:index];
     
 }
+
+
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     
@@ -135,5 +145,48 @@
             break;
     }
 }
+
+-(void) PullFromRemote
+{
+    NSDictionary* jsonDict = [VisitorInfoViewController PullRemoteData:@"http://pluto.moa.ubc.ca/_mobile_app_remoteData.php"];
+    // NEEDS TO PERFORM UPDATE IN HERE - UPDATE THE LOCAL DB
+    //CrudOp *dbCrud = [[CrudOp alloc] init];
+    int rowIndex = 0;
+    
+    NSEnumerator *mainEnumerator = [jsonDict keyEnumerator];
+    id key; NSArray *tableArray;
+    NSURL* url;
+    
+    exhibitionsArray = [[NSMutableArray alloc] init];
+    
+    while (key = [mainEnumerator nextObject]){
+        rowIndex = 1;
+        tableArray = [jsonDict objectForKey:key];
+        for (NSDictionary *attribute in tableArray){
+            NSEnumerator *attEnum = [attribute keyEnumerator];
+            id attKey;
+            while (attKey = [attEnum nextObject]){
+                Exhibition *exhibition = [[Exhibition alloc]init];
+                if ([key isEqualToString:@"moa_exhibitions"]) {
+                    exhibition.itemID = [NSMutableString stringWithString:[attribute objectForKey:@"itemID"]];
+                    exhibition.title = [NSMutableString stringWithString:[attribute objectForKey:@"title"]];
+                    exhibition.subtitles = [NSMutableString stringWithString:[attribute objectForKey:@"subtitle"]];
+                    url = [NSURL URLWithString:[attribute objectForKey:@"image"]];
+                    exhibition.image = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+                    url = [NSURL URLWithString:[attribute objectForKey:@"detailImage"]];
+                    exhibition.detailImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
+                    exhibition.imageCaption = [NSMutableString stringWithString:[attribute objectForKey:@"imageCaption"]];
+                    exhibition.activationDate = [Util parseDateString:[attribute objectForKey:@"activationDate"]];
+                    exhibition.expiryDate = [Util parseDateString:[attribute objectForKey:@"expiryDate"]];
+                    [exhibitionsArray addObject:exhibition];
+                }
+                break;
+                rowIndex++;
+            }
+        }
+    }
+}
+
+
 
 @end

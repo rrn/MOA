@@ -28,6 +28,8 @@
 		50CEBC031841463A0005B0F9 /* shop.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50CEBBFF1841463A0005B0F9 /* shop.jpg */; };
 		50CEBC061841467D0005B0F9 /* CafeMOAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CEBC051841467D0005B0F9 /* CafeMOAViewController.m */; };
 		50CEBC09184146980005B0F9 /* MOAShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CEBC08184146980005B0F9 /* MOAShopViewController.m */; };
+		50D3AFF5189630AE00E81424 /* Exhibition.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D3AFF4189630AE00E81424 /* Exhibition.m */; };
+		50D3AFF818963CFD00E81424 /* Util.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D3AFF718963CFD00E81424 /* Util.m */; };
 		50F52903183C91D7002A463C /* DirectionParkingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F52902183C91D7002A463C /* DirectionParkingViewController.m */; };
 		50F52909183C984D002A463C /* ParkingPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F52908183C984D002A463C /* ParkingPage.m */; };
 		50F5290C183CA359002A463C /* PublicTransitPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F5290B183CA359002A463C /* PublicTransitPage.m */; };
@@ -126,6 +128,10 @@
 		50CEBC051841467D0005B0F9 /* CafeMOAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CafeMOAViewController.m; sourceTree = "<group>"; };
 		50CEBC07184146980005B0F9 /* MOAShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOAShopViewController.h; sourceTree = "<group>"; };
 		50CEBC08184146980005B0F9 /* MOAShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOAShopViewController.m; sourceTree = "<group>"; };
+		50D3AFF3189630AE00E81424 /* Exhibition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Exhibition.h; sourceTree = "<group>"; };
+		50D3AFF4189630AE00E81424 /* Exhibition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Exhibition.m; sourceTree = "<group>"; };
+		50D3AFF618963CFD00E81424 /* Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Util.h; sourceTree = "<group>"; };
+		50D3AFF718963CFD00E81424 /* Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Util.m; sourceTree = "<group>"; };
 		50F52901183C91D7002A463C /* DirectionParkingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionParkingViewController.h; sourceTree = "<group>"; };
 		50F52902183C91D7002A463C /* DirectionParkingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionParkingViewController.m; sourceTree = "<group>"; };
 		50F52907183C984D002A463C /* ParkingPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParkingPage.h; path = ../ParkingPage.h; sourceTree = "<group>"; };
@@ -366,6 +372,10 @@
 				E4D391D01841989800043AEB /* Constants.m */,
 				50F52905183C97DC002A463C /* LocalDatabase */,
 				BBA3406C1826D6F700B6E4B1 /* Main.storyboard */,
+				50D3AFF618963CFD00E81424 /* Util.h */,
+				50D3AFF718963CFD00E81424 /* Util.m */,
+				50D3AFF3189630AE00E81424 /* Exhibition.h */,
+				50D3AFF4189630AE00E81424 /* Exhibition.m */,
 				E4343422189482CD00922E7A /* ExhibitChildViewController.h */,
 				E4343423189482CD00922E7A /* ExhibitChildViewController.m */,
 				E4B5A0C9185544A10047D9B8 /* ExhibitionsViewController.h */,
@@ -576,7 +586,9 @@
 				E48B16E21841445D0047BBA4 /* RatesPage.m in Sources */,
 				50F5290C183CA359002A463C /* PublicTransitPage.m in Sources */,
 				50FA406B183B71FA00EC0CEC /* DBData.m in Sources */,
+				50D3AFF818963CFD00E81424 /* Util.m in Sources */,
 				E4D391D11841989800043AEB /* Constants.m in Sources */,
+				50D3AFF5189630AE00E81424 /* Exhibition.m in Sources */,
 				50F52912183CA38F002A463C /* FromLowerMainland.m in Sources */,
 				BB3179FD1827112F00CC9C38 /* ExploreMainViewController.m in Sources */,
 				E48B16D9183C9B1A0047BBA4 /* AccordionViewController.m in Sources */,

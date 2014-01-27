@@ -15,3 +15,5 @@
 @property (weak, nonatomic) IBOutlet UITextView *description;
 
 @end
+
+NSMutableArray* exhibitionsArray;

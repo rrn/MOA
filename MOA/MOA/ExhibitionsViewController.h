@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ExhibitionsViewController : UIViewController
+@interface ExhibitionsViewController : UIViewController <UIPageViewControllerDataSource>
+
+@property (strong, nonatomic) UIPageViewController *pageController;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (weak, nonatomic) IBOutlet UITextView *description;
 

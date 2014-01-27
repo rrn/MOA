@@ -314,6 +314,37 @@
             </objects>
             <point key="canvasLocation" x="2204" y="-221"/>
         </scene>
+        <!--Exhibit Child View Controller-->
+        <scene sceneID="wch-0Q-5Qz">
+            <objects>
+                <viewController storyboardIdentifier="exhibitChildViewController" id="h98-ez-qWl" customClass="ExhibitChildViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3k6-ZS-5Qp"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZLS-6o-MDR"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="och-Ec-0jx">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="512"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Screen #n" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DeJ-Z6-sjJ">
+                                <rect key="frame" x="95" y="96" width="130" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <connections>
+                        <outlet property="screenNumber" destination="DeJ-Z6-sjJ" id="lUV-u5-qZ0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iOq-KW-w9O" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2586" y="-221"/>
+        </scene>
         <!--Sidebar View Controller - Sidebar-->
         <scene sceneID="vdw-fa-DZy">
             <objects>

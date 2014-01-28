@@ -16,6 +16,10 @@
 @property (nonatomic, weak) IBOutlet UITextView *description;
 @property (nonatomic, weak) IBOutlet UIScrollView *scroll;
 
+-(void)LoadAndUpdateData;
+-(void)PullFromRemote;
+-(void)PrepareTextAlignmentForHours;
+
 @end
 
 NSMutableArray* cafeHoursArray;

@@ -15,6 +15,9 @@
 @property (nonatomic, weak) IBOutlet UILabel *description;
 @property (nonatomic, weak) IBOutlet UIScrollView *scroll;
 
+-(void)LoadAndUpdateData;
+-(void)PullFromRemote;
+
 @end
 
 NSMutableArray* generalTextArray;

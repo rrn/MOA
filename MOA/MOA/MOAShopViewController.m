@@ -40,23 +40,11 @@
     
     if (!shopDescription){
         if (!generalTextArray || !generalTextArray.count){
-            
-            Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.com"];
-            NetworkStatus internetStatus = [reachability currentReachabilityStatus];
-            
-            if (internetStatus == NotReachable){
-                CrudOp* database = [CrudOp alloc];
-                generalTextArray = [database PullFromLocalDB:@"general_text"];
-                shopDescription = [generalTextArray objectAtIndex:0];
-            } else {
-                [self PullFromRemote];
-            }
+            [self LoadAndUpdateData];
         } else {
             shopDescription = [generalTextArray objectAtIndex:0];
         }
     }
-    
-    
     
     NSMutableString* text = shopDescription;
 
@@ -67,6 +55,20 @@
 
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
+
+-(void)LoadAndUpdateData
+{
+    Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.com"];
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    
+    if (internetStatus == NotReachable){
+        CrudOp* database = [CrudOp alloc];
+        generalTextArray = [database PullFromLocalDB:@"general_text"];
+        shopDescription = [generalTextArray objectAtIndex:0];
+    } else {
+        [self PullFromRemote];
+    }
 }
 
 -(void) PullFromRemote

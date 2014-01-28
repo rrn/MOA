@@ -28,7 +28,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        NSLog(@"%@", @"initWithNibNameEx is called");
     }
     return self;
 }
@@ -44,9 +43,8 @@
     // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
-    
-    
-    [self PullFromRemote];
+    // check for connection for updates
+    [self LoadAndUpdateData];
     
     self.pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
     
@@ -88,7 +86,20 @@
     
 }
 
-
+-(void)LoadAndUpdateData
+{
+    Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.com"];
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    
+    if (internetStatus == NotReachable){
+        CrudOp* database = [CrudOp alloc];
+        generalTextArray = [database PullFromLocalDB:@"general_text"];
+        shopDescription = [generalTextArray objectAtIndex:0];
+    } else {
+        [self PullFromRemote];
+    }
+    
+}
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     

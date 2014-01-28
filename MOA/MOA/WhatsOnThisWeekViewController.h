@@ -8,9 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface WhatsOnThisWeekViewController : UIViewController
+@interface WhatsOnThisWeekViewController : UITableViewController
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
-@property (weak, nonatomic) IBOutlet UIScrollView *theScrollView;
 
 @end
 

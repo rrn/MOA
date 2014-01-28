@@ -246,38 +246,6 @@
             </objects>
             <point key="canvasLocation" x="1728" y="-221"/>
         </scene>
-        <!--Whats On This Week View Controller - This week at MOA-->
-        <scene sceneID="Mej-uh-pfd">
-            <objects>
-                <viewController storyboardIdentifier="whats" title="This week at MOA" id="KWj-Fo-7xq" customClass="WhatsOnThisWeekViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Dsf-nD-J22"/>
-                        <viewControllerLayoutGuide type="bottom" id="vmU-pg-9jE"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="oeE-wk-GxV">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ng5-aE-eY2">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="420"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </scrollView>
-                        </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="This Week At MOA" id="gP9-TQ-KUi">
-                        <barButtonItem key="rightBarButtonItem" image="05_More_25px.png" id="nbf-ki-VGF"/>
-                    </navigationItem>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="sidebarButton" destination="nbf-ki-VGF" id="5Ya-QO-SD5"/>
-                        <outlet property="theScrollView" destination="Ng5-aE-eY2" id="WrE-N3-ejs"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="oDG-82-ggX" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1825" y="512"/>
-        </scene>
         <!--Exhibitions View Controller - Exhibitions-->
         <scene sceneID="9Ny-Gj-W1U">
             <objects>
@@ -508,12 +476,56 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
-                        <segue destination="KWj-Fo-7xq" kind="relationship" relationship="rootViewController" id="aXI-LP-bbq"/>
+                        <segue destination="tin-y9-PNF" kind="push" id="upo-oM-ngl"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hV2-AE-0bg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1360" y="512"/>
+        </scene>
+        <!--Whats On This Week View Controller-->
+        <scene sceneID="jTp-XG-Q4o">
+            <objects>
+                <tableViewController id="tin-y9-PNF" customClass="WhatsOnThisWeekViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Vyy-nh-aZZ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="eventCell" textLabel="Qqx-9J-6Uk" imageView="YrG-ob-d2l" style="IBUITableViewCellStyleDefault" id="bAP-p4-mkG">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bAP-p4-mkG" id="kEE-OW-54F">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Qqx-9J-6Uk">
+                                            <rect key="frame" x="55" y="0.0" width="250" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="01_Weekly_25px.png" id="YrG-ob-d2l">
+                                            <rect key="frame" x="15" y="9" width="25" height="25"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </imageView>
+                                    </subviews>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="tin-y9-PNF" id="TRl-nv-4OO"/>
+                            <outlet property="delegate" destination="tin-y9-PNF" id="Z7j-Vj-n27"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="zo7-6c-2Z9">
+                        <barButtonItem key="rightBarButtonItem" image="05_More_25px.png" id="zs8-pf-wGQ"/>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ucy-g4-sKG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1848" y="513"/>
         </scene>
         <!--Splash Screen-->
         <scene sceneID="IIy-uk-YWb">

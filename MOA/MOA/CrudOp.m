@@ -190,10 +190,10 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     @try {
         //NSFileManager *fileMgr = [NSFileManager defaultManager];
         
-        //NSError *error;
+        NSError *error;
         // check if the documents has file or not
         NSString *dbPath = [self.GetDocumentDirectory stringByAppendingPathComponent:@"MOA.sqlite"];
-        //[[NSFileManager defaultManager] removeItemAtPath: dbPath error: &error];
+        [[NSFileManager defaultManager] removeItemAtPath: dbPath error: &error];
         if (![fileMgr fileExistsAtPath:dbPath]) {
             [self CopyDbToDocumentsFolder];
         }

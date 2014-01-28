@@ -320,6 +320,7 @@
 		BBA3404E1826D6F700B6E4B1 = {
 			isa = PBXGroup;
 			children = (
+				E4A250D9189848D000FA8B80 /* Resource */,
 				5068E1F0188FA48400FE009F /* Reachability.h */,
 				50CEBBF61840442A0005B0F9 /* ItemLayout.h */,
 				50CEBBF71840442A0005B0F9 /* ItemLayout.m */,
@@ -327,7 +328,6 @@
 				50CEBBF91840442A0005B0F9 /* ItemViewCell.m */,
 				50CEBBE8183FF4950005B0F9 /* ItemPageController.h */,
 				50CEBBE9183FF4950005B0F9 /* ItemPageController.m */,
-				50FA4064183B714900EC0CEC /* MOA.sqlite */,
 				BBA340601826D6F700B6E4B1 /* MOA */,
 				BBA3407F1826D6F700B6E4B1 /* MOATests */,
 				BBA340591826D6F700B6E4B1 /* Frameworks */,
@@ -452,6 +452,14 @@
 				BBA3408F182700FC00B6E4B1 /* 480x360.gif */,
 			);
 			name = Placeholders;
+			sourceTree = "<group>";
+		};
+		E4A250D9189848D000FA8B80 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				50FA4064183B714900EC0CEC /* MOA.sqlite */,
+			);
+			name = Resource;
 			sourceTree = "<group>";
 		};
 		E4B5A0CC1858DAC10047D9B8 /* Tab Icons */ = {

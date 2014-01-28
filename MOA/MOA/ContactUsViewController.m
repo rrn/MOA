@@ -53,9 +53,6 @@
     
     DBDataList *myCafeData = [[DBDataList alloc]init];
     visitorInformationArray = [myCafeData getCafeHours];
-    for (int i=0; i<7; i++) {
-        NSLog(@"%@", ((DBData *)[visitorInformationArray objectAtIndex:i]).Day);
-    }
     
     
     // Sidebar menu code

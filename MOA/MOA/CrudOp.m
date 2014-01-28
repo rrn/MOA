@@ -190,11 +190,12 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     @try {
         //NSFileManager *fileMgr = [NSFileManager defaultManager];
         
+        //NSError *error;
         // check if the documents has file or not
         NSString *dbPath = [self.GetDocumentDirectory stringByAppendingPathComponent:@"MOA.sqlite"];
+        //[[NSFileManager defaultManager] removeItemAtPath: dbPath error: &error];
         if (![fileMgr fileExistsAtPath:dbPath]) {
-            dbPath = [[NSBundle mainBundle] pathForResource:@"MOA"ofType:@"sqlite"];
-            NSLog(@"%@", @"File not found, using bundle");
+            [self CopyDbToDocumentsFolder];
         }
         BOOL success = [fileMgr fileExistsAtPath:dbPath];
         
@@ -214,7 +215,7 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
             sql = "SELECT Day, Hours FROM cafe_hours";
             saveDataInDefaultFormat = 1;
         } else if ([tableName isEqualToString:@"general_text"]){
-            sql = "SELECT Description, Identifier FROM general_text";
+            sql = "SELECT Identifier, Description FROM general_text";
         } else if ([tableName isEqualToString:@"general_hours"]){
             sql = "SELECT Day, Hours FROM general_hours";
             saveDataInDefaultFormat = 1;

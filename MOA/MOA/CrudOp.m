@@ -190,12 +190,27 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     @try {
         //NSFileManager *fileMgr = [NSFileManager defaultManager];
         
-        NSError *error;
+        
         // check if the documents has file or not
+        NSError *error;
         NSString *dbPath = [self.GetDocumentDirectory stringByAppendingPathComponent:@"MOA.sqlite"];
-        [[NSFileManager defaultManager] removeItemAtPath: dbPath error: &error];
+        
         if (![fileMgr fileExistsAtPath:dbPath]) {
             [self CopyDbToDocumentsFolder];
+        } else {
+            // compare the dates of sqlite files
+            NSDictionary *dbInSimulatorDictionary = [[NSFileManager defaultManager] attributesOfItemAtPath:dbPath error:&error];
+            NSDate *simulatorDBDate =[dbInSimulatorDictionary objectForKey:NSFileModificationDate];
+            NSString *bundleDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"MOA.sqlite"];
+            NSDictionary *bundleDBDictionary = [[NSFileManager defaultManager] attributesOfItemAtPath:bundleDBPath error:&error];
+            NSDate *bundleDBDate = [bundleDBDictionary objectForKey:NSFileModificationDate];
+            // if the local DB on the phone
+            // is older than the one in the program
+            if ([simulatorDBDate compare:bundleDBDate] == NSOrderedAscending) {
+                //NSLog(@"SQLite in Document is earlier than SQLite in Bundle. Replacing . . .");
+                [[NSFileManager defaultManager] removeItemAtPath: dbPath error: &error];
+                [self CopyDbToDocumentsFolder];
+            }
         }
         BOOL success = [fileMgr fileExistsAtPath:dbPath];
         

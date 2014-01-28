@@ -12,7 +12,6 @@
 
 @interface VisitorInfoViewController ()
 
--(void) validateJSONString;
 @end
 
 

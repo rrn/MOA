@@ -667,41 +667,41 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shop-1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="red-ag-lvH">
-                                        <rect key="frame" x="0.0" y="16" width="320" height="170"/>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="shop-1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="red-ag-lvH">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="201"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="170" id="8IV-fy-zZI"/>
+                                            <constraint firstAttribute="height" constant="186" id="TPA-W3-dHs"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="298" translatesAutoresizingMaskIntoConstraints="NO" id="Jp9-2D-3DA">
                                         <rect key="frame" x="11" y="202" width="298" height="251"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="251" id="6DO-t3-z4J"/>
+                                            <constraint firstAttribute="height" constant="251" id="m3U-h1-qQ6"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="Jp9-2D-3DA" firstAttribute="leading" secondItem="WtK-ia-KOo" secondAttribute="leading" constant="11" id="1Ih-nI-coB"/>
-                                    <constraint firstAttribute="trailing" secondItem="red-ag-lvH" secondAttribute="trailing" id="3zg-fu-wBH"/>
-                                    <constraint firstItem="red-ag-lvH" firstAttribute="leading" secondItem="WtK-ia-KOo" secondAttribute="leading" id="FPS-Xn-ugd"/>
-                                    <constraint firstItem="Jp9-2D-3DA" firstAttribute="top" secondItem="red-ag-lvH" secondAttribute="bottom" constant="16" id="c0Q-0g-2it"/>
-                                    <constraint firstAttribute="bottom" secondItem="Jp9-2D-3DA" secondAttribute="bottom" constant="115" id="gBn-rt-mIE"/>
-                                    <constraint firstItem="red-ag-lvH" firstAttribute="top" secondItem="WtK-ia-KOo" secondAttribute="top" constant="16" id="gmP-Hp-cEa"/>
-                                    <constraint firstItem="Jp9-2D-3DA" firstAttribute="centerX" secondItem="WtK-ia-KOo" secondAttribute="centerX" id="ixB-7E-BMG"/>
-                                    <constraint firstItem="red-ag-lvH" firstAttribute="centerX" secondItem="Jp9-2D-3DA" secondAttribute="centerX" id="jRY-sD-gkR"/>
+                                    <constraint firstAttribute="bottom" secondItem="Jp9-2D-3DA" secondAttribute="bottom" constant="27" id="6VY-ob-FNu"/>
+                                    <constraint firstItem="Jp9-2D-3DA" firstAttribute="centerX" secondItem="red-ag-lvH" secondAttribute="centerX" id="84g-jM-DXJ"/>
+                                    <constraint firstItem="red-ag-lvH" firstAttribute="top" secondItem="WtK-ia-KOo" secondAttribute="top" id="97A-un-1vw"/>
+                                    <constraint firstItem="Jp9-2D-3DA" firstAttribute="leading" secondItem="WtK-ia-KOo" secondAttribute="leading" constant="11" id="9Yb-ht-Jxg"/>
+                                    <constraint firstAttribute="trailing" secondItem="red-ag-lvH" secondAttribute="trailing" id="CBN-Ds-GSH"/>
+                                    <constraint firstItem="Jp9-2D-3DA" firstAttribute="top" secondItem="red-ag-lvH" secondAttribute="bottom" constant="16" id="h0f-f4-8cO"/>
+                                    <constraint firstItem="red-ag-lvH" firstAttribute="centerX" secondItem="WtK-ia-KOo" secondAttribute="centerX" id="n4P-7L-tbM"/>
+                                    <constraint firstItem="red-ag-lvH" firstAttribute="leading" secondItem="WtK-ia-KOo" secondAttribute="leading" id="zf7-Ic-5bo"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="WtK-ia-KOo" secondAttribute="trailing" id="Qhm-gD-mVg"/>
-                            <constraint firstItem="WtK-ia-KOo" firstAttribute="leading" secondItem="AOE-5R-9s5" secondAttribute="leading" id="erc-JJ-Ej9"/>
-                            <constraint firstAttribute="bottom" secondItem="WtK-ia-KOo" secondAttribute="bottom" id="gay-S2-D9u"/>
-                            <constraint firstItem="WtK-ia-KOo" firstAttribute="top" secondItem="AOE-5R-9s5" secondAttribute="top" id="ji6-9m-snP"/>
+                            <constraint firstAttribute="bottom" secondItem="WtK-ia-KOo" secondAttribute="bottom" id="dcp-ep-4EP"/>
+                            <constraint firstItem="WtK-ia-KOo" firstAttribute="top" secondItem="AOE-5R-9s5" secondAttribute="top" id="e5W-3n-liZ"/>
+                            <constraint firstItem="WtK-ia-KOo" firstAttribute="leading" secondItem="AOE-5R-9s5" secondAttribute="leading" id="jZC-jP-6TG"/>
+                            <constraint firstAttribute="trailing" secondItem="WtK-ia-KOo" secondAttribute="trailing" id="rdb-YY-4Zh"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -737,7 +737,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="8Wu-3J-Jsu">
-                                <rect key="frame" x="-1" y="143" width="320" height="131"/>
+                                <rect key="frame" x="-1" y="143" width="320" height="274"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -821,7 +821,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cafe-1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="WYh-mX-VDS">
-                                        <rect key="frame" x="0.0" y="10" width="320" height="80"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="200"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     </imageView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jrn-ag-43T">
@@ -832,7 +832,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fw-vX-FaI">
-                                        <rect key="frame" x="20" y="198" width="280" height="183"/>
+                                        <rect key="frame" x="20" y="205" width="280" height="183"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>

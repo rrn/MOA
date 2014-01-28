@@ -97,7 +97,7 @@
     
     //remove the initial html tag
     if ([strToValidate rangeOfString:@"<body>"].location == NSNotFound) {
-        NSLog(@"Data is Good: Returned JSON String does not have end HTML tags");
+        //NSLog(@"Data is Good: Returned JSON String does not have end HTML tags");
     } else {
         int startingOffset = [strToValidate rangeOfString:@"{"].location;
         strToValidate = [[strToValidate substringFromIndex:startingOffset] copy];
@@ -105,7 +105,7 @@
     
     //remove the end tag
     if ([strToValidate rangeOfString:@"</body>"].location == NSNotFound){
-        NSLog(@"Data is Good: Returned JSON String does not have end HTML tags");
+        //NSLog(@"Data is Good: Returned JSON String does not have end HTML tags");
     } else {
         int endingOffset = [strToValidate rangeOfString:@"</body>"].location;
         strToValidate = [[strToValidate substringWithRange:NSMakeRange(0, endingOffset)] copy];

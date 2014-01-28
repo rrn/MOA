@@ -42,7 +42,6 @@
     NetworkStatus internetStatus = [reachability currentReachabilityStatus];
     
     UITableViewController * tabkeViewController = [[UITableViewController alloc] init];
-    tabkeViewController.tableView = self.theTableView;
     [self.view addSubview:tabkeViewController.view];
     if(internetStatus == NotReachable) {
         

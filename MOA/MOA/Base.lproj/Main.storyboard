@@ -265,6 +265,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="akc-uI-Quy">
+                                <rect key="frame" x="40" y="102" width="240" height="300"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -276,6 +280,7 @@
                     <connections>
                         <outlet property="description" destination="8k1-o0-b2W" id="616-t9-J4x"/>
                         <outlet property="sidebarButton" destination="x62-pS-ikN" id="CXN-Lo-TJM"/>
+                        <outlet property="theScrollView" destination="akc-uI-Quy" id="FZV-Ai-112"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n9j-FP-wR1" userLabel="First Responder" sceneMemberID="firstResponder"/>

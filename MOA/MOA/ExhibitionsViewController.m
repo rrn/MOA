@@ -36,6 +36,8 @@
     // Set the gesture
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     self.description.text = @"Inserted Text";
+    
+    
     [self checkForNetwork];
 }
 

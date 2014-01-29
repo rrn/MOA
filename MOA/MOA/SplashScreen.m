@@ -68,8 +68,10 @@
     [TagList downloadPeopleJson];
     [TagList downloadPlacesJson];
     [TagList downloadObjectJson];
+    [TagList loadInformation];
     [NSThread sleepForTimeInterval:1.0f];
 }
+
 
 - (void)didReceiveMemoryWarning
 {

@@ -15,7 +15,7 @@
 @property (strong, nonatomic) NSMutableArray *culturesTags;
 @property (strong, nonatomic) NSMutableArray *materialsTags;
 @property (strong, nonatomic) NSMutableArray *peopleTags;
-
+@property (strong, nonatomic) NSArray *calendarEvents;
 
 + (TagList *)sharedInstance;
 
@@ -24,5 +24,6 @@
 +(void) downloadPlacesJson;
 +(void) downloadCulturesJson;
 +(void) downloadPeopleJson;
++(void) loadInformation;
 
 @end

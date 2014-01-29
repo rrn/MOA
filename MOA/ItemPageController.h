@@ -12,7 +12,7 @@
 
 @property NSArray* data;
 @property NSInteger itemNumber;
-@property (weak, nonatomic) IBOutlet UIScrollView *theScrollView;
+@property (strong, nonatomic) IBOutlet UIScrollView *theScrollView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;
 @property NSInteger count;
 

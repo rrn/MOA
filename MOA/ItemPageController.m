@@ -70,6 +70,20 @@
     _sideBarButton.target = self.revealViewController;
     _sideBarButton.action = @selector(rightRevealToggle:);
     
+    CGRect scrollFrame;
+    if ([[UIScreen mainScreen] bounds].size.height == 568)
+    {
+        //iphone 5
+        scrollFrame.origin = self.theScrollView.frame.origin;
+        scrollFrame.size = CGSizeMake(self.theScrollView.frame.size.width, 440);
+    }
+    else{
+        //other iphones
+        scrollFrame.origin = self.theScrollView.frame.origin;
+        scrollFrame.size = CGSizeMake(self.theScrollView.frame.size.width, 352);
+    }
+    
+    self.theScrollView = [[UIScrollView alloc] initWithFrame:scrollFrame];
     _nextItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(nextItem:)];
     _previousItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self action:@selector(previousItem:)];
     _titleText = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:self action:nil];
@@ -92,18 +106,17 @@
     self.itemDescriptionTextView = [[UITextView alloc] initWithFrame:CGRectMake(screenWidth/20, 300, screenWidth -(2*screenWidth)/20, 200)];
     self.itemDescriptionTextView.scrollEnabled = NO;
     
+
+    
     [[self theScrollView] addSubview:[self itemNameLabel]];
     [[self theScrollView] addSubview:[self idNumberLabel]];
     [[self theScrollView] addSubview:[self displayItemImageView]];
     [[self theScrollView] addSubview:[self itemDescriptionTextView]];
-    float bottom_inset = self.tabBarController.tabBar.frame.size.height;
     
     self.displayItemImageView.image = [[UIImage alloc] init];
     _imageLoading = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake((screenWidth -(2*screenWidth)/20)/2-10, 90, 20, 20)];
     _imageLoading.color = [UIColor grayColor];
     [self.displayItemImageView addSubview:_imageLoading];
-    
-    self.theScrollView.contentInset=UIEdgeInsetsMake(0.0, 0.0, bottom_inset,0.0);
     
     [self.view addSubview:[self theScrollView]];
     
@@ -173,7 +186,7 @@
     
     [self.itemDescriptionTextView sizeToFit];
     
-    float height = self.itemNameLabel.frame.size.height + self.idNumberLabel.frame.size.height + self.displayItemImageView.frame.size.height + self.itemDescriptionTextView.frame.size.height+40;
+    float height = self.itemNameLabel.frame.size.height + self.idNumberLabel.frame.size.height + self.displayItemImageView.frame.size.height + self.itemDescriptionTextView.frame.size.height + 40;
     
     self.itemDescriptionTextView.editable = NO;
     

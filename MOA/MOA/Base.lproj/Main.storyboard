@@ -327,7 +327,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="3cz-mT-0U8" kind="custom" identifier="showThisWeek" customClass="SWRevealViewControllerSegue" id="Fg8-ZP-Ic8"/>
+                                    <segue destination="gXb-uY-GQK" kind="custom" identifier="showCalendar" customClass="SWRevealViewControllerSegue" id="EyV-KQ-2Pa"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell2" id="wq6-Ta-QAf">
@@ -460,58 +460,38 @@
             </objects>
             <point key="canvasLocation" x="817" y="-1830"/>
         </scene>
-        <!--Navigation Controller - This week at MOA-->
-        <scene sceneID="bGU-yg-itD">
-            <objects>
-                <navigationController storyboardIdentifier="This week at MOA" title="This week at MOA" useStoryboardIdentifierAsRestorationIdentifier="YES" id="3cz-mT-0U8" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Calendar" image="01_Weekly_25px.png" id="N5K-6b-dcw"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mUW-k2-Qdd">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="nfa-BC-BfR">
-                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
-                    <connections>
-                        <segue destination="tin-y9-PNF" kind="push" id="upo-oM-ngl"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hV2-AE-0bg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1360" y="512"/>
-        </scene>
         <!--Whats On This Week View Controller-->
         <scene sceneID="jTp-XG-Q4o">
             <objects>
-                <tableViewController id="tin-y9-PNF" customClass="WhatsOnThisWeekViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="this" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tin-y9-PNF" customClass="WhatsOnThisWeekViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Vyy-nh-aZZ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="eventCell" textLabel="Qqx-9J-6Uk" imageView="YrG-ob-d2l" style="IBUITableViewCellStyleDefault" id="bAP-p4-mkG">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="eventCell" textLabel="Qqx-9J-6Uk" imageView="YrG-ob-d2l" rowHeight="70" style="IBUITableViewCellStyleDefault" id="bAP-p4-mkG">
+                                <rect key="frame" x="0.0" y="86" width="320" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bAP-p4-mkG" id="kEE-OW-54F">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="69"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Qqx-9J-6Uk">
-                                            <rect key="frame" x="55" y="0.0" width="250" height="43"/>
+                                            <rect key="frame" x="55" y="0.0" width="230" height="69"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" image="01_Weekly_25px.png" id="YrG-ob-d2l">
-                                            <rect key="frame" x="15" y="9" width="25" height="25"/>
+                                            <rect key="frame" x="15" y="22" width="25" height="25"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="lnB-92-XDh" kind="push" id="Tw9-Es-pBp"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -522,10 +502,44 @@
                     <navigationItem key="navigationItem" id="zo7-6c-2Z9">
                         <barButtonItem key="rightBarButtonItem" image="05_More_25px.png" id="zs8-pf-wGQ"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="sidebarButton" destination="zs8-pf-wGQ" id="cuI-mD-0Ug"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ucy-g4-sKG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1848" y="513"/>
+            <point key="canvasLocation" x="2254" y="481"/>
+        </scene>
+        <!--Event View Controller-->
+        <scene sceneID="1dN-Q0-jsz">
+            <objects>
+                <viewController id="lnB-92-XDh" customClass="WOTWEventViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="vtC-o9-rZt"/>
+                        <viewControllerLayoutGuide type="bottom" id="AeM-PH-Gb7"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8hI-Mc-3Ey">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wTE-IK-eGZ">
+                                <rect key="frame" x="0.0" y="71" width="320" height="352"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="F0t-x4-06Z">
+                        <barButtonItem key="rightBarButtonItem" image="05_More_25px.png" id="X9n-Lk-hNG"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="sideBarButton" destination="X9n-Lk-hNG" id="G4I-By-hKc"/>
+                        <outlet property="theScrollView" destination="wTE-IK-eGZ" id="xYx-k3-MVv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kOA-Du-C8r" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2804" y="506"/>
         </scene>
         <!--Splash Screen-->
         <scene sceneID="IIy-uk-YWb">
@@ -1153,7 +1167,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="3cz-mT-0U8" kind="relationship" relationship="viewControllers" id="npZ-bu-dL2"/>
+                        <segue destination="gXb-uY-GQK" kind="relationship" relationship="viewControllers" id="zgW-yR-ErI"/>
                         <segue destination="FeJ-ju-YDU" kind="relationship" relationship="viewControllers" id="KG7-G5-5Wz"/>
                         <segue destination="FSa-D8-vYi" kind="relationship" relationship="viewControllers" id="8vC-Ii-8Vk"/>
                         <segue destination="mHV-0a-uqN" kind="relationship" relationship="viewControllers" id="UVY-js-OWf"/>
@@ -1210,6 +1224,25 @@
             </objects>
             <point key="canvasLocation" x="1728" y="-974"/>
         </scene>
+        <!--Navigation Controller - Calendar-->
+        <scene sceneID="ieI-a2-bNT">
+            <objects>
+                <navigationController storyboardIdentifier="This Week at MOA" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="gXb-uY-GQK" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Calendar" image="01_Weekly_25px.png" id="OyH-4j-JyI"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aSG-jr-kTc">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="tin-y9-PNF" kind="relationship" relationship="rootViewController" id="RXL-b1-rWY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QTy-pw-6NT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1728" y="457"/>
+        </scene>
     </scenes>
     <resources>
         <image name="01_Weekly_25px.png" width="25" height="25"/>
@@ -1229,10 +1262,10 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="KG7-G5-5Wz"/>
+        <segue reference="zgW-yR-ErI"/>
+        <segue reference="8vC-Ii-8Vk"/>
+        <segue reference="UVY-js-OWf"/>
         <segue reference="Qlf-L4-T27"/>
-        <segue reference="PS2-VE-2nm"/>
-        <segue reference="B3C-bd-MPA"/>
-        <segue reference="Fg8-ZP-Ic8"/>
-        <segue reference="A9d-PQ-Zkm"/>
     </inferredMetricsTieBreakers>
 </document>

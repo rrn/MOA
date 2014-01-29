@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4582C9931898BE8800DC9000 /* WOTWEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4582C9921898BE8800DC9000 /* WOTWEventViewController.m */; };
 		507121551841CB6900DDFC47 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507121541841CB6900DDFC47 /* MessageUI.framework */; };
 		507B8E641828E2F4002365EF /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 507B8E631828E2F4002365EF /* SidebarViewController.m */; };
 		507B8E681828F355002365EF /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 507B8E671828F355002365EF /* MainViewController.m */; };
@@ -90,6 +91,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4582C9911898BE8800DC9000 /* WOTWEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WOTWEventViewController.h; path = ../WOTWEventViewController.h; sourceTree = "<group>"; };
+		4582C9921898BE8800DC9000 /* WOTWEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WOTWEventViewController.m; path = ../WOTWEventViewController.m; sourceTree = "<group>"; };
 		5068E1F0188FA48400FE009F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		507121541841CB6900DDFC47 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		507B8E621828E2F4002365EF /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
@@ -371,6 +374,8 @@
 				BB0E65991835926800163652 /* TagList.m */,
 				50CCCA12182C54D100384881 /* WhatsOnThisWeekViewController.h */,
 				50CCCA13182C54D200384881 /* WhatsOnThisWeekViewController.m */,
+				4582C9911898BE8800DC9000 /* WOTWEventViewController.h */,
+				4582C9921898BE8800DC9000 /* WOTWEventViewController.m */,
 				507B8E621828E2F4002365EF /* SidebarViewController.h */,
 				507B8E631828E2F4002365EF /* SidebarViewController.m */,
 				BB0E659E18371AA100163652 /* SearchResultListViewController.h */,
@@ -572,6 +577,7 @@
 				50F5290C183CA359002A463C /* PublicTransitPage.m in Sources */,
 				50FA406B183B71FA00EC0CEC /* DBData.m in Sources */,
 				E4D391D11841989800043AEB /* Constants.m in Sources */,
+				4582C9931898BE8800DC9000 /* WOTWEventViewController.m in Sources */,
 				50F52912183CA38F002A463C /* FromLowerMainland.m in Sources */,
 				BB3179FD1827112F00CC9C38 /* ExploreMainViewController.m in Sources */,
 				E48B16D9183C9B1A0047BBA4 /* AccordionViewController.m in Sources */,

@@ -55,7 +55,7 @@
             NSString *vcName = @"";
             
             // Set the name of the Storyboard ID we want to switch to
-            if ([segue.identifier isEqualToString:@"showThisWeek"])
+            if ([segue.identifier isEqualToString:@"showCalendar"])
             {
                 // get the UITabBarController
                 vcName = @"TabBar";

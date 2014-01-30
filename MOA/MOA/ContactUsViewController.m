@@ -103,6 +103,7 @@
     textV.text = string;
     textV.textColor = [UIColor blackColor];
     textV.editable = NO;
+    textV.scrollEnabled = NO;
     switch (indexPath.row) {
         case 0:
             textV.dataDetectorTypes = UIDataDetectorTypePhoneNumber;
@@ -133,42 +134,8 @@
 
 }
 
-- (void)singleTapRecognized:(UIGestureRecognizer *)gestureRecognizer {
-    NSLog(@"single tap");
-    
-    MFMailComposeViewController *composer =[[MFMailComposeViewController alloc] init];
-    NSArray *usersTo = [NSArray arrayWithObject: @"info@moa.ubc.ca"];
-    [composer setMailComposeDelegate:self];
-    [composer setToRecipients:usersTo];
-    [composer setSubject:@"Message from MOA App User"];
-    [composer setMessageBody:@"Email Body" isHTML:YES];
-    
-    [self presentModalViewController:composer animated:YES];
-}
 
-- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
-{
-    switch (result)
-    {
-        case MFMailComposeResultCancelled:
-            NSLog(@"Mail cancelled");
-            break;
-        case MFMailComposeResultSaved:
-            NSLog(@"Mail saved");
-            break;
-        case MFMailComposeResultSent:
-            NSLog(@"Mail sent");
-            break;
-        case MFMailComposeResultFailed:
-            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
-            break;
-        default:
-            break;
-    }
-    
-    // Close the Mail Interface
-    [self dismissViewControllerAnimated:YES completion:NULL];
-}
+
 
 - (void)didReceiveMemoryWarning
 {

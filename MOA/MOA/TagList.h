@@ -16,6 +16,8 @@
 @property (strong, nonatomic) NSMutableArray *materialsTags;
 @property (strong, nonatomic) NSMutableArray *peopleTags;
 @property (strong, nonatomic) NSArray *calendarEvents;
+@property (strong, nonatomic) NSArray *exhibitionEvents;
+
 
 + (TagList *)sharedInstance;
 

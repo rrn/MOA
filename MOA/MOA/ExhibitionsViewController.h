@@ -10,7 +10,6 @@
 
 @interface ExhibitionsViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
-@property (weak, nonatomic) IBOutlet UITextView *description;
 @property (weak, nonatomic) IBOutlet UIScrollView *theScrollView;
 
 @end

@@ -155,6 +155,8 @@
     //[[TagList sharedInstance] setCalendarEvents:[NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&e]];
     NSDictionary *temp = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&e];
     [[TagList sharedInstance] setCalendarEvents:[temp objectForKey:@"whats_on"]];
+    [[TagList sharedInstance] setExhibitionEvents:[temp objectForKey:@"moa_exhibitions"]];
+
     if (e) {
         NSLog(@"Error serializing %@", e);
     }

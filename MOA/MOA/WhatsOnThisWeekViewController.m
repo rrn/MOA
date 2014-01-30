@@ -41,6 +41,24 @@
     self.title = @"This Week at MOA";
     self.tableView.rowHeight=70;
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    
+    Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    
+    if(internetStatus == NotReachable) {
+        
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"Alert!"
+                              message: @"There is no internet connection, item image cannot load."
+                              delegate: self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+    else{
+        if([[[TagList sharedInstance] calendarEvents]count]==0)
+            [TagList loadInformation];
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

@@ -35,7 +35,7 @@
     NSString* title = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:selectedTag] objectForKey:@"title"];
     CGSize size = [title sizeWithFont:[UIFont systemFontOfSize:16]
                    constrainedToSize:CGSizeMake(300, 420)
-                       lineBreakMode:UILineBreakModeWordWrap];
+                       lineBreakMode:NSLineBreakByWordWrapping];
     UITextView *newTextView = [[UITextView alloc] initWithFrame:CGRectMake(20, 75, 300, size.height + 25)];
     [newTextView setFont:[UIFont systemFontOfSize:16]];
     newTextView.text = title;

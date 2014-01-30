@@ -14,7 +14,7 @@
 
 @interface ContactUsViewController ()
 
--(void) emailInitialization;
+
 -(NSMutableArray*) contactsDataArray;
 
 @end
@@ -87,7 +87,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier:MyIdentifier];
     }
     NSString *string= [self.contactsDataArray objectAtIndex:indexPath.row];
-    CGSize stringSize = [string sizeWithFont:[UIFont boldSystemFontOfSize:15] constrainedToSize:CGSizeMake(320, 9999) lineBreakMode:UILineBreakModeWordWrap];
+    CGSize stringSize = [string sizeWithFont:[UIFont boldSystemFontOfSize:15] constrainedToSize:CGSizeMake(320, 9999) lineBreakMode:NSLineBreakByWordWrapping];
     
     UITextView *textV = [[UITextView alloc] initWithFrame:CGRectMake(5, 5, 290, stringSize.height+10)];
     
@@ -124,15 +124,6 @@
     return cell;
 }
 
--(void)emailInitialization{
-    _myView.text = @"info@moa.ubc.ca";
-    _myView.editable = NO;
-    _myView.dataDetectorTypes = UIDataDetectorTypeLink;
-    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapRecognized:)];
-    singleTap.numberOfTapsRequired = 1;
-    [_myView addGestureRecognizer:singleTap];
-
-}
 
 
 

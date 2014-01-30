@@ -128,7 +128,7 @@
     
     [self.itemDescriptionTextView sizeToFit];
 
-    float height = self.programType.frame.size.height + self.eventTitle.frame.size.height + self.displayItemImageView.frame.size.height + self.itemDescriptionTextView.frame.size.height + self.time.frame.size.height+40;
+    float height = self.programType.frame.size.height + self.eventTitle.frame.size.height + self.displayItemImageView.frame.size.height + self.itemDescriptionTextView.frame.size.height + self.time.frame.size.height+50;
 
     
     

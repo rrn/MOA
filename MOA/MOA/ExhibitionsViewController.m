@@ -10,6 +10,7 @@
 #import "SWRevealViewController.h"
 #import "Reachability.h"
 #import "TagList.h"
+#import "ExhibitionChildViewController.h"
 
 @interface ExhibitionsViewController ()
 @property (strong, nonatomic)  UIImageView *displayItemImageView;
@@ -107,13 +108,24 @@
 }
 
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([[segue identifier] isEqualToString:@"ExhibitionChild"])
+    {
+        ExhibitionChildViewController *vc = [segue destinationViewController];
+        [vc setSelectedButton:selectedExhibition];
+    }
+}
 
 - (void) aMethod:(id) sender
 {
     //todo
     UIButton* button = (UIButton*)sender;
-    int i = [button tag];
-    NSLog(@"%d",i);
+    selectedExhibition = [button tag];
+    
+    [self performSegueWithIdentifier:@"ExhibitionChild" sender:self];
+    
+    //NSLog(@"%d", selectedExhibition);
 }
 - (void)didReceiveMemoryWarning
 {

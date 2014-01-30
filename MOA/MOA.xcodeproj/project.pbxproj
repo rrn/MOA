@@ -29,6 +29,7 @@
 		50CEBC031841463A0005B0F9 /* shop.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 50CEBBFF1841463A0005B0F9 /* shop.jpg */; };
 		50CEBC061841467D0005B0F9 /* CafeMOAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CEBC051841467D0005B0F9 /* CafeMOAViewController.m */; };
 		50CEBC09184146980005B0F9 /* MOAShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CEBC08184146980005B0F9 /* MOAShopViewController.m */; };
+		50D3AFFB189A484E00E81424 /* ExhibitionChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D3AFFA189A484E00E81424 /* ExhibitionChildViewController.m */; };
 		50F52903183C91D7002A463C /* DirectionParkingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F52902183C91D7002A463C /* DirectionParkingViewController.m */; };
 		50F52909183C984D002A463C /* ParkingPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F52908183C984D002A463C /* ParkingPage.m */; };
 		50F5290C183CA359002A463C /* PublicTransitPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F5290B183CA359002A463C /* PublicTransitPage.m */; };
@@ -128,6 +129,8 @@
 		50CEBC051841467D0005B0F9 /* CafeMOAViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CafeMOAViewController.m; sourceTree = "<group>"; };
 		50CEBC07184146980005B0F9 /* MOAShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MOAShopViewController.h; sourceTree = "<group>"; };
 		50CEBC08184146980005B0F9 /* MOAShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOAShopViewController.m; sourceTree = "<group>"; };
+		50D3AFF9189A484E00E81424 /* ExhibitionChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExhibitionChildViewController.h; sourceTree = "<group>"; };
+		50D3AFFA189A484E00E81424 /* ExhibitionChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExhibitionChildViewController.m; sourceTree = "<group>"; };
 		50F52901183C91D7002A463C /* DirectionParkingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionParkingViewController.h; sourceTree = "<group>"; };
 		50F52902183C91D7002A463C /* DirectionParkingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionParkingViewController.m; sourceTree = "<group>"; };
 		50F52907183C984D002A463C /* ParkingPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParkingPage.h; path = ../ParkingPage.h; sourceTree = "<group>"; };
@@ -366,6 +369,8 @@
 				E4D391D01841989800043AEB /* Constants.m */,
 				50F52905183C97DC002A463C /* LocalDatabase */,
 				BBA3406C1826D6F700B6E4B1 /* Main.storyboard */,
+				50D3AFF9189A484E00E81424 /* ExhibitionChildViewController.h */,
+				50D3AFFA189A484E00E81424 /* ExhibitionChildViewController.m */,
 				E4B5A0C9185544A10047D9B8 /* ExhibitionsViewController.h */,
 				E4B5A0CA185544A10047D9B8 /* ExhibitionsViewController.m */,
 				E48B16D7183C9B1A0047BBA4 /* AccordionViewController.h */,
@@ -603,6 +608,7 @@
 				E438ACC618386F930078FD2F /* PlanVisitViewController.m in Sources */,
 				507B8E6E1829793A002365EF /* SWRevealViewController.m in Sources */,
 				507B8E681828F355002365EF /* MainViewController.m in Sources */,
+				50D3AFFB189A484E00E81424 /* ExhibitionChildViewController.m in Sources */,
 				50CEBC09184146980005B0F9 /* MOAShopViewController.m in Sources */,
 				BBA3406B1826D6F700B6E4B1 /* AppDelegate.m in Sources */,
 				50CEBBF5184043990005B0F9 /* BHPhoto.m in Sources */,

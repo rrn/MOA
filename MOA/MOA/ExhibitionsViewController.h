@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ExhibitionsViewController : UIViewController
+@interface ExhibitionsViewController : UIViewController {
+    int selectedExhibition;
+}
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (weak, nonatomic) IBOutlet UIScrollView *theScrollView;
 

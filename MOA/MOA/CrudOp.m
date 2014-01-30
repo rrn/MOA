@@ -191,11 +191,27 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
         //NSFileManager *fileMgr = [NSFileManager defaultManager];
         
         // check if the documents has file or not
+        NSError *error;
         NSString *dbPath = [self.GetDocumentDirectory stringByAppendingPathComponent:@"MOA.sqlite"];
         if (![fileMgr fileExistsAtPath:dbPath]) {
-            dbPath = [[NSBundle mainBundle] pathForResource:@"MOA"ofType:@"sqlite"];
-            NSLog(@"%@", @"File not found, using bundle");
+            //dbPath = [[NSBundle mainBundle] pathForResource:@"MOA"ofType:@"sqlite"];
+            [self CopyDbToDocumentsFolder];
+            //NSLog(@"%@", @"File not found, using bundle");
+        } else {
+            // compare the dates of sqlite files
+            NSDictionary *dbInSimulatorDictionary = [[NSFileManager defaultManager] attributesOfItemAtPath:dbPath error:&error];
+            NSDate *simulatorDBDate =[dbInSimulatorDictionary objectForKey:NSFileModificationDate];
+            NSString *bundleDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"MOA.sqlite"];
+            NSDictionary *bundleDBDictionary = [[NSFileManager defaultManager] attributesOfItemAtPath:bundleDBPath error:&error];
+            NSDate *bundleDBDate = [bundleDBDictionary objectForKey:NSFileModificationDate];
+            // if the local DB on the phone
+            // is older than the one in the program
+            if ([simulatorDBDate compare:bundleDBDate] == NSOrderedAscending) {
+            //NSLog(@"SQLite in Document is earlier than SQLite in Bundle. Replacing . . .");
+            [[NSFileManager defaultManager] removeItemAtPath: dbPath error: &error];
+            [self CopyDbToDocumentsFolder];
         }
+    }
         BOOL success = [fileMgr fileExistsAtPath:dbPath];
         
         if(!success)
@@ -214,7 +230,8 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
             sql = "SELECT Day, Hours FROM cafe_hours";
             saveDataInDefaultFormat = 1;
         } else if ([tableName isEqualToString:@"general_text"]){
-            sql = "SELECT Description, Identifier FROM general_text";
+            sql = "SELECT Identifier, Description FROM general_text";
+            saveDataInDefaultFormat = 0;
         } else if ([tableName isEqualToString:@"general_hours"]){
             sql = "SELECT Day, Hours FROM general_hours";
             saveDataInDefaultFormat = 1;

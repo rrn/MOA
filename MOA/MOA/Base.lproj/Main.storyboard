@@ -291,18 +291,9 @@
                     <view key="view" contentMode="scaleToFill" id="g0G-gO-6gR">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6sj-bd-GmA">
-                                <rect key="frame" x="25" y="133" width="275" height="214"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="K1F-uI-whX"/>
-                    <connections>
-                        <outlet property="imageView" destination="6sj-bd-GmA" id="EmP-26-Ts9"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DyK-fy-p4D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

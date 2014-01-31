@@ -12,7 +12,6 @@
     int selectedTag;
 }
 
-@property (nonatomic, weak) IBOutlet UIImageView *imageView;
 
 -(void) setSelectedButton :(int)tag;
 

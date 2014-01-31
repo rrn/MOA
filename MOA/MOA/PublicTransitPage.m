@@ -28,7 +28,6 @@
 {
     [super viewDidLoad];
 	self.title = @"Directions";
-    NSLog(@"%@", [parkingInformationArray objectAtIndex:1]);
     self.description.text = [parkingInformationArray objectAtIndex:1];
     
     // Sidebar menu code

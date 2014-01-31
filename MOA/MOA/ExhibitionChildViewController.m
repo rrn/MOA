@@ -106,7 +106,6 @@
     locationTextView.userInteractionEnabled = NO;
     locationTextView.scrollEnabled=NO;
     length = [self textViewDidChange:locationTextView];
-    NSLog(@"%d", length);
     cursorPosition = cursorPosition+length;
     
     NSString* desc = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:selectedTag] objectForKey:@"Summary"];

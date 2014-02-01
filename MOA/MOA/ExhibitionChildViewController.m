@@ -76,6 +76,7 @@
     
     [titleTextView setFont:[UIFont systemFontOfSize:18]];
     titleTextView.text = title;
+    titleTextView.textAlignment=NSTextAlignmentCenter;
     titleTextView.userInteractionEnabled = NO;
     titleTextView.scrollEnabled= NO;
     length = [self textViewDidChange:titleTextView];
@@ -115,6 +116,7 @@
     descTextView.text = desc;
     descTextView.userInteractionEnabled = NO;
     descTextView.scrollEnabled=NO;
+    descTextView.textAlignment = NSTextAlignmentJustified;
     length = [self textViewDidChange:descTextView];
     cursorPosition = cursorPosition + length;
 

@@ -13,5 +13,6 @@
 }
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (weak, nonatomic) IBOutlet UIScrollView *theScrollView;
+@property (weak, nonatomic) IBOutlet UIPageControl* pageControl;
 
 @end

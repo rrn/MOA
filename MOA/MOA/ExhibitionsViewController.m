@@ -104,9 +104,20 @@
         
         self.theScrollView.pagingEnabled=YES;
         self.theScrollView.clipsToBounds=NO;
+        
+        self.pageControl.numberOfPages = [[[TagList sharedInstance] exhibitionEvents] count];
+        self.pageControl.currentPage = 0;
+        self.pageControl.pageIndicatorTintColor = [UIColor grayColor];
+        self.pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
+        [self.view addSubview:self.pageControl];
     }    
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat pageWidth = self.theScrollView.frame.size.width;
+    float fractionalPage = self.theScrollView.contentOffset.x / pageWidth;
+    NSInteger page = lround(fractionalPage);
+    self.pageControl.currentPage = page; }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

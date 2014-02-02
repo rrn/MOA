@@ -9,12 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "Global.h"
 
-@interface CafeMOAViewController : UIViewController
+@interface CafeMOAViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
+    int hoursFontSize;
+}
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
-@property (nonatomic, weak) IBOutlet UITextView *hours;
+//@property (nonatomic, weak) IBOutlet UITextView *hours;
 @property (nonatomic, weak) IBOutlet UITextView *description;
 @property (nonatomic, weak) IBOutlet UIScrollView *scroll;
+
 
 @end
 

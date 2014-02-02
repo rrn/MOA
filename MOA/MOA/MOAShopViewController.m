@@ -32,6 +32,8 @@
     [self.scroll setScrollEnabled:YES];
     [self.scroll setContentSize:CGSizeMake(320, 700)];
     
+    
+    
     // Sidebar menu code
     _sidebarButton.target = self.revealViewController;
     _sidebarButton.action = @selector(rightRevealToggle:);
@@ -63,6 +65,7 @@
     self.title = @"MOA Shop";
     self.description.numberOfLines = 0;
     self.description.text = text;
+    self.description.textAlignment = NSTextAlignmentJustified;
     [self.description sizeToFit];
 
     [super viewDidLoad];

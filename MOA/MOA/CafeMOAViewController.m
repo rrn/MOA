@@ -29,6 +29,9 @@
 
 - (void)viewDidLoad
 {
+    // CONSTANT NUMBER
+    hoursFontSize = 14;
+    
     [self.scroll setScrollEnabled:YES];
     [self.scroll setContentSize:CGSizeMake(320, 700)];
     
@@ -38,58 +41,86 @@
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
 
+    // check internet connectivity
     CrudOp* database = [CrudOp alloc];
-    if (!cafeHoursArray || !cafeHoursArray.count){
+    if (!cafeHoursArray || !cafeHoursArray.count || !generalTextArray || !generalTextArray.count){
         
         Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.com"];
         NetworkStatus internetStatus = [reachability currentReachabilityStatus];
         
         if (internetStatus == NotReachable){
             cafeHoursArray = [database PullFromLocalDB:@"cafe_hours"];
+            generalTextArray = [database PullFromLocalDB:@"general_text"];
+            cafeDescription = [generalTextArray objectAtIndex:1];
         } else {
             [self PullFromRemote];
         }
         
     }
-         
-    if (!cafeDescription){
-        if (!generalTextArray || !generalTextArray.count) {
-            Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.com"];
-            NetworkStatus internetStatus = [reachability currentReachabilityStatus];
-            
-            if (internetStatus == NotReachable){
-                generalTextArray = [database PullFromLocalDB:@"general_text"];
-                cafeDescription = [generalTextArray objectAtIndex:1];
-            } else {
-                [self PullFromRemote];
-            }
-        } else {
-            cafeDescription = [generalTextArray objectAtIndex:1];
-        }
-    }
-    
     
     NSString* descriptionText = cafeDescription;
-    
-    NSMutableString* cafeHoursStr = [NSMutableString stringWithFormat:@"Hours:\n\n"];
-    for (int i = 0; i < [cafeHoursArray count]; i++){
-        [cafeHoursStr appendString:[cafeHoursArray objectAtIndex:i]];
-    }
+
     self.title = @"Cafe MOA";
-    
-    // set the tab to align the "Hours" info
-    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    CGFloat tabInterval = 100.0;
-    paragraphStyle.defaultTabInterval = tabInterval;
-    NSMutableArray *tabs = [NSMutableArray array];
-    [tabs addObject:[[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentLeft location:tabInterval options:nil]]; // add tab stop
-    paragraphStyle.tabStops = tabs;
-    self.hours.typingAttributes = [NSDictionary dictionaryWithObject:paragraphStyle forKey:NSParagraphStyleAttributeName];
-    
     self.description.text = descriptionText;
-    self.hours.text = cafeHoursStr;
+    self.description.textAlignment = NSTextAlignmentJustified;
     [super viewDidLoad];
 }
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 7;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
+    static NSString *MyIdentifier = @"Hours";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier:MyIdentifier];
+    }
+    NSString *string= [cafeHoursArray objectAtIndex:indexPath.row];
+    UITextView *textV = [[UITextView alloc] initWithFrame:CGRectMake(5, 5, 290, hoursFontSize+10)];
+    
+    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    CGFloat tabInterval = 150.0;
+    paragraphStyle.defaultTabInterval = tabInterval;
+    NSMutableArray *tabs = [NSMutableArray array];
+    [tabs addObject:[[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentLeft location:tabInterval options:nil]];
+    paragraphStyle.tabStops = tabs;
+    textV.typingAttributes = [NSDictionary dictionaryWithObject:paragraphStyle forKey:NSParagraphStyleAttributeName];
+    
+    textV.font = [UIFont systemFontOfSize:hoursFontSize];
+    textV.text = string;
+    textV.textColor = [UIColor blackColor];
+    textV.editable = NO;
+    textV.selectable = NO;
+    textV.scrollEnabled = NO;
+    [cell.contentView addSubview:textV];
+    
+    
+    return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *sectionName;
+    switch (section)
+    {
+        case 0:
+            sectionName = NSLocalizedString(@"Cafe Hours:", @"Cafe Hours:");
+            break;
+        default:
+            sectionName = @"";
+            break;
+    }
+    return sectionName;
+}
+
 
 - (void) PullFromRemote
 {
@@ -140,6 +171,16 @@
 
 }
 
+- (int)textViewDidChange:(UITextView *)textView
+{
+    CGFloat fixedWidth = textView.frame.size.width;
+    CGSize newSize = [textView sizeThatFits:CGSizeMake(fixedWidth, MAXFLOAT)];
+    CGRect newFrame = textView.frame;
+    newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
+    textView.frame = newFrame;
+    return newSize.height;
+}
+
 
 
 - (void)didReceiveMemoryWarning
@@ -147,9 +188,11 @@
     [super didReceiveMemoryWarning];
 }
 
-// this code is needed since iOS 7 has different layout
 - (void) viewDidLayoutSubviews {
-   [self.scroll setContentSize:CGSizeMake(320, 700)];
+    int contentSize = [self textViewDidChange:self.description]; // length of description
+    contentSize = contentSize + (7*(hoursFontSize+10)) + 290; //length of table + length of image
+    contentSize = contentSize + 210; // total spacing between elements
+   [self.scroll setContentSize:CGSizeMake(320, contentSize)];
 }
 
 @end

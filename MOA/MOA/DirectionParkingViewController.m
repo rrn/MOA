@@ -72,27 +72,27 @@
         rowIndex = 1;
         tableArray = [jsonDict objectForKey:key];
         for (NSDictionary *attribute in tableArray){
-            NSEnumerator *attEnum = [attribute keyEnumerator];
-            id attKey;
-            while (attKey = [attEnum nextObject]){
-                // attKey going to be rate etc, so need to insert to the array
-                
-                // PARKING AND DIRECTIONS
-                if ([key isEqualToString:@"parking_and_directions"]){
+            // PARKING AND DIRECTIONS
+            if ([key isEqualToString:@"parking_and_directions"]){
+                NSEnumerator *attEnum = [attribute keyEnumerator];
+                id attKey;
+                while (attKey = [attEnum nextObject]){
                     description = [NSMutableString stringWithString:[attribute objectForKey:@"Description"]];
                     heading = [NSMutableString stringWithString:[attribute objectForKey:@"Heading"]];
                     [dbCrud UpdateRecords:description :heading :rowIndex :@"parkingDirections"];
                     [parkingInformationArray addObject:description];
-                   
+                        
+                    // increase att key here
+                    attKey = [attEnum nextObject];
+                    rowIndex++;
                 }
-                // increase att key here
-                attKey = [attEnum nextObject];
-                rowIndex++;
             }
         }
     }
-
 }
+
+
+
 
 - (void)didReceiveMemoryWarning
 {

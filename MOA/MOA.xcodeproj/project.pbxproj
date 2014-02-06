@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4582C9931898BE8800DC9000 /* WOTWEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4582C9921898BE8800DC9000 /* WOTWEventViewController.m */; };
+		503CDBEB18A384B300BC8580 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 503CDBEA18A384B300BC8580 /* Utils.m */; };
 		507121551841CB6900DDFC47 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507121541841CB6900DDFC47 /* MessageUI.framework */; };
 		507B8E641828E2F4002365EF /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 507B8E631828E2F4002365EF /* SidebarViewController.m */; };
 		507B8E681828F355002365EF /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 507B8E671828F355002365EF /* MainViewController.m */; };
@@ -94,6 +95,8 @@
 /* Begin PBXFileReference section */
 		4582C9911898BE8800DC9000 /* WOTWEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WOTWEventViewController.h; path = ../WOTWEventViewController.h; sourceTree = "<group>"; };
 		4582C9921898BE8800DC9000 /* WOTWEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WOTWEventViewController.m; path = ../WOTWEventViewController.m; sourceTree = "<group>"; };
+		503CDBE918A384B300BC8580 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		503CDBEA18A384B300BC8580 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		5068E1F0188FA48400FE009F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		507121541841CB6900DDFC47 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		507B8E621828E2F4002365EF /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
@@ -376,6 +379,8 @@
 				E48B16D7183C9B1A0047BBA4 /* AccordionViewController.h */,
 				E48B16D8183C9B1A0047BBA4 /* AccordionViewController.m */,
 				BB0E65981835926800163652 /* TagList.h */,
+				503CDBE918A384B300BC8580 /* Utils.h */,
+				503CDBEA18A384B300BC8580 /* Utils.m */,
 				BB0E65991835926800163652 /* TagList.m */,
 				50CCCA12182C54D100384881 /* WhatsOnThisWeekViewController.h */,
 				50CCCA13182C54D200384881 /* WhatsOnThisWeekViewController.m */,
@@ -609,6 +614,7 @@
 				507B8E6E1829793A002365EF /* SWRevealViewController.m in Sources */,
 				507B8E681828F355002365EF /* MainViewController.m in Sources */,
 				50D3AFFB189A484E00E81424 /* ExhibitionChildViewController.m in Sources */,
+				503CDBEB18A384B300BC8580 /* Utils.m in Sources */,
 				50CEBC09184146980005B0F9 /* MOAShopViewController.m in Sources */,
 				BBA3406B1826D6F700B6E4B1 /* AppDelegate.m in Sources */,
 				50CEBBF5184043990005B0F9 /* BHPhoto.m in Sources */,

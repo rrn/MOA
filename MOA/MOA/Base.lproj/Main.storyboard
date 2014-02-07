@@ -258,17 +258,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="akc-uI-Quy">
-                                <rect key="frame" x="40" y="88" width="240" height="388"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <connections>
-                                    <outlet property="delegate" destination="dcg-jU-hnK" id="Ehd-tp-bsf"/>
-                                </connections>
-                            </scrollView>
                             <pageControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="DfS-id-NJR">
                                 <rect key="frame" x="148" y="484" width="39" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </pageControl>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2C4-Mb-Q6p" customClass="iCarousel">
+                                <rect key="frame" x="0.0" y="65" width="320" height="456"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="dcg-jU-hnK" id="5ZA-d4-FA9"/>
+                                    <outlet property="delegate" destination="dcg-jU-hnK" id="Xms-uh-CJC"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -278,9 +279,9 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="carousel" destination="2C4-Mb-Q6p" id="QEz-e2-YQx"/>
                         <outlet property="pageControl" destination="DfS-id-NJR" id="Rru-nw-ZS2"/>
                         <outlet property="sidebarButton" destination="x62-pS-ikN" id="CXN-Lo-TJM"/>
-                        <outlet property="theScrollView" destination="akc-uI-Quy" id="FZV-Ai-112"/>
                         <segue destination="X3k-8O-0v4" kind="push" identifier="ExhibitionChild" id="31o-9a-kP2"/>
                     </connections>
                 </viewController>

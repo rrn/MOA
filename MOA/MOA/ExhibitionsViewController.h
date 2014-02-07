@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "iCarousel.h"
 
-@interface ExhibitionsViewController : UIViewController {
-    int selectedExhibition;
-}
+@interface ExhibitionsViewController : UIViewController <iCarouselDataSource, iCarouselDelegate>;
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
-@property (weak, nonatomic) IBOutlet UIScrollView *theScrollView;
 @property (weak, nonatomic) IBOutlet UIPageControl* pageControl;
+@property (nonatomic, strong) IBOutlet iCarousel *carousel;
+@property int selectedExhibition;
 
 @end

@@ -21,6 +21,8 @@
 
 @implementation ExhibitionsViewController
 
+@synthesize carousel;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -32,7 +34,9 @@
 
 - (void)viewDidLoad
 {
+    carousel.type = iCarouselTypeRotary;
     [super viewDidLoad];
+    
 	
     // Set the side bar button action. When it's tapped, it'll show up the sidebar.
     _sidebarButton.target = self.revealViewController;
@@ -45,11 +49,6 @@
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    float screenWidth = self.theScrollView.frame.size.width;
-    
-    //code to add a new button
-    
     
     Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
     NetworkStatus internetStatus = [reachability currentReachabilityStatus];
@@ -64,79 +63,16 @@
                               otherButtonTitles:nil];
         [alert show];
     }
-    else{
-        if([[[TagList sharedInstance] exhibitionEvents] count] ==0){
-            [TagList loadInformation];
-        }
-        
-        int cursorPosition = 0;
-        for(int i=0; i < [[[TagList sharedInstance] exhibitionEvents] count]; i++)
-        {
-            
-            UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-            button.frame = CGRectMake((i*screenWidth) + screenWidth/20, 10, screenWidth -(2*screenWidth)/20, self.theScrollView.frame.size.height);
-            
-            NSString *startDate = [self convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"activationDate"]];
-            NSString *endDate = [self convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"expiryDate"]];
-            //nameLabel.text =[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"title"];
-            UITextView *nameTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, 210, button.frame.size.width, 10)];
-            nameTextView.text = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"title"];
-            [nameTextView setFont:[UIFont boldSystemFontOfSize:14]];
-            nameTextView.textAlignment= NSTextAlignmentCenter;
-            nameTextView.userInteractionEnabled = NO;
-            nameTextView.scrollEnabled= NO;
-            cursorPosition = 210 + [Utils textViewDidChange:nameTextView];
-            
-            UITextView *dateTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, cursorPosition, button.frame.size.width, 10)];
-            NSString *date = [NSString stringWithFormat:@"%@ to %@", startDate, endDate];
-            dateTextView.text = date;
-            [dateTextView setFont:[UIFont systemFontOfSize:14]];
-            dateTextView.userInteractionEnabled = NO;
-            dateTextView.scrollEnabled = NO;
-            dateTextView.textAlignment = NSTextAlignmentCenter;
-            [Utils textViewDidChange:dateTextView];
-            
-            [button addTarget:self
-                       action:@selector(aMethod:)
-             forControlEvents:UIControlEventTouchDown];
-            NSString *imageURL = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"image"];
-            NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: imageURL]];
-            UIImageView *buttonImage =[[UIImageView alloc] initWithImage:[UIImage imageWithData:imageData]];
-            
-            buttonImage.frame = CGRectMake(0, 0, button.frame.size.width, 200);
-            [button setTag:i];
-            [button addSubview:buttonImage];
-            [button addSubview:nameTextView];
-            [button addSubview:dateTextView];
-            [self.theScrollView addSubview:button];
-            
-        }
-        
-        [self.theScrollView setContentSize:CGSizeMake(self.theScrollView.frame.size.width*[[[TagList sharedInstance] exhibitionEvents] count],  0)];
-        
-        self.theScrollView.pagingEnabled=YES;
-        self.theScrollView.clipsToBounds=NO;
-        
-        self.pageControl.numberOfPages = [[[TagList sharedInstance] exhibitionEvents] count];
-        self.pageControl.currentPage = 0;
-        self.pageControl.pageIndicatorTintColor = [UIColor grayColor];
-        self.pageControl.currentPageIndicatorTintColor = [UIColor blackColor];
-        [self.view addSubview:self.pageControl];
-    }    
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    CGFloat pageWidth = self.theScrollView.frame.size.width;
-    float fractionalPage = self.theScrollView.contentOffset.x / pageWidth;
-    NSInteger page = lround(fractionalPage);
-    self.pageControl.currentPage = page; }
+
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"ExhibitionChild"])
     {
         ExhibitionChildViewController *vc = [segue destinationViewController];
-        [vc setSelectedButton:selectedExhibition];
+        [vc setSelectedButton:self.selectedExhibition];
     }
 }
 
@@ -144,7 +80,7 @@
 {
     //todo
     UIButton* button = (UIButton*)sender;
-    selectedExhibition = [button tag];
+    self.selectedExhibition = [button tag];
     
     [self performSegueWithIdentifier:@"ExhibitionChild" sender:self];
 }
@@ -195,6 +131,81 @@
         
         default: return @"January";
     }
+}
+
+#pragma mark -
+#pragma mark iCarousel methods
+
+- (NSUInteger)numberOfItemsInCarousel:(iCarousel *)carousel
+{
+    return [[[TagList sharedInstance] exhibitionEvents] count];
+}
+
+- (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
+{
+    self.selectedExhibition = index;
+    [self performSegueWithIdentifier:@"ExhibitionChild" sender:self];
+}
+
+// this behaves like tableCell
+- (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(UIView *)view
+{
+    UILabel *label = nil;
+    
+    if (view == nil)
+    {
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+        button.frame = CGRectMake(0,0,200.0f, 200.0f);
+        
+        int cursorPosition = 0;
+        view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 300.0f, 300.0f)];
+        view.layer.backgroundColor = [UIColor whiteColor].CGColor;
+        view.layer.borderColor = [UIColor grayColor].CGColor;
+        view.layer.borderWidth = 2.0f;
+        
+        NSString *imageURL = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"image"];
+        NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: imageURL]];
+        UIImageView *buttonImage =[[UIImageView alloc] initWithImage:[UIImage imageWithData:imageData]];
+        [view addSubview:buttonImage];
+        
+        UITextView *nameTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, 210, 300.0f, 10)];
+        nameTextView.text = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"title"];
+        [nameTextView setFont:[UIFont boldSystemFontOfSize:14]];
+        nameTextView.textAlignment= NSTextAlignmentCenter;
+        nameTextView.userInteractionEnabled = NO;
+        nameTextView.scrollEnabled= NO;
+        cursorPosition = 210 + [Utils textViewDidChange:nameTextView];
+        [view addSubview:nameTextView];
+        
+        NSString *startDate = [self convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"activationDate"]];
+        NSString *endDate = [self convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"expiryDate"]];
+        UITextView *dateTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, cursorPosition, 300.0f, 10)];
+        NSString *date = [NSString stringWithFormat:@"%@ to %@", startDate, endDate];
+        dateTextView.text = date;
+        [dateTextView setFont:[UIFont systemFontOfSize:14]];
+        dateTextView.userInteractionEnabled = NO;
+        dateTextView.scrollEnabled = NO;
+        dateTextView.textAlignment = NSTextAlignmentCenter;
+        [Utils textViewDidChange:dateTextView];
+        [view addSubview:dateTextView];
+        
+        view.contentMode = UIViewContentModeCenter;
+
+    }
+    else
+    {
+        //get a reference to the label in the recycled view
+        label = (UILabel *)[view viewWithTag:1];
+    }
+
+    
+    return view;
+}
+
+- (void)dealloc
+{
+    carousel.delegate = nil;
+    carousel.dataSource = nil;
 }
 
 - (void)didReceiveMemoryWarning

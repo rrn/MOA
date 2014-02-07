@@ -10,9 +10,7 @@
 
 @interface ConvertDate : NSObject
 
-+ (ConvertDate *)sharedInstance;
-
-+(NSString*)convertDate;
-+(NSString*)convertMonthToString;
+-(NSString*)convertDate:(NSString*) short_date;
+-(NSString*)convertMonthToString:(NSString*) month_numeric;
 
 @end

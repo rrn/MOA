@@ -10,23 +10,10 @@
 
 @implementation ConvertDate
 
-+ (ConvertDate *)sharedInstance
-{
-    // the instance of this class is stored here
-    static ConvertDate *myInstance = nil;
-    
-    // check to see if an instance already exists
-    if (nil == myInstance) {
-        myInstance  = [[[self class] alloc] init];
-        // initialize variables here
-    }
-    // return the instance of this class
-    return myInstance;
-}
 
-+ (NSString*) convertDate:(NSString*) short_date
+- (NSString*) convertDate:(NSString*) short_date
 {
-    //conver short date to long date
+    //convert short date to long date
     NSArray* components = [short_date componentsSeparatedByString:@"-"];
     
     NSString *year = [components objectAtIndex:0];
@@ -39,7 +26,7 @@
     return long_date;
 }
 
-+ (NSString*) convertMonthToString:(NSString*) month_numeric
+- (NSString*) convertMonthToString:(NSString*) month_numeric
 {
     switch (month_numeric.intValue)
     {

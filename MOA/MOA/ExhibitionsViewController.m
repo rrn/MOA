@@ -12,6 +12,7 @@
 #import "TagList.h"
 #import "ExhibitionChildViewController.h"
 #import "Utils.h"
+#import "ConvertDate.h"
 
 @interface ExhibitionsViewController ()
 @property (strong, nonatomic)  UIImageView *displayItemImageView;

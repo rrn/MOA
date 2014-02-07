@@ -8,6 +8,7 @@
 
 #import "ExhibitionChildViewController.h"
 #import "TagList.h"
+#import "Utils.h"
 
 @interface ExhibitionChildViewController ()
 
@@ -52,15 +53,6 @@
     
 }
 
-- (int)textViewDidChange:(UITextView *)textView
-{
-    CGFloat fixedWidth = textView.frame.size.width;
-    CGSize newSize = [textView sizeThatFits:CGSizeMake(fixedWidth, MAXFLOAT)];
-    CGRect newFrame = textView.frame;
-    newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
-    textView.frame = newFrame;
-    return newSize.height;
-}
 
 -(void) prepareForDisplay
 {
@@ -68,18 +60,16 @@
     int length = 0;
     int cursorPosition = 0;
     
-    // title, desc = description, date, image
-    
     NSString* title = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:selectedTag] objectForKey:@"title"];
     UITextView *titleTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, 75, 300, 10)];
     cursorPosition = 75;
     
-    [titleTextView setFont:[UIFont systemFontOfSize:18]];
+    [titleTextView setFont:[UIFont boldSystemFontOfSize:18]];
     titleTextView.text = title;
     titleTextView.textAlignment=NSTextAlignmentCenter;
     titleTextView.userInteractionEnabled = NO;
     titleTextView.scrollEnabled= NO;
-    length = [self textViewDidChange:titleTextView];
+    length = [Utils textViewDidChange:titleTextView];
     
     NSString *imageURLString = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:selectedTag] objectForKey:@"image"];
     NSURL *imageURL = [NSURL URLWithString:imageURLString];
@@ -89,24 +79,24 @@
     imageView.frame = CGRectMake(10, cursorPosition + 10, self.view.frame.size.width-20, 214);
     
     cursorPosition = 214+cursorPosition;
-    NSString* activationDate = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:selectedTag] objectForKey:@"activationDate"];
-    UITextView *dateTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, cursorPosition + 10, self.view.frame.size.width-20, 10)];
+    NSString* subtitle = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:selectedTag] objectForKey:@"subtitle"];
+    UITextView *subtitleTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, cursorPosition + 10, self.view.frame.size.width-20, 10)];
     
-    [dateTextView setFont:[UIFont systemFontOfSize:14]];
-    dateTextView.text = activationDate;
-    dateTextView.userInteractionEnabled = NO;
-    dateTextView.scrollEnabled =NO;
-    length = [self textViewDidChange:dateTextView];
+    [subtitleTextView setFont:[UIFont systemFontOfSize:14]];
+    subtitleTextView.text = subtitle;
+    subtitleTextView.userInteractionEnabled = NO;
+    subtitleTextView.scrollEnabled =NO;
+    length = [Utils textViewDidChange:subtitleTextView];
     cursorPosition = cursorPosition + length;
     
-    NSString* location = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:selectedTag] objectForKey:@"imageCaption"];
-    UITextView *locationTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, cursorPosition+10, self.view.frame.size.width-20, 10)];
+    NSString* imageCaption = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:selectedTag] objectForKey:@"imageCaption"];
+    UITextView *imageCaptionTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, cursorPosition+10, self.view.frame.size.width-20, 10)];
     
-    [locationTextView setFont:[UIFont systemFontOfSize:14]];
-    locationTextView.text = location;
-    locationTextView.userInteractionEnabled = NO;
-    locationTextView.scrollEnabled=NO;
-    length = [self textViewDidChange:locationTextView];
+    [imageCaptionTextView setFont:[UIFont italicSystemFontOfSize:14]];
+    imageCaptionTextView.text = imageCaption;
+    imageCaptionTextView.userInteractionEnabled = NO;
+    imageCaptionTextView.scrollEnabled=NO;
+    length = [Utils textViewDidChange:imageCaptionTextView];
     cursorPosition = cursorPosition+length;
     
     NSString* desc = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:selectedTag] objectForKey:@"Summary"];
@@ -117,7 +107,7 @@
     descTextView.userInteractionEnabled = NO;
     descTextView.scrollEnabled=NO;
     descTextView.textAlignment = NSTextAlignmentJustified;
-    length = [self textViewDidChange:descTextView];
+    length = [Utils textViewDidChange:descTextView];
     cursorPosition = cursorPosition + length;
 
     UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:self.view.frame];
@@ -126,8 +116,8 @@
     [scroll addSubview:imageView];
     [scroll addSubview:titleTextView];
     [scroll addSubview:descTextView];
-    [scroll addSubview:locationTextView];
-    [scroll addSubview:dateTextView];
+    [scroll addSubview:imageCaptionTextView];
+    [scroll addSubview:subtitleTextView];
     [self.view addSubview:scroll];
 }
 

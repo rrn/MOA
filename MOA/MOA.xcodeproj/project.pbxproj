@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		4582C9931898BE8800DC9000 /* WOTWEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4582C9921898BE8800DC9000 /* WOTWEventViewController.m */; };
+		503CDBEB18A384B300BC8580 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 503CDBEA18A384B300BC8580 /* Utils.m */; };
+		503CDC4518A4E70400BC8580 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 503CDC4418A4E70400BC8580 /* iCarousel.m */; };
+		503CDC4718A4E73400BC8580 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503CDC4618A4E73400BC8580 /* QuartzCore.framework */; };
 		507121551841CB6900DDFC47 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 507121541841CB6900DDFC47 /* MessageUI.framework */; };
 		507B8E641828E2F4002365EF /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 507B8E631828E2F4002365EF /* SidebarViewController.m */; };
 		507B8E681828F355002365EF /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 507B8E671828F355002365EF /* MainViewController.m */; };
@@ -79,6 +82,7 @@
 		E4B5A0E31858DC680047D9B8 /* 04_Info_25px.png in Resources */ = {isa = PBXBuildFile; fileRef = E4B5A0DD1858DC680047D9B8 /* 04_Info_25px.png */; };
 		E4B5A0E41858DC680047D9B8 /* 05_More_25px.png in Resources */ = {isa = PBXBuildFile; fileRef = E4B5A0DE1858DC680047D9B8 /* 05_More_25px.png */; };
 		E4D391D11841989800043AEB /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D391D01841989800043AEB /* Constants.m */; };
+		E4E23C6818A45F8D00AD0298 /* ConvertDate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E23C6718A45F8D00AD0298 /* ConvertDate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +98,11 @@
 /* Begin PBXFileReference section */
 		4582C9911898BE8800DC9000 /* WOTWEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WOTWEventViewController.h; path = ../WOTWEventViewController.h; sourceTree = "<group>"; };
 		4582C9921898BE8800DC9000 /* WOTWEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WOTWEventViewController.m; path = ../WOTWEventViewController.m; sourceTree = "<group>"; };
+		503CDBE918A384B300BC8580 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		503CDBEA18A384B300BC8580 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		503CDC4318A4E70400BC8580 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = SOURCE_ROOT; };
+		503CDC4418A4E70400BC8580 /* iCarousel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iCarousel.m; sourceTree = SOURCE_ROOT; };
+		503CDC4618A4E73400BC8580 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		5068E1F0188FA48400FE009F /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		507121541841CB6900DDFC47 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		507B8E621828E2F4002365EF /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SidebarViewController.h; sourceTree = "<group>"; };
@@ -208,6 +217,8 @@
 		E4B5A0DE1858DC680047D9B8 /* 05_More_25px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 05_More_25px.png; sourceTree = "<group>"; };
 		E4D391CF1841983000043AEB /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		E4D391D01841989800043AEB /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		E4E23C6618A45F8D00AD0298 /* ConvertDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvertDate.h; sourceTree = "<group>"; };
+		E4E23C6718A45F8D00AD0298 /* ConvertDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConvertDate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +226,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				503CDC4718A4E73400BC8580 /* QuartzCore.framework in Frameworks */,
 				E434341F188B52FB00922E7A /* SystemConfiguration.framework in Frameworks */,
 				507121551841CB6900DDFC47 /* MessageUI.framework in Frameworks */,
 				BBA3405D1826D6F700B6E4B1 /* CoreGraphics.framework in Frameworks */,
@@ -344,6 +356,7 @@
 		BBA340591826D6F700B6E4B1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				503CDC4618A4E73400BC8580 /* QuartzCore.framework */,
 				E434341E188B52FB00922E7A /* SystemConfiguration.framework */,
 				507121541841CB6900DDFC47 /* MessageUI.framework */,
 				50FA4070183B778F00EC0CEC /* libsqlite3.dylib */,
@@ -369,13 +382,19 @@
 				E4D391D01841989800043AEB /* Constants.m */,
 				50F52905183C97DC002A463C /* LocalDatabase */,
 				BBA3406C1826D6F700B6E4B1 /* Main.storyboard */,
+				503CDC4318A4E70400BC8580 /* iCarousel.h */,
+				503CDC4418A4E70400BC8580 /* iCarousel.m */,
 				50D3AFF9189A484E00E81424 /* ExhibitionChildViewController.h */,
 				50D3AFFA189A484E00E81424 /* ExhibitionChildViewController.m */,
 				E4B5A0C9185544A10047D9B8 /* ExhibitionsViewController.h */,
 				E4B5A0CA185544A10047D9B8 /* ExhibitionsViewController.m */,
+				E4E23C6618A45F8D00AD0298 /* ConvertDate.h */,
+				E4E23C6718A45F8D00AD0298 /* ConvertDate.m */,
 				E48B16D7183C9B1A0047BBA4 /* AccordionViewController.h */,
 				E48B16D8183C9B1A0047BBA4 /* AccordionViewController.m */,
 				BB0E65981835926800163652 /* TagList.h */,
+				503CDBE918A384B300BC8580 /* Utils.h */,
+				503CDBEA18A384B300BC8580 /* Utils.m */,
 				BB0E65991835926800163652 /* TagList.m */,
 				50CCCA12182C54D100384881 /* WhatsOnThisWeekViewController.h */,
 				50CCCA13182C54D200384881 /* WhatsOnThisWeekViewController.m */,
@@ -589,6 +608,7 @@
 				E48B16DC18413EE40047BBA4 /* LocationPage.m in Sources */,
 				E434341D188B4F7F00922E7A /* Reachability.m in Sources */,
 				50CB96C718417862003B7DCC /* ContactUsViewController.m in Sources */,
+				E4E23C6818A45F8D00AD0298 /* ConvertDate.m in Sources */,
 				E438ACC9183877E10078FD2F /* VisitorInfoViewController.m in Sources */,
 				50F5290F183CA37B002A463C /* FromAirportPage.m in Sources */,
 				50CCCA14182C54D200384881 /* WhatsOnThisWeekViewController.m in Sources */,
@@ -609,8 +629,10 @@
 				507B8E6E1829793A002365EF /* SWRevealViewController.m in Sources */,
 				507B8E681828F355002365EF /* MainViewController.m in Sources */,
 				50D3AFFB189A484E00E81424 /* ExhibitionChildViewController.m in Sources */,
+				503CDBEB18A384B300BC8580 /* Utils.m in Sources */,
 				50CEBC09184146980005B0F9 /* MOAShopViewController.m in Sources */,
 				BBA3406B1826D6F700B6E4B1 /* AppDelegate.m in Sources */,
+				503CDC4518A4E70400BC8580 /* iCarousel.m in Sources */,
 				50CEBBF5184043990005B0F9 /* BHPhoto.m in Sources */,
 				50CEBBFA1840442A0005B0F9 /* ItemLayout.m in Sources */,
 				50CEBBF3184043990005B0F9 /* BHAlbum.m in Sources */,

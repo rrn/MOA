@@ -85,26 +85,24 @@
         rowIndex = 1;
         tableArray = [jsonDict objectForKey:key];
         for (NSDictionary *attribute in tableArray){
-            NSEnumerator *attEnum = [attribute keyEnumerator];
-            id attKey;
-            while (attKey = [attEnum nextObject]){
-                // attKey going to be rate etc, so need to insert to the array
-                
-                if ([key isEqualToString:@"general_hours"]) {
+            if ([key isEqualToString:@"general_hours"]) {
+                NSEnumerator *attEnum = [attribute keyEnumerator];
+                id attKey;
+                while (attKey = [attEnum nextObject]){
+                    // attKey going to be rate etc, so need to insert to the array
                     day = [NSMutableString stringWithString:[attribute objectForKey:@"Day"]];
                     hours = [NSMutableString stringWithString:[attribute objectForKey:@"Hours"]];
                     temp = [NSMutableString stringWithFormat:@"%@ \t: %@\n", day, hours];
                     [generalHoursArray addObject:temp];
                     [dbCrud UpdateRecords:hours :day :rowIndex :@"generalHours"];
-                    
+                        
+                    // increase att key here
+                    attKey = [attEnum nextObject];
+                    rowIndex++;
                 }
-                // increase att key here
-                attKey = [attEnum nextObject];
-                rowIndex++;
             }
         }
     }
-
 }
 
 - (void)didReceiveMemoryWarning

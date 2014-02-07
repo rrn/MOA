@@ -125,7 +125,6 @@
 - (void) PullFromRemote
 {
     NSDictionary* jsonDict = [VisitorInfoViewController PullRemoteData:@"http://pluto.moa.ubc.ca/_mobile_app_remoteData.php"];
-    // NEEDS TO PERFORM UPDATE IN HERE - UPDATE THE LOCAL DB
     CrudOp *dbCrud = [[CrudOp alloc] init];
     NSMutableString *day, *hours;
     NSMutableString *description, *identifier;
@@ -138,21 +137,26 @@
         rowIndex = 1;
         tableArray = [jsonDict objectForKey:key];
         for (NSDictionary *attribute in tableArray){
-            NSEnumerator *attEnum = [attribute keyEnumerator];
-            id attKey;
-            while (attKey = [attEnum nextObject]){
-                // attKey going to be rate etc, so need to insert to the array
-                
-                // CAFE HOURS
-                if ([key isEqualToString:@"cafe_hours"]) {
+            if ([key isEqualToString:@"cafe_hours"])
+            {
+                NSEnumerator *attEnum = [attribute keyEnumerator];
+                id attKey;
+                while (attKey = [attEnum nextObject]){
                     day = [NSMutableString stringWithString:[attribute objectForKey:@"Day"]];
                     hours = [NSMutableString stringWithString:[attribute objectForKey:@"Hours"]];
                     temp = [NSMutableString stringWithFormat:@"%@ \t: %@\n", day, hours];
                     [cafeHoursArray addObject:temp];
                     [dbCrud UpdateRecords:hours :day :rowIndex :@"cafeHours"];
                     
-                    // GENERAL TEXT
-                } else if ([key isEqualToString:@"general_text"]) {
+                    // go to next row
+                    attKey = [attEnum nextObject];
+                    rowIndex++;
+                }
+            } else if ([key isEqualToString:@"general_text"]) {
+                NSEnumerator *attEnum = [attribute keyEnumerator];
+                id attKey;
+                while (attKey = [attEnum nextObject]){
+
                     description = [NSMutableString stringWithString:[attribute objectForKey:@"Description"]];
                     identifier = [NSMutableString stringWithString:[attribute objectForKey:@"Identifier"]];
                     if ([identifier isEqualToString:@"Cafe"])
@@ -160,15 +164,17 @@
                     else if ([identifier isEqualToString:@"Shop"])
                         shopDescription = description;
                     [dbCrud UpdateRecords:description :identifier :rowIndex :@"generalText"];
+                    
+                    // go to next row
+                    attKey = [attEnum nextObject];
+                    rowIndex++;
                 }
-                
-                // increase att key here
-                attKey = [attEnum nextObject];
-                rowIndex++;
+            } else {
+                // if it is not general_text or cafe_hours, no need to parse
+                break;
             }
         }
     }
-
 }
 
 - (int)textViewDidChange:(UITextView *)textView

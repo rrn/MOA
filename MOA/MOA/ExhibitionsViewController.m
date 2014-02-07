@@ -75,9 +75,26 @@
             UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
             button.frame = CGRectMake((i*screenWidth) + screenWidth/20, 10, screenWidth -(2*screenWidth)/20, self.theScrollView.frame.size.height);
             
-            startDateLabel.text = [self convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"activationDate"]];
-            endDateLabel.text = [self convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"expiryDate"]];
-            nameLabel.text =[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"title"];
+            NSString *startDate = [self convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"activationDate"]];
+            NSString *endDate = [self convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"expiryDate"]];
+            //nameLabel.text =[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"title"];
+            UITextView *nameTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, 210, button.frame.size.width, 10)];
+            nameTextView.text = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"title"];
+            [nameTextView setFont:[UIFont boldSystemFontOfSize:14]];
+            nameTextView.textAlignment= NSTextAlignmentCenter;
+            nameTextView.userInteractionEnabled = NO;
+            nameTextView.scrollEnabled= NO;
+            cursorPosition = 210 + [Utils textViewDidChange:nameTextView];
+            
+            UITextView *dateTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, cursorPosition, button.frame.size.width, 10)];
+            NSString *date = [NSString stringWithFormat:@"%@ to %@", startDate, endDate];
+            dateTextView.text = date;
+            [dateTextView setFont:[UIFont systemFontOfSize:14]];
+            dateTextView.userInteractionEnabled = NO;
+            dateTextView.scrollEnabled = NO;
+            dateTextView.textAlignment = NSTextAlignmentCenter;
+            [Utils textViewDidChange:dateTextView];
+            
             [button addTarget:self
                        action:@selector(aMethod:)
              forControlEvents:UIControlEventTouchDown];

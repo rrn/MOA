@@ -55,7 +55,7 @@
     
     NSString *locationInfo = @"MOA is located on the campus of the University of British Columbia, 20 minutes from downtown Vancouver. Museum of Anthropology at University of British Columbia 6393 NW Marine Drive Vancouver BC";
     
-    rowData = [NSArray arrayWithObjects:locationInfo, @"From YVR", @"From Lower Mainland", @"Public Transit", @"Parking", nil];
+    rowData = [NSArray arrayWithObjects:locationInfo, @"From Vancouver International Airport", @"From Lower Mainland", @"Public Transit", @"Parking", nil];
 }
 
 -(void) PullFromRemote
@@ -128,6 +128,11 @@
     }
     else
     {
+        if (indexPath.row == 1)
+        {
+            cell.textLabel.numberOfLines = 0;
+            cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        }
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     cell.textLabel.text = rowData[indexPath.row];
@@ -138,8 +143,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath  {
 	if (indexPath.row == 0)
     {
-		return 240;///it's open
+		return 180;///it's open
 	}
+    else if (indexPath.row == 1)
+    {
+        return 80;
+    }
     else
     {
 		return 45;///it's closed

@@ -79,6 +79,7 @@
 		E4B5A0E31858DC680047D9B8 /* 04_Info_25px.png in Resources */ = {isa = PBXBuildFile; fileRef = E4B5A0DD1858DC680047D9B8 /* 04_Info_25px.png */; };
 		E4B5A0E41858DC680047D9B8 /* 05_More_25px.png in Resources */ = {isa = PBXBuildFile; fileRef = E4B5A0DE1858DC680047D9B8 /* 05_More_25px.png */; };
 		E4D391D11841989800043AEB /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D391D01841989800043AEB /* Constants.m */; };
+		E4E23C6818A45F8D00AD0298 /* ConvertDate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E23C6718A45F8D00AD0298 /* ConvertDate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -208,6 +209,8 @@
 		E4B5A0DE1858DC680047D9B8 /* 05_More_25px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 05_More_25px.png; sourceTree = "<group>"; };
 		E4D391CF1841983000043AEB /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		E4D391D01841989800043AEB /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		E4E23C6618A45F8D00AD0298 /* ConvertDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvertDate.h; sourceTree = "<group>"; };
+		E4E23C6718A45F8D00AD0298 /* ConvertDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConvertDate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -373,6 +376,8 @@
 				50D3AFFA189A484E00E81424 /* ExhibitionChildViewController.m */,
 				E4B5A0C9185544A10047D9B8 /* ExhibitionsViewController.h */,
 				E4B5A0CA185544A10047D9B8 /* ExhibitionsViewController.m */,
+				E4E23C6618A45F8D00AD0298 /* ConvertDate.h */,
+				E4E23C6718A45F8D00AD0298 /* ConvertDate.m */,
 				E48B16D7183C9B1A0047BBA4 /* AccordionViewController.h */,
 				E48B16D8183C9B1A0047BBA4 /* AccordionViewController.m */,
 				BB0E65981835926800163652 /* TagList.h */,
@@ -589,6 +594,7 @@
 				E48B16DC18413EE40047BBA4 /* LocationPage.m in Sources */,
 				E434341D188B4F7F00922E7A /* Reachability.m in Sources */,
 				50CB96C718417862003B7DCC /* ContactUsViewController.m in Sources */,
+				E4E23C6818A45F8D00AD0298 /* ConvertDate.m in Sources */,
 				E438ACC9183877E10078FD2F /* VisitorInfoViewController.m in Sources */,
 				50F5290F183CA37B002A463C /* FromAirportPage.m in Sources */,
 				50CCCA14182C54D200384881 /* WhatsOnThisWeekViewController.m in Sources */,

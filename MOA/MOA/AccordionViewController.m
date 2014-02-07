@@ -15,18 +15,9 @@
 @implementation AccordionViewController
 {
     NSArray *sectionData;
-    NSArray *tableData;//mark to remove
-    
-    NSString *locationData;
-
+    NSArray *rowData;
 }
 
-//-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    UIImageView* imageView = [[UIImageView alloc] initWithImage:
-//                              [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"Supporting Files/IMAGE/plan_a_vist" ofType:@"jpg"]]];
-//    return imageView;
-//}
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -38,10 +29,9 @@
 
 - (BOOL)tableView:(UITableView *)tableView canCollapseSection:(NSInteger)section
 {
+    // Add personalized logic to determine which sections are accordion, aka collapsable
     //if (section>0)
     return YES;
-    
-    //return NO;
 }
 
 - (void)viewDidLoad
@@ -55,12 +45,11 @@
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     
+    // set row and section data
     sectionData = [NSArray arrayWithObjects:@"Location",@"Directions & Parking", @"Hours", @"Rates", nil];
     
-    locationData = @"Museum of Anthropology at University of British Columbia 6393 NW Marine Drive Vancouver BC";
+    rowData = [NSArray arrayWithObject:(@"Museum of Anthropology at University of British Columbia 6393 NW Marine Drive Vancouver BC", nil)];
 
-    
-//    tableData = [NSArray arrayWithObjects:@"1",@"2", @"3", @"4", nil];
     
     self.title = @"Plan a Visit";
     // Uncomment the following line to preserve selection between presentations.
@@ -85,7 +74,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    //return [tableData count];
     if ([self tableView:tableView canCollapseSection:section])
     {
         //section is expanded
@@ -144,7 +132,7 @@
             else {
                 if (indexPath.section == 0 ) {
                     if (indexPath.row == 0) {
-                        cell.textLabel.text = locationData;
+                        cell.textLabel.text = @"none";
                     }
                 }
                 

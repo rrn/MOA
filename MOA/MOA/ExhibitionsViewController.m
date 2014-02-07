@@ -38,9 +38,6 @@
     
     // Set the gesture
     //[self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-
-    
-    //[self checkForNetwork];
 }
 
 -(void) viewWillAppear:(BOOL)animated
@@ -79,8 +76,8 @@
             UILabel *startDateLabel = [[UILabel alloc] initWithFrame:CGRectMake( 0, 250, button.frame.size.width, 30)];
             UILabel *endDateLabel = [[UILabel alloc] initWithFrame:CGRectMake( 0, 290, button.frame.size.width, 30)];
             
-            startDateLabel.text =[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"activationDate"];
-            endDateLabel.text =[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"expiryDate"];
+            startDateLabel.text = [self convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"activationDate"]];
+            endDateLabel.text = [self convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"expiryDate"]];
             nameLabel.text =[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"title"];
             [button addTarget:self
                        action:@selector(aMethod:)
@@ -138,34 +135,83 @@
     
     //NSLog(@"%d", selectedExhibition);
 }
+
+- (NSString*) convertDate:(NSString*) short_date
+{
+    //conver short date to long date
+    NSArray* components = [short_date componentsSeparatedByString:@"-"];
+    
+    NSString *year = [components objectAtIndex:0];
+    NSString *month_numeric = [components objectAtIndex:1];
+    NSString *month_string = [self convertMonthToString:month_numeric];
+    NSString *day = [components objectAtIndex:2];
+    
+    NSString *long_date = [NSString stringWithFormat:@"%@ %d, %@", month_string, day.intValue, year];
+
+    return long_date;
+}
+
+- (NSString*) convertMonthToString:(NSString*) month_numeric
+{
+    switch (month_numeric.intValue)
+    {
+        case 1:
+            return @"January";
+        case 2:
+            return @"February";
+        case 3:
+            return @"March";
+        case 4:
+            return @"April";
+        case 5:
+            return @"May";
+        case 6:
+            return @"June";
+        case 7:
+            return @"July";
+        case 8:
+            return @"August";
+        case 9:
+            return @"September";
+        case 10:
+            return @"October";
+        case 11:
+            return @"November";
+        case 12:
+            return @"December";
+        
+        default: return @"January";
+    }
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)checkForNetwork
-{
-    // check if we've got network connectivity
-    Reachability *myNetwork = [Reachability reachabilityWithHostname:@"google.com"];
-    NetworkStatus myStatus = [myNetwork currentReachabilityStatus];
-    
-    switch (myStatus) {
-        case NotReachable:
-            NSLog(@"There's no internet connection at all. Display error message now.");
-            break;
-            
-        case ReachableViaWWAN:
-            NSLog(@"We have a 3G connection");
-            break;
-            
-        case ReachableViaWiFi:
-            NSLog(@"We have WiFi.");
-            break;
-            
-        default:
-            break;
-    }
-}
+//- (void)checkForNetwork
+//{
+//    // check if we've got network connectivity
+//    Reachability *myNetwork = [Reachability reachabilityWithHostname:@"google.com"];
+//    NetworkStatus myStatus = [myNetwork currentReachabilityStatus];
+//    
+//    switch (myStatus) {
+//        case NotReachable:
+//            NSLog(@"There's no internet connection at all. Display error message now.");
+//            break;
+//            
+//        case ReachableViaWWAN:
+//            NSLog(@"We have a 3G connection");
+//            break;
+//            
+//        case ReachableViaWiFi:
+//            NSLog(@"We have WiFi.");
+//            break;
+//            
+//        default:
+//            break;
+//    }
+//}
 
 @end

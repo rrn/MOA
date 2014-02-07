@@ -11,6 +11,7 @@
 #import "Reachability.h"
 #import "TagList.h"
 #import "ExhibitionChildViewController.h"
+#import "Utils.h"
 
 @interface ExhibitionsViewController ()
 @property (strong, nonatomic)  UIImageView *displayItemImageView;
@@ -67,14 +68,12 @@
             [TagList loadInformation];
         }
         
+        int cursorPosition = 0;
         for(int i=0; i < [[[TagList sharedInstance] exhibitionEvents] count]; i++)
         {
             
             UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
             button.frame = CGRectMake((i*screenWidth) + screenWidth/20, 10, screenWidth -(2*screenWidth)/20, self.theScrollView.frame.size.height);
-            UILabel *nameLabel = [[UILabel alloc] initWithFrame:CGRectMake( 0, 210, button.frame.size.width, 30)];
-            UILabel *startDateLabel = [[UILabel alloc] initWithFrame:CGRectMake( 0, 250, button.frame.size.width, 30)];
-            UILabel *endDateLabel = [[UILabel alloc] initWithFrame:CGRectMake( 0, 290, button.frame.size.width, 30)];
             
             startDateLabel.text = [self convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"activationDate"]];
             endDateLabel.text = [self convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"expiryDate"]];
@@ -85,17 +84,15 @@
             NSString *imageURL = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"image"];
             NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: imageURL]];
             UIImageView *buttonImage =[[UIImageView alloc] initWithImage:[UIImage imageWithData:imageData]];
+            
             buttonImage.frame = CGRectMake(0, 0, button.frame.size.width, 200);
             [button setTag:i];
             [button addSubview:buttonImage];
-            [button addSubview:nameLabel];
-            [button addSubview:startDateLabel];
-            [button addSubview:endDateLabel];
+            [button addSubview:nameTextView];
+            [button addSubview:dateTextView];
             [self.theScrollView addSubview:button];
             
         }
-        
-        
         
         [self.theScrollView setContentSize:CGSizeMake(self.theScrollView.frame.size.width*[[[TagList sharedInstance] exhibitionEvents] count],  0)];
         
@@ -132,8 +129,6 @@
     selectedExhibition = [button tag];
     
     [self performSegueWithIdentifier:@"ExhibitionChild" sender:self];
-    
-    //NSLog(@"%d", selectedExhibition);
 }
 
 - (NSString*) convertDate:(NSString*) short_date

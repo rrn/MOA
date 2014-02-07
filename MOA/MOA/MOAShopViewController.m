@@ -32,8 +32,6 @@
     [self.scroll setScrollEnabled:YES];
     [self.scroll setContentSize:CGSizeMake(320, 700)];
     
-    
-    
     // Sidebar menu code
     _sidebarButton.target = self.revealViewController;
     _sidebarButton.action = @selector(rightRevealToggle:);
@@ -58,10 +56,7 @@
         }
     }
     
-    
-    
     NSMutableString* text = shopDescription;
-
     self.title = @"MOA Shop";
     self.description.numberOfLines = 0;
     self.description.text = text;
@@ -86,28 +81,57 @@
         rowIndex = 1;
         tableArray = [jsonDict objectForKey:key];
         for (NSDictionary *attribute in tableArray){
-            NSEnumerator *attEnum = [attribute keyEnumerator];
-            id attKey;
-            while (attKey = [attEnum nextObject]){
-                // attKey going to be rate etc, so need to insert to the array
-                
                 if ([key isEqualToString:@"general_text"]) {
-                    description = [NSMutableString stringWithString:[attribute objectForKey:@"Description"]];
-                    identifier = [NSMutableString stringWithString:[attribute objectForKey:@"Identifier"]];
-                    if ([identifier isEqualToString:@"Cafe"])
-                        cafeDescription = description;
-                    else if ([identifier isEqualToString:@"Shop"])
-                        shopDescription = description;
-                    [dbCrud UpdateRecords:identifier :description :rowIndex :@"generalText"];
+                    NSEnumerator *attEnum = [attribute keyEnumerator];
+                    id attKey;
+                    while (attKey = [attEnum nextObject]){
+                        description = [NSMutableString stringWithString:[attribute objectForKey:@"Description"]];
+                        identifier = [NSMutableString stringWithString:[attribute objectForKey:@"Identifier"]];
+                        if ([identifier isEqualToString:@"Cafe"])
+                            cafeDescription = description;
+                        else if ([identifier isEqualToString:@"Shop"])
+                            shopDescription = description;
+                        [dbCrud UpdateRecords:identifier :description :rowIndex :@"generalText"];
+                        
+                        // increase att key here
+                        attKey = [attEnum nextObject];
+                        rowIndex++;
                 }
-                
-                // increase att key here
-                attKey = [attEnum nextObject];
-                rowIndex++;
             }
         }
     }
 }
+
+-(NSString*)ValidateJSONFormat:(NSString *)json
+{
+    // sometimes remote data are returned in HTML form, and
+    // we cannot remove HTML tags by stripping all the tags using regular expression
+    // since the body of JSON contains HTML tags
+    // so we have to do manually by removing beginning and end HTML tags
+    
+    NSMutableString *strToValidate = [json copy];
+    
+    //remove the initial html tag
+    if ([strToValidate rangeOfString:@"<body>"].location == NSNotFound) {
+        NSLog(@"Data is Good: Returned JSON String does not have end HTML tags");
+    } else {
+        int startingOffset = [strToValidate rangeOfString:@"{"].location;
+        strToValidate = [[strToValidate substringFromIndex:startingOffset] copy];
+    }
+    
+    //remove the end tag
+    if ([strToValidate rangeOfString:@"</body>"].location == NSNotFound){
+        NSLog(@"Data is Good: Returned JSON String does not have end HTML tags");
+    } else {
+        int endingOffset = [strToValidate rangeOfString:@"</body>"].location;
+        strToValidate = [[strToValidate substringWithRange:NSMakeRange(0, endingOffset)] copy];
+    }
+    
+    json = strToValidate;
+    return json;
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {

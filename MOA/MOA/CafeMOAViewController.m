@@ -150,6 +150,7 @@
                     
                     // go to next row
                     attKey = [attEnum nextObject];
+                    attKey = [attEnum nextObject];
                     rowIndex++;
                 }
             } else if ([key isEqualToString:@"general_text"]) {
@@ -166,6 +167,7 @@
                     [dbCrud UpdateRecords:description :identifier :rowIndex :@"generalText"];
                     
                     // go to next row
+                    attKey = [attEnum nextObject];
                     attKey = [attEnum nextObject];
                     rowIndex++;
                 }

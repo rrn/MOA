@@ -114,6 +114,7 @@
                     [ratesGeneralArray addObject:temp];
                     // increase att key here
                     attKey = [attEnum nextObject];
+                    attKey = [attEnum nextObject];
                     rowIndex++;
                 }
             // GROUP RATES
@@ -127,6 +128,7 @@
                     [ratesGroupArray addObject:temp];
                     [dbCrud UpdateRecords:rate :description :rowIndex :@"rateGroups"];
                     // increase att key here
+                    attKey = [attEnum nextObject];
                     attKey = [attEnum nextObject];
                     rowIndex++;
                 }

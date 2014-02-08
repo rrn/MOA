@@ -84,6 +84,7 @@
                         
                     // increase att key here
                     attKey = [attEnum nextObject];
+                    attKey = [attEnum nextObject];
                     rowIndex++;
                 }
             }

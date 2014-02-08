@@ -399,7 +399,7 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="03_Collections01_25px.png" translatesAutoresizingMaskIntoConstraints="NO" id="dBN-KI-feS">
+                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="03_Collections02_25px.png" translatesAutoresizingMaskIntoConstraints="NO" id="dBN-KI-feS">
                                             <rect key="frame" x="75" y="3" width="48" height="37"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -1291,7 +1291,6 @@
     <resources>
         <image name="01_Weekly_25px.png" width="25" height="25"/>
         <image name="02_Exhibitions_25px.png" width="25" height="25"/>
-        <image name="03_Collections01_25px.png" width="25" height="25"/>
         <image name="03_Collections02_25px.png" width="25" height="25"/>
         <image name="04_Info_25px.png" width="25" height="25"/>
         <image name="05_More_25px.png" width="25" height="25"/>
@@ -1306,10 +1305,10 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="KG7-G5-5Wz"/>
-        <segue reference="zgW-yR-ErI"/>
-        <segue reference="8vC-Ii-8Vk"/>
-        <segue reference="UVY-js-OWf"/>
+        <segue reference="PS2-VE-2nm"/>
+        <segue reference="B3C-bd-MPA"/>
+        <segue reference="EyV-KQ-2Pa"/>
+        <segue reference="A9d-PQ-Zkm"/>
         <segue reference="Qlf-L4-T27"/>
     </inferredMetricsTieBreakers>
 </document>

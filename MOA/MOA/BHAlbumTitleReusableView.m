@@ -29,7 +29,8 @@
         self.titleLabel.textColor = [UIColor colorWithWhite:1.0f alpha:1.0f];
         self.titleLabel.shadowColor = [UIColor colorWithWhite:0.0f alpha:0.3f];
         self.titleLabel.shadowOffset = CGSizeMake(0.0f, 1.0f);
-        
+        self.titleLabel.numberOfLines = 0;
+        self.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
         [self addSubview:self.titleLabel];
     }
     return self;

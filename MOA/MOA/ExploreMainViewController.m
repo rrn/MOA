@@ -11,6 +11,7 @@
 #import "SWRevealViewController.h"
 #import "SearchResultListViewController.h"
 #import "TagList.h"
+#import "Reachability.h"
 
 @interface ExploreMainViewController ()
 
@@ -20,7 +21,7 @@
 {
     NSArray *tableData;
     NSMutableArray* searchArray;
-    NSArray *allTags;
+    NSMutableArray *allTags;
     NSIndexPath *selectedPath;
 }
 
@@ -49,10 +50,12 @@
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     searchArray = [[NSMutableArray alloc] init];
     allTags = [[TagList sharedInstance] objectTypeTags];
-    allTags = [allTags arrayByAddingObjectsFromArray:[[TagList sharedInstance] placesTags]];
-    allTags = [allTags arrayByAddingObjectsFromArray:[[TagList sharedInstance] materialsTags]];
-    allTags = [allTags arrayByAddingObjectsFromArray:[[TagList sharedInstance] culturesTags]];
-    allTags = [allTags arrayByAddingObjectsFromArray:[[TagList sharedInstance] peopleTags]];
+    allTags = [[allTags arrayByAddingObjectsFromArray:[[TagList sharedInstance] placesTags]] mutableCopy];
+    allTags = [[allTags arrayByAddingObjectsFromArray:[[TagList sharedInstance] materialsTags]] mutableCopy];
+    allTags = [[allTags arrayByAddingObjectsFromArray:[[TagList sharedInstance] culturesTags]] mutableCopy];
+    allTags = [[allTags arrayByAddingObjectsFromArray:[[TagList sharedInstance] peopleTags]] mutableCopy];
+    NSLog(@"%@", allTags);
+
     selectedPath = [[NSIndexPath alloc]init];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -64,6 +67,37 @@
 
 - (void)filterContentForSearchText: (NSString*) searchText{
     NSPredicate *predicate = [NSPredicate predicateWithFormat: @"SELF contains [c] %@", searchText];
+    
+    Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    if([[[TagList sharedInstance] objectTypeTags] count] ==0){
+        if(internetStatus == NotReachable) {
+            
+            UIAlertView *alert = [[UIAlertView alloc]
+                                  initWithTitle: @"Alert!"
+                                  message: @"There is no internet connection, item tags cannot be loaded."
+                                  delegate: self
+                                  cancelButtonTitle:@"OK"
+                                  otherButtonTitles:nil];
+            [alert show];
+        }
+        else{
+            [TagList downloadCulturesJson];
+            [TagList downloadMaterialsJson];
+            [TagList downloadPeopleJson];
+            [TagList downloadPlacesJson];
+            [TagList downloadObjectJson];
+        }
+    }
+    if([allTags count] < 1){
+        allTags = [[TagList sharedInstance] objectTypeTags];
+        allTags = [[allTags arrayByAddingObjectsFromArray:[[TagList sharedInstance] placesTags]] mutableCopy];
+        allTags = [[allTags arrayByAddingObjectsFromArray:[[TagList sharedInstance] materialsTags]] mutableCopy];
+        allTags = [[allTags arrayByAddingObjectsFromArray:[[TagList sharedInstance] culturesTags]] mutableCopy];
+        allTags = [[allTags arrayByAddingObjectsFromArray:[[TagList sharedInstance] peopleTags]] mutableCopy];
+    }
+    
+    
     searchArray = [[allTags filteredArrayUsingPredicate:predicate] mutableCopy];
 }
 

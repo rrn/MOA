@@ -51,7 +51,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     [super viewDidLoad];
     
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"SELF contains [c] %@", [self title]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat: @"SELF matches [c] %@", [self title]];
     searchArray = [[[[TagList sharedInstance] objectTypeTags] filteredArrayUsingPredicate:predicate] mutableCopy];
     if([searchArray count] == 1)
         Type = @"Object Type";
@@ -158,6 +158,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
             [album addPhoto:photo];
         }
         album.name = [NSString stringWithFormat:@"%@: %@", [[itemList objectAtIndex:a] objectForKey:@"name"], [[itemList objectAtIndex:a] objectForKey:@"identification_number"]];
+        album.country = [[itemList objectAtIndex:a] objectForKey:@"name"];
         
         [self.albums addObject:album];
         self.thumbnailQueue = [[NSOperationQueue alloc] init];
@@ -250,7 +251,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
                             encoding:NSUTF8StringEncoding
                             error:nil
                             ];
-    
+    //NSLog(@"%@, %@", catogeryType, searchType);
     NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
     
     NSDictionary *entireDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
@@ -301,7 +302,10 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     
     BHAlbum *album = self.albums[indexPath.section];
     
-    titleView.titleLabel.text = album.name;
+    //Set cell title
+    titleView.titleLabel.numberOfLines=0;
+    titleView.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    titleView.titleLabel.text = [NSString stringWithFormat:@"%@\ntest\ntest", album.name];
     
     return titleView;
 }

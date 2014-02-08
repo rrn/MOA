@@ -55,22 +55,6 @@
             [self PullFromRemote];
         }
     }
-    
-//    NSMutableString* hoursStr = [NSMutableString stringWithFormat:@""];
-//    for (int i = 0; i < [generalHoursArray count]; i++){
-//        [hoursStr appendString:[generalHoursArray objectAtIndex:i]];
-//    }
-//    
-//    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-//    CGFloat tabInterval = 150.0;
-//    paragraphStyle.defaultTabInterval = tabInterval;
-//    NSMutableArray *tabs = [NSMutableArray array];
-//    [tabs addObject:[[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentLeft location:tabInterval options:nil]];
-//    
-//    paragraphStyle.tabStops = tabs;
-//    self.description.typingAttributes = [NSDictionary dictionaryWithObject:paragraphStyle forKey:NSParagraphStyleAttributeName];
-//    
-//    self.description.text = hoursStr;
 }
 
 -(void)PullFromRemote
@@ -126,7 +110,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle  reuseIdentifier:MyIdentifier];
         
     }
-    NSString *string= [generalHoursArray objectAtIndex:indexPath.row];
+    NSString *hours= [generalHoursArray objectAtIndex:indexPath.row];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -134,7 +118,7 @@
     cell.detailTextLabel.numberOfLines = 0;
     cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
     
-    NSArray *components = [string componentsSeparatedByString:@":"];
+    NSArray *components = [hours componentsSeparatedByString:@":"];
    
     cell.textLabel.text = [components objectAtIndex:0];
     cell.detailTextLabel.text = [components objectAtIndex:1];

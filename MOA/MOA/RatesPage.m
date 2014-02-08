@@ -47,9 +47,6 @@
     // NO CONNECTION? LOCAL DB
     // CONNECTION? REMOTE.
     
-    
-    
-    
     CrudOp* database = [CrudOp alloc];
     if (!ratesGeneralArray || !ratesGeneralArray.count ||
         !ratesGroupArray || !ratesGroupArray.count){
@@ -117,24 +114,68 @@
                     attKey = [attEnum nextObject];
                     rowIndex++;
                 }
-            // GROUP RATES
-            } else if ([key isEqualToString:@"rates_groups"]){
-                NSEnumerator *attEnum = [attribute keyEnumerator];
-                id attKey;
-                while (attKey = [attEnum nextObject]){
-                    description = [NSMutableString stringWithString:[attribute objectForKey:@"Description"]];
-                    rate = [NSMutableString stringWithString:[attribute objectForKey:@"Rate"]];
-                    temp = [NSMutableString stringWithFormat:@"%@ \t: %@\n", description, rate];
-                    [ratesGroupArray addObject:temp];
-                    [dbCrud UpdateRecords:rate :description :rowIndex :@"rateGroups"];
-                    // increase att key here
-                    attKey = [attEnum nextObject];
-                    attKey = [attEnum nextObject];
-                    rowIndex++;
-                }
+//            // GROUP RATES
+//            } else if ([key isEqualToString:@"rates_groups"]){
+//                NSEnumerator *attEnum = [attribute keyEnumerator];
+//                id attKey;
+//                while (attKey = [attEnum nextObject]){
+//                    description = [NSMutableString stringWithString:[attribute objectForKey:@"Description"]];
+//                    rate = [NSMutableString stringWithString:[attribute objectForKey:@"Rate"]];
+//                    temp = [NSMutableString stringWithFormat:@"%@ \t: %@\n", description, rate];
+//                    [ratesGroupArray addObject:temp];
+//                    [dbCrud UpdateRecords:rate :description :rowIndex :@"rateGroups"];
+//                    // increase att key here
+//                    attKey = [attEnum nextObject];
+//                    attKey = [attEnum nextObject];
+//                    rowIndex++;
+//                }
             }
         }
     }
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [ratesGeneralArray count];// + [ratesGroupArray count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *MyIdentifier = @"Rates";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle  reuseIdentifier:MyIdentifier];
+        
+    }
+    NSString *string= [ratesGeneralArray objectAtIndex:indexPath.row];
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    // Make title multiline
+    cell.textLabel.numberOfLines = 0;
+    cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    
+    // Make the subtitle multiline
+    cell.detailTextLabel.numberOfLines = 0;
+    cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    
+    NSArray *components = [string componentsSeparatedByString:@":"];
+    
+    cell.textLabel.text = [components objectAtIndex:0];
+    cell.detailTextLabel.text = [components objectAtIndex:1];
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ( indexPath.row == 2 || indexPath.row == 4) {
+        // Make these rows bigger to fit text
+        return 88;
+    }
+    return 50;
 }
 
 - (void)didReceiveMemoryWarning

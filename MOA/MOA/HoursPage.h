@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HoursPage : UIViewController
+@interface HoursPage : UIViewController <UITableViewDataSource, UITableViewDelegate>{
+    int hoursFontSize;
+}
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (nonatomic, weak) IBOutlet UITextView *description;

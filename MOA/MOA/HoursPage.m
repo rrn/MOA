@@ -30,6 +30,9 @@
 
 - (void)viewDidLoad
 {
+    // CONSTANT NUMBER
+    hoursFontSize = 14;
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
@@ -53,21 +56,21 @@
         }
     }
     
-    NSMutableString* hoursStr = [NSMutableString stringWithFormat:@""];
-    for (int i = 0; i < [generalHoursArray count]; i++){
-        [hoursStr appendString:[generalHoursArray objectAtIndex:i]];
-    }
-    
-    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    CGFloat tabInterval = 150.0;
-    paragraphStyle.defaultTabInterval = tabInterval;
-    NSMutableArray *tabs = [NSMutableArray array];
-    [tabs addObject:[[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentLeft location:tabInterval options:nil]];
-    
-    paragraphStyle.tabStops = tabs;
-    self.description.typingAttributes = [NSDictionary dictionaryWithObject:paragraphStyle forKey:NSParagraphStyleAttributeName];
-    
-    self.description.text = hoursStr;
+//    NSMutableString* hoursStr = [NSMutableString stringWithFormat:@""];
+//    for (int i = 0; i < [generalHoursArray count]; i++){
+//        [hoursStr appendString:[generalHoursArray objectAtIndex:i]];
+//    }
+//    
+//    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+//    CGFloat tabInterval = 150.0;
+//    paragraphStyle.defaultTabInterval = tabInterval;
+//    NSMutableArray *tabs = [NSMutableArray array];
+//    [tabs addObject:[[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentLeft location:tabInterval options:nil]];
+//    
+//    paragraphStyle.tabStops = tabs;
+//    self.description.typingAttributes = [NSDictionary dictionaryWithObject:paragraphStyle forKey:NSParagraphStyleAttributeName];
+//    
+//    self.description.text = hoursStr;
 }
 
 -(void)PullFromRemote
@@ -104,6 +107,47 @@
             }
         }
     }
+}
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [generalHoursArray count];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *MyIdentifier = @"Hours";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle  reuseIdentifier:MyIdentifier];
+        
+    }
+    NSString *string= [generalHoursArray objectAtIndex:indexPath.row];
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    // Make the subtitle multiline
+    cell.detailTextLabel.numberOfLines = 0;
+    cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    
+    NSArray *components = [string componentsSeparatedByString:@":"];
+   
+    cell.textLabel.text = [components objectAtIndex:0];
+    cell.detailTextLabel.text = [components objectAtIndex:1];
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ( indexPath.row > 6) {
+        // Make the final rows bigger to fit detail text
+        return 100;
+    }
+    return 50;
 }
 
 - (void)didReceiveMemoryWarning

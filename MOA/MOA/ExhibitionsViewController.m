@@ -35,6 +35,16 @@
 - (void)viewDidLoad
 {
     carousel.type = iCarouselTypeRotary;
+    carousel.scrollEnabled = FALSE;
+    
+    // swipe by 1 item at a time only
+    UISwipeGestureRecognizer *forwardRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeftMethod)];
+    UISwipeGestureRecognizer *backwardsRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeRightMethod)];
+    
+    [forwardRecognizer setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    [backwardsRecognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
+    [[self view] addGestureRecognizer:forwardRecognizer];
+    [[self view] addGestureRecognizer:backwardsRecognizer];
     [super viewDidLoad];
     
 	
@@ -65,7 +75,25 @@
     }
 }
 
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)recognizer shouldReceiveTouch:(UITouch *)touch
+{
+    
+    if ([touch.view isKindOfClass:[UIScrollView class]]){
+        return YES;
+    }
+    
+    else return NO;
+}
 
+-(void)swipeRightMethod
+{
+    [carousel scrollByNumberOfItems:1 duration:0.5];
+}
+
+-(void)swipeLeftMethod
+{
+    [carousel scrollByNumberOfItems:-1 duration:0.5];
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -154,9 +182,6 @@
     
     if (view == nil)
     {
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        button.frame = CGRectMake(0,0,200.0f, 200.0f);
-        
         int cursorPosition = 0;
         view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 300.0f, 300.0f)];
         view.layer.backgroundColor = [UIColor whiteColor].CGColor;

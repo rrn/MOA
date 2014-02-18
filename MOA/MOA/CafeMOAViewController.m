@@ -65,6 +65,7 @@
     cafeText.text = cafeDescription;
     cafeText.textAlignment = NSTextAlignmentJustified;
     cafeText.font = [UIFont systemFontOfSize:14];
+    cafeText.userInteractionEnabled = NO;
     int cursorPos = 246 + [Utils textViewDidChange:cafeText];
     
     // load cafe hours into table
@@ -103,7 +104,7 @@
     
     UITableView *tableView = [[UITableView alloc]initWithFrame:tableFrame style:UITableViewStylePlain];
     
-    
+    tableView.userInteractionEnabled = NO;
     tableView.scrollEnabled = NO;
     tableView.delegate = self;
     tableView.dataSource = self;
@@ -125,7 +126,7 @@
     UITextView *textV = [[UITextView alloc] initWithFrame:CGRectMake(5, 5, 290, hoursFontSize+10)];
     
     NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    CGFloat tabInterval = 150.0;
+    CGFloat tabInterval = 180.0;
     paragraphStyle.defaultTabInterval = tabInterval;
     NSMutableArray *tabs = [NSMutableArray array];
     [tabs addObject:[[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentLeft location:tabInterval options:nil]];
@@ -182,7 +183,7 @@
                 while (attKey = [attEnum nextObject]){
                     day = [NSMutableString stringWithString:[attribute objectForKey:@"Day"]];
                     hours = [NSMutableString stringWithString:[attribute objectForKey:@"Hours"]];
-                    temp = [NSMutableString stringWithFormat:@"%@ \t: %@\n", day, hours];
+                    temp = [NSMutableString stringWithFormat:@"  %@\t %@\n", day, hours];
                     [cafeHoursArray addObject:temp];
                     [dbCrud UpdateRecords:hours :day :rowIndex :@"cafeHours"];
                     

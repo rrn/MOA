@@ -40,9 +40,6 @@
     _sidebarButton.action = @selector(rightRevealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
-    [self.scroll setScrollEnabled:YES];
-    [self.scroll setContentSize:CGSizeMake(320, 500)];
-    
     // CHECK IF IT IS LOADED IF NOT, CHECK CONNECTIVITY
     // NO CONNECTION? LOCAL DB
     // CONNECTION? REMOTE.
@@ -62,85 +59,32 @@
         }
     }
     
-    NSMutableString* ratesStr = [NSMutableString stringWithFormat:@"General Rates:\n\n"];
-    for (int i = 0; i < [ratesGeneralArray count]; i++){
-        [ratesStr appendString:[ratesGeneralArray objectAtIndex:i]];
-    }
-    [ratesStr appendString:@"\n\n"];
-    [ratesStr appendString:@"Group Rates:\n\n"];
-    for (int j = 0; j < [ratesGroupArray count]; j++){
-        [ratesStr appendString:[ratesGroupArray objectAtIndex:j]];
-    }
-    
-    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    CGFloat tabInterval = 225.0;
-    paragraphStyle.defaultTabInterval = tabInterval;
-    NSMutableArray *tabs = [NSMutableArray array];
-    [tabs addObject:[[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentLeft location:tabInterval options:nil]];
-    paragraphStyle.tabStops = tabs;
-    self.description.typingAttributes = [NSDictionary dictionaryWithObject:paragraphStyle forKey:NSParagraphStyleAttributeName];
-    
-    self.description.editable = NO;
-    self.description.dataDetectorTypes = UIDataDetectorTypePhoneNumber;
-    self.description.text = ratesStr;
 }
+
+
+
 
 -(void)PullFromRemote
 {
     NSDictionary* jsonDict = [VisitorInfoViewController PullRemoteData:@"http://pluto.moa.ubc.ca/_mobile_app_remoteData.php"];
-    CrudOp *dbCrud = [[CrudOp alloc] init];
-    NSMutableString *description, *rate;
-    NSMutableString *temp;
-    int rowIndex = 0;
+    ratesGeneralArray = [jsonDict objectForKey:@"rates_general"];
+    ratesGroupArray = [jsonDict objectForKey:@"rates_groups"];
     
-    NSEnumerator *mainEnumerator = [jsonDict keyEnumerator];
-    id key; NSArray *tableArray;
-    while (key = [mainEnumerator nextObject]){
-        rowIndex = 1;
-        tableArray = [jsonDict objectForKey:key];
-        for (NSDictionary *attribute in tableArray){
-            // GENERAL RATES
-            if ([key isEqualToString:@"rates_general"]){
-                NSEnumerator *attEnum = [attribute keyEnumerator];
-                id attKey;
-                while (attKey = [attEnum nextObject]){
-                    description = [NSMutableString stringWithString:[attribute objectForKey:@"Description"]];
-                    rate = [NSMutableString stringWithString:[attribute objectForKey:@"Rate"]];
-                    temp = [NSMutableString stringWithFormat:@"%@ \t: %@\n", description, rate];
-                    [dbCrud UpdateRecords:rate :description : rowIndex :@"rateGeneral"];
-                    [ratesGeneralArray addObject:temp];
-                    // increase att key here
-                    attKey = [attEnum nextObject];
-                    attKey = [attEnum nextObject];
-                    rowIndex++;
-                }
-//            // GROUP RATES
-//            } else if ([key isEqualToString:@"rates_groups"]){
-//                NSEnumerator *attEnum = [attribute keyEnumerator];
-//                id attKey;
-//                while (attKey = [attEnum nextObject]){
-//                    description = [NSMutableString stringWithString:[attribute objectForKey:@"Description"]];
-//                    rate = [NSMutableString stringWithString:[attribute objectForKey:@"Rate"]];
-//                    temp = [NSMutableString stringWithFormat:@"%@ \t: %@\n", description, rate];
-//                    [ratesGroupArray addObject:temp];
-//                    [dbCrud UpdateRecords:rate :description :rowIndex :@"rateGroups"];
-//                    // increase att key here
-//                    attKey = [attEnum nextObject];
-//                    attKey = [attEnum nextObject];
-//                    rowIndex++;
-//                }
-            }
-        }
-    }
+    // TODO:
+    // After pulling, needs to update
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [ratesGeneralArray count];// + [ratesGroupArray count];
+    if (section == 0)
+        return [ratesGeneralArray count];// + [ratesGroupArray count];
+    else
+        return [ratesGroupArray count];
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -150,43 +94,60 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle  reuseIdentifier:MyIdentifier];
         
     }
-    NSString *string= [ratesGeneralArray objectAtIndex:indexPath.row];
     
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
-    // Make title multiline
+    // Make title and subtitile multiline
     cell.textLabel.numberOfLines = 0;
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:16];
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    
-    // Make the subtitle multiline
     cell.detailTextLabel.numberOfLines = 0;
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
     cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
     
-    NSArray *components = [string componentsSeparatedByString:@":"];
-    
-    cell.textLabel.text = [components objectAtIndex:0];
-    cell.detailTextLabel.text = [components objectAtIndex:1];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (indexPath.section == 0) {
+        cell.textLabel.text =[[ratesGeneralArray objectAtIndex:indexPath.row] objectForKey:@"Description"];
+        cell.detailTextLabel.text =[[ratesGeneralArray objectAtIndex:indexPath.row] objectForKey: @"Rate"];
+    } else if (indexPath.section == 1){
+        cell.textLabel.text = [[ratesGroupArray objectAtIndex:indexPath.row] objectForKey:@"Description"];
+        cell.detailTextLabel.text = [[ratesGroupArray objectAtIndex:indexPath.row] objectForKey: @"Rate"];
+    }
     
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if ( indexPath.row == 2 || indexPath.row == 4) {
+    // possibly: dynamic length?
+    if ((indexPath.section == 0 && (indexPath.row == 2 || indexPath.row == 4)) ||
+        (indexPath.section == 1 && indexPath.row == 3)) {
         // Make these rows bigger to fit text
         return 88;
     }
     return 50;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    NSString *sectionName;
+    switch (section)
+    {
+        case 0:
+            sectionName = NSLocalizedString(@"General Rates:", @"General Rates:");
+            break;
+        case 1:
+            sectionName = NSLocalizedString(@"Group Rates:", @"Group Rates:");
+            break;
+        default:
+            sectionName = @"";
+            break;
+    }
+    return sectionName;
+}
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-// this code is needed since iOS 7 has different layout
-- (void) viewDidLayoutSubviews {
-    [self.scroll setContentSize:CGSizeMake(320, 500)];
 }
 
 @end

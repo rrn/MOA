@@ -60,8 +60,10 @@
 -(void)PullFromRemote
 {
     NSDictionary* jsonDict = [VisitorInfoViewController PullRemoteData:@"http://pluto.moa.ubc.ca/_mobile_app_remoteData.php"];
+    generalHoursArray = [jsonDict objectForKey:@"general_hours"];
+    
     // NEEDS TO PERFORM UPDATE IN HERE - UPDATE THE LOCAL DB
-    CrudOp *dbCrud = [[CrudOp alloc] init];
+    /*CrudOp *dbCrud = [[CrudOp alloc] init];
     NSMutableString *day, *hours;
     NSMutableString *temp;
     int rowIndex = 0;
@@ -90,7 +92,7 @@
                 }
             }
         }
-    }
+    }*/
 }
 
 
@@ -110,18 +112,17 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle  reuseIdentifier:MyIdentifier];
         
     }
-    NSString *hours= [generalHoursArray objectAtIndex:indexPath.row];
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     // Make the subtitle multiline
+    cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
     cell.detailTextLabel.numberOfLines = 0;
     cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
     
-    NSArray *components = [hours componentsSeparatedByString:@":"];
-   
-    cell.textLabel.text = [components objectAtIndex:0];
-    cell.detailTextLabel.text = [components objectAtIndex:1];
+    cell.textLabel.text = [[generalHoursArray objectAtIndex:indexPath.row] objectForKey:@"Day"];
+    cell.detailTextLabel.text = [[generalHoursArray objectAtIndex:indexPath.row] objectForKey:@"Hours"];
     
     return cell;
 }

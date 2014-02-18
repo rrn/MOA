@@ -49,7 +49,7 @@
         if (internetStatus == NotReachable){
             cafeHoursArray = [database PullFromLocalDB:@"cafe_hours"];
             generalTextArray = [database PullFromLocalDB:@"general_text"];
-            cafeDescription = [generalTextArray objectAtIndex:1];
+            cafeDescription = [[generalTextArray objectAtIndex:1] objectForKey:@"Description"];
         } else {
             [self PullFromRemote];
         }
@@ -120,9 +120,10 @@
     static NSString *MyIdentifier = @"Hours";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier:MyIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1  reuseIdentifier:MyIdentifier];
     }
-    NSString *string= [cafeHoursArray objectAtIndex:indexPath.row];
+
+    NSString *string = [NSString stringWithFormat:@"  %@ \t %@", [[cafeHoursArray objectAtIndex:indexPath.row] objectForKey:@"Day"], [[cafeHoursArray objectAtIndex:indexPath.row] objectForKey:@"Hours"] ];
     UITextView *textV = [[UITextView alloc] initWithFrame:CGRectMake(5, 5, 290, hoursFontSize+10)];
     
     NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
@@ -164,58 +165,9 @@
 - (void) PullFromRemote
 {
     NSDictionary* jsonDict = [VisitorInfoViewController PullRemoteData:@"http://pluto.moa.ubc.ca/_mobile_app_remoteData.php"];
-    CrudOp *dbCrud = [[CrudOp alloc] init];
-    NSMutableString *day, *hours;
-    NSMutableString *description, *identifier;
-    NSMutableString *temp;
-    int rowIndex = 0;
-    
-    NSEnumerator *mainEnumerator = [jsonDict keyEnumerator];
-    id key; NSArray *tableArray;
-    while (key = [mainEnumerator nextObject]){
-        rowIndex = 1;
-        tableArray = [jsonDict objectForKey:key];
-        for (NSDictionary *attribute in tableArray){
-            if ([key isEqualToString:@"cafe_hours"])
-            {
-                NSEnumerator *attEnum = [attribute keyEnumerator];
-                id attKey;
-                while (attKey = [attEnum nextObject]){
-                    day = [NSMutableString stringWithString:[attribute objectForKey:@"Day"]];
-                    hours = [NSMutableString stringWithString:[attribute objectForKey:@"Hours"]];
-                    temp = [NSMutableString stringWithFormat:@"  %@\t %@\n", day, hours];
-                    [cafeHoursArray addObject:temp];
-                    [dbCrud UpdateRecords:hours :day :rowIndex :@"cafeHours"];
-                    
-                    // go to next row
-                    attKey = [attEnum nextObject];
-                    attKey = [attEnum nextObject];
-                    rowIndex++;
-                }
-            } else if ([key isEqualToString:@"general_text"]) {
-                NSEnumerator *attEnum = [attribute keyEnumerator];
-                id attKey;
-                while (attKey = [attEnum nextObject]){
-
-                    description = [NSMutableString stringWithString:[attribute objectForKey:@"Description"]];
-                    identifier = [NSMutableString stringWithString:[attribute objectForKey:@"Identifier"]];
-                    if ([identifier isEqualToString:@"Cafe"])
-                        cafeDescription = description;
-                    else if ([identifier isEqualToString:@"Shop"])
-                        shopDescription = description;
-                    [dbCrud UpdateRecords:description :identifier :rowIndex :@"generalText"];
-                    
-                    // go to next row
-                    attKey = [attEnum nextObject];
-                    attKey = [attEnum nextObject];
-                    rowIndex++;
-                }
-            } else {
-                // if it is not general_text or cafe_hours, no need to parse
-                break;
-            }
-        }
-    }
+    cafeHoursArray = [jsonDict objectForKey:@"cafe_hours"];
+    generalTextArray = [jsonDict objectForKey:@"general_text"];
+    cafeDescription = [[generalTextArray objectAtIndex:1] objectForKey:@"Description"];
 }
 
 - (int)textViewDidChange:(UITextView *)textView

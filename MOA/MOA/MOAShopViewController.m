@@ -70,37 +70,8 @@
 -(void) PullFromRemote
 {
     NSDictionary* jsonDict = [VisitorInfoViewController PullRemoteData:@"http://pluto.moa.ubc.ca/_mobile_app_remoteData.php"];
-    // NEEDS TO PERFORM UPDATE IN HERE - UPDATE THE LOCAL DB
-    CrudOp *dbCrud = [[CrudOp alloc] init];
-    NSMutableString *description, *identifier;
-    int rowIndex = 0;
-    
-    NSEnumerator *mainEnumerator = [jsonDict keyEnumerator];
-    id key; NSArray *tableArray;
-    while (key = [mainEnumerator nextObject]){
-        rowIndex = 1;
-        tableArray = [jsonDict objectForKey:key];
-        for (NSDictionary *attribute in tableArray){
-                if ([key isEqualToString:@"general_text"]) {
-                    NSEnumerator *attEnum = [attribute keyEnumerator];
-                    id attKey;
-                    while (attKey = [attEnum nextObject]){
-                        description = [NSMutableString stringWithString:[attribute objectForKey:@"Description"]];
-                        identifier = [NSMutableString stringWithString:[attribute objectForKey:@"Identifier"]];
-                        if ([identifier isEqualToString:@"Cafe"])
-                            cafeDescription = description;
-                        else if ([identifier isEqualToString:@"Shop"])
-                            shopDescription = description;
-                        [dbCrud UpdateRecords:identifier :description :rowIndex :@"generalText"];
-                        
-                        // increase att key here
-                        attKey = [attEnum nextObject];
-                        attKey = [attEnum nextObject];
-                        rowIndex++;
-                }
-            }
-        }
-    }
+    generalTextArray = [jsonDict objectForKey:@"general_text"];
+    shopDescription = [[generalTextArray objectAtIndex:0] objectForKey:@"Description"];    
 }
 
 -(NSString*)ValidateJSONFormat:(NSString *)json

@@ -840,38 +840,6 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XCv-1I-nHb">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="cafe-1.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="WYh-mX-VDS">
-                                        <rect key="frame" x="0.0" y="-6" width="320" height="148"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    </imageView>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" scrollEnabled="NO" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2fw-vX-FaI">
-                                        <rect key="frame" x="13" y="237" width="287" height="183"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="63s-jH-yjI">
-                                        <rect key="frame" x="13" y="428" width="287" height="228"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <prototypes>
-                                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ZBC-Fz-YsF">
-                                                <rect key="frame" x="0.0" y="22" width="287" height="44"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZBC-Fz-YsF" id="tNx-4C-m67">
-                                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                </tableViewCellContentView>
-                                            </tableViewCell>
-                                        </prototypes>
-                                        <connections>
-                                            <outlet property="dataSource" destination="m96-Ek-27F" id="WS6-Z4-m2G"/>
-                                            <outlet property="delegate" destination="m96-Ek-27F" id="VTr-su-XBw"/>
-                                        </connections>
-                                    </tableView>
-                                </subviews>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -881,7 +849,6 @@
                         <barButtonItem key="rightBarButtonItem" image="05_More_25px.png" id="sQb-QC-sH4"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="description" destination="2fw-vX-FaI" id="qla-0e-2S6"/>
                         <outlet property="scroll" destination="XCv-1I-nHb" id="XHi-Oh-ipr"/>
                         <outlet property="sidebarButton" destination="sQb-QC-sH4" id="LbM-nd-iNU"/>
                     </connections>
@@ -1358,7 +1325,6 @@
         <image name="04_Info_25px.png" width="25" height="25"/>
         <image name="05_More_25px.png" width="25" height="25"/>
         <image name="MOA_Splash_640x1136.png" width="640" height="1136"/>
-        <image name="cafe-1.jpg" width="5502" height="3667"/>
         <image name="plan_a_visit.jpg" width="3072" height="2124"/>
         <image name="shop-1.jpg" width="1800" height="1200"/>
     </resources>

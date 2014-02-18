@@ -11,6 +11,7 @@
 #import "VisitorInfoViewController.h"
 #import "CrudOp.h"
 #import "Reachability.h"
+#import "Utils.h"
 
 @interface CafeMOAViewController ()
 
@@ -31,9 +32,6 @@
 {
     // CONSTANT NUMBER
     hoursFontSize = 14;
-    
-    [self.scroll setScrollEnabled:YES];
-    [self.scroll setContentSize:CGSizeMake(320, 700)];
     
     // Sidebar menu code
     _sidebarButton.target = self.revealViewController;
@@ -58,11 +56,32 @@
         
     }
     
-    NSString* descriptionText = cafeDescription;
+    // load photo of cafe here
+    UIImageView *cafeImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, [[UIScreen mainScreen]bounds].size.width, 236)];
+    cafeImage.image = [UIImage imageNamed:@"cafe-1.jpg"];
+    
+    // load cafe description here
+    UITextView *cafeText = [[UITextView alloc] initWithFrame:CGRectMake(10, 246, 300.0f, 10)];
+    cafeText.text = cafeDescription;
+    cafeText.textAlignment = NSTextAlignmentJustified;
+    cafeText.font = [UIFont systemFontOfSize:14];
+    int cursorPos = 246 + [Utils textViewDidChange:cafeText];
+    
+    // load cafe hours into table
+    self.tableView = [self makeTableView:cursorPos+10]; // 10 is space between text and table
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Hours"];
+    
+    contentSize = cursorPos; // length of description
+   
+    [self.view addSubview:cafeImage];
+    [self.view addSubview:cafeText];
+    [self.view addSubview:self.tableView];
+    [self.scroll addSubview:cafeImage];
+    [self.scroll addSubview:cafeText];
+    [self.scroll addSubview:self.tableView];
+    [self.scroll setScrollEnabled:YES];
 
     self.title = @"Cafe MOA";
-    self.description.text = descriptionText;
-    self.description.textAlignment = NSTextAlignmentJustified;
     [super viewDidLoad];
 }
 
@@ -73,6 +92,25 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 7;
 }
+
+-(UITableView *)makeTableView:(int) yPos
+{
+    CGFloat x = 0;
+    CGFloat y = yPos;
+    CGFloat width = self.view.frame.size.width;
+    CGFloat height = self.view.frame.size.height - 50;
+    CGRect tableFrame = CGRectMake(x, y, width, height);
+    
+    UITableView *tableView = [[UITableView alloc]initWithFrame:tableFrame style:UITableViewStylePlain];
+    
+    
+    tableView.scrollEnabled = NO;
+    tableView.delegate = self;
+    tableView.dataSource = self;
+    
+    return tableView;
+}
+
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -197,10 +235,13 @@
 }
 
 - (void) viewDidLayoutSubviews {
-    int contentSize = [self textViewDidChange:self.description]; // length of description
-    contentSize = contentSize + (7*(hoursFontSize+10)) + 290; //length of table + length of image
-    contentSize = contentSize + 210; // total spacing between elements
-   [self.scroll setContentSize:CGSizeMake(320, contentSize)];
+    
+    // we need to know the size of scroll view (dynamically)
+    // contentsize contains length of image + descriptiont text
+    // add length of table to content size
+    contentSize = contentSize + (7*(hoursFontSize+15));
+    self.scroll.frame = CGRectMake(0, 0, [[UIScreen mainScreen]bounds].size.width, [[UIScreen mainScreen]bounds].size.height);
+   [self.scroll setContentSize:CGSizeMake(320, contentSize )];
 }
 
 @end

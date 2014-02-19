@@ -28,7 +28,7 @@
 {
     [super viewDidLoad];
     self.title = @"Directions";
-    self.description.text = [parkingInformationArray objectAtIndex:2];
+    self.description.text = [[parkingInformationArray objectAtIndex:2] objectForKey:@"Description"];
     
     // Sidebar menu code
     _sidebarButton.target = self.revealViewController;

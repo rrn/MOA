@@ -16,6 +16,8 @@
 @property (nonatomic, weak) IBOutlet UITextView *description;
 @property (nonatomic, weak) IBOutlet UIScrollView *scroll;
 
+
+
 @end
 
 NSMutableArray *generalHoursArray;

@@ -52,6 +52,7 @@
             cafeDescription = [[generalTextArray objectAtIndex:1] objectForKey:@"Description"];
         } else {
             [self PullFromRemote];
+            [self UpdateLocalDB];
         }
         
     }
@@ -84,6 +85,12 @@
 
     self.title = @"Cafe MOA";
     [super viewDidLoad];
+}
+
+-(void) UpdateLocalDB
+{
+    CrudOp *dbCrud = [[CrudOp alloc] init];
+    [dbCrud UpdateLocalDB:@"cafe_hours" :cafeHoursArray];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

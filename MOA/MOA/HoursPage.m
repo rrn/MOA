@@ -53,46 +53,22 @@
             generalHoursArray = [database PullFromLocalDB:@"general_hours"];
         } else {
             [self PullFromRemote];
+            [self UpdateLocalDB];
         }
     }
+}
+
+-(void)UpdateLocalDB
+{
+    CrudOp *dbCrud = [[CrudOp alloc] init];
+    [dbCrud UpdateLocalDB:@"general_hours" :generalHoursArray];
+
 }
 
 -(void)PullFromRemote
 {
     NSDictionary* jsonDict = [VisitorInfoViewController PullRemoteData:@"http://pluto.moa.ubc.ca/_mobile_app_remoteData.php"];
     generalHoursArray = [jsonDict objectForKey:@"general_hours"];
-    
-    // NEEDS TO PERFORM UPDATE IN HERE - UPDATE THE LOCAL DB
-    /*CrudOp *dbCrud = [[CrudOp alloc] init];
-    NSMutableString *day, *hours;
-    NSMutableString *temp;
-    int rowIndex = 0;
-    
-    NSEnumerator *mainEnumerator = [jsonDict keyEnumerator];
-    id key; NSArray *tableArray;
-    while (key = [mainEnumerator nextObject]){
-        rowIndex = 1;
-        tableArray = [jsonDict objectForKey:key];
-        for (NSDictionary *attribute in tableArray){
-            if ([key isEqualToString:@"general_hours"]) {
-                NSEnumerator *attEnum = [attribute keyEnumerator];
-                id attKey;
-                while (attKey = [attEnum nextObject]){
-                    // attKey going to be rate etc, so need to insert to the array
-                    day = [NSMutableString stringWithString:[attribute objectForKey:@"Day"]];
-                    hours = [NSMutableString stringWithString:[attribute objectForKey:@"Hours"]];
-                    temp = [NSMutableString stringWithFormat:@"%@ \t: %@\n", day, hours];
-                    [generalHoursArray addObject:temp];
-                    [dbCrud UpdateRecords:hours :day :rowIndex :@"generalHours"];
-                        
-                    // increase att key here
-                    attKey = [attEnum nextObject];
-                    attKey = [attEnum nextObject];
-                    rowIndex++;
-                }
-            }
-        }
-    }*/
 }
 
 

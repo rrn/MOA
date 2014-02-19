@@ -40,10 +40,6 @@
     _sidebarButton.action = @selector(rightRevealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
-    // CHECK IF IT IS LOADED IF NOT, CHECK CONNECTIVITY
-    // NO CONNECTION? LOCAL DB
-    // CONNECTION? REMOTE.
-    
     CrudOp* database = [CrudOp alloc];
     if (!ratesGeneralArray || !ratesGeneralArray.count ||
         !ratesGroupArray || !ratesGroupArray.count){
@@ -56,12 +52,19 @@
             ratesGroupArray = [database PullFromLocalDB:@"rates_groups"];
         } else {
             [self PullFromRemote];
+            [self UpdateLocalDB];
         }
     }
     
 }
 
 
+-(void) UpdateLocalDB
+{
+    CrudOp *dbCrud = [[CrudOp alloc] init];
+    [dbCrud UpdateLocalDB:@"rates_general" :ratesGeneralArray];
+    [dbCrud UpdateLocalDB:@"rates_groups" :ratesGroupArray];
+}
 
 
 -(void)PullFromRemote
@@ -69,6 +72,7 @@
     NSDictionary* jsonDict = [VisitorInfoViewController PullRemoteData:@"http://pluto.moa.ubc.ca/_mobile_app_remoteData.php"];
     ratesGeneralArray = [jsonDict objectForKey:@"rates_general"];
     ratesGroupArray = [jsonDict objectForKey:@"rates_groups"];
+    
     
     // TODO:
     // After pulling, needs to update

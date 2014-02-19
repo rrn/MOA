@@ -50,6 +50,7 @@
             parkingInformationArray = [database PullFromLocalDB:@"parking_and_directions"];
         } else {
             [self PullFromRemote];
+            [self UpdateLocalDB];
         }
     }
     
@@ -58,11 +59,20 @@
     rowData = [NSArray arrayWithObjects:locationInfo, @"From Vancouver International Airport", @"From Lower Mainland", @"Public Transit", @"Parking", nil];
 }
 
+-(void)UpdateLocalDB
+{
+    CrudOp *dbCrud = [[CrudOp alloc] init];
+    [dbCrud UpdateLocalDB:@"parking_and_direction" :parkingInformationArray];
+    
+}
+
 -(void) PullFromRemote
 {
     NSDictionary* jsonDict = [VisitorInfoViewController PullRemoteData:@"http://pluto.moa.ubc.ca/_mobile_app_remoteData.php"];
+    parkingInformationArray = [jsonDict objectForKey:@"parking_and_directions"];
+    /*
     // NEEDS TO PERFORM UPDATE IN HERE - UPDATE THE LOCAL DB
-    CrudOp *dbCrud = [[CrudOp alloc] init];
+    //CrudOp *dbCrud = [[CrudOp alloc] init];
     NSMutableString *description, *heading;
     int rowIndex = 0;
     
@@ -79,7 +89,7 @@
                 while (attKey = [attEnum nextObject]){
                     description = [NSMutableString stringWithString:[attribute objectForKey:@"Description"]];
                     heading = [NSMutableString stringWithString:[attribute objectForKey:@"Heading"]];
-                    [dbCrud UpdateRecords:description :heading :rowIndex :@"parkingDirections"];
+                    //[dbCrud UpdateRecords:description :heading :rowIndex :@"parkingDirections"];
                     [parkingInformationArray addObject:description];
                         
                     // increase att key here
@@ -89,7 +99,7 @@
                 }
             }
         }
-    }
+    }*/
 }
 
 

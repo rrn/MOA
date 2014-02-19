@@ -48,29 +48,6 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     
 }
 
--(void)CopyDbToTemporaryFolder{
-    NSError *err=nil;
-    
-    fileMgr = [NSFileManager defaultManager];
-    
-    NSString *dbpath = [self.GetDocumentDirectory stringByAppendingPathComponent:@"MOA.sqlite"];
-    NSString *renameDbPath = [self.GetDocumentDirectory stringByAppendingPathComponent:@"MOA1.sqlite"];
-    
-    BOOL result = [fileMgr moveItemAtPath:dbpath toPath:renameDbPath error:&err];
-    if(!result)
-        NSLog(@"Error: %@", err);
-    
-    NSString *copydbpath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"MOA1.sqlite"];
-    
-    [fileMgr removeItemAtPath:copydbpath error:&err];
-    if(![fileMgr copyItemAtPath:renameDbPath toPath:copydbpath error:&err])
-    {
-        UIAlertView *tellErr = [[UIAlertView alloc] initWithTitle:title message:@"Unable to copy database." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [tellErr show];
-        
-    }
-}
-
 -(void)InsertRecords:(NSMutableString *) txt :(NSMutableString*) txt2 {
     fileMgr = [NSFileManager defaultManager];
     sqlite3_stmt *stmt=nil;
@@ -104,40 +81,135 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     
 }
 
--(void)UpdateRecords:(NSString *)txt :(NSMutableString *)utxt :(int)indx :(NSString *)type{
+-(void)doesTableExist:(NSString*)tableName {
+    
+    fileMgr = [NSFileManager defaultManager];
+    sqlite3_stmt *stmt = nil;
+    sqlite3 *cruddb;
+    
+    NSString *dbFile = [self.GetDocumentDirectory stringByAppendingString:@"/MOA.sqlite"];
+    const char *dbFilePath = [dbFile UTF8String];
+    NSString* sqlString = [self getSQLQuery_CheckTable:tableName];
+    const char* sql = [sqlString UTF8String];
+    
+    if(sqlite3_open(dbFilePath, &cruddb) == SQLITE_OK)
+    {
+        if(sqlite3_prepare_v2(cruddb, sql, 267, &stmt, NULL)!=SQLITE_OK){
+            NSLog(@"Error while executing check");
+        }
+    }
+    
+    char* errmsg;
+    //sqlite3_trace(cruddb, sqliteCallbackFunc, NULL);
+    sqlite3_exec(cruddb, "COMMIT", NULL, NULL, &errmsg);
+    if(SQLITE_DONE != sqlite3_step(stmt)){
+        NSLog(@"Error while updating. %s", sqlite3_errmsg(cruddb));
+    }
+    sqlite3_finalize(stmt);
+    sqlite3_close(cruddb);
+    
+}
+
+-(void)UpdateLocalDB:(NSString*)tableName :(NSMutableArray*)object {
+    
+    NSError *error;
+    NSString *dbPath = [self.GetDocumentDirectory stringByAppendingPathComponent:@"MOA.sqlite"];
+    
+    // if file does not exist in documents,
+    // copy the file from bundle
+    // otherwise, check the version of both files and copy the most recent version to iPhone
+    
+    if (![fileMgr fileExistsAtPath:dbPath]) {
+        [self CopyDbToDocumentsFolder];
+    } else {
+        
+        // compare the dates of sqlite files
+        NSDictionary *dbInSimulatorDictionary = [[NSFileManager defaultManager] attributesOfItemAtPath:dbPath error:&error];
+        NSDate *simulatorDBDate =[dbInSimulatorDictionary objectForKey:NSFileModificationDate];
+        NSString *bundleDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"MOA.sqlite"];
+        NSDictionary *bundleDBDictionary = [[NSFileManager defaultManager] attributesOfItemAtPath:bundleDBPath error:&error];
+        NSDate *bundleDBDate = [bundleDBDictionary objectForKey:NSFileModificationDate];
+        
+        // if the local DB on the phone
+        // is older than the one in the program
+        if ([simulatorDBDate compare:bundleDBDate] == NSOrderedAscending) {
+            [[NSFileManager defaultManager] removeItemAtPath: dbPath error: &error];
+            [self CopyDbToDocumentsFolder];
+        }
+    }
+
+    // code for updating starts here
+    // check if table exists. if not, create 1
+    // upsert the rows.
+    
+    [self doesTableExist:tableName];
+    for (int i = 1; i <= [object count]; i++){
+        if ([self doesRowExists:tableName :i] == true){
+            [self UpdateTable:object :tableName :i];
+        } else {
+            [self InsertToTable:object :tableName :i];
+            
+        }
+    }
+    
+}
+
+-(BOOL)doesRowExists:(NSString*) tableName :(int) rowid{
+    
+    // this function checks if a row with specified rowid exists in tableName table.
+    // returns a boolean value
+    
+    BOOL rowExists = false;
+    sqlite3_stmt *stmt = nil;
+    sqlite3 *cruddb;
+    NSString *crudddatabase = [self.GetDocumentDirectory stringByAppendingPathComponent:@"/MOA.sqlite"];
+    const char *dbpath = [crudddatabase UTF8String];
+    
+    NSString * sqlString = [NSString stringWithFormat:@"SELECT * FROM %@ WHERE rowid = '%i'", tableName, rowid];
+    const char* sql = [sqlString UTF8String];
+    
+    if(sqlite3_open(dbpath, &cruddb) == SQLITE_OK)
+    {
+        int rc = sqlite3_prepare_v2(cruddb, sql, -1, &stmt, NULL);
+        if(rc==SQLITE_OK) {
+            if (sqlite3_step(stmt)==SQLITE_ROW)
+                rowExists=YES;
+            else
+                rowExists=NO;
+        } else {
+            // sqlite3_prepare_v2 returns error code, print stack trace
+            [self checkReturnCode:rc];
+        }
+    }
+    
+    char* errmsg;
+    //sqlite3_trace(cruddb, sqliteCallbackFunc, NULL);
+    sqlite3_exec(cruddb, "COMMIT", NULL, NULL, &errmsg);
+    sqlite3_finalize(stmt);
+    sqlite3_close(cruddb);
+    return rowExists;
+}
+
+-(void)UpdateTable :(NSMutableArray*)object :(NSString*)tableName :(int) rowid
+{
+    // for each table containing hours - use this function
+    // example: cafe_hours, general_hours
     
     fileMgr = [NSFileManager defaultManager];
     sqlite3_stmt *stmt=nil;
     sqlite3 *cruddb;
     
-    //[self CopyDbToDocumentsFolder];
+    NSString *crudddatabase = [self.GetDocumentDirectory stringByAppendingPathComponent:@"/MOA.sqlite"];
+    const char *dbpath = [crudddatabase UTF8String];
     
-    
-    NSString *cruddatabase = [self.GetDocumentDirectory stringByAppendingPathComponent:@"MOA.sqlite"];
-    const char *dbpath = [cruddatabase UTF8String];
-    
-    const char *sql= "";
-    if ([type isEqualToString:@"generalHours"]){
-        sql = "update general_hours Set Hours = ?, Day=? Where rowid=?";
-    } else if ([type isEqualToString:@"cafeHours"]){
-        sql = "update cafe_hours Set Hours=?, Day=? Where rowid=?";
-    } else if ([type isEqualToString:@"generalText"]){
-        sql = "update general_text Set description=?, identifier=? Where rowid=?";
-    } else if ([type isEqualToString:@"rateGeneral"]){
-        sql = "update rates_general Set rate=?, description=? Where rowid=?";
-    } else if ([type isEqualToString:@"rateGroups"]){
-        sql = "update rates_groups Set rate=?, description=? Where rowid=?";
-    } else if ([type isEqualToString:@"parkingDirections"]){
-        sql = "update parking_and_directions Set Description=?, heading=? Where rowid=?";
-    }
-    
+    NSString * sqlString = [self getSQLQuery_Update:tableName];
+    const char* sql = [sqlString UTF8String];
+    //const char *sql = "update cafe_hours Set Hours = ?, Day=? Where rowid=?";
     
     if(sqlite3_open(dbpath, &cruddb) == SQLITE_OK)
     {
         if(sqlite3_prepare_v2(cruddb, sql, 267, &stmt, NULL)==SQLITE_OK){
-            sqlite3_bind_text(stmt, 1, [txt UTF8String], -1, SQLITE_TRANSIENT);
-            sqlite3_bind_text(stmt, 2, [utxt UTF8String], -1, SQLITE_TRANSIENT);
-            sqlite3_bind_int(stmt, 3, indx);
+            [self bindUpdateSQLStatement:stmt :object :rowid :tableName];
         }
     }
     char* errmsg;
@@ -150,34 +222,185 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     }
     sqlite3_finalize(stmt);
     sqlite3_close(cruddb);
- 
-    
+
 }
--(void)DeleteRecords:(NSString *)txt{
+
+-(void)InsertToTable:(NSMutableArray*)object :(NSString*)tableName :(int)rowid
+{
+    // for each table containing hours - use this function
+    // example: cafe_hours, general_hours
+    
     fileMgr = [NSFileManager defaultManager];
     sqlite3_stmt *stmt=nil;
     sqlite3 *cruddb;
     
-    //insert
-    const char *sql = "Delete from data where coltext=?";
+    NSString *dbPath = [self.GetDocumentDirectory stringByAppendingPathComponent:@"MOA.sqlite"];
+    BOOL success = [fileMgr fileExistsAtPath:dbPath];
+    NSString * sqlString = [self getSQLQuery_Insert:tableName];
+    const char* sql = [sqlString UTF8String];
     
-    //Open db
-    NSString *cruddatabase = [self.GetDocumentDirectory stringByAppendingPathComponent:@"MOA.sqlite"];
-    sqlite3_open([cruddatabase UTF8String], &cruddb);
-    sqlite3_prepare_v2(cruddb, sql, 1, &stmt, NULL);
-    sqlite3_bind_text(stmt, 1, [txt UTF8String], -1, SQLITE_TRANSIENT);
+    if(!success)
+        NSLog(@"Cannot locate database file '%@'.", dbPath);
     
-    sqlite3_step(stmt);
+    if(!(sqlite3_open_v2([dbPath UTF8String], &cruddb,SQLITE_OPEN_READWRITE, NULL) == SQLITE_OK))
+        NSLog(@"An error has occured.");
+
+    int rc;
+    if ((rc =sqlite3_prepare_v2(cruddb, sql, -1, &stmt, NULL)) != SQLITE_OK){
+        NSLog(@"%d", rc );
+        NSLog(@"Error %s", sqlite3_errmsg(cruddb));
+    };
+    [self bindInsertSQLStatement:stmt :object :rowid :tableName];
+   
+    
+    //sqlite3_trace(cruddb, sqliteCallbackFunc, NULL);
+    if (sqlite3_step(stmt) != SQLITE_DONE)
+        NSLog(@"Error %s", sqlite3_errmsg(cruddb));
+    
     sqlite3_finalize(stmt);
     sqlite3_close(cruddb);
     
+}
+
+-(NSString*) getSQLQuery_CheckTable:(NSString*) tableName
+{
+    NSString* sqlString;
+    if ([tableName isEqualToString:@"general_hours"] || [tableName isEqualToString:@"cafe_hours"]) {
+        sqlString = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(rowid INT, Day TEXT, Hours TEXT)", tableName];
+    } else if ([tableName isEqualToString:@"rates_general"] || [tableName isEqualToString:@"rates_groups"]) {
+        sqlString = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(rowid INT, Description TEXT, Rates TEXT)", tableName];
+    } else if ([tableName isEqualToString:@"parking_and_directions"]){
+        sqlString = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(rowid INT, Heading TEXT, Description TEXT)", tableName];
+    } else if ([tableName isEqualToString:@"general_text"]){
+        sqlString = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(rowid INT, Identifier TEXT, Description TEXT)", tableName];
+    } else {
+        sqlString = [NSString stringWithFormat:@"Select *"];
+    }
+    return sqlString;
+}
+
+-(NSString*) getSQLQuery_Insert:(NSString*) tableName
+{
+    NSString* sqlString;
+    if ([tableName isEqualToString:@"general_hours"] || [tableName isEqualToString:@"cafe_hours"]) {
+        sqlString = [NSString stringWithFormat:@"INSERT INTO %@ (rowid, Day, Hours) VALUES (?,?,?)", tableName];
+    } else if ([tableName isEqualToString:@"rates_general"] || [tableName isEqualToString:@"rates_groups"]) {
+        sqlString = [NSString stringWithFormat:@"INSERT INTO %@ (rowid, Description, Rates) VALUES (?,?,?)", tableName];
+    } else if ([tableName isEqualToString:@"parking_and_directions"]){
+        sqlString = [NSString stringWithFormat:@"INSERT INTO %@ (rowid, Heading, Description) VALUES (?,?,?)", tableName];
+    } else if ([tableName isEqualToString:@"general_text"]){
+        sqlString = [NSString stringWithFormat:@"INSERT INTO %@ (rowid, Identifier, Description) VALUES (?,?,?)", tableName];
+    } else {
+        sqlString = [NSString stringWithFormat:@"Select *"];
+    }
+    return sqlString;
+}
+
+
+-(NSString*) getSQLQuery_Update:(NSString*) tableName
+{
+    NSString* sqlString;
+    if ([tableName isEqualToString:@"general_hours"] || [tableName isEqualToString:@"cafe_hours"]) {
+        sqlString = [NSString stringWithFormat:@"update %@ Set Day= ?, Hours=? Where rowid=?", tableName];
+    } else if ([tableName isEqualToString:@"rates_general"] || [tableName isEqualToString:@"rates_groups"]) {
+         sqlString = [NSString stringWithFormat:@"update %@ Set Description=?, Rate=? Where rowid=?", tableName];
+    } else if ([tableName isEqualToString:@"parking_and_directions"]){
+         sqlString = [NSString stringWithFormat:@"update %@ Set Heading=?, Description=? Where rowid=?", tableName];
+    } else if ([tableName isEqualToString:@"general_text"]){
+         sqlString = [NSString stringWithFormat:@"update %@ Set Identifier=?, Description=? Where rowid=?", tableName];
+    } else {
+        sqlString = [NSString stringWithFormat:@"Select *"];
+    }
+    return sqlString;
+}
+
+-(void) bindInsertSQLStatement:(sqlite3_stmt*)stmt :(NSMutableArray*)object :(int)rowid :(NSString*) tableName
+{
+    if ([tableName isEqualToString:@"general_hours"] || [tableName isEqualToString:@"cafe_hours"]) {
+        [self bindInsertSQLStatement_Hours:stmt :object :rowid];
+    } else if ([tableName isEqualToString:@"rates_general"] || [tableName isEqualToString:@"rates_groups"])
+        [self bindInsertSQLStatement_Rates:stmt :object :rowid];
+    else if ([tableName isEqualToString:@"parking_and_directions"]){
+        [self bindInsertSQLStatement_Parking:stmt :object :rowid];
+    } else if ([tableName isEqualToString:@"general_text"]){
+        [self bindInsertSQLStatement_GeneralText:stmt :object :rowid];
+    }
+}
+
+-(void) bindInsertSQLStatement_Hours:(sqlite3_stmt*)stmt :(NSMutableArray*)object :(int)rowid
+{
+    sqlite3_bind_int(stmt, 1, rowid);
+    sqlite3_bind_text(stmt, 2, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"Day"]UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 3, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"Hours"]UTF8String], -1, SQLITE_TRANSIENT);
+}
+
+-(void) bindInsertSQLStatement_Rates:(sqlite3_stmt*)stmt :(NSMutableArray*)object :(int)rowid
+{
+    sqlite3_bind_int(stmt, 1, rowid);
+    sqlite3_bind_text(stmt, 2, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"Description"]UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 3, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"Rates"]UTF8String], -1, SQLITE_TRANSIENT);
+}
+
+-(void) bindInsertSQLStatement_Parking:(sqlite3_stmt*)stmt :(NSMutableArray*)object :(int)rowid
+{
+    sqlite3_bind_int(stmt, 1, rowid);
+    sqlite3_bind_text(stmt, 2, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"Heading"]UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 3, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"Description"]UTF8String], -1, SQLITE_TRANSIENT);
+}
+
+-(void) bindInsertSQLStatement_GeneralText:(sqlite3_stmt*)stmt :(NSMutableArray*)object :(int)rowid
+{
+    sqlite3_bind_int(stmt, 1, rowid);
+    sqlite3_bind_text(stmt, 2, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"Identifier"]UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 3, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"Description"]UTF8String], -1, SQLITE_TRANSIENT);
+}
+
+-(void) bindUpdateSQLStatement:(sqlite3_stmt*)stmt :(NSMutableArray*)object :(int)rowid :(NSString*) tableName
+{
+    if ([tableName isEqualToString:@"general_hours"] || [tableName isEqualToString:@"cafe_hours"]) {
+        [self bindUpdateSQLStatement_Hours:stmt :object :rowid];
+    } else if ([tableName isEqualToString:@"rates_general"] || [tableName isEqualToString:@"rates_groups"])
+        [self bindUpdateSQLStatement_Rates:stmt :object :rowid];
+    else if ([tableName isEqualToString:@"parking_and_directions"]){
+        [self bindUpdateSQLStatement_Parking:stmt :object :rowid];
+    } else if ([tableName isEqualToString:@"general_text"]){
+        [self bindUpdateSQLStatement_GeneralText:stmt :object :rowid];
+    }
+}
+
+-(void) bindUpdateSQLStatement_Hours:(sqlite3_stmt*)stmt :(NSMutableArray*)object :(int)rowid
+{
+    sqlite3_bind_text(stmt, 1, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"Day"]UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 2, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"Hours"]UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_int(stmt, 3, rowid);
+}
+
+-(void) bindUpdateSQLStatement_Rates:(sqlite3_stmt*)stmt :(NSMutableArray*)object :(int)rowid
+{
+    sqlite3_bind_text(stmt, 1, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"Description"]UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 2, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"Rate"]UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_int(stmt, 3, rowid);
+}
+
+-(void) bindUpdateSQLStatement_Parking:(sqlite3_stmt*)stmt :(NSMutableArray*)object :(int)rowid
+{
+    sqlite3_bind_text(stmt, 1, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"Heading"]UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 2, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"Description"]UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_int(stmt, 3, rowid);
+}
+
+-(void) bindUpdateSQLStatement_GeneralText:(sqlite3_stmt*)stmt :(NSMutableArray*)object :(int)rowid
+{
+    sqlite3_bind_text(stmt, 1, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"Identifier"]UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 2, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"Description"]UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_int(stmt, 3, rowid);
 }
 
 -(void)checkReturnCode: (int)rc{
     if(rc != SQLITE_OK)
     {
         NSLog(@"Problem with prepare statement at PullFromLocalDB, rc = %d", rc);
-        //NSLog(@"%s SQLITE_ERROR '%s' (%1d)", __FUNCTION__, sqlite3_errmsg(db), sqlite3_errcode(db));
+        NSLog(@"%s SQLITE_ERROR '%s' (%1d)", __FUNCTION__, sqlite3_errmsg(db), sqlite3_errcode(db));
     }
 }
 
@@ -278,6 +501,8 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
         return returnedData;
     }
 }
+
+
 
 
 

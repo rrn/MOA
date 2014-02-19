@@ -50,9 +50,10 @@
                 shopDescription = [generalTextArray objectAtIndex:0];
             } else {
                 [self PullFromRemote];
+                [self UpdateLocalDB];
             }
         } else {
-            shopDescription = [generalTextArray objectAtIndex:0];
+            shopDescription = [[generalTextArray objectAtIndex:0] objectForKey:@"Description"];
         }
     }
     
@@ -65,6 +66,13 @@
 
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+}
+
+
+-(void) UpdateLocalDB
+{
+    CrudOp *dbCrud = [[CrudOp alloc] init];
+    [dbCrud UpdateLocalDB:@"general_text" :generalTextArray];
 }
 
 -(void) PullFromRemote

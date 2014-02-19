@@ -30,12 +30,10 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
 }
 
 -(void)CopyDbToDocumentsFolder{
+    
     NSError *err=nil;
-    
     fileMgr = [NSFileManager defaultManager];
-    
     NSString *dbpath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"MOA.sqlite"];
-    
     NSString *copydbpath = [self.GetDocumentDirectory stringByAppendingPathComponent:@"MOA.sqlite"];
     
     [fileMgr removeItemAtPath:copydbpath error:&err];
@@ -45,39 +43,6 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
         [tellErr show];
         
     }
-    
-}
-
--(void)InsertRecords:(NSMutableString *) txt :(NSMutableString*) txt2 {
-    fileMgr = [NSFileManager defaultManager];
-    sqlite3_stmt *stmt=nil;
-    sqlite3 *cruddb;
-    
-    [self CopyDbToDocumentsFolder];
-    NSString *dbPath = [self.GetDocumentDirectory stringByAppendingPathComponent:@"MOA.sqlite"];
-    BOOL success = [fileMgr fileExistsAtPath:dbPath];
-    
-    if(!success)
-    {
-        NSLog(@"Cannot locate database file '%@'.", dbPath);
-    }
-    if(!(sqlite3_open_v2([dbPath UTF8String], &cruddb,SQLITE_OPEN_READWRITE, NULL) == SQLITE_OK))
-    {
-        NSLog(@"An error has occured.");
-    }
-    int rc;
-    if ((rc =sqlite3_prepare_v2(cruddb, "INSERT into cafe_hours VALUES (?,?)", -1, &stmt, NULL)) != SQLITE_OK){
-        NSLog(@"%d", rc );
-        NSLog(@"Error %s", sqlite3_errmsg(cruddb));
-    };
-    sqlite3_bind_text(stmt, 1, [txt UTF8String], -1, SQLITE_TRANSIENT);
-    sqlite3_bind_text(stmt, 2, [txt2 UTF8String], -1, SQLITE_TRANSIENT);
-    NSLog(@"Error %s", sqlite3_errmsg(cruddb));
-    
-    if (sqlite3_step(stmt) != SQLITE_DONE) 
-        NSLog(@"Error %s", sqlite3_errmsg(cruddb));
-    sqlite3_finalize(stmt);
-    sqlite3_close(cruddb);
     
 }
 
@@ -95,12 +60,16 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     if(sqlite3_open(dbFilePath, &cruddb) == SQLITE_OK)
     {
         if(sqlite3_prepare_v2(cruddb, sql, 267, &stmt, NULL)!=SQLITE_OK){
-            NSLog(@"Error while executing check");
+            NSLog(@"CrudOp::doesTableExist error");
+            // If it has error at this point, possible debugging:
+            // 1. Did you modify the code? Does it still have the sqlite3_open and close?
+            // 2. Did you specify the right tableName? Table name has to be exactly the same as it is in db.
+            // 3. Print return code from sqlite3_prepare_v2 and call [self checkReturncode:rc]
         }
     }
     
     char* errmsg;
-    //sqlite3_trace(cruddb, sqliteCallbackFunc, NULL);
+    //sqlite3_trace(cruddb, sqliteCallbackFunc, NULL); // uncomment this for trace
     sqlite3_exec(cruddb, "COMMIT", NULL, NULL, &errmsg);
     if(SQLITE_DONE != sqlite3_step(stmt)){
         NSLog(@"Error while updating. %s", sqlite3_errmsg(cruddb));
@@ -112,43 +81,17 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
 
 -(void)UpdateLocalDB:(NSString*)tableName :(NSMutableArray*)object {
     
-    NSError *error;
     NSString *dbPath = [self.GetDocumentDirectory stringByAppendingPathComponent:@"MOA.sqlite"];
-    
-    // if file does not exist in documents,
-    // copy the file from bundle
-    // otherwise, check the version of both files and copy the most recent version to iPhone
-    
-    if (![fileMgr fileExistsAtPath:dbPath]) {
-        [self CopyDbToDocumentsFolder];
-    } else {
-        
-        // compare the dates of sqlite files
-        NSDictionary *dbInSimulatorDictionary = [[NSFileManager defaultManager] attributesOfItemAtPath:dbPath error:&error];
-        NSDate *simulatorDBDate =[dbInSimulatorDictionary objectForKey:NSFileModificationDate];
-        NSString *bundleDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"MOA.sqlite"];
-        NSDictionary *bundleDBDictionary = [[NSFileManager defaultManager] attributesOfItemAtPath:bundleDBPath error:&error];
-        NSDate *bundleDBDate = [bundleDBDictionary objectForKey:NSFileModificationDate];
-        
-        // if the local DB on the phone
-        // is older than the one in the program
-        if ([simulatorDBDate compare:bundleDBDate] == NSOrderedAscending) {
-            [[NSFileManager defaultManager] removeItemAtPath: dbPath error: &error];
-            [self CopyDbToDocumentsFolder];
-        }
-    }
+    [self isFileValid:dbPath];
 
-    // code for updating starts here
     // check if table exists. if not, create 1
     // upsert the rows.
-    
-    [self doesTableExist:tableName];
+        [self doesTableExist:tableName];
     for (int i = 1; i <= [object count]; i++){
         if ([self doesRowExists:tableName :i] == true){
             [self UpdateTable:object :tableName :i];
         } else {
             [self InsertToTable:object :tableName :i];
-            
         }
     }
     
@@ -177,8 +120,12 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
             else
                 rowExists=NO;
         } else {
-            // sqlite3_prepare_v2 returns error code, print stack trace
+            NSLog(@"CrudOp::doesRowExist error");
             [self checkReturnCode:rc];
+            // If it has error at this point, possible debugging:
+            // 1. Did you modify the code? Does it still have the sqlite3_open and close?
+            // 2. Did you specify the right tableName? Table name has to be exactly the same as it is in db.
+            // 3. Print return code from sqlite3_prepare_v2 and call [self checkReturncode:rc]
         }
     }
     
@@ -192,19 +139,14 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
 
 -(void)UpdateTable :(NSMutableArray*)object :(NSString*)tableName :(int) rowid
 {
-    // for each table containing hours - use this function
-    // example: cafe_hours, general_hours
-    
     fileMgr = [NSFileManager defaultManager];
     sqlite3_stmt *stmt=nil;
     sqlite3 *cruddb;
     
     NSString *crudddatabase = [self.GetDocumentDirectory stringByAppendingPathComponent:@"/MOA.sqlite"];
     const char *dbpath = [crudddatabase UTF8String];
-    
     NSString * sqlString = [self getSQLQuery_Update:tableName];
     const char* sql = [sqlString UTF8String];
-    //const char *sql = "update cafe_hours Set Hours = ?, Day=? Where rowid=?";
     
     if(sqlite3_open(dbpath, &cruddb) == SQLITE_OK)
     {
@@ -212,9 +154,9 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
             [self bindUpdateSQLStatement:stmt :object :rowid :tableName];
         }
     }
+    
     char* errmsg;
-    // uncomment this for trace
-    //sqlite3_trace(cruddb, sqliteCallbackFunc, NULL);
+    //sqlite3_trace(cruddb, sqliteCallbackFunc, NULL); // uncomment this for trace
     sqlite3_exec(cruddb, "COMMIT", NULL, NULL, &errmsg);
     
     if(SQLITE_DONE != sqlite3_step(stmt)){
@@ -227,9 +169,6 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
 
 -(void)InsertToTable:(NSMutableArray*)object :(NSString*)tableName :(int)rowid
 {
-    // for each table containing hours - use this function
-    // example: cafe_hours, general_hours
-    
     fileMgr = [NSFileManager defaultManager];
     sqlite3_stmt *stmt=nil;
     sqlite3 *cruddb;
@@ -252,8 +191,7 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     };
     [self bindInsertSQLStatement:stmt :object :rowid :tableName];
    
-    
-    //sqlite3_trace(cruddb, sqliteCallbackFunc, NULL);
+    //sqlite3_trace(cruddb, sqliteCallbackFunc, NULL); // uncomment this code to print queries
     if (sqlite3_step(stmt) != SQLITE_DONE)
         NSLog(@"Error %s", sqlite3_errmsg(cruddb));
     
@@ -404,17 +342,42 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     }
 }
 
+-(void)isFileValid :(NSString*)filePath
+{
+    NSError *error;
+    if (![fileMgr fileExistsAtPath:filePath]) {
+        [self CopyDbToDocumentsFolder];
+    } else {
+        // compare the dates of sqlite files
+        NSDictionary *dbInSimulatorDictionary = [[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:&error];
+        NSDate *simulatorDBDate =[dbInSimulatorDictionary objectForKey:NSFileModificationDate];
+        NSString *bundleDBPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"MOA.sqlite"];
+        NSDictionary *bundleDBDictionary = [[NSFileManager defaultManager] attributesOfItemAtPath:bundleDBPath error:&error];
+        NSDate *bundleDBDate = [bundleDBDictionary objectForKey:NSFileModificationDate];
+        // if the local DB on the phone
+        // is older than the one in the program
+        if ([simulatorDBDate compare:bundleDBDate] == NSOrderedAscending) {
+            //NSLog(@"SQLite in Document is earlier than SQLite in Bundle. Replacing . . .");
+            [[NSFileManager defaultManager] removeItemAtPath: filePath error: &error];
+            [self CopyDbToDocumentsFolder];
+        }
+    }
+}
+
 - (NSMutableArray *) PullFromLocalDB :(NSString*) tableName{
     
     
     NSMutableString *data1, *data2;
     NSMutableString *temp;
     NSMutableArray *returnedData = [[NSMutableArray alloc] init];
+    
+    //
+    
     @try {
         //NSFileManager *fileMgr = [NSFileManager defaultManager];
         
         // check if the documents has file or not
-        NSError *error;
+       /* NSError *error;
         NSString *dbPath = [self.GetDocumentDirectory stringByAppendingPathComponent:@"MOA.sqlite"];
         if (![fileMgr fileExistsAtPath:dbPath]) {
             //dbPath = [[NSBundle mainBundle] pathForResource:@"MOA"ofType:@"sqlite"];
@@ -434,7 +397,10 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
             [[NSFileManager defaultManager] removeItemAtPath: dbPath error: &error];
             [self CopyDbToDocumentsFolder];
         }
-    }
+    }*/
+        NSString *dbPath = [self.GetDocumentDirectory stringByAppendingPathComponent:@"MOA.sqlite"];
+        [self isFileValid:dbPath];
+        
         BOOL success = [fileMgr fileExistsAtPath:dbPath];
         
         if(!success)

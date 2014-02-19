@@ -62,7 +62,7 @@
 -(void)UpdateLocalDB
 {
     CrudOp *dbCrud = [[CrudOp alloc] init];
-    [dbCrud UpdateLocalDB:@"parking_and_direction" :parkingInformationArray];
+    [dbCrud UpdateLocalDB:@"parking_and_directions" :parkingInformationArray];
     
 }
 
@@ -70,40 +70,7 @@
 {
     NSDictionary* jsonDict = [VisitorInfoViewController PullRemoteData:@"http://pluto.moa.ubc.ca/_mobile_app_remoteData.php"];
     parkingInformationArray = [jsonDict objectForKey:@"parking_and_directions"];
-    /*
-    // NEEDS TO PERFORM UPDATE IN HERE - UPDATE THE LOCAL DB
-    //CrudOp *dbCrud = [[CrudOp alloc] init];
-    NSMutableString *description, *heading;
-    int rowIndex = 0;
-    
-    NSEnumerator *mainEnumerator = [jsonDict keyEnumerator];
-    id key; NSArray *tableArray;
-    while (key = [mainEnumerator nextObject]){
-        rowIndex = 1;
-        tableArray = [jsonDict objectForKey:key];
-        for (NSDictionary *attribute in tableArray){
-            // PARKING AND DIRECTIONS
-            if ([key isEqualToString:@"parking_and_directions"]){
-                NSEnumerator *attEnum = [attribute keyEnumerator];
-                id attKey;
-                while (attKey = [attEnum nextObject]){
-                    description = [NSMutableString stringWithString:[attribute objectForKey:@"Description"]];
-                    heading = [NSMutableString stringWithString:[attribute objectForKey:@"Heading"]];
-                    //[dbCrud UpdateRecords:description :heading :rowIndex :@"parkingDirections"];
-                    [parkingInformationArray addObject:description];
-                        
-                    // increase att key here
-                    attKey = [attEnum nextObject];
-                    attKey = [attEnum nextObject];
-                    rowIndex++;
-                }
-            }
-        }
-    }*/
 }
-
-
-
 
 - (void)didReceiveMemoryWarning
 {

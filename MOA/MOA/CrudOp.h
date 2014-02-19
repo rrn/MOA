@@ -29,9 +29,6 @@
 
 -(void)CopyDbToDocumentsFolder;
 -(NSString *) GetDocumentDirectory;
--(void)CopyDbToTemporaryFolder;
-
--(void)InsertRecords:(NSMutableString *)txt :(NSMutableString*)txt2;
 -(NSMutableArray*) PullFromLocalDB:(NSString*) tableName;
 -(void)UpdateLocalDB:(NSString*)tableName :(NSMutableArray*)object;
 -(void)doesTableExist:(NSString*)tableName;

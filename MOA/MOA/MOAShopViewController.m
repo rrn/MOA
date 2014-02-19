@@ -47,14 +47,13 @@
             if (internetStatus == NotReachable){
                 CrudOp* database = [CrudOp alloc];
                 generalTextArray = [database PullFromLocalDB:@"general_text"];
-                shopDescription = [generalTextArray objectAtIndex:0];
-            } else {
+                            } else {
                 [self PullFromRemote];
                 [self UpdateLocalDB];
             }
-        } else {
-            shopDescription = [[generalTextArray objectAtIndex:0] objectForKey:@"Description"];
         }
+        shopDescription = [[generalTextArray objectAtIndex:0] objectForKey:@"Description"];
+        
     }
     
     NSMutableString* text = shopDescription;

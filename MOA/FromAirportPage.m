@@ -30,7 +30,7 @@
     self.title = @"Directions";
     self.description.editable = NO;
     self.description.dataDetectorTypes = UIDataDetectorTypeLink;
-	self.description.text = [parkingInformationArray objectAtIndex:3];
+	self.description.text = [[parkingInformationArray objectAtIndex:3] objectForKey:@"Description"];
     
     // Sidebar menu code
     _sidebarButton.target = self.revealViewController;

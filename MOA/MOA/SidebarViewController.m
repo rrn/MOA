@@ -100,10 +100,21 @@
                 [vcNew setSelectedIndex:3];
                 
             }
+            else  if ([segue.identifier isEqualToString:@"showFacebook"]) {
+            vcName = @"TabBar";
+            UITabBarController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
+            
+            // Swap out the Front view controller and display
+            [self.revealViewController setFrontViewController:vcNew];
+            [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated:YES];
+            
+            // select index 4, which is facebook
+            [vcNew setSelectedIndex:4];
+            
+            }
         };
+        }
     }
-    
-}
 
 - (void)didReceiveMemoryWarning
 {

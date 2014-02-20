@@ -54,7 +54,6 @@
     allTags = [[allTags arrayByAddingObjectsFromArray:[[TagList sharedInstance] materialsTags]] mutableCopy];
     allTags = [[allTags arrayByAddingObjectsFromArray:[[TagList sharedInstance] culturesTags]] mutableCopy];
     allTags = [[allTags arrayByAddingObjectsFromArray:[[TagList sharedInstance] peopleTags]] mutableCopy];
-    NSLog(@"%@", allTags);
 
     selectedPath = [[NSIndexPath alloc]init];
     

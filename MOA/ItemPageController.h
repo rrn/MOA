@@ -10,7 +10,7 @@
 
 @interface ItemPageController : UIViewController
 
-@property NSArray* data;
+@property NSMutableArray* data;
 @property NSInteger itemNumber;
 @property (strong, nonatomic) IBOutlet UIScrollView *theScrollView;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;

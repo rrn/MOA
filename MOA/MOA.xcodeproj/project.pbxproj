@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		455C469B18B5B0C30047D7AA /* FacebookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 455C469A18B5B0C30047D7AA /* FacebookViewController.m */; };
 		4582C9931898BE8800DC9000 /* WOTWEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4582C9921898BE8800DC9000 /* WOTWEventViewController.m */; };
 		503CDBEB18A384B300BC8580 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 503CDBEA18A384B300BC8580 /* Utils.m */; };
 		503CDC4518A4E70400BC8580 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 503CDC4418A4E70400BC8580 /* iCarousel.m */; };
@@ -96,6 +97,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		455C469918B5B0C30047D7AA /* FacebookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookViewController.h; sourceTree = "<group>"; };
+		455C469A18B5B0C30047D7AA /* FacebookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookViewController.m; sourceTree = "<group>"; };
 		4582C9911898BE8800DC9000 /* WOTWEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WOTWEventViewController.h; path = ../WOTWEventViewController.h; sourceTree = "<group>"; };
 		4582C9921898BE8800DC9000 /* WOTWEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WOTWEventViewController.m; path = ../WOTWEventViewController.m; sourceTree = "<group>"; };
 		503CDBE918A384B300BC8580 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
@@ -382,6 +385,8 @@
 				E4D391D01841989800043AEB /* Constants.m */,
 				50F52905183C97DC002A463C /* LocalDatabase */,
 				BBA3406C1826D6F700B6E4B1 /* Main.storyboard */,
+				455C469918B5B0C30047D7AA /* FacebookViewController.h */,
+				455C469A18B5B0C30047D7AA /* FacebookViewController.m */,
 				503CDC4318A4E70400BC8580 /* iCarousel.h */,
 				503CDC4418A4E70400BC8580 /* iCarousel.m */,
 				50D3AFF9189A484E00E81424 /* ExhibitionChildViewController.h */,
@@ -613,6 +618,7 @@
 				50F5290F183CA37B002A463C /* FromAirportPage.m in Sources */,
 				50CCCA14182C54D200384881 /* WhatsOnThisWeekViewController.m in Sources */,
 				50F52909183C984D002A463C /* ParkingPage.m in Sources */,
+				455C469B18B5B0C30047D7AA /* FacebookViewController.m in Sources */,
 				BB0E659A1835926800163652 /* TagList.m in Sources */,
 				50F52903183C91D7002A463C /* DirectionParkingViewController.m in Sources */,
 				50FA4074183B7F6600EC0CEC /* DBRemoteUpdater.m in Sources */,

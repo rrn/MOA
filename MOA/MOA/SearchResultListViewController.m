@@ -29,7 +29,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
 
 @implementation SearchResultListViewController
 {
-    NSArray *itemList;
+    NSMutableArray *itemList;
     NSArray *imageList;
     NSString *Type;
     NSMutableArray *searchArray;
@@ -66,7 +66,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
         Type = @"Materials";
     searchArray = [[[[TagList sharedInstance] peopleTags] filteredArrayUsingPredicate:predicate] mutableCopy];
     if([searchArray count] == 1)
-        Type = @"People;";
+        Type = @"People";
     
     
     // Set the side bar button action. When it's tapped, it'll show up the sidebar.
@@ -146,7 +146,6 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
         if ([digitalObjects count] > 0){
             NSURL *imageUrl = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"http:%@",[[digitalObjects objectAtIndex:0] objectForKey:@"thumbnail_url"]]];
             
-            // there are up to 25 photos available to load from the code repository
             NSURL *photoURL = imageUrl;
             BHPhoto *photo = [BHPhoto photoWithImageURL:photoURL];
             [album addPhoto:photo];
@@ -158,6 +157,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
             [album addPhoto:photo];
         }
         album.name = [NSString stringWithFormat:@"%@: %@", [[itemList objectAtIndex:a] objectForKey:@"name"], [[itemList objectAtIndex:a] objectForKey:@"identification_number"]];
+        //add item country/dates
         album.country = [[itemList objectAtIndex:a] objectForKey:@"name"];
         
         [self.albums addObject:album];
@@ -178,12 +178,12 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
-    return self.albums.count;
+    return [itemList count];
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    
+    //NSLog(@"%i", [itemList count]);
     //return [itemList count];
     BHAlbum *album = self.albums[section];
     return album.photos.count;
@@ -194,20 +194,22 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     NSInteger tempNumber;
     NSString *tempCatogeryType;
     NSString *searchType ;
-    
+    NSString *temp;
     
     if(self.navigationController.viewControllers.count <3){
         tempNumber = self.navigationController.viewControllers.count;
-        searchType = [self title];
+        temp = [self title];
         tempCatogeryType = Type;
+        searchType = [temp stringByReplacingOccurrencesOfString:@" " withString:@"+"];
+
         
     }else{
         tempNumber = self.navigationController.viewControllers.count;
         tempCatogeryType = [[self.navigationController.viewControllers objectAtIndex:tempNumber-3] title];
-        searchType = [self title];
+        temp = [self title];
+        searchType = [temp stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     }
-    
-    
+
     
     
     NSString *catogeryType = [[NSString alloc]init];
@@ -245,19 +247,30 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     }
     
     searchType = [searchType stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-    
-    NSString *jsonString = [ [NSString alloc]
+
+    NSString *jsonString = [ [NSMutableString alloc]
                             initWithContentsOfURL:[ [NSURL alloc] initWithString:[NSString stringWithFormat:@"http://www.rrnpilot.org/items.json?filters=held+at+MOA:+University+of+British+Columbia,+%@+%@", catogeryType,searchType]]
                             encoding:NSUTF8StringEncoding
                             error:nil
                             ];
-    //NSLog(@"%@, %@", catogeryType, searchType);
-    NSData *jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *jsonData = [[jsonString dataUsingEncoding:NSUTF8StringEncoding] mutableCopy];
     
     NSDictionary *entireDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
-    
-    itemList = [entireDictionary objectForKey:@"items"];
-    
+
+    itemList = [[entireDictionary objectForKey:@"items"] mutableCopy];
+    int x = [[entireDictionary objectForKey:@"result-count"] intValue];
+    //NSLog(@"%@", jsonString);
+    for(int b = 20; b < x; b= b+10){
+        NSString *jsonString = [ [NSString alloc]
+                      initWithContentsOfURL:[ [NSURL alloc] initWithString:[NSString stringWithFormat:@"http://www.rrnpilot.org/items.json?filters=held+at+MOA:+University+of+British+Columbia,+%@+%@&page=%i", catogeryType,searchType,(b/10)]]
+                      encoding:NSUTF8StringEncoding
+                      error:nil
+                      ];
+        NSData* jsonData =[[jsonString dataUsingEncoding:NSUTF8StringEncoding] mutableCopy];
+        NSDictionary *entireDictionary =[NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+        NSMutableArray *temp =[[entireDictionary objectForKey:@"items"] mutableCopy];
+        [itemList addObjectsFromArray:temp];
+    }
     
 }
 

@@ -83,10 +83,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0)
-        return [ratesGeneralArray count];// + [ratesGroupArray count];
-    else
+    if (section == 0) {
+        return [ratesGeneralArray count];
+    } else {
         return [ratesGroupArray count];
+    }
 }
 
 
@@ -99,7 +100,7 @@
         
     }
     
-    // Make title and subtitile multiline
+    // Make title and subtitle multiline
     cell.textLabel.numberOfLines = 0;
     cell.textLabel.font = [UIFont boldSystemFontOfSize:16];
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
@@ -120,7 +121,7 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // possibly: dynamic length?
+    // possibly: dynamic length
     if ((indexPath.section == 0 && (indexPath.row == 2 || indexPath.row == 4)) ||
         (indexPath.section == 1 && indexPath.row == 3)) {
         // Make these rows bigger to fit text
@@ -135,10 +136,10 @@
     switch (section)
     {
         case 0:
-            sectionName = NSLocalizedString(@"General Rates:", @"General Rates:");
+            sectionName = @"General Rates";
             break;
         case 1:
-            sectionName = NSLocalizedString(@"Group Rates:", @"Group Rates:");
+            sectionName = @"Group Rates";
             break;
         default:
             sectionName = @"";

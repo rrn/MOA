@@ -302,7 +302,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="K1F-uI-whX"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="K1F-uI-whX">
+                        <barButtonItem key="rightBarButtonItem" image="05_More_25px.png" id="LNS-cZ-xka"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="sideBarButton" destination="LNS-cZ-xka" id="6m3-v0-bPb"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DyK-fy-p4D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1382,10 +1388,10 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="8vC-Ii-8Vk"/>
-        <segue reference="zgW-yR-ErI"/>
         <segue reference="KG7-G5-5Wz"/>
+        <segue reference="8vC-Ii-8Vk"/>
         <segue reference="UVY-js-OWf"/>
+        <segue reference="zgW-yR-ErI"/>
         <segue reference="Qlf-L4-T27"/>
     </inferredMetricsTieBreakers>
 </document>

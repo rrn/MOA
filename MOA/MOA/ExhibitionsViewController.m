@@ -13,7 +13,6 @@
 #import "ExhibitionChildViewController.h"
 #import "Utils.h"
 #import "ConvertDate.h"
-#import "CrudOp.h"
 
 @interface ExhibitionsViewController ()
 @property (strong, nonatomic)  UIImageView *displayItemImageView;
@@ -35,14 +34,18 @@
 
 - (void)viewDidLoad
 {
-    
+    //CrudOp* database = [CrudOp alloc];
+    if (!database || database == NULL){
+        database = [CrudOp alloc];
+    }
+   
     Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
     NetworkStatus internetStatus = [reachability currentReachabilityStatus];
-    NSLog(@"%d", [[TagList sharedInstance].exhibitionEvents count]);
+    internet = YES;
     
     if(internetStatus == NotReachable) {
+        internet = NO;
         
-        CrudOp* database = [CrudOp alloc];
         if ([TagList sharedInstance].exhibitionEvents == NULL){
             [TagList sharedInstance].exhibitionEvents = [[NSMutableArray alloc]init];
         }
@@ -51,9 +54,8 @@
             [[TagList sharedInstance] setExhibitionEvents:[database PullFromLocalDB:@"moa_exhibitions"]];
         
     }
-   
+    
     [carousel reloadData];
-    NSLog(@"%d", self.carousel.numberOfItems);
     carousel.type = iCarouselTypeRotary;
     carousel.scrollEnabled = FALSE;
     
@@ -75,12 +77,25 @@
     
     // Set the gesture
     //[self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    
+    
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    if (syncLocalDB == NO && internet == YES) {
+        for (int i = 0; i < [[TagList sharedInstance].exhibitionEvents count]; i++){
+            [self updateImageToLocalDB:@"moa_exhibitions" :@"image" :[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"image"] :i];
+            [self updateImageToLocalDB:@"moa_exhibitions" :@"detailImage" :[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"detailImage"] :i];
+        }
+        syncLocalDB = YES;
+    }
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)recognizer shouldReceiveTouch:(UITouch *)touch
@@ -196,10 +211,21 @@
         view.layer.borderColor = [UIColor grayColor].CGColor;
         view.layer.borderWidth = 2.0f;
         
+        //show the image
         NSString *imageURL = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"image"];
-        NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: imageURL]];
-        UIImageView *buttonImage =[[UIImageView alloc] initWithImage:[UIImage imageWithData:imageData]];
+        UIImageView* buttonImage;
+        if (internet == YES) {
+            UIImage* image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+            buttonImage =[[UIImageView alloc] initWithImage:image];
+        } else {
+            buttonImage = [self loadImage:@"moa_exhibitions" :@"image" :index];
+        }
+        
+        // load both image and detailed image as well
+        //buttonImage = [self pullAndUpdateImage:@"moa_exhibitions" :@"image" :imageURL :index];
+        //[self pullAndUpdateImage:@"moa_exhibitions" :@"detailImage" :imageURLString :index];
         [view addSubview:buttonImage];
+        
         
         UITextView *nameTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, 210, 300.0f, 10)];
         nameTextView.text = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"title"];
@@ -224,6 +250,26 @@
         
         view.contentMode = UIViewContentModeCenter;
 
+        
+        /*if (internet == YES) {
+         image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+         buttonImage =[[UIImageView alloc] initWithImage:image];
+         
+         NSString* Dir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+         NSString *jpegPath = [NSString stringWithFormat:@"%@/exhibition-%d.jpg",Dir,index];// this path if you want save reference path in sqlite
+         //NSLog(@"%@", jpegPath);
+         NSData *data1 = [NSData dataWithData:UIImageJPEGRepresentation(image, 1.0f)];
+         [data1 writeToFile:jpegPath atomically:YES];
+         [database updateImagePath:@"moa_exhibitions" :@"image" :jpegPath :index];
+         
+         } else {
+         //UIImageView *myimage=[UIImageView alloc] initWithFrame:CGRectMake(0,0,20,20)];
+         NSString *path = [database getImagePath:@"moa_exhibitions" :@"image" :index];
+         NSLog(@"%@", path);
+         image=[UIImage imageWithData:[NSData dataWithContentsOfFile:path]];
+         buttonImage =[[UIImageView alloc] initWithImage:image];
+         }*/
+        
     }
     else
     {
@@ -233,6 +279,68 @@
 
     
     return view;
+}
+
+
+-(UIImageView*) loadImage:(NSString*)tableName :(NSString*)attributeName :(int)index
+{
+    UIImage* image;
+    UIImageView* buttonImage;
+    
+    // otherwise, load from database
+    NSString *path = [database getImagePath:tableName :attributeName :index];
+    //NSLog(@"%@", path);
+    image=[UIImage imageWithData:[NSData dataWithContentsOfFile:path]];
+    buttonImage =[[UIImageView alloc] initWithImage:image];
+    
+    return buttonImage;
+}
+
+
+-(UIImageView*) pullAndUpdateImage:(NSString*)tableName :(NSString*)attributeName :(NSString*)imageURL :(int)index
+{
+    UIImage* image;
+    UIImageView* buttonImage;
+    
+    if (internet == YES) {
+        
+        // If there is internet connection, load from URL
+        image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+        buttonImage =[[UIImageView alloc] initWithImage:image];
+        
+        NSString* Dir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+        NSString *jpegPath = [NSString stringWithFormat:@"%@/%@-%@%d.jpg",Dir, tableName, attributeName,index];
+        //NSLog(@"%@", jpegPath);
+        NSData *data1 = [NSData dataWithData:UIImageJPEGRepresentation(image, 1.0f)];
+        [data1 writeToFile:jpegPath atomically:YES];
+        [database updateImagePath:tableName :attributeName :jpegPath :index];
+        
+    } else {
+       
+        // otherwise, load from database
+        
+        NSString *path = [database getImagePath:tableName :attributeName :index];
+        //NSLog(@"%@", path);
+        image=[UIImage imageWithData:[NSData dataWithContentsOfFile:path]];
+        buttonImage =[[UIImageView alloc] initWithImage:image];
+        
+    }
+    
+    return buttonImage;
+}
+
+-(void) updateImageToLocalDB:(NSString*)tableName :(NSString*)attributeName :(NSString*)imageURL :(int)index{
+    
+    UIImage* image;
+    
+    image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+
+    
+    NSString* Dir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    NSString *jpegPath = [NSString stringWithFormat:@"%@/%@-%@%d.jpg",Dir, tableName, attributeName,index];
+    NSData *data1 = [NSData dataWithData:UIImageJPEGRepresentation(image, 1.0f)];
+    [data1 writeToFile:jpegPath atomically:YES];
+    [database updateImagePath:tableName :attributeName :jpegPath :index];
 }
 
 - (void)dealloc

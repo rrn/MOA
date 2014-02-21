@@ -252,7 +252,7 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     }
     
     char* errmsg;
-    sqlite3_trace(cruddb, sqliteCallbackFunc, NULL); // uncomment this for trace
+    //sqlite3_trace(cruddb, sqliteCallbackFunc, NULL); // uncomment this for trace
     sqlite3_exec(cruddb, "COMMIT", NULL, NULL, &errmsg);
     
     if(SQLITE_DONE != sqlite3_step(stmt)){
@@ -291,13 +291,87 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     };
     [self bindInsertSQLStatement:stmt :object :rowid :tableName];
    
-    sqlite3_trace(cruddb, sqliteCallbackFunc, NULL); // uncomment this code to print queries
+    //sqlite3_trace(cruddb, sqliteCallbackFunc, NULL); // uncomment this code to print queries
     if (sqlite3_step(stmt) != SQLITE_DONE)
         NSLog(@"Error %s", sqlite3_errmsg(cruddb));
     
     sqlite3_finalize(stmt);
     sqlite3_close(cruddb);
     
+}
+
+-(void) updateImagePath:(NSString*)tableName :(NSString*)attributeName :(NSString*)path :(int) rowid{
+
+    fileMgr = [NSFileManager defaultManager];
+    sqlite3_stmt *stmt=nil;
+    sqlite3 *cruddb;
+    
+    NSString *crudddatabase = [self.GetDocumentDirectory stringByAppendingPathComponent:@"/MOA.sqlite"];
+    const char *dbpath = [crudddatabase UTF8String];
+    NSString* sqlString = [NSString stringWithFormat:@"UPDATE %@ Set %@='%@' Where rowid=%d", tableName, attributeName, path, rowid+1];
+    const char* sql = [sqlString UTF8String];
+    
+    int rc = sqlite3_open(dbpath, &cruddb);
+    if(rc == SQLITE_OK)
+    {
+        //NSLog(@"%d", rc);
+        rc = sqlite3_prepare_v2(cruddb, sql, 267, &stmt, NULL);
+        if(rc !=SQLITE_OK){
+            [self checkReturnCode:rc];
+        }
+    }
+    
+    char* errmsg;
+    //sqlite3_trace(cruddb, sqliteCallbackFunc, NULL); // uncomment this for trace
+    sqlite3_exec(cruddb, "COMMIT", NULL, NULL, &errmsg);
+    
+    if(SQLITE_DONE != sqlite3_step(stmt)){
+        NSLog(@"Error while updating. %s", sqlite3_errmsg(cruddb));
+    }
+    sqlite3_finalize(stmt);
+    sqlite3_close(cruddb);
+}
+
+-(NSString*) getImagePath:(NSString*) tableName :(NSString*) attributeName :(int) rowid
+{
+    NSString* imagePath = [[NSString alloc] init];
+    @try {
+        NSString *dbPath = [self.GetDocumentDirectory stringByAppendingPathComponent:@"MOA.sqlite"];
+        [self isFileValid:dbPath];
+        
+        BOOL success = [fileMgr fileExistsAtPath:dbPath];
+        
+        if(!success)
+        {
+            NSLog(@"Cannot locate database file '%@'.", dbPath);
+        }
+        if(!(sqlite3_open_v2([dbPath UTF8String], &db,SQLITE_OPEN_READWRITE, NULL) == SQLITE_OK))
+        {
+            NSLog(@"An error has occured.");
+        }
+        
+        NSString* sqlString = [NSString stringWithFormat:@"SELECT %@ FROM %@ Where rowid=%d", attributeName, tableName, rowid+1];
+        const char *sql = [sqlString UTF8String];
+        
+        sqlite3_stmt *sqlStatement;
+        int rc = sqlite3_prepare(db, sql, -1, &sqlStatement, NULL);
+        
+        [self checkReturnCode:rc];
+        
+        while (sqlite3_step(sqlStatement)==SQLITE_ROW) {
+            imagePath = [NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement,0) ];
+        }
+
+        
+    }
+    @catch (NSException *exception) {
+        NSLog(@"An exception occured: %@", [exception reason]);
+    }
+    @finally {
+        //NSLog(@"%@", imagePath);
+        return imagePath;
+    }
+
 }
 
 -(NSString*) getSQLQuery_CheckTable:(NSString*) tableName
@@ -318,7 +392,7 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     } else if ([tableName isEqualToString:@"general_text"]){
         sqlString = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(rowid INT, Identifier TEXT, Description TEXT)", tableName];
     } else if ([tableName isEqualToString:@"moa_exhibitions"]){
-        sqlString = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(rowid INT, itemID INT, title TEXT, subtitle TEXT, image TEXT, detailImage TEXT, imageCaption TEXT, Summary TEXT, activationDate TEXT, expiryDate TEXT)", tableName];
+        sqlString = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(rowid INT, itemID TEXT, title TEXT, subtitle TEXT, image TEXT, detailImage TEXT, imageCaption TEXT, Summary TEXT, activationDate TEXT, expiryDate TEXT)", tableName];
     }else{
         sqlString = [NSString stringWithFormat:@"Select *"];
     }
@@ -468,7 +542,7 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     // Note: binding function can be reused for more than one table as long as they have same column names
     
     sqlite3_bind_int(stmt, 1, rowid);
-    sqlite3_bind_int(stmt, 2, (int)[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"itemID"]);
+    sqlite3_bind_text(stmt, 2, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"itemID"]UTF8String],-1, SQLITE_TRANSIENT);
     sqlite3_bind_text(stmt, 3, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"title"]UTF8String], -1, SQLITE_TRANSIENT);
     sqlite3_bind_text(stmt, 4, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"subtitle"]UTF8String], -1, SQLITE_TRANSIENT);
     sqlite3_bind_text(stmt, 5, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"image"]UTF8String], -1, SQLITE_TRANSIENT);
@@ -544,7 +618,7 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     // this function contains the code for sql INSERT binding statement for Hours table
     // Note: binding function can be reused for more than one table as long as they have same column names
     
-    sqlite3_bind_int(stmt, 1, (int)[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"itemID"]);
+    sqlite3_bind_text(stmt, 1, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"itemID"]UTF8String],-1, SQLITE_TRANSIENT);
     sqlite3_bind_text(stmt, 2, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"title"]UTF8String], -1, SQLITE_TRANSIENT);
     sqlite3_bind_text(stmt, 3, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"subtitle"]UTF8String], -1, SQLITE_TRANSIENT);
     sqlite3_bind_text(stmt, 4, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"image"]UTF8String], -1, SQLITE_TRANSIENT);

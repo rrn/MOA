@@ -33,6 +33,9 @@
 -(void)UpdateLocalDB:(NSString*)tableName :(NSMutableArray*)object;
 -(void)doesTableExist:(NSString*)tableName;
 
+-(void) updateImagePath:(NSString*)tableName :(NSString*)attributeName :(NSString*)path :(int)rowid;
+-(NSString*) getImagePath:(NSString*)tableName :(NSString*)attributeName :(int)rowid;
+
 
 
 @end

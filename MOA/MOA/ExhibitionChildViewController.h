@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CrudOp.h"
 
 @interface ExhibitionChildViewController : UIViewController {
     int selectedTag;
+    bool internet;
+    CrudOp* database;
 }
 
 

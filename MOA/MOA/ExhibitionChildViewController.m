@@ -9,6 +9,7 @@
 #import "ExhibitionChildViewController.h"
 #import "TagList.h"
 #import "Utils.h"
+#import "Reachability.h"
 
 @interface ExhibitionChildViewController ()
 
@@ -27,19 +28,21 @@
 
 - (void)viewDidLoad
 {
+    if (!database || database == NULL){
+        database = [CrudOp alloc];
+    }
+    
+    [self checkInternetConnection];
     [self prepareForDisplay];
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void) setSelectedButton :(int)tag {
-    // do something
     selectedTag = tag;
 }
 
@@ -51,6 +54,17 @@
     CGSize size = [calculationView sizeThatFits:CGSizeMake(width, FLT_MAX)];
     return size.height;
     
+}
+
+-(void) checkInternetConnection
+{
+    Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    internet = YES;
+    
+    if(internetStatus == NotReachable) {
+        internet = NO;
+    }
 }
 
 
@@ -71,13 +85,11 @@
     titleTextView.scrollEnabled= NO;
     length = [Utils textViewDidChange:titleTextView];
     
-    NSString *imageURLString = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:selectedTag] objectForKey:@"image"];
-    NSURL *imageURL = [NSURL URLWithString:imageURLString];
-    NSData * imageData = [NSData dataWithContentsOfURL:imageURL];
-    UIImageView *imageView =[[UIImageView alloc] initWithImage:[UIImage imageWithData:imageData]];
+    UIImageView *imageView =[UIImageView alloc];
+    imageView = [self loadImage:@"moa_exhibitions" :@"detailImage" :selectedTag];
     cursorPosition = cursorPosition + length;
-    imageView.frame = CGRectMake(10, cursorPosition + 10, self.view.frame.size.width-20, 214);
     
+    imageView.frame = CGRectMake(10, cursorPosition + 10, self.view.frame.size.width-20, 214);
     cursorPosition = 214+cursorPosition;
     NSString* subtitle = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:selectedTag] objectForKey:@"subtitle"];
     UITextView *subtitleTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, cursorPosition + 10, self.view.frame.size.width-20, 10)];
@@ -120,6 +132,21 @@
     [scroll addSubview:subtitleTextView];
     [self.view addSubview:scroll];
 }
+
+-(UIImageView*) loadImage:(NSString*)tableName :(NSString*)attributeName :(int)index
+{
+    UIImage* image;
+    UIImageView* buttonImage;
+        
+    // otherwise, load from database
+    NSString *path = [database getImagePath:tableName :attributeName :index];
+    //NSLog(@"%@", path);
+    image=[UIImage imageWithData:[NSData dataWithContentsOfFile:path]];
+    buttonImage =[[UIImageView alloc] initWithImage:image];
+    
+    return buttonImage;
+}
+
 
 
 

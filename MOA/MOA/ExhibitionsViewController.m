@@ -13,6 +13,7 @@
 #import "ExhibitionChildViewController.h"
 #import "Utils.h"
 #import "ConvertDate.h"
+#import "CrudOp.h"
 
 @interface ExhibitionsViewController ()
 @property (strong, nonatomic)  UIImageView *displayItemImageView;
@@ -34,6 +35,25 @@
 
 - (void)viewDidLoad
 {
+    
+    Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    NSLog(@"%d", [[TagList sharedInstance].exhibitionEvents count]);
+    
+    if(internetStatus == NotReachable) {
+        
+        CrudOp* database = [CrudOp alloc];
+        if ([TagList sharedInstance].exhibitionEvents == NULL){
+            [TagList sharedInstance].exhibitionEvents = [[NSMutableArray alloc]init];
+        }
+        
+        if (![TagList sharedInstance].exhibitionEvents || ![[TagList sharedInstance].exhibitionEvents count])
+            [[TagList sharedInstance] setExhibitionEvents:[database PullFromLocalDB:@"moa_exhibitions"]];
+        
+    }
+   
+    [carousel reloadData];
+    NSLog(@"%d", self.carousel.numberOfItems);
     carousel.type = iCarouselTypeRotary;
     carousel.scrollEnabled = FALSE;
     
@@ -46,6 +66,7 @@
     [[self view] addGestureRecognizer:forwardRecognizer];
     [[self view] addGestureRecognizer:backwardsRecognizer];
     [super viewDidLoad];
+
     
 	
     // Set the side bar button action. When it's tapped, it'll show up the sidebar.
@@ -60,19 +81,6 @@
 {
     [super viewWillAppear:animated];
     
-    Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
-    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
-    
-    if(internetStatus == NotReachable) {
-        
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle: @"Alert!"
-                              message: @"There is no internet connection, item image cannot load."
-                              delegate: self
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil];
-        [alert show];
-    }
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)recognizer shouldReceiveTouch:(UITouch *)touch

@@ -7,6 +7,7 @@
 //
 
 #import "TagList.h"
+#import "CrudOp.h"
 
 @implementation TagList
 
@@ -156,11 +157,17 @@
     NSDictionary *temp = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&e];
     [[TagList sharedInstance] setCalendarEvents:[temp objectForKey:@"whats_on"]];
     [[TagList sharedInstance] setExhibitionEvents:[temp objectForKey:@"moa_exhibitions"]];
-
+    
+    // store remote data to database
+    CrudOp* localdb = [[CrudOp alloc]init];
+    [localdb UpdateLocalDB:@"moa_exhibitions" :[temp objectForKey:@"moa_exhibitions"]];
+    
     if (e) {
         NSLog(@"Error serializing %@", e);
     }
 }
+
+
 
 +(NSString*)ValidateJSONFormat:(NSString *)json
 {

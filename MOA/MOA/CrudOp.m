@@ -252,7 +252,7 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     }
     
     char* errmsg;
-    //sqlite3_trace(cruddb, sqliteCallbackFunc, NULL); // uncomment this for trace
+    sqlite3_trace(cruddb, sqliteCallbackFunc, NULL); // uncomment this for trace
     sqlite3_exec(cruddb, "COMMIT", NULL, NULL, &errmsg);
     
     if(SQLITE_DONE != sqlite3_step(stmt)){
@@ -291,7 +291,7 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     };
     [self bindInsertSQLStatement:stmt :object :rowid :tableName];
    
-    //sqlite3_trace(cruddb, sqliteCallbackFunc, NULL); // uncomment this code to print queries
+    sqlite3_trace(cruddb, sqliteCallbackFunc, NULL); // uncomment this code to print queries
     if (sqlite3_step(stmt) != SQLITE_DONE)
         NSLog(@"Error %s", sqlite3_errmsg(cruddb));
     
@@ -393,6 +393,8 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
         sqlString = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(rowid INT, Identifier TEXT, Description TEXT)", tableName];
     } else if ([tableName isEqualToString:@"moa_exhibitions"]){
         sqlString = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(rowid INT, itemID TEXT, title TEXT, subtitle TEXT, image TEXT, detailImage TEXT, imageCaption TEXT, Summary TEXT, activationDate TEXT, expiryDate TEXT)", tableName];
+    }else if([tableName isEqualToString:@"whats_on"]){
+        sqlString = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(rowid INT, date TEXT, time TEXT, programType TEXT, title TEXT, description TEXT, image TEXT)", tableName];
     }else{
         sqlString = [NSString stringWithFormat:@"Select *"];
     }
@@ -418,7 +420,9 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
         sqlString = [NSString stringWithFormat:@"SELECT Identifier, Description FROM %@", tableName];
     } else if([tableName isEqualToString:@"moa_exhibitions"]) {
         sqlString = [NSString stringWithFormat:@"SELECT itemID, title, subtitle, image, detailImage, imageCaption, Summary, activationDate, expiryDate FROM %@", tableName];
-    } else{
+    } else if([tableName isEqualToString:@"whats_on"]) {
+        sqlString = [NSString stringWithFormat:@"SELECT date, time, programType, title, description, image FROM %@", tableName];
+    }else{
         sqlString = [NSString stringWithFormat:@"Select *"];
     }
     return sqlString;
@@ -444,6 +448,8 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
         sqlString = [NSString stringWithFormat:@"INSERT INTO %@ (rowid, Identifier, Description) VALUES (?,?,?)", tableName];
     } else if ([tableName isEqualToString:@"moa_exhibitions"]){
         sqlString = [NSString stringWithFormat:@"INSERT INTO %@ (rowid, itemID, title, subtitle, image, detailImage, imageCaption, Summary, activationDate, expiryDate) VALUES (?,?,?,?,?,?,?,?,?,?)", tableName];
+    } else if ([tableName isEqualToString:@"whats_on"]) {
+        sqlString = [NSString stringWithFormat:@"INSERT INTO %@ (rowid, date, time, programType, title, description, image) VALUES (?,?,?,?,?,?,?)", tableName];
     }else{
         sqlString = [NSString stringWithFormat:@"Select *"];
     }
@@ -471,6 +477,8 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
          sqlString = [NSString stringWithFormat:@"update %@ Set Identifier=?, Description=? Where rowid=?", tableName];
     } else if ([tableName isEqualToString:@"moa_exhibitions"]){
          sqlString = [NSString stringWithFormat:@"update %@ Set itemID=?, title=?, subtitle=?, image=?, detailImage=?, imageCaption=?, Summary=?, activationDate=?, expiryDate=? Where rowid=?", tableName];
+    } else if ([tableName isEqualToString:@"whats_on"]) {
+        sqlString = [NSString stringWithFormat:@"update %@ Set date=?, time=?, programType=?, title=?, description=?, image=? Where rowid=?", tableName];
     } else {
         sqlString = [NSString stringWithFormat:@"Select *"];
     }
@@ -493,6 +501,8 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
         [self bindInsertSQLStatement_GeneralText:stmt :object :rowid];
     } else if ([tableName isEqualToString:@"moa_exhibitions"]){
         [self bindInsertSQLStatement_Exhibitions:stmt :object :rowid];
+    } else if ([tableName isEqualToString:@"whats_on"]){
+        [self bindInsertSQLStatement_WhatsOn:stmt :object :rowid];
     }
 }
 
@@ -553,6 +563,20 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     sqlite3_bind_text(stmt, 10, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"expiryDate"]UTF8String], -1, SQLITE_TRANSIENT);
 }
 
+-(void) bindInsertSQLStatement_WhatsOn:(sqlite3_stmt*)stmt :(NSMutableArray*)object :(int)rowid
+{
+    // this function contains the code for sql INSERT binding statement for Hours table
+    // Note: binding function can be reused for more than one table as long as they have same column names
+    
+    sqlite3_bind_int(stmt, 1, rowid);
+    sqlite3_bind_text(stmt, 2, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"date"]UTF8String],-1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 3, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"time"]UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 4, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"programType"]UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 5, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"title"]UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 6, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"description"]UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 7, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"image"]UTF8String], -1, SQLITE_TRANSIENT);
+}
+
 -(void) bindUpdateSQLStatement:(sqlite3_stmt*)stmt :(NSMutableArray*)object :(int)rowid :(NSString*) tableName
 {
     // this function determines the right sql UPDATE binding statement for given tablename
@@ -568,6 +592,8 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
         [self bindUpdateSQLStatement_GeneralText:stmt :object :rowid];
     } else if ([tableName isEqualToString:@"moa_exhibitions"]){
         [self bindUpdateSQLStatement_Exhibitions:stmt :object :rowid];
+    } else if ([tableName isEqualToString:@"whats_on"]) {
+        [self bindUpdateSQLStatement_WhatsOn:stmt :object :rowid];
     }
 }
 
@@ -630,6 +656,20 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     sqlite3_bind_int(stmt, 10, rowid);
 }
 
+-(void) bindUpdateSQLStatement_WhatsOn:(sqlite3_stmt*)stmt :(NSMutableArray*)object :(int)rowid
+{
+    // this function contains the code for sql INSERT binding statement for Hours table
+    // Note: binding function can be reused for more than one table as long as they have same column names
+    
+    sqlite3_bind_text(stmt, 1, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"date"]UTF8String],-1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 2, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"time"]UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 3, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"programType"]UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 4, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"title"]UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 5, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"description"]UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 6, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"image"]UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_int(stmt, 7, rowid);
+}
+
 
 -(void)checkReturnCode: (int)rc{
     if(rc != SQLITE_OK)
@@ -655,6 +695,8 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
         [self loadData_GeneralText:sqlStatement :data];
     } else if ([tableName isEqualToString:@"moa_exhibitions"]){
         [self loadData_Exhibitions:sqlStatement :data];
+    } else if ([tableName isEqualToString:@"whats_on"]){
+        [self loadData_WhatsOn:sqlStatement :data];
     }
 }
 
@@ -739,6 +781,26 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
         [data addObject:dict];
     }
 }
+
+-(void)loadData_WhatsOn:(sqlite3_stmt*) sqlStatement :(NSMutableArray*)data
+{
+    // this function contains the right sql query for SELECTING data from Hours table
+    // all data will be stored into NSMutableArray data array in the form of array of dictionaries.
+    // Note: sql query can be reused for more than one table as long as they have same column names
+    
+    while (sqlite3_step(sqlStatement)==SQLITE_ROW) {
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+        [dict setObject:[NSMutableString stringWithString:[NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement,0)]] forKey:@"date"];
+        [dict setObject:[NSMutableString stringWithString:[NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement,1)]] forKey:@"time"];
+        [dict setObject:[NSMutableString stringWithString:[NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement,2)]] forKey:@"programType"];
+        [dict setObject:[NSMutableString stringWithString:[NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement,3)]] forKey:@"title"];
+        [dict setObject:[NSMutableString stringWithString:[NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement,4)]] forKey:@"description"];
+        [dict setObject:[NSMutableString stringWithString:[NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement,5)]] forKey:@"image"];
+        
+        [data addObject:dict];
+    }
+}
+
 
 
 

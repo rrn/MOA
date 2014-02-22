@@ -12,6 +12,7 @@
 #import "TagList.h"
 #import "WOTWEventViewController.h"
 
+
 @interface WhatsOnThisWeekViewController ()
 
 @end
@@ -32,6 +33,9 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 
+    if (database == NULL){
+        database = [[CrudOp alloc]init];
+    }
     
     // Set the side bar button action. When it's tapped, it'll show up the sidebar.
     _sidebarButton.target = self.revealViewController;
@@ -47,13 +51,22 @@
     
     if(internetStatus == NotReachable) {
         
-        UIAlertView *alert = [[UIAlertView alloc]
+        /*UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle: @"Alert!"
                               message: @"There is no internet connection, item image cannot load."
                               delegate: self
                               cancelButtonTitle:@"OK"
                               otherButtonTitles:nil];
-        [alert show];
+        [alert show];*/
+        
+        
+        if ([TagList sharedInstance].calendarEvents == NULL){
+            [TagList sharedInstance].calendarEvents = [[NSMutableArray alloc]init];
+        }
+
+        if([[[TagList sharedInstance] calendarEvents]count]==0){
+            [[TagList sharedInstance] setCalendarEvents:[database PullFromLocalDB:@"whats_on"]];
+        }
     }
     else{
         if([[[TagList sharedInstance] calendarEvents]count]==0)

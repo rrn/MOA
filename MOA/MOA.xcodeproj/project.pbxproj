@@ -82,6 +82,7 @@
 		E4B5A0E21858DC680047D9B8 /* 03_Collections02_25px.png in Resources */ = {isa = PBXBuildFile; fileRef = E4B5A0DC1858DC680047D9B8 /* 03_Collections02_25px.png */; };
 		E4B5A0E31858DC680047D9B8 /* 04_Info_25px.png in Resources */ = {isa = PBXBuildFile; fileRef = E4B5A0DD1858DC680047D9B8 /* 04_Info_25px.png */; };
 		E4B5A0E41858DC680047D9B8 /* 05_More_25px.png in Resources */ = {isa = PBXBuildFile; fileRef = E4B5A0DE1858DC680047D9B8 /* 05_More_25px.png */; };
+		E4CC126818B822D9005A3905 /* icon-ios7-arrow-down-512.png in Resources */ = {isa = PBXBuildFile; fileRef = E4CC126718B822D9005A3905 /* icon-ios7-arrow-down-512.png */; };
 		E4D391D11841989800043AEB /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D391D01841989800043AEB /* Constants.m */; };
 		E4E23C6818A45F8D00AD0298 /* ConvertDate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E23C6718A45F8D00AD0298 /* ConvertDate.m */; };
 /* End PBXBuildFile section */
@@ -218,6 +219,7 @@
 		E4B5A0DC1858DC680047D9B8 /* 03_Collections02_25px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 03_Collections02_25px.png; sourceTree = "<group>"; };
 		E4B5A0DD1858DC680047D9B8 /* 04_Info_25px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 04_Info_25px.png; sourceTree = "<group>"; };
 		E4B5A0DE1858DC680047D9B8 /* 05_More_25px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 05_More_25px.png; sourceTree = "<group>"; };
+		E4CC126718B822D9005A3905 /* icon-ios7-arrow-down-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-ios7-arrow-down-512.png"; sourceTree = "<group>"; };
 		E4D391CF1841983000043AEB /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		E4D391D01841989800043AEB /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		E4E23C6618A45F8D00AD0298 /* ConvertDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvertDate.h; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 				50CEBBFF1841463A0005B0F9 /* shop.jpg */,
 				E438ACCC183AD8AE0078FD2F /* plan_a_visit.jpg */,
 				507B8E6F18299BCE002365EF /* menu.png */,
+				E4CC126718B822D9005A3905 /* icon-ios7-arrow-down-512.png */,
 			);
 			name = IMAGE;
 			sourceTree = "<group>";
@@ -581,6 +584,7 @@
 				E438ACCD183AD8AE0078FD2F /* plan_a_visit.jpg in Resources */,
 				50CEBC031841463A0005B0F9 /* shop.jpg in Resources */,
 				E4B5A0DF1858DC680047D9B8 /* 01_Weekly_25px.png in Resources */,
+				E4CC126818B822D9005A3905 /* icon-ios7-arrow-down-512.png in Resources */,
 				BBA34090182700FC00B6E4B1 /* 480x360.gif in Resources */,
 				50FA4065183B714900EC0CEC /* MOA.sqlite in Resources */,
 				BBA340731826D6F700B6E4B1 /* Images.xcassets in Resources */,

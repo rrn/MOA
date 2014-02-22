@@ -10,6 +10,7 @@
 #import "TagList.h"
 #import "Utils.h"
 #import "Reachability.h"
+#import "SWRevealViewController.h"
 
 @interface ExhibitionChildViewController ()
 
@@ -31,6 +32,10 @@
     if (!database || database == NULL){
         database = [CrudOp alloc];
     }
+    
+    // Sidebar button code
+    _sideBarButton.target = self.revealViewController;
+    _sideBarButton.action = @selector(rightRevealToggle:);
     
     [self checkInternetConnection];
     [self prepareForDisplay];

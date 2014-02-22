@@ -60,7 +60,6 @@ typedef enum
     _dragging = NO;
 }
 
-
 - (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event
 {
     [super touchesMoved:touches withEvent:event];
@@ -576,7 +575,8 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
 #if __IPHONE_OS_VERSION_MIN_REQUIRED < 60000
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return YES;
+    // Return YES for supported orientations
+    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
 #endif
 

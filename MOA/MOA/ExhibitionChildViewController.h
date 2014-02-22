@@ -15,9 +15,9 @@
     CrudOp* database;
 }
 
-
 -(void) setSelectedButton :(int)tag;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;
 
 @end
 

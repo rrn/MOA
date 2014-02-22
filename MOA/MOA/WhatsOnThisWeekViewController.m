@@ -45,33 +45,39 @@
     self.title = @"This Week at MOA";
     self.tableView.rowHeight=70;
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    
+}
+
+-(void) viewWillAppear:(BOOL)animated
+{
     Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
     NetworkStatus internetStatus = [reachability currentReachabilityStatus];
     
     if(internetStatus == NotReachable) {
-        
-        /*UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle: @"Alert!"
-                              message: @"There is no internet connection, item image cannot load."
-                              delegate: self
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil];
-        [alert show];*/
-        
+        internet = NO;
         
         if ([TagList sharedInstance].calendarEvents == NULL){
             [TagList sharedInstance].calendarEvents = [[NSMutableArray alloc]init];
         }
-
+        
         if([[[TagList sharedInstance] calendarEvents]count]==0){
             [[TagList sharedInstance] setCalendarEvents:[database PullFromLocalDB:@"whats_on"]];
         }
     }
     else{
+        internet = YES;
         if([[[TagList sharedInstance] calendarEvents]count]==0)
             [TagList loadInformation];
+        
+        // load image once the screen is shown - only when there is internet!
+        if (syncLocalDb == NO) {
+            for (int i = 0; i < [[TagList sharedInstance].calendarEvents count]; i++){
+                [database updateImageToLocalDB:@"whats_on" :@"image" :[[[[TagList sharedInstance] calendarEvents] objectAtIndex:i] objectForKey:@"image"] :i];
+            }
+            syncLocalDb = YES;
+        }
     }
+    
+   
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -101,8 +107,26 @@
     cell.textLabel.numberOfLines=3;
     NSDictionary *event = [[[TagList sharedInstance] calendarEvents] objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@\n%@\n%@",[event objectForKey:@"programType"], [event objectForKey:@"title"],[event objectForKey:@"date"]];
-    cell.imageView.image = [UIImage imageWithData: [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[event objectForKey:@"image"]]]];
+    
+    [self checkInternetConnection];
+    if (internet == YES){
+        cell.imageView.image = [UIImage imageWithData: [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[event objectForKey:@"image"]]]];
+    } else {
+        cell.imageView.image = [database loadImageFromDB:@"whats_on" :@"image" :indexPath.row].image;
+    }
+    
     return cell;
+}
+
+-(void) checkInternetConnection
+{
+    Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    internet = YES;
+    
+    if(internetStatus == NotReachable) {
+        internet = NO;
+    }
 }
 
 

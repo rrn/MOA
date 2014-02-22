@@ -252,7 +252,7 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     }
     
     char* errmsg;
-    sqlite3_trace(cruddb, sqliteCallbackFunc, NULL); // uncomment this for trace
+    //sqlite3_trace(cruddb, sqliteCallbackFunc, NULL); // uncomment this for trace
     sqlite3_exec(cruddb, "COMMIT", NULL, NULL, &errmsg);
     
     if(SQLITE_DONE != sqlite3_step(stmt)){
@@ -291,7 +291,7 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     };
     [self bindInsertSQLStatement:stmt :object :rowid :tableName];
    
-    sqlite3_trace(cruddb, sqliteCallbackFunc, NULL); // uncomment this code to print queries
+    //sqlite3_trace(cruddb, sqliteCallbackFunc, NULL); // uncomment this code to print queries
     if (sqlite3_step(stmt) != SQLITE_DONE)
         NSLog(@"Error %s", sqlite3_errmsg(cruddb));
     
@@ -801,6 +801,33 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     }
 }
 
+-(void) updateImageToLocalDB:(NSString*)tableName :(NSString*)attributeName :(NSString*)imageURL :(int)index{
+    
+    UIImage* image;
+    
+    image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+    
+    
+    NSString* Dir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+    NSString *jpegPath = [NSString stringWithFormat:@"%@/%@-%@%d.jpg",Dir, tableName, attributeName,index];
+    NSData *data1 = [NSData dataWithData:UIImageJPEGRepresentation(image, 1.0f)];
+    [data1 writeToFile:jpegPath atomically:YES];
+    [self updateImagePath:tableName :attributeName :jpegPath :index];
+}
+
+-(UIImageView*) loadImageFromDB:(NSString*)tableName :(NSString*)attributeName :(int)index
+{
+    UIImage* image;
+    UIImageView* buttonImage;
+    
+    // otherwise, load from database
+    NSString *path = [self getImagePath:tableName :attributeName :index];
+    //NSLog(@"%@", path);
+    image=[UIImage imageWithData:[NSData dataWithContentsOfFile:path]];
+    buttonImage =[[UIImageView alloc] initWithImage:image];
+    
+    return buttonImage;
+}
 
 
 

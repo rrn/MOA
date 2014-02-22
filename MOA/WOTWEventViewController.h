@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CrudOp.h"
 
-@interface WOTWEventViewController : UIViewController
+@interface WOTWEventViewController : UIViewController{
+    CrudOp* database;
+}
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;
 @property (strong, nonatomic) IBOutlet UIScrollView *theScrollView;
 @property NSInteger index;

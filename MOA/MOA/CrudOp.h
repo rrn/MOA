@@ -35,7 +35,8 @@
 
 -(void) updateImagePath:(NSString*)tableName :(NSString*)attributeName :(NSString*)path :(int)rowid;
 -(NSString*) getImagePath:(NSString*)tableName :(NSString*)attributeName :(int)rowid;
-
+-(void) updateImageToLocalDB:(NSString*)tableName :(NSString*)attributeName :(NSString*)imageURL :(int)index;
+-(UIImageView*) loadImageFromDB:(NSString*)tableName :(NSString*)attributeName :(int)index;
 
 
 @end

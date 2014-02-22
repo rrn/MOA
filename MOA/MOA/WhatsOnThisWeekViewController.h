@@ -11,6 +11,8 @@
 
 @interface WhatsOnThisWeekViewController : UITableViewController{
     CrudOp* database;
+    bool internet;
+    bool syncLocalDb;
 }
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 

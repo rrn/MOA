@@ -53,8 +53,11 @@
         if (![TagList sharedInstance].exhibitionEvents || ![[TagList sharedInstance].exhibitionEvents count])
             [[TagList sharedInstance] setExhibitionEvents:[database PullFromLocalDB:@"moa_exhibitions"]];
         
+    } else {
+        internet = YES;
+        
     }
-    
+
     [carousel reloadData];
     carousel.type = iCarouselTypeRotary;
     carousel.scrollEnabled = FALSE;
@@ -78,6 +81,10 @@
 {
     [super viewWillAppear:animated];
 
+    [self checkInternetConnection];
+    if (internet == YES){
+        [database UpdateLocalDB:@"moa_exhibitions" :[[TagList sharedInstance].exhibitionEvents mutableCopy]];
+    }
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -85,8 +92,8 @@
     // load image once the screen is shown - only when there is internet!
     if (syncLocalDB == NO && internet == YES) {
         for (int i = 0; i < [[TagList sharedInstance].exhibitionEvents count]; i++){
-            [self updateImageToLocalDB:@"moa_exhibitions" :@"image" :[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"image"] :i];
-            [self updateImageToLocalDB:@"moa_exhibitions" :@"detailImage" :[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"detailImage"] :i];
+            [database updateImageToLocalDB:@"moa_exhibitions" :@"image" :[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"image"] :i];
+            [database updateImageToLocalDB:@"moa_exhibitions" :@"detailImage" :[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"detailImage"] :i];
         }
         syncLocalDB = YES;
     }
@@ -209,11 +216,12 @@
         NSString *imageURL = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"image"];
         UIImageView* buttonImage;
         
+        [self checkInternetConnection];
         if (internet == YES) {
             UIImage* image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
             buttonImage =[[UIImageView alloc] initWithImage:image];
         } else {
-            buttonImage = [self loadImage:@"moa_exhibitions" :@"image" :index];
+            buttonImage = [database loadImageFromDB:@"moa_exhibitions" :@"image" :index];
         }
         [view addSubview:buttonImage];
         
@@ -251,35 +259,6 @@
     return view;
 }
 
-
--(UIImageView*) loadImage:(NSString*)tableName :(NSString*)attributeName :(int)index
-{
-    UIImage* image;
-    UIImageView* buttonImage;
-    
-    // otherwise, load from database
-    NSString *path = [database getImagePath:tableName :attributeName :index];
-    //NSLog(@"%@", path);
-    image=[UIImage imageWithData:[NSData dataWithContentsOfFile:path]];
-    buttonImage =[[UIImageView alloc] initWithImage:image];
-    
-    return buttonImage;
-}
-
--(void) updateImageToLocalDB:(NSString*)tableName :(NSString*)attributeName :(NSString*)imageURL :(int)index{
-    
-    UIImage* image;
-    
-    image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
-
-    
-    NSString* Dir = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    NSString *jpegPath = [NSString stringWithFormat:@"%@/%@-%@%d.jpg",Dir, tableName, attributeName,index];
-    NSData *data1 = [NSData dataWithData:UIImageJPEGRepresentation(image, 1.0f)];
-    [data1 writeToFile:jpegPath atomically:YES];
-    [database updateImagePath:tableName :attributeName :jpegPath :index];
-}
-
 - (void)dealloc
 {
     carousel.delegate = nil;
@@ -315,5 +294,16 @@
 //            break;
 //    }
 //}
+
+-(void) checkInternetConnection
+{
+    Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    internet = YES;
+    
+    if(internetStatus == NotReachable) {
+        internet = NO;
+    }
+}
 
 @end

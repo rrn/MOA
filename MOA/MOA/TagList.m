@@ -160,7 +160,6 @@
     
     // store remote data to database
     CrudOp* localdb = [[CrudOp alloc]init];
-    [localdb UpdateLocalDB:@"moa_exhibitions" :[temp objectForKey:@"moa_exhibitions"]];
     [localdb UpdateLocalDB:@"whats_on" :[temp objectForKey:@"whats_on"]];
     
     if (e) {

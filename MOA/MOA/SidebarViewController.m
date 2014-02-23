@@ -99,18 +99,11 @@
                 // select index 3, which is Visitor Information
                 [vcNew setSelectedIndex:3];
                 
-            }
-            else  if ([segue.identifier isEqualToString:@"showFacebook"]) {
-            vcName = @"TabBar";
-            UITabBarController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
-            
-            // Swap out the Front view controller and display
-            [self.revealViewController setFrontViewController:vcNew];
-            [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated:YES];
-            
-            // select index 4, which is facebook
-            [vcNew setSelectedIndex:4];
-            
+            } else  {
+                
+                UINavigationController* navController = (UINavigationController*)self.revealViewController.frontViewController;
+                [navController setViewControllers: @[dvc] animated: NO ];
+                [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated: YES];
             }
         };
         }
@@ -144,6 +137,12 @@
     return cell;
 }
 
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{}
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+
+    if ( indexPath.row == 5 ) {
+        
+    }
+}
 
 @end

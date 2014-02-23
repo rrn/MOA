@@ -68,6 +68,7 @@
 		BBA340961827024600B6E4B1 /* 320x170.gif in Resources */ = {isa = PBXBuildFile; fileRef = BBA340951827024600B6E4B1 /* 320x170.gif */; };
 		E434341D188B4F7F00922E7A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E434341C188B4F7F00922E7A /* Reachability.m */; };
 		E434341F188B52FB00922E7A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E434341E188B52FB00922E7A /* SystemConfiguration.framework */; };
+		E438465718B99448008F1E42 /* YoutubeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E438465618B99448008F1E42 /* YoutubeViewController.m */; };
 		E438ACC618386F930078FD2F /* PlanVisitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E438ACC518386F930078FD2F /* PlanVisitViewController.m */; };
 		E438ACC9183877E10078FD2F /* VisitorInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E438ACC8183877E10078FD2F /* VisitorInfoViewController.m */; };
 		E438ACCD183AD8AE0078FD2F /* plan_a_visit.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E438ACCC183AD8AE0078FD2F /* plan_a_visit.jpg */; };
@@ -198,6 +199,8 @@
 		BBA340951827024600B6E4B1 /* 320x170.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 320x170.gif; sourceTree = "<group>"; };
 		E434341C188B4F7F00922E7A /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = SOURCE_ROOT; };
 		E434341E188B52FB00922E7A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		E438465518B99448008F1E42 /* YoutubeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoutubeViewController.h; sourceTree = "<group>"; };
+		E438465618B99448008F1E42 /* YoutubeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoutubeViewController.m; sourceTree = "<group>"; };
 		E438ACC418386F930078FD2F /* PlanVisitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanVisitViewController.h; sourceTree = "<group>"; };
 		E438ACC518386F930078FD2F /* PlanVisitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanVisitViewController.m; sourceTree = "<group>"; };
 		E438ACC7183877E10078FD2F /* VisitorInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VisitorInfoViewController.h; path = ../VisitorInfoViewController.h; sourceTree = "<group>"; };
@@ -335,6 +338,8 @@
 		BBA3404E1826D6F700B6E4B1 = {
 			isa = PBXGroup;
 			children = (
+				E438465518B99448008F1E42 /* YoutubeViewController.h */,
+				E438465618B99448008F1E42 /* YoutubeViewController.m */,
 				5068E1F0188FA48400FE009F /* Reachability.h */,
 				50CEBBF61840442A0005B0F9 /* ItemLayout.h */,
 				50CEBBF71840442A0005B0F9 /* ItemLayout.m */,
@@ -624,6 +629,7 @@
 				BB0E659D1835A61300163652 /* SplashScreen.m in Sources */,
 				E48B16E21841445D0047BBA4 /* RatesPage.m in Sources */,
 				50F5290C183CA359002A463C /* PublicTransitPage.m in Sources */,
+				E438465718B99448008F1E42 /* YoutubeViewController.m in Sources */,
 				50FA406B183B71FA00EC0CEC /* DBData.m in Sources */,
 				E4D391D11841989800043AEB /* Constants.m in Sources */,
 				4582C9931898BE8800DC9000 /* WOTWEventViewController.m in Sources */,

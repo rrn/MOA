@@ -91,7 +91,7 @@
     length = [Utils textViewDidChange:titleTextView];
     
     UIImageView *imageView =[UIImageView alloc];
-    imageView = [self loadImage:@"moa_exhibitions" :@"detailImage" :selectedTag];
+    imageView = [database loadImageFromDB:@"moa_exhibitions" :@"detailImage" :selectedTag];
     cursorPosition = cursorPosition + length;
     
     imageView.frame = CGRectMake(10, cursorPosition + 10, self.view.frame.size.width-20, 214);
@@ -138,19 +138,7 @@
     [self.view addSubview:scroll];
 }
 
--(UIImageView*) loadImage:(NSString*)tableName :(NSString*)attributeName :(int)index
-{
-    UIImage* image;
-    UIImageView* buttonImage;
-        
-    // otherwise, load from database
-    NSString *path = [database getImagePath:tableName :attributeName :index];
-    //NSLog(@"%@", path);
-    image=[UIImage imageWithData:[NSData dataWithContentsOfFile:path]];
-    buttonImage =[[UIImageView alloc] initWithImage:image];
-    
-    return buttonImage;
-}
+
 
 
 

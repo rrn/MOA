@@ -38,6 +38,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if (database == NULL || !database){
+        database = [[CrudOp alloc] init];
+    }
+    
 	// Do any additional setup after loading the view.
     // Set the side bar button action. When it's tapped, it'll show up the sidebar.
     _sideBarButton.target = self.revealViewController;
@@ -105,14 +110,7 @@
     NetworkStatus internetStatus = [reachability currentReachabilityStatus];
     
     if(internetStatus == NotReachable) {
-        
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle: @"Alert!"
-                              message: @"There is no internet connection, item image cannot load."
-                              delegate: self
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil];
-        [alert show];
+        self.displayItemImageView.image = [database loadImageFromDB:@"whats_on" :@"image" :index].image;
     }
     else{
         [self performSelectorInBackground:@selector(downloadImage:) withObject:imageURL];
@@ -142,5 +140,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end

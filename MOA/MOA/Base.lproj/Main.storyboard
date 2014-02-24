@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B3116" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="H5l-5b-yzz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="H5l-5b-yzz">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -461,8 +461,8 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="08_YouTube_22px.png" translatesAutoresizingMaskIntoConstraints="NO" id="DeR-rz-536">
-                                            <rect key="frame" x="75" y="3" width="48" height="37"/>
+                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="07_Twitter_22px.png" translatesAutoresizingMaskIntoConstraints="NO" id="8qM-2c-l7R">
+                                            <rect key="frame" x="76" y="3" width="48" height="37"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
                                     </subviews>
@@ -484,6 +484,10 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="08_YouTube_22px.png" translatesAutoresizingMaskIntoConstraints="NO" id="DeR-rz-536">
+                                            <rect key="frame" x="75" y="7" width="48" height="37"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -508,7 +512,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="this" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tin-y9-PNF" customClass="WhatsOnThisWeekViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Vyy-nh-aZZ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -562,11 +566,11 @@
                         <viewControllerLayoutGuide type="bottom" id="AeM-PH-Gb7"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8hI-Mc-3Ey">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wTE-IK-eGZ">
-                                <rect key="frame" x="0.0" y="71" width="320" height="302"/>
+                                <rect key="frame" x="0.0" y="71" width="320" height="351"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </scrollView>
                         </subviews>
@@ -1278,10 +1282,10 @@
             </objects>
             <point key="canvasLocation" x="873" y="-3583"/>
         </scene>
-        <!--Facebook View Controller-->
+        <!--Social Media View Controller-->
         <scene sceneID="pRf-jO-Q1f">
             <objects>
-                <viewController id="Kxp-4Q-84j" customClass="FacebookViewController" sceneMemberID="viewController">
+                <viewController id="Kxp-4Q-84j" customClass="SocialMediaViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="N3h-lK-poD"/>
                         <viewControllerLayoutGuide type="bottom" id="gp7-rj-jDy"/>
@@ -1304,6 +1308,21 @@
                     <connections>
                         <outlet property="sideBarButton" destination="vve-fk-5L0" id="Rom-65-fYP"/>
                         <outlet property="webView" destination="0QF-WC-LDb" id="Lt7-HQ-CKD"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZLO-nc-nKA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1436" y="-3044"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="vh5-2x-qyy">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="XSL-6I-oaS" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kU7-RM-YMd">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Kxp-4Q-84j" kind="relationship" relationship="rootViewController" id="Px3-ms-x5Y"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0bS-v5-zyx" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1334,7 +1353,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DGF-Tp-xkR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1402" y="-3583"/>
+            <point key="canvasLocation" x="1958" y="-3671"/>
         </scene>
         <!--Navigation Controller - Explore-->
         <scene sceneID="yuu-X7-YIA">
@@ -1410,6 +1429,7 @@
         <image name="04_Info_25px.png" width="25" height="25"/>
         <image name="05_More_25px.png" width="25" height="25"/>
         <image name="06_Facebook_22px.png" width="22" height="22"/>
+        <image name="07_Twitter_22px.png" width="22" height="22"/>
         <image name="08_YouTube_22px.png" width="22" height="22"/>
         <image name="MOA_Splash_640x1136.png" width="640" height="1136"/>
         <image name="plan_a_visit.jpg" width="3072" height="2124"/>
@@ -1421,10 +1441,12 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="KG7-G5-5Wz"/>
-        <segue reference="UVY-js-OWf"/>
-        <segue reference="zgW-yR-ErI"/>
-        <segue reference="8vC-Ii-8Vk"/>
+        <segue reference="PS2-VE-2nm"/>
+        <segue reference="EyV-KQ-2Pa"/>
+        <segue reference="iaw-W3-l3H"/>
+        <segue reference="A9d-PQ-Zkm"/>
+        <segue reference="B3C-bd-MPA"/>
         <segue reference="Qlf-L4-T27"/>
+        <segue reference="P2g-YB-ZCI"/>
     </inferredMetricsTieBreakers>
 </document>

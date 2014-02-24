@@ -1,5 +1,5 @@
 //
-//  FacebookViewController.h
+//  SocialMediaViewController.h
 //  MOA
 //
 //  Created by Donald Cheng on 2/19/2014.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FacebookViewController : UIViewController
+@interface SocialMediaViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;
 @property (weak, nonatomic) IBOutlet UIWebView *webView;
 

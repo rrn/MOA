@@ -11,7 +11,7 @@
 #import "AppDelegate.h"
 #import "WhatsOnThisWeekViewController.h"
 #import "VisitorInfoViewController.h"
-#import "FacebookViewController.h"
+#import "SocialMediaViewController.h"
 #include "TagList.h"
 
 @interface SidebarViewController ()

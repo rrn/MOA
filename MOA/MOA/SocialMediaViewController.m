@@ -1,21 +1,21 @@
 //
-//  FacebookViewController.m
+//  SocialMediaViewController.m
 //  MOA
 //
 //  Created by Donald Cheng on 2/19/2014.
 //  Copyright (c) 2014 Museum of Anthropology UBC. All rights reserved.
 //
 
-#import "FacebookViewController.h"
+#import "SocialMediaViewController.h"
 #import "SWRevealViewController.h"
 #import "Reachability.h"
 #import "TagList.h"
 
-@interface FacebookViewController ()
+@interface SocialMediaViewController ()
 
 @end
 
-@implementation FacebookViewController
+@implementation SocialMediaViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

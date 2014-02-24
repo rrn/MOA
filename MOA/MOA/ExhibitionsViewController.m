@@ -209,7 +209,7 @@
         int cursorPosition = 0;
         view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 300.0f, 300.0f)];
         view.layer.backgroundColor = [UIColor whiteColor].CGColor;
-        view.layer.borderColor = [UIColor grayColor].CGColor;
+        view.layer.borderColor = [UIColor colorWithRed:0.9333 green:0.9333 blue:0.9333 alpha:1.0].CGColor;
         view.layer.borderWidth = 2.0f;
         
         //show the image

@@ -50,8 +50,7 @@
     _sidebarButton.target = self.revealViewController;
     _sidebarButton.action = @selector(rightRevealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    //[self clearOldData];
-
+    
     //Accordion
     if (!expandedSections)
     {
@@ -265,7 +264,7 @@
 
         }
         else
-        //Action when an accordion row cell is clicked
+        //Action when an accordion row cell is clicked - initiate segue
         {
             if (indexPath.row == 1)
             {
@@ -285,7 +284,7 @@
         }
     }
     else
-    //Action when a non-accordion cell is clicked
+    //Action when a non-accordion cell is clicked - initiate segue
     {
         if (!indexPath.row)
         {
@@ -313,7 +312,18 @@
     
 }
 
-
-
+// Check if a button was tapped - for custom cell accessory
+- (void)checkButtonTapped:(id)sender event:(id)event
+{
+    NSSet *touches = [event allTouches];
+    UITouch *touch = [touches anyObject];
+    CGPoint currentTouchPosition = [touch locationInView:self.tableView];
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint: currentTouchPosition];
+    
+    if (indexPath != nil)
+    {
+        [self tableView: self.tableView accessoryButtonTappedForRowWithIndexPath: indexPath];
+    }
+}
 
 @end

@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CrudOp.h"
 
-@interface WhatsOnThisWeekViewController : UITableViewController
+@interface WhatsOnThisWeekViewController : UITableViewController{
+    CrudOp* database;
+    bool internet;
+    bool syncLocalDb;
+}
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 
 @end

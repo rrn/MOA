@@ -34,6 +34,31 @@
 
 - (void)viewDidLoad
 {
+    //CrudOp* database = [CrudOp alloc];
+    if (!database || database == NULL){
+        database = [CrudOp alloc];
+    }
+   
+    Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    internet = YES;
+    
+    if(internetStatus == NotReachable) {
+        internet = NO;
+        
+        if ([TagList sharedInstance].exhibitionEvents == NULL){
+            [TagList sharedInstance].exhibitionEvents = [[NSMutableArray alloc]init];
+        }
+        
+        if (![TagList sharedInstance].exhibitionEvents || ![[TagList sharedInstance].exhibitionEvents count])
+            [[TagList sharedInstance] setExhibitionEvents:[database PullFromLocalDB:@"moa_exhibitions"]];
+        
+    } else {
+        internet = YES;
+        
+    }
+
+    [carousel reloadData];
     carousel.type = iCarouselTypeRotary;
     carousel.scrollEnabled = FALSE;
     
@@ -46,32 +71,31 @@
     [[self view] addGestureRecognizer:forwardRecognizer];
     [[self view] addGestureRecognizer:backwardsRecognizer];
     [super viewDidLoad];
-    
-	
-    // Set the side bar button action. When it's tapped, it'll show up the sidebar.
+
+    // Sidebar button code
     _sidebarButton.target = self.revealViewController;
     _sidebarButton.action = @selector(rightRevealToggle:);
-    
-    // Set the gesture
-    //[self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 }
 
 -(void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
-    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
-    
-    if(internetStatus == NotReachable) {
-        
-        UIAlertView *alert = [[UIAlertView alloc]
-                              initWithTitle: @"Alert!"
-                              message: @"There is no internet connection, item image cannot load."
-                              delegate: self
-                              cancelButtonTitle:@"OK"
-                              otherButtonTitles:nil];
-        [alert show];
+
+    [self checkInternetConnection];
+    if (internet == YES){
+        [database UpdateLocalDB:@"moa_exhibitions" :[[TagList sharedInstance].exhibitionEvents mutableCopy]];
+    }
+}
+
+-(void) viewDidAppear:(BOOL)animated
+{
+    // load image once the screen is shown - only when there is internet!
+    if (syncLocalDB == NO && internet == YES) {
+        for (int i = 0; i < [[TagList sharedInstance].exhibitionEvents count]; i++){
+            [database updateImageToLocalDB:@"moa_exhibitions" :@"image" :[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"image"] :i];
+            [database updateImageToLocalDB:@"moa_exhibitions" :@"detailImage" :[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"detailImage"] :i];
+        }
+        syncLocalDB = YES;
     }
 }
 
@@ -188,10 +212,19 @@
         view.layer.borderColor = [UIColor grayColor].CGColor;
         view.layer.borderWidth = 2.0f;
         
+        //show the image
         NSString *imageURL = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"image"];
-        NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: imageURL]];
-        UIImageView *buttonImage =[[UIImageView alloc] initWithImage:[UIImage imageWithData:imageData]];
+        UIImageView* buttonImage;
+        
+        [self checkInternetConnection];
+        if (internet == YES) {
+            UIImage* image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+            buttonImage =[[UIImageView alloc] initWithImage:image];
+        } else {
+            buttonImage = [database loadImageFromDB:@"moa_exhibitions" :@"image" :index];
+        }
         [view addSubview:buttonImage];
+        
         
         UITextView *nameTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, 210, 300.0f, 10)];
         nameTextView.text = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"title"];
@@ -215,7 +248,7 @@
         [view addSubview:dateTextView];
         
         view.contentMode = UIViewContentModeCenter;
-
+        
     }
     else
     {
@@ -223,7 +256,6 @@
         label = (UILabel *)[view viewWithTag:1];
     }
 
-    
     return view;
 }
 
@@ -262,5 +294,16 @@
 //            break;
 //    }
 //}
+
+-(void) checkInternetConnection
+{
+    Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    internet = YES;
+    
+    if(internetStatus == NotReachable) {
+        internet = NO;
+    }
+}
 
 @end

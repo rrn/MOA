@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "iCarousel.h"
+#import "CrudOp.h"
 
-@interface ExhibitionsViewController : UIViewController <iCarouselDataSource, iCarouselDelegate>;
+@interface ExhibitionsViewController : UIViewController <iCarouselDataSource, iCarouselDelegate>{
+    CrudOp* database;
+    bool internet;
+    bool syncLocalDB;
+};
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (weak, nonatomic) IBOutlet UIPageControl* pageControl;

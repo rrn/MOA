@@ -7,14 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CrudOp.h"
 
 @interface ExhibitionChildViewController : UIViewController {
     int selectedTag;
+    bool internet;
+    CrudOp* database;
 }
-
 
 -(void) setSelectedButton :(int)tag;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;
 
 @end
 

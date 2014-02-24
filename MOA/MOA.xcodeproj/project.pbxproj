@@ -68,6 +68,7 @@
 		BBA340961827024600B6E4B1 /* 320x170.gif in Resources */ = {isa = PBXBuildFile; fileRef = BBA340951827024600B6E4B1 /* 320x170.gif */; };
 		E434341D188B4F7F00922E7A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E434341C188B4F7F00922E7A /* Reachability.m */; };
 		E434341F188B52FB00922E7A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E434341E188B52FB00922E7A /* SystemConfiguration.framework */; };
+		E438465718B99448008F1E42 /* YoutubeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E438465618B99448008F1E42 /* YoutubeViewController.m */; };
 		E438ACC618386F930078FD2F /* PlanVisitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E438ACC518386F930078FD2F /* PlanVisitViewController.m */; };
 		E438ACC9183877E10078FD2F /* VisitorInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E438ACC8183877E10078FD2F /* VisitorInfoViewController.m */; };
 		E438ACCD183AD8AE0078FD2F /* plan_a_visit.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E438ACCC183AD8AE0078FD2F /* plan_a_visit.jpg */; };
@@ -82,6 +83,7 @@
 		E4B5A0E21858DC680047D9B8 /* 03_Collections02_25px.png in Resources */ = {isa = PBXBuildFile; fileRef = E4B5A0DC1858DC680047D9B8 /* 03_Collections02_25px.png */; };
 		E4B5A0E31858DC680047D9B8 /* 04_Info_25px.png in Resources */ = {isa = PBXBuildFile; fileRef = E4B5A0DD1858DC680047D9B8 /* 04_Info_25px.png */; };
 		E4B5A0E41858DC680047D9B8 /* 05_More_25px.png in Resources */ = {isa = PBXBuildFile; fileRef = E4B5A0DE1858DC680047D9B8 /* 05_More_25px.png */; };
+		E4CC126818B822D9005A3905 /* icon-ios7-arrow-down-512.png in Resources */ = {isa = PBXBuildFile; fileRef = E4CC126718B822D9005A3905 /* icon-ios7-arrow-down-512.png */; };
 		E4D391D11841989800043AEB /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D391D01841989800043AEB /* Constants.m */; };
 		E4E23C6818A45F8D00AD0298 /* ConvertDate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E23C6718A45F8D00AD0298 /* ConvertDate.m */; };
 /* End PBXBuildFile section */
@@ -197,6 +199,8 @@
 		BBA340951827024600B6E4B1 /* 320x170.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = 320x170.gif; sourceTree = "<group>"; };
 		E434341C188B4F7F00922E7A /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = SOURCE_ROOT; };
 		E434341E188B52FB00922E7A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		E438465518B99448008F1E42 /* YoutubeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoutubeViewController.h; sourceTree = "<group>"; };
+		E438465618B99448008F1E42 /* YoutubeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoutubeViewController.m; sourceTree = "<group>"; };
 		E438ACC418386F930078FD2F /* PlanVisitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanVisitViewController.h; sourceTree = "<group>"; };
 		E438ACC518386F930078FD2F /* PlanVisitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanVisitViewController.m; sourceTree = "<group>"; };
 		E438ACC7183877E10078FD2F /* VisitorInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VisitorInfoViewController.h; path = ../VisitorInfoViewController.h; sourceTree = "<group>"; };
@@ -218,6 +222,7 @@
 		E4B5A0DC1858DC680047D9B8 /* 03_Collections02_25px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 03_Collections02_25px.png; sourceTree = "<group>"; };
 		E4B5A0DD1858DC680047D9B8 /* 04_Info_25px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 04_Info_25px.png; sourceTree = "<group>"; };
 		E4B5A0DE1858DC680047D9B8 /* 05_More_25px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 05_More_25px.png; sourceTree = "<group>"; };
+		E4CC126718B822D9005A3905 /* icon-ios7-arrow-down-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-ios7-arrow-down-512.png"; sourceTree = "<group>"; };
 		E4D391CF1841983000043AEB /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		E4D391D01841989800043AEB /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		E4E23C6618A45F8D00AD0298 /* ConvertDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvertDate.h; sourceTree = "<group>"; };
@@ -270,6 +275,7 @@
 				50CEBBFF1841463A0005B0F9 /* shop.jpg */,
 				E438ACCC183AD8AE0078FD2F /* plan_a_visit.jpg */,
 				507B8E6F18299BCE002365EF /* menu.png */,
+				E4CC126718B822D9005A3905 /* icon-ios7-arrow-down-512.png */,
 			);
 			name = IMAGE;
 			sourceTree = "<group>";
@@ -332,6 +338,8 @@
 		BBA3404E1826D6F700B6E4B1 = {
 			isa = PBXGroup;
 			children = (
+				E438465518B99448008F1E42 /* YoutubeViewController.h */,
+				E438465618B99448008F1E42 /* YoutubeViewController.m */,
 				5068E1F0188FA48400FE009F /* Reachability.h */,
 				50CEBBF61840442A0005B0F9 /* ItemLayout.h */,
 				50CEBBF71840442A0005B0F9 /* ItemLayout.m */,
@@ -374,6 +382,7 @@
 		BBA340601826D6F700B6E4B1 /* MOA */ = {
 			isa = PBXGroup;
 			children = (
+				E4CC126618B8197E005A3905 /* ThisWeek */,
 				505040EE1841F7780041EE74 /* Helper */,
 				50F52904183C97C4002A463C /* VisitorInformation */,
 				507B8E651828EBE4002365EF /* Library */,
@@ -383,16 +392,11 @@
 				50FA407C183C811100EC0CEC /* Global.h */,
 				E4D391CF1841983000043AEB /* Constants.h */,
 				E4D391D01841989800043AEB /* Constants.m */,
+				E4CC126518B81952005A3905 /* Exhibitions */,
 				50F52905183C97DC002A463C /* LocalDatabase */,
 				BBA3406C1826D6F700B6E4B1 /* Main.storyboard */,
 				455C469918B5B0C30047D7AA /* FacebookViewController.h */,
 				455C469A18B5B0C30047D7AA /* FacebookViewController.m */,
-				503CDC4318A4E70400BC8580 /* iCarousel.h */,
-				503CDC4418A4E70400BC8580 /* iCarousel.m */,
-				50D3AFF9189A484E00E81424 /* ExhibitionChildViewController.h */,
-				50D3AFFA189A484E00E81424 /* ExhibitionChildViewController.m */,
-				E4B5A0C9185544A10047D9B8 /* ExhibitionsViewController.h */,
-				E4B5A0CA185544A10047D9B8 /* ExhibitionsViewController.m */,
 				E4E23C6618A45F8D00AD0298 /* ConvertDate.h */,
 				E4E23C6718A45F8D00AD0298 /* ConvertDate.m */,
 				E48B16D7183C9B1A0047BBA4 /* AccordionViewController.h */,
@@ -401,10 +405,6 @@
 				503CDBE918A384B300BC8580 /* Utils.h */,
 				503CDBEA18A384B300BC8580 /* Utils.m */,
 				BB0E65991835926800163652 /* TagList.m */,
-				50CCCA12182C54D100384881 /* WhatsOnThisWeekViewController.h */,
-				50CCCA13182C54D200384881 /* WhatsOnThisWeekViewController.m */,
-				4582C9911898BE8800DC9000 /* WOTWEventViewController.h */,
-				4582C9921898BE8800DC9000 /* WOTWEventViewController.m */,
 				507B8E621828E2F4002365EF /* SidebarViewController.h */,
 				507B8E631828E2F4002365EF /* SidebarViewController.m */,
 				BB0E659E18371AA100163652 /* SearchResultListViewController.h */,
@@ -486,6 +486,30 @@
 			name = "Tab Icons";
 			sourceTree = "<group>";
 		};
+		E4CC126518B81952005A3905 /* Exhibitions */ = {
+			isa = PBXGroup;
+			children = (
+				503CDC4318A4E70400BC8580 /* iCarousel.h */,
+				503CDC4418A4E70400BC8580 /* iCarousel.m */,
+				50D3AFF9189A484E00E81424 /* ExhibitionChildViewController.h */,
+				50D3AFFA189A484E00E81424 /* ExhibitionChildViewController.m */,
+				E4B5A0C9185544A10047D9B8 /* ExhibitionsViewController.h */,
+				E4B5A0CA185544A10047D9B8 /* ExhibitionsViewController.m */,
+			);
+			name = Exhibitions;
+			sourceTree = "<group>";
+		};
+		E4CC126618B8197E005A3905 /* ThisWeek */ = {
+			isa = PBXGroup;
+			children = (
+				50CCCA12182C54D100384881 /* WhatsOnThisWeekViewController.h */,
+				50CCCA13182C54D200384881 /* WhatsOnThisWeekViewController.m */,
+				4582C9911898BE8800DC9000 /* WOTWEventViewController.h */,
+				4582C9921898BE8800DC9000 /* WOTWEventViewController.m */,
+			);
+			name = ThisWeek;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -565,6 +589,7 @@
 				E438ACCD183AD8AE0078FD2F /* plan_a_visit.jpg in Resources */,
 				50CEBC031841463A0005B0F9 /* shop.jpg in Resources */,
 				E4B5A0DF1858DC680047D9B8 /* 01_Weekly_25px.png in Resources */,
+				E4CC126818B822D9005A3905 /* icon-ios7-arrow-down-512.png in Resources */,
 				BBA34090182700FC00B6E4B1 /* 480x360.gif in Resources */,
 				50FA4065183B714900EC0CEC /* MOA.sqlite in Resources */,
 				BBA340731826D6F700B6E4B1 /* Images.xcassets in Resources */,
@@ -604,6 +629,7 @@
 				BB0E659D1835A61300163652 /* SplashScreen.m in Sources */,
 				E48B16E21841445D0047BBA4 /* RatesPage.m in Sources */,
 				50F5290C183CA359002A463C /* PublicTransitPage.m in Sources */,
+				E438465718B99448008F1E42 /* YoutubeViewController.m in Sources */,
 				50FA406B183B71FA00EC0CEC /* DBData.m in Sources */,
 				E4D391D11841989800043AEB /* Constants.m in Sources */,
 				4582C9931898BE8800DC9000 /* WOTWEventViewController.m in Sources */,

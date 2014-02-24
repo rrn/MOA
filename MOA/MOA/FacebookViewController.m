@@ -64,6 +64,12 @@
             NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
             _webView.hidden = NO;
             [_webView loadRequest:requestObj];
+        } else if ([[TagList sharedInstance] extraPage] ==2) {
+            NSString *urlAddress = @"http://www.youtube.com/user/MUSEUMofANTHROPOLOGY";
+            NSURL *url = [NSURL URLWithString:urlAddress];
+            NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+            _webView.hidden = NO;
+            [_webView loadRequest:requestObj];
         }
         else
             _webView.hidden = YES;

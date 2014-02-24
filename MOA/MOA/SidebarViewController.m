@@ -126,6 +126,19 @@
                 // select index 3, which is Visitor Information
                 [vcNew setSelectedIndex:4];
             }
+            else if ([segue.identifier isEqualToString:@"showYoutube"]){
+                vcName = @"TabBar";
+                UITabBarController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
+                
+                // Swap out the Front view controller and display
+                [self.revealViewController setFrontViewController:vcNew];
+                [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated:YES];
+                
+                
+                [[TagList sharedInstance] setExtraPage:2];
+                // select index 3, which is Visitor Information
+                [vcNew setSelectedIndex:4];
+            }
         };
         }
     }

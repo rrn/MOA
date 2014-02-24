@@ -1246,7 +1246,7 @@
                         <segue destination="FeJ-ju-YDU" kind="relationship" relationship="viewControllers" id="KG7-G5-5Wz"/>
                         <segue destination="FSa-D8-vYi" kind="relationship" relationship="viewControllers" id="8vC-Ii-8Vk"/>
                         <segue destination="mHV-0a-uqN" kind="relationship" relationship="viewControllers" id="UVY-js-OWf"/>
-                        <segue destination="kcg-yL-cKe" kind="relationship" relationship="viewControllers" id="lKe-1Q-h9n"/>
+                        <segue destination="kcg-yL-cKe" kind="relationship" relationship="viewControllers" id="3Ui-Zi-1HH"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2D9-Zc-qkg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1300,7 +1300,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DGF-Tp-xkR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1402" y="-3583"/>
+            <point key="canvasLocation" x="1400" y="-3583"/>
         </scene>
         <!--Navigation Controller - Explore-->
         <scene sceneID="yuu-X7-YIA">
@@ -1385,11 +1385,11 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="B3C-bd-MPA"/>
-        <segue reference="iaw-W3-l3H"/>
-        <segue reference="PS2-VE-2nm"/>
-        <segue reference="A9d-PQ-Zkm"/>
         <segue reference="EyV-KQ-2Pa"/>
+        <segue reference="iaw-W3-l3H"/>
+        <segue reference="B3C-bd-MPA"/>
+        <segue reference="A9d-PQ-Zkm"/>
+        <segue reference="PS2-VE-2nm"/>
         <segue reference="Qlf-L4-T27"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -10,7 +10,7 @@
 
 @interface FacebookViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (strong, nonatomic) IBOutlet UIWebView *webView;
 
 
 

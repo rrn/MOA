@@ -69,6 +69,9 @@
 		E434341D188B4F7F00922E7A /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = E434341C188B4F7F00922E7A /* Reachability.m */; };
 		E434341F188B52FB00922E7A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E434341E188B52FB00922E7A /* SystemConfiguration.framework */; };
 		E438465718B99448008F1E42 /* YoutubeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E438465618B99448008F1E42 /* YoutubeViewController.m */; };
+		E438465A18BAD126008F1E42 /* 06_Facebook_22px.png in Resources */ = {isa = PBXBuildFile; fileRef = E438465818BAD126008F1E42 /* 06_Facebook_22px.png */; };
+		E438465B18BAD126008F1E42 /* 08_YouTube_22px.png in Resources */ = {isa = PBXBuildFile; fileRef = E438465918BAD126008F1E42 /* 08_YouTube_22px.png */; };
+		E438465D18BAD30C008F1E42 /* 01_Weekly_50px.png in Resources */ = {isa = PBXBuildFile; fileRef = E438465C18BAD30C008F1E42 /* 01_Weekly_50px.png */; };
 		E438ACC618386F930078FD2F /* PlanVisitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E438ACC518386F930078FD2F /* PlanVisitViewController.m */; };
 		E438ACC9183877E10078FD2F /* VisitorInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E438ACC8183877E10078FD2F /* VisitorInfoViewController.m */; };
 		E438ACCD183AD8AE0078FD2F /* plan_a_visit.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E438ACCC183AD8AE0078FD2F /* plan_a_visit.jpg */; };
@@ -201,6 +204,9 @@
 		E434341E188B52FB00922E7A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		E438465518B99448008F1E42 /* YoutubeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoutubeViewController.h; sourceTree = "<group>"; };
 		E438465618B99448008F1E42 /* YoutubeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoutubeViewController.m; sourceTree = "<group>"; };
+		E438465818BAD126008F1E42 /* 06_Facebook_22px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 06_Facebook_22px.png; sourceTree = "<group>"; };
+		E438465918BAD126008F1E42 /* 08_YouTube_22px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 08_YouTube_22px.png; sourceTree = "<group>"; };
+		E438465C18BAD30C008F1E42 /* 01_Weekly_50px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 01_Weekly_50px.png; sourceTree = "<group>"; };
 		E438ACC418386F930078FD2F /* PlanVisitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlanVisitViewController.h; sourceTree = "<group>"; };
 		E438ACC518386F930078FD2F /* PlanVisitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlanVisitViewController.m; sourceTree = "<group>"; };
 		E438ACC7183877E10078FD2F /* VisitorInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VisitorInfoViewController.h; path = ../VisitorInfoViewController.h; sourceTree = "<group>"; };
@@ -395,6 +401,7 @@
 				E4CC126518B81952005A3905 /* Exhibitions */,
 				50F52905183C97DC002A463C /* LocalDatabase */,
 				BBA3406C1826D6F700B6E4B1 /* Main.storyboard */,
+				E438465C18BAD30C008F1E42 /* 01_Weekly_50px.png */,
 				455C469918B5B0C30047D7AA /* FacebookViewController.h */,
 				455C469A18B5B0C30047D7AA /* FacebookViewController.m */,
 				E4E23C6618A45F8D00AD0298 /* ConvertDate.h */,
@@ -477,6 +484,8 @@
 			isa = PBXGroup;
 			children = (
 				E4B5A0D91858DC680047D9B8 /* 01_Weekly_25px.png */,
+				E438465818BAD126008F1E42 /* 06_Facebook_22px.png */,
+				E438465918BAD126008F1E42 /* 08_YouTube_22px.png */,
 				E4B5A0DA1858DC680047D9B8 /* 02_Exhibitions_25px.png */,
 				E4B5A0DB1858DC680047D9B8 /* 03_Collections01_25px.png */,
 				E4B5A0DC1858DC680047D9B8 /* 03_Collections02_25px.png */,
@@ -591,6 +600,7 @@
 				E4B5A0DF1858DC680047D9B8 /* 01_Weekly_25px.png in Resources */,
 				E4CC126818B822D9005A3905 /* icon-ios7-arrow-down-512.png in Resources */,
 				BBA34090182700FC00B6E4B1 /* 480x360.gif in Resources */,
+				E438465A18BAD126008F1E42 /* 06_Facebook_22px.png in Resources */,
 				50FA4065183B714900EC0CEC /* MOA.sqlite in Resources */,
 				BBA340731826D6F700B6E4B1 /* Images.xcassets in Resources */,
 				E4B5A0E01858DC680047D9B8 /* 02_Exhibitions_25px.png in Resources */,
@@ -603,9 +613,11 @@
 				BBA34094182701F500B6E4B1 /* 320x200.gif in Resources */,
 				507B8E7018299BCE002365EF /* menu.png in Resources */,
 				BBA340961827024600B6E4B1 /* 320x170.gif in Resources */,
+				E438465D18BAD30C008F1E42 /* 01_Weekly_50px.png in Resources */,
 				E4B5A0E21858DC680047D9B8 /* 03_Collections02_25px.png in Resources */,
 				50CEBC011841463A0005B0F9 /* cafe.JPG in Resources */,
 				E4B5A0E41858DC680047D9B8 /* 05_More_25px.png in Resources */,
+				E438465B18BAD126008F1E42 /* 08_YouTube_22px.png in Resources */,
 				BBA3406E1826D6F700B6E4B1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

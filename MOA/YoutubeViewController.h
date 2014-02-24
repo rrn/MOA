@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface YoutubeViewController : UIViewController
+{
+    IBOutlet UIWebView *youtubeWebView;
+}
 
 @end

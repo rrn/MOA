@@ -444,6 +444,10 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="06_Facebook_22px.png" translatesAutoresizingMaskIntoConstraints="NO" id="Jqt-Xp-ryd">
+                                            <rect key="frame" x="76" y="1" width="47" height="42"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -463,6 +467,10 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="08_YouTube_22px.png" translatesAutoresizingMaskIntoConstraints="NO" id="DeR-rz-536">
+                                            <rect key="frame" x="75" y="3" width="48" height="37"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -1430,6 +1438,8 @@
         <image name="03_Collections02_25px.png" width="25" height="25"/>
         <image name="04_Info_25px.png" width="25" height="25"/>
         <image name="05_More_25px.png" width="25" height="25"/>
+        <image name="06_Facebook_22px.png" width="22" height="22"/>
+        <image name="08_YouTube_22px.png" width="22" height="22"/>
         <image name="MOA_Splash_640x1136.png" width="640" height="1136"/>
         <image name="plan_a_visit.jpg" width="3072" height="2124"/>
         <image name="shop-1.jpg" width="1800" height="1200"/>
@@ -1440,9 +1450,9 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="zgW-yR-ErI"/>
         <segue reference="KG7-G5-5Wz"/>
         <segue reference="UVY-js-OWf"/>
+        <segue reference="zgW-yR-ErI"/>
         <segue reference="8vC-Ii-8Vk"/>
         <segue reference="Qlf-L4-T27"/>
     </inferredMetricsTieBreakers>

@@ -17,7 +17,7 @@
 @property (strong, nonatomic) NSMutableArray *peopleTags;
 @property (strong, nonatomic) NSArray *calendarEvents;
 @property (strong, nonatomic) NSArray *exhibitionEvents;
-
+@property int extraPage;
 
 + (TagList *)sharedInstance;
 

@@ -11,8 +11,8 @@
 #import "AppDelegate.h"
 #import "WhatsOnThisWeekViewController.h"
 #import "VisitorInfoViewController.h"
-
-
+#import "FacebookViewController.h"
+#include "TagList.h"
 
 @interface SidebarViewController ()
 
@@ -99,11 +99,45 @@
                 // select index 3, which is Visitor Information
                 [vcNew setSelectedIndex:3];
                 
-            } else  {
+            }
+            else if ([segue.identifier isEqualToString:@"showFacebook"]){
+                vcName = @"TabBar";
+                UITabBarController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
                 
-                UINavigationController* navController = (UINavigationController*)self.revealViewController.frontViewController;
-                [navController setViewControllers: @[dvc] animated: NO ];
-                [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated: YES];
+                // Swap out the Front view controller and display
+                [self.revealViewController setFrontViewController:vcNew];
+                [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated:YES];
+                
+                
+                [[TagList sharedInstance] setExtraPage:0];
+                // select index 3, which is Visitor Information
+                [vcNew setSelectedIndex:4];
+            }
+            else if ([segue.identifier isEqualToString:@"showTwitter"]){
+                vcName = @"TabBar";
+                UITabBarController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
+                
+                // Swap out the Front view controller and display
+                [self.revealViewController setFrontViewController:vcNew];
+                [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated:YES];
+                
+                
+                [[TagList sharedInstance] setExtraPage:1];
+                // select index 3, which is Visitor Information
+                [vcNew setSelectedIndex:4];
+            }
+            else if ([segue.identifier isEqualToString:@"showYoutube"]){
+                vcName = @"TabBar";
+                UITabBarController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
+                
+                // Swap out the Front view controller and display
+                [self.revealViewController setFrontViewController:vcNew];
+                [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated:YES];
+                
+                
+                [[TagList sharedInstance] setExtraPage:2];
+                // select index 3, which is Visitor Information
+                [vcNew setSelectedIndex:4];
             }
         };
         }

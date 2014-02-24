@@ -32,6 +32,7 @@
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 
+    [[TagList sharedInstance] setExtraPage:0];
     
     // Set the side bar button action. When it's tapped, it'll show up the sidebar.
     _sidebarButton.target = self.revealViewController;

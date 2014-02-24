@@ -10,7 +10,7 @@
 
 @implementation TagList
 
-@synthesize objectTypeTags, peopleTags, placesTags, materialsTags, culturesTags;
+@synthesize objectTypeTags, peopleTags, placesTags, materialsTags, culturesTags, extraPage;
 
 + (TagList *)sharedInstance
 {
@@ -25,6 +25,7 @@
     // return the instance of this class
     return myInstance;
 }
+
 
 + (void)downloadObjectJson{
     

@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface FacebookViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
+
+
 
 @end

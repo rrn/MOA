@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="H5l-5b-yzz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B3116" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="H5l-5b-yzz">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -441,7 +441,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="XSL-6I-oaS" kind="custom" identifier="showFacebook" customClass="SWRevealViewControllerSegue" id="7VZ-ax-qIv"/>
+                                    <segue destination="kcg-yL-cKe" kind="custom" identifier="showFacebook" customClass="SWRevealViewControllerSegue" id="WVL-p5-VzC"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell6" id="BZm-0B-GgT">
@@ -451,14 +451,17 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1d9-Wd-eOr">
-                                            <rect key="frame" x="121" y="11" width="280" height="22"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" fixedFrame="YES" text="Twitter" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1d9-Wd-eOr">
+                                            <rect key="frame" x="121" y="11" width="280" height="30"/>
                                             <fontDescription key="fontDescription" name="HelveticaNeue-CondensedBlack" family="Helvetica Neue" pointSize="25"/>
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="kcg-yL-cKe" kind="custom" identifier="showTwitter" customClass="SWRevealViewControllerSegue" id="NgF-zr-rK1"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell7" id="MIC-xY-vig">
                                 <rect key="frame" x="0.0" y="330" width="320" height="44"/>
@@ -1240,11 +1243,29 @@
                         <segue destination="FeJ-ju-YDU" kind="relationship" relationship="viewControllers" id="KG7-G5-5Wz"/>
                         <segue destination="FSa-D8-vYi" kind="relationship" relationship="viewControllers" id="8vC-Ii-8Vk"/>
                         <segue destination="mHV-0a-uqN" kind="relationship" relationship="viewControllers" id="UVY-js-OWf"/>
+                        <segue destination="kcg-yL-cKe" kind="relationship" relationship="viewControllers" id="lKe-1Q-h9n"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2D9-Zc-qkg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="817" y="-963"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="9Fh-S6-ZWU">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="kcg-yL-cKe" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" systemItem="more" id="OB0-9e-fNr"/>
+                    <navigationItem key="navigationItem" id="jUG-Ri-mTE"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MEQ-Nn-yWC">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Kxp-4Q-84j" kind="relationship" relationship="rootViewController" id="P2g-YB-ZCI"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5xy-cT-h8D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="873" y="-3583"/>
         </scene>
         <!--Facebook View Controller-->
         <scene sceneID="pRf-jO-Q1f">
@@ -1258,35 +1279,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TEST" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lyA-VA-1Gd">
-                                <rect key="frame" x="112" y="225" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0QF-WC-LDb">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="eCX-lN-7se"/>
+                    <navigationItem key="navigationItem" id="eCX-lN-7se">
+                        <barButtonItem key="rightBarButtonItem" image="05_More_25px.png" id="vve-fk-5L0"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="sideBarButton" destination="vve-fk-5L0" id="Rom-65-fYP"/>
+                        <outlet property="webView" destination="0QF-WC-LDb" id="Lt7-HQ-CKD"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DGF-Tp-xkR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2030" y="-3637"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="vh5-2x-qyy">
-            <objects>
-                <navigationController definesPresentationContext="YES" id="XSL-6I-oaS" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kU7-RM-YMd">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Kxp-4Q-84j" kind="relationship" relationship="rootViewController" id="Px3-ms-x5Y"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="0bS-v5-zyx" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1436" y="-3637"/>
+            <point key="canvasLocation" x="1402" y="-3583"/>
         </scene>
         <!--Navigation Controller - Explore-->
         <scene sceneID="yuu-X7-YIA">
@@ -1371,10 +1382,11 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="8vC-Ii-8Vk"/>
-        <segue reference="zgW-yR-ErI"/>
-        <segue reference="KG7-G5-5Wz"/>
-        <segue reference="UVY-js-OWf"/>
+        <segue reference="EyV-KQ-2Pa"/>
+        <segue reference="B3C-bd-MPA"/>
+        <segue reference="PS2-VE-2nm"/>
+        <segue reference="A9d-PQ-Zkm"/>
+        <segue reference="NgF-zr-rK1"/>
         <segue reference="Qlf-L4-T27"/>
     </inferredMetricsTieBreakers>
 </document>

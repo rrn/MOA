@@ -10,7 +10,7 @@
 
 @interface ConvertDate : NSObject
 
--(NSString*)convertDate:(NSString*) short_date;
--(NSString*)convertMonthToString:(NSString*) month_numeric;
++(NSString*)convertDate:(NSString*) short_date;
++(NSString*)convertMonthToString:(NSString*) month_numeric;
 
 @end

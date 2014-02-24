@@ -507,7 +507,7 @@
             </objects>
             <point key="canvasLocation" x="817" y="-1830"/>
         </scene>
-        <!--Whats On This Week View Controller-->
+        <!--Whats On This Week View Controller - This Week at MOA-->
         <scene sceneID="jTp-XG-Q4o">
             <objects>
                 <tableViewController storyboardIdentifier="this" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tin-y9-PNF" customClass="WhatsOnThisWeekViewController" sceneMemberID="viewController">
@@ -546,7 +546,7 @@
                             <outlet property="delegate" destination="tin-y9-PNF" id="Z7j-Vj-n27"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="zo7-6c-2Z9">
+                    <navigationItem key="navigationItem" title="This Week at MOA" id="zo7-6c-2Z9">
                         <barButtonItem key="rightBarButtonItem" image="05_More_25px.png" id="zs8-pf-wGQ"/>
                     </navigationItem>
                     <connections>

@@ -11,6 +11,7 @@
 #import "Reachability.h"
 #import "TagList.h"
 #import "WOTWEventViewController.h"
+#import "ConvertDate.h"
 
 
 @interface WhatsOnThisWeekViewController ()
@@ -43,7 +44,6 @@
     _sidebarButton.action = @selector(rightRevealToggle:);
     
     // Set the gesture
-    self.title = @"This Week at MOA";
     self.tableView.rowHeight=70;
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
 }
@@ -106,8 +106,10 @@
     
     // Configure the cell...
     cell.textLabel.numberOfLines=3;
+    
     NSDictionary *event = [[[TagList sharedInstance] calendarEvents] objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@\n%@\n%@",[event objectForKey:@"programType"], [event objectForKey:@"title"],[event objectForKey:@"date"]];
+    NSString *date = [ConvertDate convertDate:[event objectForKey:@"date"]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@\n%@\n%@",[event objectForKey:@"programType"], [event objectForKey:@"title"], date];
     
     [self checkInternetConnection];
     if (internet == YES){

@@ -137,54 +137,6 @@
     [self performSegueWithIdentifier:@"ExhibitionChild" sender:self];
 }
 
-- (NSString*) convertDate:(NSString*) short_date
-{
-    //conver short date to long date
-    NSArray* components = [short_date componentsSeparatedByString:@"-"];
-    
-    NSString *year = [components objectAtIndex:0];
-    NSString *month_numeric = [components objectAtIndex:1];
-    NSString *month_string = [self convertMonthToString:month_numeric];
-    NSString *day = [components objectAtIndex:2];
-    
-    NSString *long_date = [NSString stringWithFormat:@"%@ %d, %@", month_string, day.intValue, year];
-
-    return long_date;
-}
-
-- (NSString*) convertMonthToString:(NSString*) month_numeric
-{
-    switch (month_numeric.intValue)
-    {
-        case 1:
-            return @"January";
-        case 2:
-            return @"February";
-        case 3:
-            return @"March";
-        case 4:
-            return @"April";
-        case 5:
-            return @"May";
-        case 6:
-            return @"June";
-        case 7:
-            return @"July";
-        case 8:
-            return @"August";
-        case 9:
-            return @"September";
-        case 10:
-            return @"October";
-        case 11:
-            return @"November";
-        case 12:
-            return @"December";
-        
-        default: return @"January";
-    }
-}
-
 #pragma mark -
 #pragma mark iCarousel methods
 
@@ -235,8 +187,8 @@
         cursorPosition = 210 + [Utils textViewDidChange:nameTextView];
         [view addSubview:nameTextView];
         
-        NSString *startDate = [self convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"activationDate"]];
-        NSString *endDate = [self convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"expiryDate"]];
+        NSString *startDate = [ConvertDate convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"activationDate"]];
+        NSString *endDate = [ConvertDate convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"expiryDate"]];
         UITextView *dateTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, cursorPosition, 300.0f, 10)];
         NSString *date = [NSString stringWithFormat:@"%@ to %@", startDate, endDate];
         dateTextView.text = date;

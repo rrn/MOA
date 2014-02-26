@@ -82,9 +82,9 @@
     [super viewWillAppear:animated];
 
     [self checkInternetConnection];
-    if (internet == YES){
-        [database UpdateLocalDB:@"moa_exhibitions" :[[TagList sharedInstance].exhibitionEvents mutableCopy]];
-    }
+    //if (internet == YES){
+    //    [database UpdateLocalDB:@"moa_exhibitions" :[[TagList sharedInstance].exhibitionEvents mutableCopy]];
+    //}
 }
 
 -(void) viewDidAppear:(BOOL)animated

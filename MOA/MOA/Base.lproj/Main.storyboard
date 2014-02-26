@@ -302,7 +302,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="K1F-uI-whX"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="K1F-uI-whX">
+                        <barButtonItem key="rightBarButtonItem" image="05_More_25px.png" id="dEw-Qk-Ged"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="sideBarButton" destination="dEw-Qk-Ged" id="AWz-h8-4O6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DyK-fy-p4D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1081,13 +1087,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7Qi-Na-Wt2">
-                                <rect key="frame" x="0.0" y="70" width="320" height="410"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="7Qi-Na-Wt2">
+                                <rect key="frame" x="0.0" y="65" width="320" height="410"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Hours" textLabel="Wyn-PB-UdR" detailTextLabel="DH4-qf-w4n" style="IBUITableViewCellStyleSubtitle" id="3lp-VH-oKv">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="55" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3lp-VH-oKv" id="ZqQ-eF-Db2">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1444,9 +1450,9 @@
         <segue reference="PS2-VE-2nm"/>
         <segue reference="EyV-KQ-2Pa"/>
         <segue reference="iaw-W3-l3H"/>
-        <segue reference="A9d-PQ-Zkm"/>
         <segue reference="B3C-bd-MPA"/>
+        <segue reference="A9d-PQ-Zkm"/>
         <segue reference="Qlf-L4-T27"/>
-        <segue reference="P2g-YB-ZCI"/>
+        <segue reference="Px3-ms-x5Y"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -87,7 +87,6 @@
 		E4B5A0E41858DC680047D9B8 /* 05_More_25px.png in Resources */ = {isa = PBXBuildFile; fileRef = E4B5A0DE1858DC680047D9B8 /* 05_More_25px.png */; };
 		E4CC126818B822D9005A3905 /* icon-ios7-arrow-down-512.png in Resources */ = {isa = PBXBuildFile; fileRef = E4CC126718B822D9005A3905 /* icon-ios7-arrow-down-512.png */; };
 		E4D391D11841989800043AEB /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D391D01841989800043AEB /* Constants.m */; };
-		E4E23C6818A45F8D00AD0298 /* ConvertDate.m in Sources */ = {isa = PBXBuildFile; fileRef = E4E23C6718A45F8D00AD0298 /* ConvertDate.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -228,8 +227,6 @@
 		E4CC126718B822D9005A3905 /* icon-ios7-arrow-down-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-ios7-arrow-down-512.png"; sourceTree = "<group>"; };
 		E4D391CF1841983000043AEB /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		E4D391D01841989800043AEB /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
-		E4E23C6618A45F8D00AD0298 /* ConvertDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConvertDate.h; sourceTree = "<group>"; };
-		E4E23C6718A45F8D00AD0298 /* ConvertDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConvertDate.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -398,8 +395,6 @@
 				BBA3406C1826D6F700B6E4B1 /* Main.storyboard */,
 				455C469918B5B0C30047D7AA /* SocialMediaViewController.h */,
 				455C469A18B5B0C30047D7AA /* SocialMediaViewController.m */,
-				E4E23C6618A45F8D00AD0298 /* ConvertDate.h */,
-				E4E23C6718A45F8D00AD0298 /* ConvertDate.m */,
 				E48B16D7183C9B1A0047BBA4 /* AccordionViewController.h */,
 				E48B16D8183C9B1A0047BBA4 /* AccordionViewController.m */,
 				BB0E65981835926800163652 /* TagList.h */,
@@ -645,7 +640,6 @@
 				E48B16DC18413EE40047BBA4 /* LocationPage.m in Sources */,
 				E434341D188B4F7F00922E7A /* Reachability.m in Sources */,
 				50CB96C718417862003B7DCC /* ContactUsViewController.m in Sources */,
-				E4E23C6818A45F8D00AD0298 /* ConvertDate.m in Sources */,
 				E438ACC9183877E10078FD2F /* VisitorInfoViewController.m in Sources */,
 				50F5290F183CA37B002A463C /* FromAirportPage.m in Sources */,
 				50CCCA14182C54D200384881 /* WhatsOnThisWeekViewController.m in Sources */,

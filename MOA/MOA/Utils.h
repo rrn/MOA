@@ -14,4 +14,11 @@
 // this functions alter the height of textView automatically, and returns the height of the view.
 + (int)textViewDidChange:(UITextView *)textView;
 
+// These functions convert a date format
+// From: 01/01/2014
+// To: January 1, 2014
++(NSString*)convertDate:(NSString*) short_date;
++(NSString*)convertMonthToString:(NSString*) month_numeric;
+
+
 @end

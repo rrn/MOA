@@ -12,7 +12,6 @@
 #import "TagList.h"
 #import "ExhibitionChildViewController.h"
 #import "Utils.h"
-#import "ConvertDate.h"
 
 @interface ExhibitionsViewController ()
 @property (strong, nonatomic)  UIImageView *displayItemImageView;
@@ -187,8 +186,8 @@
         cursorPosition = 210 + [Utils textViewDidChange:nameTextView];
         [view addSubview:nameTextView];
         
-        NSString *startDate = [ConvertDate convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"activationDate"]];
-        NSString *endDate = [ConvertDate convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"expiryDate"]];
+        NSString *startDate = [Utils convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"activationDate"]];
+        NSString *endDate = [Utils convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"expiryDate"]];
         UITextView *dateTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, cursorPosition, 300.0f, 10)];
         NSString *date = [NSString stringWithFormat:@"%@ to %@", startDate, endDate];
         dateTextView.text = date;

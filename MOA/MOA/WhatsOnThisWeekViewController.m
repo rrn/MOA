@@ -11,8 +11,7 @@
 #import "Reachability.h"
 #import "TagList.h"
 #import "WOTWEventViewController.h"
-#import "ConvertDate.h"
-
+#import "Utils.h"
 
 @interface WhatsOnThisWeekViewController ()
 
@@ -108,7 +107,7 @@
     cell.textLabel.numberOfLines=3;
     
     NSDictionary *event = [[[TagList sharedInstance] calendarEvents] objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@\n%@\n%@",[event objectForKey:@"programType"], [event objectForKey:@"title"], [ConvertDate convertDate:[event objectForKey:@"date"]]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@\n%@\n%@",[event objectForKey:@"programType"], [event objectForKey:@"title"], [Utils convertDate:[event objectForKey:@"date"]]];
     
     [self checkInternetConnection];
     if (internet == YES){

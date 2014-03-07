@@ -1385,11 +1385,11 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="EyV-KQ-2Pa"/>
-        <segue reference="iaw-W3-l3H"/>
         <segue reference="B3C-bd-MPA"/>
-        <segue reference="A9d-PQ-Zkm"/>
-        <segue reference="PS2-VE-2nm"/>
+        <segue reference="KG7-G5-5Wz"/>
         <segue reference="Qlf-L4-T27"/>
+        <segue reference="iaw-W3-l3H"/>
+        <segue reference="A9d-PQ-Zkm"/>
+        <segue reference="EyV-KQ-2Pa"/>
     </inferredMetricsTieBreakers>
 </document>

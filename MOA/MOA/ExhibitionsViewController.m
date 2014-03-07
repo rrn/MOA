@@ -12,7 +12,6 @@
 #import "TagList.h"
 #import "ExhibitionChildViewController.h"
 #import "Utils.h"
-#import "ConvertDate.h"
 
 @interface ExhibitionsViewController ()
 @property (strong, nonatomic)  UIImageView *displayItemImageView;
@@ -82,9 +81,9 @@
     [super viewWillAppear:animated];
 
     [self checkInternetConnection];
-    if (internet == YES){
-        [database UpdateLocalDB:@"moa_exhibitions" :[[TagList sharedInstance].exhibitionEvents mutableCopy]];
-    }
+    //if (internet == YES){
+    //    [database UpdateLocalDB:@"moa_exhibitions" :[[TagList sharedInstance].exhibitionEvents mutableCopy]];
+    //}
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -137,54 +136,6 @@
     [self performSegueWithIdentifier:@"ExhibitionChild" sender:self];
 }
 
-- (NSString*) convertDate:(NSString*) short_date
-{
-    //conver short date to long date
-    NSArray* components = [short_date componentsSeparatedByString:@"-"];
-    
-    NSString *year = [components objectAtIndex:0];
-    NSString *month_numeric = [components objectAtIndex:1];
-    NSString *month_string = [self convertMonthToString:month_numeric];
-    NSString *day = [components objectAtIndex:2];
-    
-    NSString *long_date = [NSString stringWithFormat:@"%@ %d, %@", month_string, day.intValue, year];
-
-    return long_date;
-}
-
-- (NSString*) convertMonthToString:(NSString*) month_numeric
-{
-    switch (month_numeric.intValue)
-    {
-        case 1:
-            return @"January";
-        case 2:
-            return @"February";
-        case 3:
-            return @"March";
-        case 4:
-            return @"April";
-        case 5:
-            return @"May";
-        case 6:
-            return @"June";
-        case 7:
-            return @"July";
-        case 8:
-            return @"August";
-        case 9:
-            return @"September";
-        case 10:
-            return @"October";
-        case 11:
-            return @"November";
-        case 12:
-            return @"December";
-        
-        default: return @"January";
-    }
-}
-
 #pragma mark -
 #pragma mark iCarousel methods
 
@@ -209,7 +160,7 @@
         int cursorPosition = 0;
         view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 300.0f, 300.0f)];
         view.layer.backgroundColor = [UIColor whiteColor].CGColor;
-        view.layer.borderColor = [UIColor grayColor].CGColor;
+        view.layer.borderColor = [UIColor colorWithRed:0.9333 green:0.9333 blue:0.9333 alpha:1.0].CGColor;
         view.layer.borderWidth = 2.0f;
         
         //show the image
@@ -235,8 +186,8 @@
         cursorPosition = 210 + [Utils textViewDidChange:nameTextView];
         [view addSubview:nameTextView];
         
-        NSString *startDate = [self convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"activationDate"]];
-        NSString *endDate = [self convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"expiryDate"]];
+        NSString *startDate = [Utils convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"activationDate"]];
+        NSString *endDate = [Utils convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"expiryDate"]];
         UITextView *dateTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, cursorPosition, 300.0f, 10)];
         NSString *date = [NSString stringWithFormat:@"%@ to %@", startDate, endDate];
         dateTextView.text = date;

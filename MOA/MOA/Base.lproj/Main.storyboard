@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B3116" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="H5l-5b-yzz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="H5l-5b-yzz">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -302,7 +302,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="K1F-uI-whX"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="K1F-uI-whX">
+                        <barButtonItem key="rightBarButtonItem" image="05_More_25px.png" id="dEw-Qk-Ged"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="sideBarButton" destination="dEw-Qk-Ged" id="AWz-h8-4O6"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DyK-fy-p4D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -438,6 +444,10 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="06_Facebook_22px.png" translatesAutoresizingMaskIntoConstraints="NO" id="Jqt-Xp-ryd">
+                                            <rect key="frame" x="76" y="1" width="47" height="42"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -457,6 +467,10 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="07_Twitter_22px.png" translatesAutoresizingMaskIntoConstraints="NO" id="8qM-2c-l7R">
+                                            <rect key="frame" x="76" y="3" width="48" height="37"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -476,6 +490,10 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <color key="highlightedColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="08_YouTube_22px.png" translatesAutoresizingMaskIntoConstraints="NO" id="DeR-rz-536">
+                                            <rect key="frame" x="75" y="7" width="48" height="37"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
@@ -495,7 +513,7 @@
             </objects>
             <point key="canvasLocation" x="817" y="-1830"/>
         </scene>
-        <!--Whats On This Week View Controller-->
+        <!--Whats On This Week View Controller - This Week at MOA-->
         <scene sceneID="jTp-XG-Q4o">
             <objects>
                 <tableViewController storyboardIdentifier="this" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tin-y9-PNF" customClass="WhatsOnThisWeekViewController" sceneMemberID="viewController">
@@ -534,7 +552,7 @@
                             <outlet property="delegate" destination="tin-y9-PNF" id="Z7j-Vj-n27"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="zo7-6c-2Z9">
+                    <navigationItem key="navigationItem" title="This Week at MOA" id="zo7-6c-2Z9">
                         <barButtonItem key="rightBarButtonItem" image="05_More_25px.png" id="zs8-pf-wGQ"/>
                     </navigationItem>
                     <connections>
@@ -1069,13 +1087,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="7Qi-Na-Wt2">
-                                <rect key="frame" x="0.0" y="70" width="320" height="410"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="7Qi-Na-Wt2">
+                                <rect key="frame" x="0.0" y="65" width="320" height="410"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Hours" textLabel="Wyn-PB-UdR" detailTextLabel="DH4-qf-w4n" style="IBUITableViewCellStyleSubtitle" id="3lp-VH-oKv">
-                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <rect key="frame" x="0.0" y="55" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3lp-VH-oKv" id="ZqQ-eF-Db2">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -1270,10 +1288,10 @@
             </objects>
             <point key="canvasLocation" x="873" y="-3583"/>
         </scene>
-        <!--Facebook View Controller-->
+        <!--Social Media View Controller-->
         <scene sceneID="pRf-jO-Q1f">
             <objects>
-                <viewController id="Kxp-4Q-84j" customClass="FacebookViewController" sceneMemberID="viewController">
+                <viewController id="Kxp-4Q-84j" customClass="SocialMediaViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="N3h-lK-poD"/>
                         <viewControllerLayoutGuide type="bottom" id="gp7-rj-jDy"/>
@@ -1297,6 +1315,47 @@
                         <outlet property="sideBarButton" destination="vve-fk-5L0" id="Rom-65-fYP"/>
                         <outlet property="webView" destination="0QF-WC-LDb" id="Lt7-HQ-CKD"/>
                     </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZLO-nc-nKA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1436" y="-3044"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="vh5-2x-qyy">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="XSL-6I-oaS" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kU7-RM-YMd">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Kxp-4Q-84j" kind="relationship" relationship="rootViewController" id="Px3-ms-x5Y"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0bS-v5-zyx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1436" y="-3637"/>
+        </scene>
+        <!--Youtube View Controller-->
+        <scene sceneID="H1t-xe-dsu">
+            <objects>
+                <viewController storyboardIdentifier="youtube" id="Txp-7z-hf1" customClass="YoutubeViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Y2D-pK-Vf5"/>
+                        <viewControllerLayoutGuide type="bottom" id="l8M-kv-CiW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FNT-sE-QDp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lvT-37-JM2">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="410"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="K1q-F2-3hO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DGF-Tp-xkR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1375,6 +1434,9 @@
         <image name="03_Collections02_25px.png" width="25" height="25"/>
         <image name="04_Info_25px.png" width="25" height="25"/>
         <image name="05_More_25px.png" width="25" height="25"/>
+        <image name="06_Facebook_22px.png" width="22" height="22"/>
+        <image name="07_Twitter_22px.png" width="22" height="22"/>
+        <image name="08_YouTube_22px.png" width="22" height="22"/>
         <image name="MOA_Splash_640x1136.png" width="640" height="1136"/>
         <image name="plan_a_visit.jpg" width="3072" height="2124"/>
         <image name="shop-1.jpg" width="1800" height="1200"/>

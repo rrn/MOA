@@ -11,7 +11,7 @@
 @implementation ConvertDate
 
 
-- (NSString*) convertDate:(NSString*) short_date
++ (NSString*) convertDate:(NSString*) short_date
 {
     //convert short date to long date
     NSArray* components = [short_date componentsSeparatedByString:@"-"];
@@ -26,7 +26,7 @@
     return long_date;
 }
 
-- (NSString*) convertMonthToString:(NSString*) month_numeric
++ (NSString*) convertMonthToString:(NSString*) month_numeric
 {
     switch (month_numeric.intValue)
     {

@@ -156,7 +156,27 @@
     e = nil; // reset e variable
     //[[TagList sharedInstance] setCalendarEvents:[NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&e]];
     NSDictionary *temp = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&e];
-    [[TagList sharedInstance] setCalendarEvents:[temp objectForKey:@"whats_on"]];
+    NSMutableArray *temp2 = [[NSMutableArray alloc] init];
+    NSMutableDictionary *temp3 = [[NSMutableDictionary alloc] init];
+    NSDate *nowDate = [[NSDate alloc] init];
+//    NSCalendar *gregorian = [[NSCalendar alloc]
+//                             initWithCalendarIdentifier:NSGregorianCalendar];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    
+    for(int eventIterator=0; eventIterator < [[temp objectForKey:@"whats_on"] count]; eventIterator++){
+        NSString *eventDateString = [[[temp objectForKey:@"whats_on"] objectAtIndex:eventIterator] objectForKey:@"date"];
+        NSDate *eventDate = [dateFormatter dateFromString:eventDateString];
+        NSTimeInterval secs = [eventDate timeIntervalSinceDate:nowDate];
+        //NSLog(@"time: %f", secs);
+        if(secs < (60*60*24*7) && secs > 0){
+            [temp2 addObject:[[temp objectForKey:@"whats_on"] objectAtIndex:eventIterator]];
+            //NSLog(@"added an event");
+        }
+    }
+    [temp3 setObject:temp2 forKey:@"whats_on"];
+    [[TagList sharedInstance] setCalendarEvents:[temp3 objectForKey:@"whats_on"]];
     [[TagList sharedInstance] setExhibitionEvents:[temp objectForKey:@"moa_exhibitions"]];
     
     // store remote data to database

@@ -105,6 +105,7 @@
     
     // Configure the cell...
     cell.textLabel.numberOfLines=3;
+    cell.textLabel.adjustsFontSizeToFitWidth = YES;
     
     NSDictionary *event = [[[TagList sharedInstance] calendarEvents] objectAtIndex:indexPath.row];
     cell.textLabel.text = [NSString stringWithFormat:@"%@\n%@\n%@",[event objectForKey:@"programType"], [event objectForKey:@"title"], [Utils convertDate:[event objectForKey:@"date"]]];

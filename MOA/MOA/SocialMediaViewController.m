@@ -41,9 +41,7 @@
     Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
     NetworkStatus internetStatus = [reachability currentReachabilityStatus];
     
-    CGRect adjustedFrame = self.webView.frame;
-    adjustedFrame.size = CGSizeMake(self.webView.frame.size.width, self.tabBarController.tabBar.frame.origin.y);
-    self.webView = [[UIWebView alloc] initWithFrame:adjustedFrame];
+
 
     
     if(internetStatus == NotReachable) {

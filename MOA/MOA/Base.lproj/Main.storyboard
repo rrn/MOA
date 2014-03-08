@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="H5l-5b-yzz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="H5l-5b-yzz">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -1359,7 +1359,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DGF-Tp-xkR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1400" y="-3583"/>
+            <point key="canvasLocation" x="1958" y="-3671"/>
         </scene>
         <!--Navigation Controller - Explore-->
         <scene sceneID="yuu-X7-YIA">
@@ -1447,11 +1447,12 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="B3C-bd-MPA"/>
+        <segue reference="EyV-KQ-2Pa"/>
         <segue reference="KG7-G5-5Wz"/>
         <segue reference="Qlf-L4-T27"/>
         <segue reference="iaw-W3-l3H"/>
         <segue reference="A9d-PQ-Zkm"/>
-        <segue reference="EyV-KQ-2Pa"/>
+        <segue reference="B3C-bd-MPA"/>
+        <segue reference="Px3-ms-x5Y"/>
     </inferredMetricsTieBreakers>
 </document>

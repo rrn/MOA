@@ -12,6 +12,7 @@
 #import "WhatsOnThisWeekViewController.h"
 #import "VisitorInfoViewController.h"
 #import "SocialMediaViewController.h"
+#import "AboutViewController.h"
 #include "TagList.h"
 
 @interface SidebarViewController ()
@@ -37,7 +38,7 @@
     self.tableView.backgroundColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
     self.tableView.separatorColor = [UIColor colorWithWhite:0.15f alpha:0.2f];
     
-    _menuItems = @[@"Cell0", @"Calendar", @"Cell2", @"Explore Our Collections", @"Cell4", @"Cell5", @"Cell6", @"Cell7"];
+    _menuItems = @[@"Cell0", @"Calendar", @"Cell2", @"Explore Our Collections", @"Cell4", @"Cell5", @"Cell6", @"Cell7", @"Cell8", @"Cell9", @"Cell10"];
     
     
 }
@@ -139,9 +140,26 @@
                 // select index 3, which is Visitor Information
                 [vcNew setSelectedIndex:4];
             }
+            else if ([segue.identifier isEqualToString:@"showAbout"]){
+                vcName = @"TabBar";
+                UITabBarController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
+                
+                // Swap out the Front view controller and display
+                [self.revealViewController setFrontViewController:vcNew];
+                [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated:YES];
+                
+                // show About page, no need for web
+                [[TagList sharedInstance] setExtraPage:-1];
+                [vcNew setSelectedIndex:4];
+                
+                //AboutViewController *vc = [segue destinationViewController];
+                
+            }
         };
         }
     }
+
+
 
 - (void)didReceiveMemoryWarning
 {

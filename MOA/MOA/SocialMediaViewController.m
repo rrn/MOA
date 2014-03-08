@@ -8,6 +8,7 @@
 
 #import "SocialMediaViewController.h"
 #import "SWRevealViewController.h"
+#import "AboutViewController.h"
 #import "Reachability.h"
 #import "TagList.h"
 
@@ -74,9 +75,18 @@
             _webView.hidden = NO;
             [_webView loadRequest:requestObj];
         }
-        else
+        else{
             _webView.hidden = YES;
+            [self showAboutPage];
+        }
     }
+}
+
+
+-(void) showAboutPage
+{
+    AboutViewController *destViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"aboutView"];
+    [self.navigationController pushViewController:destViewController animated:YES];
 }
 
 - (void)didReceiveMemoryWarning

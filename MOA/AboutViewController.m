@@ -7,12 +7,18 @@
 //
 
 #import "AboutViewController.h"
+#import "Reachability.h"
+#import "Global.h"
+#import "Utils.h"
+#import "CrudOp.h"
 
 @interface AboutViewController ()
 
 @end
 
 @implementation AboutViewController
+
+@synthesize description;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,7 +32,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    self.title = @"About Us";
+    self.navigationItem.hidesBackButton = YES;
+    
+    [self prepareForDisplay];
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,5 +43,48 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(void) prepareForDisplay
+{
+    CrudOp* database = [CrudOp alloc];
+    if (!generalTextArray || !generalTextArray.count){
+        
+        Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.com"];
+        NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+        
+        if (internetStatus == NotReachable){
+            cafeHoursArray = [database PullFromLocalDB:@"cafe_hours"];
+            generalTextArray = [database PullFromLocalDB:@"general_text"];
+            self.description = [[generalTextArray objectAtIndex:2] objectForKey:@"Description"];
+        } else {
+            [self PullFromRemote];
+            [self UpdateLocalDB];
+        }
+    }
+    
+    UITextView *descriptionTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+10, 300.0f, 10)];
+    descriptionTextView.text = description;
+    descriptionTextView.editable = NO;
+    descriptionTextView.userInteractionEnabled = NO;
+    descriptionTextView.font = [UIFont systemFontOfSize:14];
+    [Utils textViewDidChange:descriptionTextView];
+    descriptionTextView.textAlignment = NSTextAlignmentJustified;
+    [self.view addSubview:descriptionTextView];
+    
+}
+
+- (void) PullFromRemote
+{
+    NSDictionary* jsonDict = [Utils PullRemoteData:@"http://pluto.moa.ubc.ca/_mobile_app_remoteData.php"];
+    generalTextArray = [jsonDict objectForKey:@"general_text"];
+    self.description = [[generalTextArray objectAtIndex:2] objectForKey:@"Description"];
+}
+
+-(void) UpdateLocalDB
+{
+    CrudOp *dbCrud = [[CrudOp alloc] init];
+    [dbCrud UpdateLocalDB:@"general_text" :generalTextArray];
+}
+
 
 @end

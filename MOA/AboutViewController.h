@@ -10,4 +10,8 @@
 
 @interface AboutViewController : UIViewController
 
+@property NSString* description;
+
 @end
+
+NSMutableArray *generalTextArray;

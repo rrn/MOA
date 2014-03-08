@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SocialMediaViewController : UIViewController
+@interface SocialMediaViewController : UIViewController <UIWebViewDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
 

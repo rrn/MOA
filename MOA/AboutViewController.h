@@ -11,6 +11,7 @@
 @interface AboutViewController : UIViewController
 
 @property NSString* description;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 
 @end
 

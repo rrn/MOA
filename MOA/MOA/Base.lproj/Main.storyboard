@@ -1425,7 +1425,14 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="YfB-AM-MK5"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="YfB-AM-MK5">
+                        <barButtonItem key="rightBarButtonItem" image="menu.png" id="fhL-hJ-xIa"/>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="sidebarButton" destination="fhL-hJ-xIa" id="2rT-FG-dVv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="FTH-Cm-C5f" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1523,6 +1530,7 @@
         <image name="07_Twitter_22px.png" width="22" height="22"/>
         <image name="08_YouTube_22px.png" width="22" height="22"/>
         <image name="MOA_Splash_640x1136.png" width="640" height="1136"/>
+        <image name="menu.png" width="28" height="20"/>
         <image name="plan_a_visit.jpg" width="3072" height="2124"/>
         <image name="shop-1.jpg" width="1800" height="1200"/>
     </resources>

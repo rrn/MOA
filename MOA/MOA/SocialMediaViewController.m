@@ -77,6 +77,12 @@
     Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
     NetworkStatus internetStatus = [reachability currentReachabilityStatus];
     
+    // About Us should work offline
+    if ([[TagList sharedInstance] extraPage] == 3){
+        _webView.hidden = YES;
+        self.title = @"About Us";
+        [self showAboutPage];
+    } else if(internetStatus == NotReachable) {
     _nextItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(nextItem:)];
     _previousItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self action:@selector(previousItem:)];
     _spacing = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
@@ -103,6 +109,7 @@
             NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
             _webView.hidden = NO;
             [_webView loadRequest:requestObj];
+            self.title = @"Facebook";
             if(![toolbarButtons containsObject:_nextItem])
             {
                 [toolbarButtons addObject:_spacing];
@@ -116,6 +123,7 @@
             NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
             _webView.hidden = NO;
             [_webView loadRequest:requestObj];
+            self.title = @"Twitter";
             if(![toolbarButtons containsObject:_nextItem])
             {
                 [toolbarButtons addObject:_spacing];
@@ -130,6 +138,7 @@
             NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
             _webView.hidden = NO;
             [_webView loadRequest:requestObj];
+            self.title = @"Youtube";
             if(![toolbarButtons containsObject:_nextItem])
             {
                 [toolbarButtons addObject:_spacing];
@@ -142,6 +151,9 @@
             [toolbarButtons removeObject:_previousItem];
             [toolbarButtons removeObject:_spacing];
             [self.navigationItem setRightBarButtonItems:toolbarButtons];
+            _webView.hidden = YES;
+        }
+        else{
             _webView.hidden = YES;
         }
     }

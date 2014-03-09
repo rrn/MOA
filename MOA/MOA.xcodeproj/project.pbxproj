@@ -244,8 +244,8 @@
 		E4CC126718B822D9005A3905 /* icon-ios7-arrow-down-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-ios7-arrow-down-512.png"; sourceTree = "<group>"; };
 		E4D391CF1841983000043AEB /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		E4D391D01841989800043AEB /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
-		E4DEB83F18CA822E0082DCBA /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
-		E4DEB84018CA822E0082DCBA /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		E4DEB83F18CA822E0082DCBA /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutViewController.h; path = ../AboutViewController.h; sourceTree = "<group>"; };
+		E4DEB84018CA822E0082DCBA /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutViewController.m; path = ../AboutViewController.m; sourceTree = "<group>"; };
 		E4FBA44218CD063900EFFA29 /* arrow_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_left.png; sourceTree = "<group>"; };
 		E4FBA44318CD063900EFFA29 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -361,8 +361,6 @@
 		BBA3404E1826D6F700B6E4B1 = {
 			isa = PBXGroup;
 			children = (
-				E4DEB83F18CA822E0082DCBA /* AboutViewController.h */,
-				E4DEB84018CA822E0082DCBA /* AboutViewController.m */,
 				5068E1F0188FA48400FE009F /* Reachability.h */,
 				50CEBBF61840442A0005B0F9 /* ItemLayout.h */,
 				50CEBBF71840442A0005B0F9 /* ItemLayout.m */,
@@ -418,6 +416,8 @@
 				E4CC126518B81952005A3905 /* Exhibitions */,
 				50F52905183C97DC002A463C /* LocalDatabase */,
 				BBA3406C1826D6F700B6E4B1 /* Main.storyboard */,
+				E4DEB83F18CA822E0082DCBA /* AboutViewController.h */,
+				E4DEB84018CA822E0082DCBA /* AboutViewController.m */,
 				45E3431F18CD009100B0FE8E /* TwitterPageViewController.h */,
 				45E3432018CD009100B0FE8E /* TwitterPageViewController.m */,
 				45E3432518CD03FA00B0FE8E /* YoutubePageViewController.h */,

@@ -81,7 +81,7 @@
     if ([[TagList sharedInstance] extraPage] == 3){
         _webView.hidden = YES;
         self.title = @"About Us";
-        [self showAboutPage];
+        //[self showAboutPage];
     } else if(internetStatus == NotReachable) {
     _nextItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(nextItem:)];
     _previousItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self action:@selector(previousItem:)];
@@ -158,11 +158,11 @@
 }
 
 
--(void) showAboutPage
-{
-    AboutViewController *destViewController = [[AboutViewController alloc]init];
-    [self.view addSubview:[destViewController prepareForDisplay:self.navigationController.navigationBar.frame.size.height+10]];
-}
+//-(void) showAboutPage
+//{
+//    AboutViewController *destViewController = [[AboutViewController alloc]init];
+//    [self.view addSubview:[destViewController prepareForDisplay:self.navigationController.navigationBar.frame.size.height+10]];
+//}
 
 - (void)didReceiveMemoryWarning
 {

@@ -12,6 +12,7 @@
 		45E3431B18CC8A0600B0FE8E /* FacebookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E3431A18CC8A0600B0FE8E /* FacebookViewController.m */; };
 		45E3432118CD009100B0FE8E /* TwitterPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E3432018CD009100B0FE8E /* TwitterPageViewController.m */; };
 		45E3432718CD03FA00B0FE8E /* YoutubePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E3432618CD03FA00B0FE8E /* YoutubePageViewController.m */; };
+		45E3432A18CD06EC00B0FE8E /* NewsletterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E3432918CD06EC00B0FE8E /* NewsletterViewController.m */; };
 		503CDBEB18A384B300BC8580 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 503CDBEA18A384B300BC8580 /* Utils.m */; };
 		503CDC4518A4E70400BC8580 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 503CDC4418A4E70400BC8580 /* iCarousel.m */; };
 		503CDC4718A4E73400BC8580 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503CDC4618A4E73400BC8580 /* QuartzCore.framework */; };
@@ -118,6 +119,8 @@
 		45E3432018CD009100B0FE8E /* TwitterPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterPageViewController.m; sourceTree = "<group>"; };
 		45E3432518CD03FA00B0FE8E /* YoutubePageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YoutubePageViewController.h; sourceTree = "<group>"; };
 		45E3432618CD03FA00B0FE8E /* YoutubePageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YoutubePageViewController.m; sourceTree = "<group>"; };
+		45E3432818CD06EC00B0FE8E /* NewsletterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsletterViewController.h; sourceTree = "<group>"; };
+		45E3432918CD06EC00B0FE8E /* NewsletterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsletterViewController.m; sourceTree = "<group>"; };
 		503CDBE918A384B300BC8580 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		503CDBEA18A384B300BC8580 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		503CDC4318A4E70400BC8580 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = SOURCE_ROOT; };
@@ -420,6 +423,8 @@
 				E4DEB84018CA822E0082DCBA /* AboutViewController.m */,
 				45E3431F18CD009100B0FE8E /* TwitterPageViewController.h */,
 				45E3432018CD009100B0FE8E /* TwitterPageViewController.m */,
+				45E3432818CD06EC00B0FE8E /* NewsletterViewController.h */,
+				45E3432918CD06EC00B0FE8E /* NewsletterViewController.m */,
 				45E3432518CD03FA00B0FE8E /* YoutubePageViewController.h */,
 				45E3432618CD03FA00B0FE8E /* YoutubePageViewController.m */,
 				45E3431918CC8A0600B0FE8E /* FacebookViewController.h */,
@@ -669,6 +674,7 @@
 				E48B16E21841445D0047BBA4 /* RatesPage.m in Sources */,
 				50F5290C183CA359002A463C /* PublicTransitPage.m in Sources */,
 				50FA406B183B71FA00EC0CEC /* DBData.m in Sources */,
+				45E3432A18CD06EC00B0FE8E /* NewsletterViewController.m in Sources */,
 				E4D391D11841989800043AEB /* Constants.m in Sources */,
 				4582C9931898BE8800DC9000 /* WOTWEventViewController.m in Sources */,
 				50F52912183CA38F002A463C /* FromLowerMainland.m in Sources */,

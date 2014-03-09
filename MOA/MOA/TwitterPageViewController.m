@@ -7,6 +7,7 @@
 //
 
 #import "TwitterPageViewController.h"
+#import "Reachability.h"
 
 @interface TwitterPageViewController ()
 
@@ -27,12 +28,30 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    
+    Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    
+    
+    
+    if(internetStatus == NotReachable) {
+        
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle: @"Alert!"
+                              message: @"There is no internet connection, certain features will not be fully functional."
+                              delegate: self
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+    }
+    else{
     NSString *urlAddress = @"https://twitter.com/MOA_UBC";
     NSURL *url = [NSURL URLWithString:urlAddress];
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     _webView.hidden = NO;
     [_webView loadRequest:requestObj];
     self.title = @"Twitter";
+    }
 }
 
 - (void)didReceiveMemoryWarning

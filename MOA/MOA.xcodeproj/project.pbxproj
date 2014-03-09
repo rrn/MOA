@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		455C469B18B5B0C30047D7AA /* SocialMediaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 455C469A18B5B0C30047D7AA /* SocialMediaViewController.m */; };
 		4582C9931898BE8800DC9000 /* WOTWEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4582C9921898BE8800DC9000 /* WOTWEventViewController.m */; };
-		45E3431618CC872100B0FE8E /* arrow_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 45E3431518CC872100B0FE8E /* arrow_left.png */; };
-		45E3431818CC872800B0FE8E /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 45E3431718CC872800B0FE8E /* close.png */; };
 		45E3431B18CC8A0600B0FE8E /* FacebookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E3431A18CC8A0600B0FE8E /* FacebookViewController.m */; };
 		503CDBEB18A384B300BC8580 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 503CDBEA18A384B300BC8580 /* Utils.m */; };
 		503CDC4518A4E70400BC8580 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 503CDC4418A4E70400BC8580 /* iCarousel.m */; };
@@ -93,6 +91,8 @@
 		E4CC126818B822D9005A3905 /* icon-ios7-arrow-down-512.png in Resources */ = {isa = PBXBuildFile; fileRef = E4CC126718B822D9005A3905 /* icon-ios7-arrow-down-512.png */; };
 		E4D391D11841989800043AEB /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = E4D391D01841989800043AEB /* Constants.m */; };
 		E4DEB84118CA822E0082DCBA /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DEB84018CA822E0082DCBA /* AboutViewController.m */; };
+		E4FBA44418CD063900EFFA29 /* arrow_left.png in Resources */ = {isa = PBXBuildFile; fileRef = E4FBA44218CD063900EFFA29 /* arrow_left.png */; };
+		E4FBA44518CD063900EFFA29 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = E4FBA44318CD063900EFFA29 /* close.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,8 +110,6 @@
 		455C469A18B5B0C30047D7AA /* SocialMediaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialMediaViewController.m; sourceTree = "<group>"; };
 		4582C9911898BE8800DC9000 /* WOTWEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WOTWEventViewController.h; path = ../WOTWEventViewController.h; sourceTree = "<group>"; };
 		4582C9921898BE8800DC9000 /* WOTWEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WOTWEventViewController.m; path = ../WOTWEventViewController.m; sourceTree = "<group>"; };
-		45E3431518CC872100B0FE8E /* arrow_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow_left.png; path = "../../../../Library/Containers/com.apple.mail/Data/Library/Mail Downloads/B24DECC2-06F8-4DF3-A073-75FD29FBF771/icons/arrow_left.png"; sourceTree = "<group>"; };
-		45E3431718CC872800B0FE8E /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = close.png; path = "../../../../Library/Containers/com.apple.mail/Data/Library/Mail Downloads/B24DECC2-06F8-4DF3-A073-75FD29FBF771/icons/close.png"; sourceTree = "<group>"; };
 		45E3431918CC8A0600B0FE8E /* FacebookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookViewController.h; sourceTree = "<group>"; };
 		45E3431A18CC8A0600B0FE8E /* FacebookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookViewController.m; sourceTree = "<group>"; };
 		503CDBE918A384B300BC8580 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
@@ -242,6 +240,8 @@
 		E4D391D01841989800043AEB /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		E4DEB83F18CA822E0082DCBA /* AboutViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutViewController.h; sourceTree = "<group>"; };
 		E4DEB84018CA822E0082DCBA /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutViewController.m; sourceTree = "<group>"; };
+		E4FBA44218CD063900EFFA29 /* arrow_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_left.png; sourceTree = "<group>"; };
+		E4FBA44318CD063900EFFA29 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -284,9 +284,9 @@
 			children = (
 				E4B5A0CC1858DAC10047D9B8 /* Tab Icons */,
 				50FD06591852AA66007AB4E6 /* MOA_Splash_640x1136.png */,
-				45E3431518CC872100B0FE8E /* arrow_left.png */,
+				E4FBA44218CD063900EFFA29 /* arrow_left.png */,
+				E4FBA44318CD063900EFFA29 /* close.png */,
 				50CEBBFC1841463A0005B0F9 /* cafe-1.jpg */,
-				45E3431718CC872800B0FE8E /* close.png */,
 				50CEBBFD1841463A0005B0F9 /* cafe.JPG */,
 				50CEBBFE1841463A0005B0F9 /* shop-1.jpg */,
 				50CEBBFF1841463A0005B0F9 /* shop.jpg */,
@@ -609,12 +609,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45E3431818CC872800B0FE8E /* close.png in Resources */,
 				50F39ECD18CBE89E00D2A55B /* 03_Collections02_25px.png in Resources */,
 				E438ACCD183AD8AE0078FD2F /* plan_a_visit.jpg in Resources */,
 				50CEBC031841463A0005B0F9 /* shop.jpg in Resources */,
 				E4B5A0DF1858DC680047D9B8 /* 01_Weekly_25px.png in Resources */,
 				E4CC126818B822D9005A3905 /* icon-ios7-arrow-down-512.png in Resources */,
+				E4FBA44518CD063900EFFA29 /* close.png in Resources */,
 				BBA34090182700FC00B6E4B1 /* 480x360.gif in Resources */,
 				E438465A18BAD126008F1E42 /* 06_Facebook_22px.png in Resources */,
 				50FA4065183B714900EC0CEC /* MOA.sqlite in Resources */,
@@ -632,9 +632,9 @@
 				BBA340961827024600B6E4B1 /* 320x170.gif in Resources */,
 				E438465D18BAD30C008F1E42 /* 01_Weekly_50px.png in Resources */,
 				50CEBC011841463A0005B0F9 /* cafe.JPG in Resources */,
-				45E3431618CC872100B0FE8E /* arrow_left.png in Resources */,
 				E4B5A0E41858DC680047D9B8 /* 05_More_25px.png in Resources */,
 				E438465B18BAD126008F1E42 /* 08_YouTube_22px.png in Resources */,
+				E4FBA44418CD063900EFFA29 /* arrow_left.png in Resources */,
 				BBA3406E1826D6F700B6E4B1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

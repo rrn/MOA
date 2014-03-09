@@ -9,6 +9,7 @@
 #import "Utils.h"
 #import "CrudOp.h"
 #import "Global.h"
+#import "Reachability.h"
 #import <MessageUI/MFMailComposeViewController.h>
 #import "EmailHandler.h"
 
@@ -20,12 +21,16 @@
 {
     MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
     
-    if (code == 0) { // 0 is for tell_a_friend
-        [self PullAndUpdateDB_TellAFriend];
-        
-        
-    } else if (code == 1) { // 1 is for send_feedback
-        [self PullAndUpdateDB_SendFeedback];
+    Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
+    NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+    if(internetStatus == NotReachable) {
+        [self LoadFromDB:code];
+    } else {
+        if (code == 0) { // 0 is for tell_a_friend
+            [self PullAndUpdateDB_TellAFriend];
+        } else if (code == 1) { // 1 is for send_feedback
+            [self PullAndUpdateDB_SendFeedback];
+        }
     }
     NSArray *toRecipients = [NSArray arrayWithObjects:[emailRecipient copy],nil];
     [controller setToRecipients:toRecipients];
@@ -35,6 +40,19 @@
     
 }
 
+- (void) LoadFromDB:(int)code
+{
+    CrudOp *dbCrud = [[CrudOp alloc]init];
+    NSMutableArray* emailArray;
+    if (code == 0){
+        emailArray = [dbCrud PullFromLocalDB:@"tell_a_friend"];
+    } else if (code == 1) {
+        emailArray = [dbCrud PullFromLocalDB:@"send_feedback"];
+    }
+    emailSubject = [[emailArray objectAtIndex:0] objectForKey:@"Subject"];
+    emailBody = [[emailArray objectAtIndex:0] objectForKey:@"Message"];
+    emailRecipient = [[emailArray objectAtIndex:0] objectForKey:@"To"];
+}
 
 -(void) UpdateLocalDB:(NSString*)tableName :(NSMutableArray*)tableArray
 {
@@ -53,22 +71,7 @@
     [self UpdateLocalDB:@"tell_a_friend" :emailArray];
 }
 
-- (void) LoadFromDB:(int)code
-{
-    CrudOp *dbCrud = [[CrudOp alloc]init];
-    NSMutableArray* emailArray;
-    if (code == 0){
-        emailArray = [dbCrud PullFromLocalDB:@"tell_a_friend"];
-    } else if (code == 1) {
-        emailArray = [dbCrud PullFromLocalDB:@"send_feedback"];
-    }
-    emailSubject = [[emailArray objectAtIndex:0] objectForKey:@"Subject"];
-    emailBody = [[emailArray objectAtIndex:0] objectForKey:@"Message"];
-    emailRecipient = [[emailArray objectAtIndex:0] objectForKey:@"To"];
-    [self UpdateLocalDB:@"tell_a_friend" :emailArray];
 
-    
-}
 
 
 - (void) PullAndUpdateDB_SendFeedback

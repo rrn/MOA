@@ -430,6 +430,8 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
         sqlString = [NSString stringWithFormat:@"SELECT date, time, programType, title, description, image FROM %@", tableName];
     } else if ([tableName isEqualToString:@"tell_a_friend"]) {
         sqlString = [NSString stringWithFormat:@"SELECT Subject, Message FROM %@", tableName];
+    }else if ([tableName isEqualToString:@"send_feedback"]) {
+        sqlString = [NSString stringWithFormat:@"SELECT Recipient, Subject, Message FROM %@", tableName];
     }else{
         sqlString = [NSString stringWithFormat:@"Select *"];
     }
@@ -520,7 +522,7 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     } else if ([tableName isEqualToString:@"whats_on"]){
         [self bindInsertSQLStatement_WhatsOn:stmt :object :rowid];
     } else if ([tableName isEqualToString:@"tell_a_friend"]){
-        [self bindInsertSQLStatement_SendFeedback:stmt :object :rowid];
+        [self bindInsertSQLStatement_TellAFriend:stmt :object :rowid];
     } else if ([tableName isEqualToString:@"send_feedback"]){
         [self bindInsertSQLStatement_SendFeedback:stmt :object :rowid];
     }

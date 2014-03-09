@@ -54,7 +54,8 @@
         
     } else {
         internet = YES;
-        
+        [database UpdateLocalDB:@"moa_exhibitions" :[[TagList sharedInstance].exhibitionEvents mutableCopy]];
+
     }
 
     [carousel reloadData];

@@ -199,12 +199,12 @@
         if (indexPath.row == 8) {
             MFMailComposeViewController* controller = [emailHandler composeEmail:0];
             controller.mailComposeDelegate = self;
-            if (controller) [self presentModalViewController:controller animated:YES];
+            if (controller) [self presentViewController:controller animated:YES completion:nil];
         }
         else {
             MFMailComposeViewController* controller = [emailHandler composeEmail:1];
             controller.mailComposeDelegate = self;
-            if (controller) [self presentModalViewController:controller animated:YES];
+            if (controller) [self presentViewController:controller animated:YES completion:nil];
         }
         
         

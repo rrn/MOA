@@ -396,7 +396,9 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     }else if([tableName isEqualToString:@"whats_on"]){
         sqlString = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(rowid INT, date TEXT, time TEXT, programType TEXT, title TEXT, description TEXT, image TEXT)", tableName];
     }else if([tableName isEqualToString:@"tell_a_friend"]){
-        sqlString = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(rowid INT, Subject TEXT, Message TEXT", tableName];
+        sqlString = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(rowid INT, Subject TEXT, Message TEXT)", tableName];
+    }else if([tableName isEqualToString:@"send_feedback"]){
+        sqlString = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(rowid INT, To TEXT, Subject TEXT, Message TEXT)", tableName];
     }else{
         sqlString = [NSString stringWithFormat:@"Select *"];
     }
@@ -456,6 +458,8 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
         sqlString = [NSString stringWithFormat:@"INSERT INTO %@ (rowid, date, time, programType, title, description, image) VALUES (?,?,?,?,?,?,?)", tableName];
     } else if ([tableName isEqualToString:@"tell_a_friend"]){
         sqlString = [NSString stringWithFormat:@"INSERT INTO %@ (rowid, Subject, Message) VALUES (?,?,?)", tableName];
+    }else if ([tableName isEqualToString:@"send_feedback"]){
+        sqlString = [NSString stringWithFormat:@"INSERT INTO %@ (rowid, To, Subject, Message) VALUES (?,?,?,?)", tableName];
     }else{
         sqlString = [NSString stringWithFormat:@"Select *"];
     }
@@ -487,6 +491,8 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
         sqlString = [NSString stringWithFormat:@"update %@ Set date=?, time=?, programType=?, title=?, description=?, image=? Where rowid=?", tableName];
     } else if ([tableName isEqualToString:@"tell_a_friend"]) {
         sqlString = [NSString stringWithFormat:@"update %@ Set Subject=?, Message=? Where rowid=?", tableName];
+    } else if ([tableName isEqualToString:@"send_feedback"]){
+        sqlString = [NSString stringWithFormat:@"update %@ Set To=?, Subject=?, Message=? Where rowid=?", tableName];
     } else {
         sqlString = [NSString stringWithFormat:@"Select *"];
     }
@@ -512,7 +518,9 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     } else if ([tableName isEqualToString:@"whats_on"]){
         [self bindInsertSQLStatement_WhatsOn:stmt :object :rowid];
     } else if ([tableName isEqualToString:@"tell_a_friend"]){
-    
+        [self bindUpdateSQLStatement_TellAFriend:stmt :object :rowid];
+    } else if ([tableName isEqualToString:@"send_feedback"]){
+        
     }
 }
 
@@ -597,6 +605,17 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     sqlite3_bind_text(stmt, 3, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"Message"]UTF8String], -1, SQLITE_TRANSIENT);
 }
 
+-(void) bindInsertSQLStatement_SendFeedback:(sqlite3_stmt*)stmt :(NSMutableArray*)object :(int)rowid
+{
+    // this function contains the code for sql INSERT binding statement for Hours table
+    // Note: binding function can be reused for more than one table as long as they have same column names
+    
+    sqlite3_bind_int(stmt, 1, rowid);
+    sqlite3_bind_text(stmt, 2, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"To"]UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 3, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"Subject"]UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 4, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"Message"]UTF8String], -1, SQLITE_TRANSIENT);
+}
+
 -(void) bindUpdateSQLStatement:(sqlite3_stmt*)stmt :(NSMutableArray*)object :(int)rowid :(NSString*) tableName
 {
     // this function determines the right sql UPDATE binding statement for given tablename
@@ -616,6 +635,8 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
         [self bindUpdateSQLStatement_WhatsOn:stmt :object :rowid];
     } else if ([tableName isEqualToString:@"tell_a_friend"]) {
         [self bindUpdateSQLStatement_TellAFriend:stmt :object :rowid];
+    } else if ([tableName isEqualToString:@"send_feedback"]){
+        [self bindUpdateSQLStatement_SendFeedback:stmt :object :rowid];
     }
 }
 
@@ -702,6 +723,18 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     sqlite3_bind_int(stmt, 3, rowid);
 }
 
+-(void) bindUpdateSQLStatement_SendFeedback:(sqlite3_stmt*)stmt :(NSMutableArray*)object :(int)rowid
+{
+    
+    // this function contains the code for sql UPDATE binding statement for Parking table
+    // Note: binding function can be reused for more than one table as long as they have same column names
+    
+    sqlite3_bind_text(stmt, 1, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"To"]UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 2, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"Subject"]UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, 3, [[(NSDictionary*)[object objectAtIndex:rowid-1] objectForKey:@"Message"]UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_int(stmt, 4, rowid);
+}
+
 -(void)checkReturnCode: (int)rc{
     if(rc != SQLITE_OK)
     {
@@ -730,6 +763,8 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
         [self loadData_WhatsOn:sqlStatement :data];
     } else if ([tableName isEqualToString:@"tell_a_friend"]){
         [self loadData_TellAFriend:sqlStatement :data];
+    } else if ([tableName isEqualToString:@"send_feedback"]){
+        [self loadData_SendFeedback:sqlStatement :data];
     }
 }
 
@@ -844,6 +879,23 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
         NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
         [dict setObject:[NSMutableString stringWithString:[NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement,0)]] forKey:@"Subject"];
         [dict setObject:[NSMutableString stringWithString:[NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement,1)]] forKey:@"Message"];
+        
+        [data addObject:dict];
+    }
+}
+
+
+-(void)loadData_SendFeedback:(sqlite3_stmt*) sqlStatement :(NSMutableArray*)data
+{
+    // this function contains the right sql query for SELECTING data from General Text table
+    // all data will be stored into NSMutableArray data array in the form of array of dictionaries.
+    // Note: sql query can be reused for more than one table as long as they have same column names
+    
+    while (sqlite3_step(sqlStatement)==SQLITE_ROW) {
+        NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
+        [dict setObject:[NSMutableString stringWithString:[NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement,0)]] forKey:@"To"];
+        [dict setObject:[NSMutableString stringWithString:[NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement,1)]] forKey:@"Subject"];
+        [dict setObject:[NSMutableString stringWithString:[NSString stringWithUTF8String:(char *) sqlite3_column_text(sqlStatement,2)]] forKey:@"Message"];
         
         [data addObject:dict];
     }

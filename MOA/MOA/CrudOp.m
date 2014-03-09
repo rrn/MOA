@@ -83,7 +83,7 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     }
     
     char* errmsg;
-    sqlite3_trace(cruddb, sqliteCallbackFunc, NULL); // uncomment this for trace
+    //sqlite3_trace(cruddb, sqliteCallbackFunc, NULL); // uncomment this for trace
     sqlite3_exec(cruddb, "COMMIT", NULL, NULL, &errmsg);
     if(SQLITE_DONE != sqlite3_step(stmt)){
         NSLog(@"Error while updating. %s", sqlite3_errmsg(cruddb));
@@ -219,7 +219,7 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     }
     
     char* errmsg;
-    sqlite3_trace(cruddb, sqliteCallbackFunc, NULL);
+    //sqlite3_trace(cruddb, sqliteCallbackFunc, NULL);
     sqlite3_exec(cruddb, "COMMIT", NULL, NULL, &errmsg);
     sqlite3_finalize(stmt);
     sqlite3_close(cruddb);
@@ -254,7 +254,7 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     }
     
     char* errmsg;
-    sqlite3_trace(cruddb, sqliteCallbackFunc, NULL); // uncomment this for trace
+    //sqlite3_trace(cruddb, sqliteCallbackFunc, NULL); // uncomment this for trace
     sqlite3_exec(cruddb, "COMMIT", NULL, NULL, &errmsg);
     
     if(SQLITE_DONE != sqlite3_step(stmt)){
@@ -293,7 +293,7 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     };
     [self bindInsertSQLStatement:stmt :object :rowid :tableName];
    
-    sqlite3_trace(cruddb, sqliteCallbackFunc, NULL); // uncomment this code to print queries
+    //sqlite3_trace(cruddb, sqliteCallbackFunc, NULL); // uncomment this code to print queries
     if (sqlite3_step(stmt) != SQLITE_DONE)
         NSLog(@"Error %s", sqlite3_errmsg(cruddb));
     

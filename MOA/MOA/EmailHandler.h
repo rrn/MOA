@@ -13,6 +13,7 @@
 @property NSMutableString* emailSubject;
 @property NSMutableString* emailBody;
 @property NSMutableString* emailRecipient;
+@property NSMutableArray* emailArray;
 
 -(MFMailComposeViewController*) composeEmail:(int)code;
 

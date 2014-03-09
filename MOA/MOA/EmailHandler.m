@@ -21,10 +21,11 @@
     MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
     
     if (code == 0) { // 0 is for tell_a_friend
-        [self PullFromRemote_TellAFriend];
+        [self PullAndUpdateDB_TellAFriend];
+        
         
     } else if (code == 1) { // 1 is for send_feedback
-        [self PullFromRemote_SendFeedback];
+        [self PullAndUpdateDB_SendFeedback];
     }
     NSArray *toRecipients = [NSArray arrayWithObjects:[emailRecipient copy],nil];
     [controller setToRecipients:toRecipients];
@@ -35,8 +36,13 @@
 }
 
 
+-(void) UpdateLocalDB:(NSString*)tableName :(NSMutableArray*)tableArray
+{
+    CrudOp *dbCrud = [[CrudOp alloc] init];
+    [dbCrud UpdateLocalDB:tableName :tableArray];
+}
 
-- (void) PullFromRemote_TellAFriend
+- (void) PullAndUpdateDB_TellAFriend
 {
     
     NSDictionary* jsonDict = [Utils PullRemoteData:@"http://pluto.moa.ubc.ca/_mobile_app_remoteData.php"];
@@ -44,18 +50,35 @@
     emailSubject = [[emailArray objectAtIndex:0] objectForKey:@"Subject"];
     emailBody = [[emailArray objectAtIndex:0] objectForKey:@"Message"];
     [emailRecipient setString:@""];
+    [self UpdateLocalDB:@"tell_a_friend" :emailArray];
+}
 
+- (void) LoadFromDB:(int)code
+{
+    CrudOp *dbCrud = [[CrudOp alloc]init];
+    NSMutableArray* emailArray;
+    if (code == 0){
+        emailArray = [dbCrud PullFromLocalDB:@"tell_a_friend"];
+    } else if (code == 1) {
+        emailArray = [dbCrud PullFromLocalDB:@"send_feedback"];
+    }
+    emailSubject = [[emailArray objectAtIndex:0] objectForKey:@"Subject"];
+    emailBody = [[emailArray objectAtIndex:0] objectForKey:@"Message"];
+    emailRecipient = [[emailArray objectAtIndex:0] objectForKey:@"To"];
+    [self UpdateLocalDB:@"tell_a_friend" :emailArray];
+
+    
 }
 
 
-- (void) PullFromRemote_SendFeedback
+- (void) PullAndUpdateDB_SendFeedback
 {
     NSDictionary* jsonDict = [Utils PullRemoteData:@"http://pluto.moa.ubc.ca/_mobile_app_remoteData.php"];
     NSMutableArray* emailArray = [jsonDict objectForKey:@"send_feedback"];
     emailSubject = [[emailArray objectAtIndex:0] objectForKey:@"Subject"];
     emailBody = [[emailArray objectAtIndex:0] objectForKey:@"Message"];
     emailRecipient = [[emailArray objectAtIndex:0] objectForKey:@"To"];
-    
+    [self UpdateLocalDB:@"send_feedback" :emailArray];
 }
 
 

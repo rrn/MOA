@@ -75,8 +75,10 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     
     if(sqlite3_open(dbFilePath, &cruddb) == SQLITE_OK)
     {
-        if(sqlite3_prepare_v2(cruddb, sql, 267, &stmt, NULL)!=SQLITE_OK){
+        int rc = sqlite3_prepare_v2(cruddb, sql, 267, &stmt, NULL);
+        if(rc!=SQLITE_OK){
             NSLog(@"CrudOp::doesTableExist error"); // see documentation on the beginning of function
+            [self checkReturnCode:rc];
         }
     }
     
@@ -398,7 +400,7 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     }else if([tableName isEqualToString:@"tell_a_friend"]){
         sqlString = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(rowid INT, Subject TEXT, Message TEXT)", tableName];
     }else if([tableName isEqualToString:@"send_feedback"]){
-        sqlString = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(rowid INT, To TEXT, Subject TEXT, Message TEXT)", tableName];
+        sqlString = [NSString stringWithFormat:@"CREATE TABLE IF NOT EXISTS %@(rowid INT, Recipient TEXT, Subject TEXT, Message TEXT)", tableName];
     }else{
         sqlString = [NSString stringWithFormat:@"Select *"];
     }
@@ -459,7 +461,7 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     } else if ([tableName isEqualToString:@"tell_a_friend"]){
         sqlString = [NSString stringWithFormat:@"INSERT INTO %@ (rowid, Subject, Message) VALUES (?,?,?)", tableName];
     }else if ([tableName isEqualToString:@"send_feedback"]){
-        sqlString = [NSString stringWithFormat:@"INSERT INTO %@ (rowid, To, Subject, Message) VALUES (?,?,?,?)", tableName];
+        sqlString = [NSString stringWithFormat:@"INSERT INTO %@ (rowid, Recipient, Subject, Message) VALUES (?,?,?,?)", tableName];
     }else{
         sqlString = [NSString stringWithFormat:@"Select *"];
     }
@@ -492,7 +494,7 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     } else if ([tableName isEqualToString:@"tell_a_friend"]) {
         sqlString = [NSString stringWithFormat:@"update %@ Set Subject=?, Message=? Where rowid=?", tableName];
     } else if ([tableName isEqualToString:@"send_feedback"]){
-        sqlString = [NSString stringWithFormat:@"update %@ Set To=?, Subject=?, Message=? Where rowid=?", tableName];
+        sqlString = [NSString stringWithFormat:@"update %@ Set Recipient=?, Subject=?, Message=? Where rowid=?", tableName];
     } else {
         sqlString = [NSString stringWithFormat:@"Select *"];
     }
@@ -518,9 +520,9 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     } else if ([tableName isEqualToString:@"whats_on"]){
         [self bindInsertSQLStatement_WhatsOn:stmt :object :rowid];
     } else if ([tableName isEqualToString:@"tell_a_friend"]){
-        [self bindUpdateSQLStatement_TellAFriend:stmt :object :rowid];
+        [self bindInsertSQLStatement_SendFeedback:stmt :object :rowid];
     } else if ([tableName isEqualToString:@"send_feedback"]){
-        
+        [self bindInsertSQLStatement_SendFeedback:stmt :object :rowid];
     }
 }
 

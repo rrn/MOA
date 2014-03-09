@@ -1,19 +1,19 @@
 //
-//  YoutubePageViewController.m
+//  NewsletterViewController.m
 //  MOA
 //
 //  Created by Donald Cheng on 2014-03-09.
 //  Copyright (c) 2014 Museum of Anthropology UBC. All rights reserved.
 //
 
-#import "YoutubePageViewController.h"
+#import "NewsletterViewController.h"
 #import "Reachability.h"
 
-@interface YoutubePageViewController ()
+@interface NewsletterViewController ()
 
 @end
 
-@implementation YoutubePageViewController
+@implementation NewsletterViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,7 +28,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    
     Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
     NetworkStatus internetStatus = [reachability currentReachabilityStatus];
     
@@ -45,12 +44,12 @@
         [alert show];
     }
     else{
-    NSString *urlAddress = @"http://www.youtube.com/user/MUSEUMofANTHROPOLOGY";
-    NSURL *url = [NSURL URLWithString:urlAddress];
-    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-    _webView.hidden = NO;
-    [_webView loadRequest:requestObj];
-    self.title = @"Youtube";
+        NSString *urlAddress = @"http://eepurl.com/OeKOH";
+        NSURL *url = [NSURL URLWithString:urlAddress];
+        NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+        _webView.hidden = NO;
+        [_webView loadRequest:requestObj];
+        self.title = @"Newsletter";
     }
 }
 
@@ -60,24 +59,8 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)backButtonPressed:(id)sender {
-    if(_webView.canGoBack==YES){
-        [_webView goBack];
-    }
-    
-}
-
-- (IBAction)forwardButtonPressed:(id)sender {
-    if(_webView.canGoForward){
-        [_webView goForward];
-    }
-}
-
-- (IBAction)refreshButtonPressed:(id)sender {
-    [_webView reload];
-}
-
 - (IBAction)exit:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+
 }
 @end

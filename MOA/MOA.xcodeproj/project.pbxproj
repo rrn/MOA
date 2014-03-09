@@ -35,6 +35,7 @@
 		50CEBC09184146980005B0F9 /* MOAShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CEBC08184146980005B0F9 /* MOAShopViewController.m */; };
 		50D3AFFB189A484E00E81424 /* ExhibitionChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D3AFFA189A484E00E81424 /* ExhibitionChildViewController.m */; };
 		50F39ECD18CBE89E00D2A55B /* 03_Collections02_25px.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F39ECC18CBE89E00D2A55B /* 03_Collections02_25px.png */; };
+		50F39ED318CBF0DA00D2A55B /* EmailHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F39ED218CBF0DA00D2A55B /* EmailHandler.m */; };
 		50F52903183C91D7002A463C /* DirectionParkingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F52902183C91D7002A463C /* DirectionParkingViewController.m */; };
 		50F52909183C984D002A463C /* ParkingPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F52908183C984D002A463C /* ParkingPage.m */; };
 		50F5290C183CA359002A463C /* PublicTransitPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F5290B183CA359002A463C /* PublicTransitPage.m */; };
@@ -149,6 +150,8 @@
 		50D3AFF9189A484E00E81424 /* ExhibitionChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExhibitionChildViewController.h; sourceTree = "<group>"; };
 		50D3AFFA189A484E00E81424 /* ExhibitionChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExhibitionChildViewController.m; sourceTree = "<group>"; };
 		50F39ECC18CBE89E00D2A55B /* 03_Collections02_25px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 03_Collections02_25px.png; sourceTree = "<group>"; };
+		50F39ED118CBF0DA00D2A55B /* EmailHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EmailHandler.h; sourceTree = "<group>"; };
+		50F39ED218CBF0DA00D2A55B /* EmailHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EmailHandler.m; sourceTree = "<group>"; };
 		50F52901183C91D7002A463C /* DirectionParkingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionParkingViewController.h; sourceTree = "<group>"; };
 		50F52902183C91D7002A463C /* DirectionParkingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionParkingViewController.m; sourceTree = "<group>"; };
 		50F52907183C984D002A463C /* ParkingPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParkingPage.h; path = ../ParkingPage.h; sourceTree = "<group>"; };
@@ -410,6 +413,8 @@
 				BB0E65991835926800163652 /* TagList.m */,
 				507B8E621828E2F4002365EF /* SidebarViewController.h */,
 				507B8E631828E2F4002365EF /* SidebarViewController.m */,
+				50F39ED118CBF0DA00D2A55B /* EmailHandler.h */,
+				50F39ED218CBF0DA00D2A55B /* EmailHandler.m */,
 				BB0E659E18371AA100163652 /* SearchResultListViewController.h */,
 				BB0E659F18371AA100163652 /* SearchResultListViewController.m */,
 				50CEBBED184043990005B0F9 /* BHAlbum.h */,
@@ -679,6 +684,7 @@
 				50CEBBFA1840442A0005B0F9 /* ItemLayout.m in Sources */,
 				50CEBBF3184043990005B0F9 /* BHAlbum.m in Sources */,
 				E48B16DF1841426A0047BBA4 /* HoursPage.m in Sources */,
+				50F39ED318CBF0DA00D2A55B /* EmailHandler.m in Sources */,
 				50CEBBF4184043990005B0F9 /* BHAlbumTitleReusableView.m in Sources */,
 				BBA340671826D6F700B6E4B1 /* main.m in Sources */,
 			);

@@ -9,6 +9,7 @@
 #import "SidebarViewController.h"
 #import "SWRevealViewController.h"
 #import "AppDelegate.h"
+#import "EmailHandler.h"
 #import "WhatsOnThisWeekViewController.h"
 #import "VisitorInfoViewController.h"
 #import "SocialMediaViewController.h"
@@ -189,7 +190,49 @@
         [[TagList sharedInstance] setExtraPage:3];
         // make the latest tab selected
         [vcNew setSelectedIndex:4];
+    } else if (indexPath.row == 8 || indexPath.row == 9) {
+        
+        //[self.revealViewController setFrontViewController:vcNew];
+        [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated:YES];
+        
+        EmailHandler* emailHandler = [[EmailHandler alloc]init];
+        if (indexPath.row == 8) {
+            MFMailComposeViewController* controller = [emailHandler composeEmail:0];
+            controller.mailComposeDelegate = self;
+            if (controller) [self presentModalViewController:controller animated:YES];
+        }
+        else {
+            MFMailComposeViewController* controller = [emailHandler composeEmail:1];
+            controller.mailComposeDelegate = self;
+            if (controller) [self presentModalViewController:controller animated:YES];
+        }
+        
+        
     }
+}
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+    
+    // Close the Mail Interface
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end

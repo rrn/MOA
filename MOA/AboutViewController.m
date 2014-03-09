@@ -61,13 +61,13 @@
         if (internetStatus == NotReachable){
             cafeHoursArray = [database PullFromLocalDB:@"cafe_hours"];
             generalTextArray = [database PullFromLocalDB:@"general_text"];
-            self.description = [[generalTextArray objectAtIndex:2] objectForKey:@"Description"];
         } else {
             [self PullFromRemote];
             [self UpdateLocalDB];
         }
     }
     
+    self.description = [[generalTextArray objectAtIndex:2] objectForKey:@"Description"];
     UITextView *descriptionTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+10, 300.0f, 10)];
     descriptionTextView.text = description;
     descriptionTextView.editable = NO;

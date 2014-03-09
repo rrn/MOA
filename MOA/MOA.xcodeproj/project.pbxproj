@@ -34,6 +34,7 @@
 		50CEBC061841467D0005B0F9 /* CafeMOAViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CEBC051841467D0005B0F9 /* CafeMOAViewController.m */; };
 		50CEBC09184146980005B0F9 /* MOAShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CEBC08184146980005B0F9 /* MOAShopViewController.m */; };
 		50D3AFFB189A484E00E81424 /* ExhibitionChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D3AFFA189A484E00E81424 /* ExhibitionChildViewController.m */; };
+		50F39ECD18CBE89E00D2A55B /* 03_Collections02_25px.png in Resources */ = {isa = PBXBuildFile; fileRef = 50F39ECC18CBE89E00D2A55B /* 03_Collections02_25px.png */; };
 		50F52903183C91D7002A463C /* DirectionParkingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F52902183C91D7002A463C /* DirectionParkingViewController.m */; };
 		50F52909183C984D002A463C /* ParkingPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F52908183C984D002A463C /* ParkingPage.m */; };
 		50F5290C183CA359002A463C /* PublicTransitPage.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F5290B183CA359002A463C /* PublicTransitPage.m */; };
@@ -147,6 +148,7 @@
 		50CEBC08184146980005B0F9 /* MOAShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MOAShopViewController.m; sourceTree = "<group>"; };
 		50D3AFF9189A484E00E81424 /* ExhibitionChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExhibitionChildViewController.h; sourceTree = "<group>"; };
 		50D3AFFA189A484E00E81424 /* ExhibitionChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExhibitionChildViewController.m; sourceTree = "<group>"; };
+		50F39ECC18CBE89E00D2A55B /* 03_Collections02_25px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 03_Collections02_25px.png; sourceTree = "<group>"; };
 		50F52901183C91D7002A463C /* DirectionParkingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DirectionParkingViewController.h; sourceTree = "<group>"; };
 		50F52902183C91D7002A463C /* DirectionParkingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DirectionParkingViewController.m; sourceTree = "<group>"; };
 		50F52907183C984D002A463C /* ParkingPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParkingPage.h; path = ../ParkingPage.h; sourceTree = "<group>"; };
@@ -481,6 +483,7 @@
 				E438465818BAD126008F1E42 /* 06_Facebook_22px.png */,
 				E438465918BAD126008F1E42 /* 08_YouTube_22px.png */,
 				E4B5A0DA1858DC680047D9B8 /* 02_Exhibitions_25px.png */,
+				50F39ECC18CBE89E00D2A55B /* 03_Collections02_25px.png */,
 				E458E62E18BBEB2100AFE8E1 /* 07_Twitter_22px.png */,
 				E438465C18BAD30C008F1E42 /* 01_Weekly_50px.png */,
 				E4B5A0DB1858DC680047D9B8 /* 03_Collections01_25px.png */,
@@ -590,6 +593,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50F39ECD18CBE89E00D2A55B /* 03_Collections02_25px.png in Resources */,
 				E438ACCD183AD8AE0078FD2F /* plan_a_visit.jpg in Resources */,
 				50CEBC031841463A0005B0F9 /* shop.jpg in Resources */,
 				E4B5A0DF1858DC680047D9B8 /* 01_Weekly_25px.png in Resources */,

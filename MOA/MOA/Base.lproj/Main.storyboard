@@ -1347,7 +1347,7 @@
                         <viewControllerLayoutGuide type="top" id="N3h-lK-poD"/>
                         <viewControllerLayoutGuide type="bottom" id="gp7-rj-jDy"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="5yy-L6-FTu" customClass="FacebookView">
+                    <view key="view" contentMode="scaleToFill" id="5yy-L6-FTu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>

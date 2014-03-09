@@ -474,7 +474,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="kcg-yL-cKe" kind="custom" identifier="showTwitter" customClass="SWRevealViewControllerSegue" id="NgF-zr-rK1"/>
+                                    <segue destination="em6-W5-y5m" kind="modal" id="aQG-uM-9AF"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell7" id="MIC-xY-vig">
@@ -497,7 +497,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="kcg-yL-cKe" kind="custom" identifier="showYoutube" customClass="SWRevealViewControllerSegue" id="iaw-W3-l3H"/>
+                                    <segue destination="bTy-Aj-nA8" kind="modal" id="fqc-ik-9TZ"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell8" id="eiI-WE-9nb">
@@ -1381,7 +1381,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fcD-nD-FFx" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="266" y="-2989"/>
+            <point key="canvasLocation" x="1314" y="-4309"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="9Fh-S6-ZWU">
@@ -1471,7 +1471,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DGF-Tp-xkR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1958" y="-3671"/>
+            <point key="canvasLocation" x="1966" y="-3519"/>
         </scene>
         <!--Navigation Controller - Explore-->
         <scene sceneID="yuu-X7-YIA">
@@ -1539,6 +1539,134 @@
             </objects>
             <point key="canvasLocation" x="1728" y="457"/>
         </scene>
+        <!--Twitter Page View Controller-->
+        <scene sceneID="e9Y-ok-fHn">
+            <objects>
+                <viewController id="em6-W5-y5m" customClass="TwitterPageViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aT0-TE-fCz"/>
+                        <viewControllerLayoutGuide type="bottom" id="KIV-hU-beo"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Nek-ld-hvl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9g4-Xd-HyT">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Twitter" id="YGn-Ik-yrf">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="eaa-OJ-neF">
+                                            <connections>
+                                                <action selector="exit:" destination="em6-W5-y5m" id="Uuh-bZ-r0h"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xD9-3I-FDW">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem systemItem="rewind" id="2w8-6I-lQM">
+                                        <connections>
+                                            <action selector="backButtonPressed:" destination="em6-W5-y5m" id="olb-lW-sD8"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="nkR-Ny-siI"/>
+                                    <barButtonItem systemItem="fastForward" id="dKW-mH-n8x">
+                                        <connections>
+                                            <action selector="forwardButtonPressed:" destination="em6-W5-y5m" id="MXh-ma-P7o"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Wpt-bw-RFT"/>
+                                    <barButtonItem systemItem="refresh" id="iPh-mK-RcP">
+                                        <connections>
+                                            <action selector="refreshButtonPressed:" destination="em6-W5-y5m" id="r5E-9G-haB"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dAf-Bq-r8d">
+                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="dAf-Bq-r8d" id="5TG-Mt-Xni"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nhb-oQ-TZA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1794" y="-4315"/>
+        </scene>
+        <!--Youtube Page View Controller-->
+        <scene sceneID="k3n-He-ACF">
+            <objects>
+                <viewController id="bTy-Aj-nA8" customClass="YoutubePageViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="REJ-HW-SZl"/>
+                        <viewControllerLayoutGuide type="bottom" id="Sz9-PH-UXI"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Pbe-Ie-ykJ">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MPO-mm-yjb">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="YouTube" id="QNa-7i-IDb">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="BUv-Hh-G6E">
+                                            <connections>
+                                                <action selector="exit:" destination="bTy-Aj-nA8" id="ysS-vX-izP"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vm9-nv-12Y">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem systemItem="rewind" id="IMO-AW-gvf">
+                                        <connections>
+                                            <action selector="backButtonPressed:" destination="bTy-Aj-nA8" id="IMk-au-kLo"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="ihI-Kh-vHa"/>
+                                    <barButtonItem systemItem="fastForward" id="kzA-WX-TWm">
+                                        <connections>
+                                            <action selector="forwardButtonPressed:" destination="bTy-Aj-nA8" id="glU-kK-yZJ"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="NXb-S0-2aT"/>
+                                    <barButtonItem systemItem="refresh" id="W1n-Ee-ARr">
+                                        <connections>
+                                            <action selector="refreshButtonPressed:" destination="bTy-Aj-nA8" id="Omh-ty-VIt"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FOH-sc-u4C">
+                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="FOH-sc-u4C" id="YOe-sD-pmP"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SFE-Qb-ASS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2346" y="-4315"/>
+        </scene>
     </scenes>
     <resources>
         <image name="01_Weekly_25px.png" width="25" height="25"/>
@@ -1559,11 +1687,10 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="iaw-W3-l3H"/>
-        <segue reference="EyV-KQ-2Pa"/>
-        <segue reference="B3C-bd-MPA"/>
-        <segue reference="PS2-VE-2nm"/>
         <segue reference="A9d-PQ-Zkm"/>
+        <segue reference="PS2-VE-2nm"/>
+        <segue reference="B3C-bd-MPA"/>
+        <segue reference="EyV-KQ-2Pa"/>
         <segue reference="Qlf-L4-T27"/>
         <segue reference="Px3-ms-x5Y"/>
     </inferredMetricsTieBreakers>

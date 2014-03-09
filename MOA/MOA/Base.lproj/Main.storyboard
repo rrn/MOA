@@ -547,9 +547,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="eM3-gj-FvN" kind="custom" identifier="showAbout" customClass="SWRevealViewControllerSegue" id="lGE-H4-3fX"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -1412,47 +1409,6 @@
             </objects>
             <point key="canvasLocation" x="1958" y="-3671"/>
         </scene>
-        <!--About View Controller-->
-        <scene sceneID="48J-88-KAb">
-            <objects>
-                <viewController storyboardIdentifier="aboutView" id="QOp-ni-w38" customClass="AboutViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="nuK-eP-0mS"/>
-                        <viewControllerLayoutGuide type="bottom" id="1UV-Pa-CM1"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ToM-5W-P7Z">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="YfB-AM-MK5">
-                        <barButtonItem key="rightBarButtonItem" image="menu.png" id="fhL-hJ-xIa"/>
-                    </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <outlet property="sidebarButton" destination="fhL-hJ-xIa" id="2rT-FG-dVv"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FTH-Cm-C5f" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2154" y="-1580"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="6P4-wA-PDu">
-            <objects>
-                <navigationController definesPresentationContext="YES" id="eM3-gj-FvN" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CxM-6r-QnZ">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="QOp-ni-w38" kind="relationship" relationship="rootViewController" id="0Ze-e3-j9Q"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2iN-rK-vjX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1694" y="-1588"/>
-        </scene>
         <!--Navigation Controller - Explore-->
         <scene sceneID="yuu-X7-YIA">
             <objects>
@@ -1530,7 +1486,6 @@
         <image name="07_Twitter_22px.png" width="22" height="22"/>
         <image name="08_YouTube_22px.png" width="22" height="22"/>
         <image name="MOA_Splash_640x1136.png" width="640" height="1136"/>
-        <image name="menu.png" width="28" height="20"/>
         <image name="plan_a_visit.jpg" width="3072" height="2124"/>
         <image name="shop-1.jpg" width="1800" height="1200"/>
     </resources>

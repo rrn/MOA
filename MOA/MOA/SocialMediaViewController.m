@@ -42,10 +42,12 @@
     Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
     NetworkStatus internetStatus = [reachability currentReachabilityStatus];
     
-
-
-    
-    if(internetStatus == NotReachable) {
+    // About Us should work offline
+    if ([[TagList sharedInstance] extraPage] == 3){
+        _webView.hidden = YES;
+        self.title = @"About Us";
+        [self showAboutPage];
+    } else if(internetStatus == NotReachable) {
         
         UIAlertView *alert = [[UIAlertView alloc]
                               initWithTitle: @"Alert!"
@@ -80,7 +82,6 @@
         }
         else{
             _webView.hidden = YES;
-            [self showAboutPage];
         }
     }
 }
@@ -88,8 +89,8 @@
 
 -(void) showAboutPage
 {
-    AboutViewController *destViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"aboutView"];
-    [self.navigationController pushViewController:destViewController animated:YES];
+    AboutViewController *destViewController = [[AboutViewController alloc]init];
+    [self.view addSubview:[destViewController prepareForDisplay:self.navigationController.navigationBar.frame.size.height+10]];
 }
 
 - (void)didReceiveMemoryWarning

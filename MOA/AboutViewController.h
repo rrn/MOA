@@ -8,11 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AboutViewController : UIViewController
+@interface AboutViewController : NSObject
 
 @property NSString* description;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 
+- (UITextView*) prepareForDisplay:(int)yPosition;
 @end
 
 NSMutableArray *generalTextArray;

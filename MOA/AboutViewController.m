@@ -21,36 +21,7 @@
 
 @synthesize description;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    // Sidebar menu code
-    _sidebarButton.target = self.revealViewController;
-    _sidebarButton.action = @selector(rightRevealToggle:);
-    [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-    
-    self.title = @"About Us";
-    self.navigationItem.hidesBackButton = YES;
-    
-    [self prepareForDisplay];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
--(void) prepareForDisplay
+-(UITextView*) prepareForDisplay:(int) yPosition
 {
     CrudOp* database = [CrudOp alloc];
     if (!generalTextArray || !generalTextArray.count){
@@ -68,15 +39,14 @@
     }
     
     self.description = [[generalTextArray objectAtIndex:2] objectForKey:@"Description"];
-    UITextView *descriptionTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, self.navigationController.navigationBar.frame.size.height+10, 300.0f, 10)];
+    UITextView *descriptionTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, yPosition, 300.0f, 10)];
     descriptionTextView.text = description;
     descriptionTextView.editable = NO;
     descriptionTextView.userInteractionEnabled = NO;
     descriptionTextView.font = [UIFont systemFontOfSize:14];
     [Utils textViewDidChange:descriptionTextView];
     descriptionTextView.textAlignment = NSTextAlignmentJustified;
-    [self.view addSubview:descriptionTextView];
-    
+    return descriptionTextView;
 }
 
 - (void) PullFromRemote

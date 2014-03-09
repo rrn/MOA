@@ -140,21 +140,6 @@
                 // select index 3, which is Visitor Information
                 [vcNew setSelectedIndex:4];
             }
-            else if ([segue.identifier isEqualToString:@"showAbout"]){
-                vcName = @"TabBar";
-                UITabBarController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
-                
-                // Swap out the Front view controller and display
-                [self.revealViewController setFrontViewController:vcNew];
-                [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated:YES];
-                
-                // show About page, no need for web
-                [[TagList sharedInstance] setExtraPage:-1];
-                [vcNew setSelectedIndex:4];
-                
-                //AboutViewController *vc = [segue destinationViewController];
-                
-            }
         };
         }
     }
@@ -192,8 +177,18 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    if ( indexPath.row == 5 ) {
+    if ( indexPath.row == 10 ) {
+        NSLog(@"chosen");
+        NSString* vcName = @"TabBar";
+        UITabBarController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
         
+        // Swap out the Front view controller and display
+        [self.revealViewController setFrontViewController:vcNew];
+        [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated:YES];
+        
+        [[TagList sharedInstance] setExtraPage:3];
+        // make the latest tab selected
+        [vcNew setSelectedIndex:4];
     }
 }
 

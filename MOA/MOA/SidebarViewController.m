@@ -9,9 +9,11 @@
 #import "SidebarViewController.h"
 #import "SWRevealViewController.h"
 #import "AppDelegate.h"
+#import "EmailHandler.h"
 #import "WhatsOnThisWeekViewController.h"
 #import "VisitorInfoViewController.h"
 #import "SocialMediaViewController.h"
+#import "AboutViewController.h"
 #include "TagList.h"
 
 @interface SidebarViewController ()
@@ -37,7 +39,7 @@
     self.tableView.backgroundColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
     self.tableView.separatorColor = [UIColor colorWithWhite:0.15f alpha:0.2f];
     
-    _menuItems = @[@"Cell0", @"Calendar", @"Cell2", @"Explore Our Collections", @"Cell4", @"Cell5", @"Cell6", @"Cell7"];
+    _menuItems = @[@"Cell0", @"Calendar", @"Cell2", @"Explore Our Collections", @"Cell4", @"Cell5", @"Cell6", @"Cell7", @"Cell8", @"Cell9", @"Cell10"];
     
     
 }
@@ -143,6 +145,8 @@
         }
     }
 
+
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -174,9 +178,61 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 
-    if ( indexPath.row == 5 ) {
+    if ( indexPath.row == 10 ) {
+        NSLog(@"chosen");
+        NSString* vcName = @"TabBar";
+        UITabBarController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
+        
+        // Swap out the Front view controller and display
+        [self.revealViewController setFrontViewController:vcNew];
+        [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated:YES];
+        
+        [[TagList sharedInstance] setExtraPage:3];
+        // make the latest tab selected
+        [vcNew setSelectedIndex:4];
+    } else if (indexPath.row == 8 || indexPath.row == 9) {
+        
+        //[self.revealViewController setFrontViewController:vcNew];
+        [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated:YES];
+        
+        EmailHandler* emailHandler = [[EmailHandler alloc]init];
+        if (indexPath.row == 8) {
+            MFMailComposeViewController* controller = [emailHandler composeEmail:0];
+            controller.mailComposeDelegate = self;
+            if (controller) [self presentViewController:controller animated:YES completion:nil];
+        }
+        else {
+            MFMailComposeViewController* controller = [emailHandler composeEmail:1];
+            controller.mailComposeDelegate = self;
+            if (controller) [self presentViewController:controller animated:YES completion:nil];
+        }
+        
         
     }
+}
+
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+    
+    // Close the Mail Interface
+    [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
 @end

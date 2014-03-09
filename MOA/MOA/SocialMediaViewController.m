@@ -8,6 +8,7 @@
 
 #import "SocialMediaViewController.h"
 #import "SWRevealViewController.h"
+#import "AboutViewController.h"
 #import "Reachability.h"
 #import "TagList.h"
 
@@ -144,6 +145,13 @@
             _webView.hidden = YES;
         }
     }
+}
+
+
+-(void) showAboutPage
+{
+    AboutViewController *destViewController = [[AboutViewController alloc]init];
+    [self.view addSubview:[destViewController prepareForDisplay:self.navigationController.navigationBar.frame.size.height+10]];
 }
 
 - (void)didReceiveMemoryWarning

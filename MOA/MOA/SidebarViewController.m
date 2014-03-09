@@ -141,8 +141,8 @@
                 [vcNew setSelectedIndex:4];
             }
             else if ([segue.identifier isEqualToString:@"showAbout"]){
-                vcName = @"TabBar";
-                UITabBarController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
+                vcName = @"AboutNav";
+                UINavigationController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
                 
                 // Swap out the Front view controller and display
                 [self.revealViewController setFrontViewController:vcNew];
@@ -150,7 +150,7 @@
                 
                 // show About page, no need for web
                 [[TagList sharedInstance] setExtraPage:-1];
-                [vcNew setSelectedIndex:4];
+                //[vcNew setSelectedIndex:4];
                 
                 //AboutViewController *vc = [segue destinationViewController];
                 

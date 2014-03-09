@@ -62,18 +62,21 @@
             NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
             _webView.hidden = NO;
             [_webView loadRequest:requestObj];
+            self.title = @"Facebook";
         } else if ([[TagList sharedInstance] extraPage] ==1) {
             NSString *urlAddress = @"https://twitter.com/MOA_UBC";
             NSURL *url = [NSURL URLWithString:urlAddress];
             NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
             _webView.hidden = NO;
             [_webView loadRequest:requestObj];
+            self.title = @"Twitter";
         } else if ([[TagList sharedInstance] extraPage] ==2) {
             NSString *urlAddress = @"http://www.youtube.com/user/MUSEUMofANTHROPOLOGY";
             NSURL *url = [NSURL URLWithString:urlAddress];
             NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
             _webView.hidden = NO;
             [_webView loadRequest:requestObj];
+            self.title = @"Youtube";
         }
         else{
             _webView.hidden = YES;

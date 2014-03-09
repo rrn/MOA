@@ -153,9 +153,7 @@
             [self.navigationItem setRightBarButtonItems:toolbarButtons];
             _webView.hidden = YES;
         }
-        else{
-            _webView.hidden = YES;
-        }
+    }
     }
 }
 

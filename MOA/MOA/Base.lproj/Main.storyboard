@@ -451,7 +451,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="kcg-yL-cKe" kind="custom" identifier="showFacebook" customClass="SWRevealViewControllerSegue" id="WVL-p5-VzC"/>
+                                    <segue destination="yjy-e4-8mZ" kind="modal" id="8Df-Ju-Olj"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell6" id="BZm-0B-GgT">
@@ -566,7 +566,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="this" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tin-y9-PNF" customClass="WhatsOnThisWeekViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Vyy-nh-aZZ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -620,11 +620,11 @@
                         <viewControllerLayoutGuide type="bottom" id="AeM-PH-Gb7"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8hI-Mc-3Ey">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="431"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wTE-IK-eGZ">
-                                <rect key="frame" x="0.0" y="71" width="320" height="302"/>
+                                <rect key="frame" x="0.0" y="71" width="320" height="439"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </scrollView>
                         </subviews>
@@ -1319,6 +1319,70 @@
             </objects>
             <point key="canvasLocation" x="817" y="-963"/>
         </scene>
+        <!--Facebook View Controller-->
+        <scene sceneID="fg9-fo-1sw">
+            <objects>
+                <viewController id="yjy-e4-8mZ" customClass="FacebookViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pGW-aZ-dDT"/>
+                        <viewControllerLayoutGuide type="bottom" id="SZL-XD-KBk"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KNg-uJ-dh9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="S98-kx-aOL">
+                                <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Facebook" id="yme-rO-wEt">
+                                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="u3z-bL-E1f">
+                                            <connections>
+                                                <action selector="exit:" destination="yjy-e4-8mZ" id="R8u-2o-YHP"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7lk-V1-1zn">
+                                <rect key="frame" x="0.0" y="524" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem systemItem="rewind" id="LMX-Yb-l3V">
+                                        <connections>
+                                            <action selector="backButtonPressed:" destination="yjy-e4-8mZ" id="btp-Hg-o8e"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Rxn-5a-Ge2"/>
+                                    <barButtonItem systemItem="fastForward" id="fjW-FZ-Agh">
+                                        <connections>
+                                            <action selector="forwardButtonPressed:" destination="yjy-e4-8mZ" id="hUc-D8-Udu"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="5hJ-7D-GFH"/>
+                                    <barButtonItem systemItem="refresh" id="3bs-7k-JjS">
+                                        <connections>
+                                            <action selector="refreshButtonPressed:" destination="yjy-e4-8mZ" id="GJS-Dg-in7"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eeQ-3C-cGm">
+                                <rect key="frame" x="0.0" y="64" width="320" height="460"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="eeQ-3C-cGm" id="Ubv-RJ-L6j"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fcD-nD-FFx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="266" y="-2989"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="9Fh-S6-ZWU">
             <objects>
@@ -1345,11 +1409,11 @@
                         <viewControllerLayoutGuide type="bottom" id="gp7-rj-jDy"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="5yy-L6-FTu">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0QF-WC-LDb">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
@@ -1366,7 +1430,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZLO-nc-nKA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1418" y="-3583"/>
+            <point key="canvasLocation" x="1436" y="-3044"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="vh5-2x-qyy">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="XSL-6I-oaS" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kU7-RM-YMd">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Kxp-4Q-84j" kind="relationship" relationship="rootViewController" id="Px3-ms-x5Y"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0bS-v5-zyx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1436" y="-3637"/>
         </scene>
         <!--Youtube View Controller-->
         <scene sceneID="H1t-xe-dsu">
@@ -1393,24 +1472,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DGF-Tp-xkR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1958" y="-3671"/>
-        </scene>
-        <!--About View Controller-->
-        <scene sceneID="48J-88-KAb">
-            <objects>
-                <viewController id="QOp-ni-w38" customClass="AboutViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="nuK-eP-0mS"/>
-                        <viewControllerLayoutGuide type="bottom" id="1UV-Pa-CM1"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ToM-5W-P7Z">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FTH-Cm-C5f" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2394" y="-3662"/>
         </scene>
         <!--Navigation Controller - Explore-->
         <scene sceneID="yuu-X7-YIA">
@@ -1498,13 +1559,11 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="8vC-Ii-8Vk"/>
-        <segue reference="KG7-G5-5Wz"/>
-        <segue reference="UVY-js-OWf"/>
-        <segue reference="zgW-yR-ErI"/>
-        <segue reference="8vC-Ii-8Vk"/>
-        <segue reference="3Ui-Zi-1HH"/>
-        <segue reference="zgW-yR-ErI"/>
+        <segue reference="iaw-W3-l3H"/>
+        <segue reference="EyV-KQ-2Pa"/>
+        <segue reference="B3C-bd-MPA"/>
+        <segue reference="PS2-VE-2nm"/>
+        <segue reference="A9d-PQ-Zkm"/>
         <segue reference="Qlf-L4-T27"/>
         <segue reference="Px3-ms-x5Y"/>
     </inferredMetricsTieBreakers>

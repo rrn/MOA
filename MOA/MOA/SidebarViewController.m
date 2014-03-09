@@ -145,7 +145,10 @@
         }
     }
 
-
+-(IBAction)finishedDoingWhatever:(id)sender
+{
+    
+}
 
 - (void)didReceiveMemoryWarning
 {

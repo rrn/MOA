@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		455C469B18B5B0C30047D7AA /* SocialMediaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 455C469A18B5B0C30047D7AA /* SocialMediaViewController.m */; };
 		4582C9931898BE8800DC9000 /* WOTWEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4582C9921898BE8800DC9000 /* WOTWEventViewController.m */; };
+		45E3431618CC872100B0FE8E /* arrow_left.png in Resources */ = {isa = PBXBuildFile; fileRef = 45E3431518CC872100B0FE8E /* arrow_left.png */; };
+		45E3431818CC872800B0FE8E /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = 45E3431718CC872800B0FE8E /* close.png */; };
+		45E3431B18CC8A0600B0FE8E /* FacebookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E3431A18CC8A0600B0FE8E /* FacebookViewController.m */; };
 		503CDBEB18A384B300BC8580 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 503CDBEA18A384B300BC8580 /* Utils.m */; };
 		503CDC4518A4E70400BC8580 /* iCarousel.m in Sources */ = {isa = PBXBuildFile; fileRef = 503CDC4418A4E70400BC8580 /* iCarousel.m */; };
 		503CDC4718A4E73400BC8580 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 503CDC4618A4E73400BC8580 /* QuartzCore.framework */; };
@@ -107,6 +110,10 @@
 		455C469A18B5B0C30047D7AA /* SocialMediaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialMediaViewController.m; sourceTree = "<group>"; };
 		4582C9911898BE8800DC9000 /* WOTWEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WOTWEventViewController.h; path = ../WOTWEventViewController.h; sourceTree = "<group>"; };
 		4582C9921898BE8800DC9000 /* WOTWEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WOTWEventViewController.m; path = ../WOTWEventViewController.m; sourceTree = "<group>"; };
+		45E3431518CC872100B0FE8E /* arrow_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = arrow_left.png; path = "../../../../Library/Containers/com.apple.mail/Data/Library/Mail Downloads/B24DECC2-06F8-4DF3-A073-75FD29FBF771/icons/arrow_left.png"; sourceTree = "<group>"; };
+		45E3431718CC872800B0FE8E /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = close.png; path = "../../../../Library/Containers/com.apple.mail/Data/Library/Mail Downloads/B24DECC2-06F8-4DF3-A073-75FD29FBF771/icons/close.png"; sourceTree = "<group>"; };
+		45E3431918CC8A0600B0FE8E /* FacebookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookViewController.h; sourceTree = "<group>"; };
+		45E3431A18CC8A0600B0FE8E /* FacebookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookViewController.m; sourceTree = "<group>"; };
 		503CDBE918A384B300BC8580 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		503CDBEA18A384B300BC8580 /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		503CDC4318A4E70400BC8580 /* iCarousel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iCarousel.h; sourceTree = SOURCE_ROOT; };
@@ -277,7 +284,9 @@
 			children = (
 				E4B5A0CC1858DAC10047D9B8 /* Tab Icons */,
 				50FD06591852AA66007AB4E6 /* MOA_Splash_640x1136.png */,
+				45E3431518CC872100B0FE8E /* arrow_left.png */,
 				50CEBBFC1841463A0005B0F9 /* cafe-1.jpg */,
+				45E3431718CC872800B0FE8E /* close.png */,
 				50CEBBFD1841463A0005B0F9 /* cafe.JPG */,
 				50CEBBFE1841463A0005B0F9 /* shop-1.jpg */,
 				50CEBBFF1841463A0005B0F9 /* shop.jpg */,
@@ -403,6 +412,8 @@
 				E4CC126518B81952005A3905 /* Exhibitions */,
 				50F52905183C97DC002A463C /* LocalDatabase */,
 				BBA3406C1826D6F700B6E4B1 /* Main.storyboard */,
+				45E3431918CC8A0600B0FE8E /* FacebookViewController.h */,
+				45E3431A18CC8A0600B0FE8E /* FacebookViewController.m */,
 				455C469918B5B0C30047D7AA /* SocialMediaViewController.h */,
 				455C469A18B5B0C30047D7AA /* SocialMediaViewController.m */,
 				E48B16D7183C9B1A0047BBA4 /* AccordionViewController.h */,
@@ -598,6 +609,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45E3431818CC872800B0FE8E /* close.png in Resources */,
 				50F39ECD18CBE89E00D2A55B /* 03_Collections02_25px.png in Resources */,
 				E438ACCD183AD8AE0078FD2F /* plan_a_visit.jpg in Resources */,
 				50CEBC031841463A0005B0F9 /* shop.jpg in Resources */,
@@ -620,6 +632,7 @@
 				BBA340961827024600B6E4B1 /* 320x170.gif in Resources */,
 				E438465D18BAD30C008F1E42 /* 01_Weekly_50px.png in Resources */,
 				50CEBC011841463A0005B0F9 /* cafe.JPG in Resources */,
+				45E3431618CC872100B0FE8E /* arrow_left.png in Resources */,
 				E4B5A0E41858DC680047D9B8 /* 05_More_25px.png in Resources */,
 				E438465B18BAD126008F1E42 /* 08_YouTube_22px.png in Resources */,
 				BBA3406E1826D6F700B6E4B1 /* Main.storyboard in Resources */,
@@ -653,6 +666,7 @@
 				E48B16D9183C9B1A0047BBA4 /* AccordionViewController.m in Sources */,
 				E48B16DC18413EE40047BBA4 /* LocationPage.m in Sources */,
 				E434341D188B4F7F00922E7A /* Reachability.m in Sources */,
+				45E3431B18CC8A0600B0FE8E /* FacebookViewController.m in Sources */,
 				50CB96C718417862003B7DCC /* ContactUsViewController.m in Sources */,
 				E438ACC9183877E10078FD2F /* VisitorInfoViewController.m in Sources */,
 				50F5290F183CA37B002A463C /* FromAirportPage.m in Sources */,

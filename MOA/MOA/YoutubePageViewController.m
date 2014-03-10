@@ -50,7 +50,7 @@
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
     _webView.hidden = NO;
     [_webView loadRequest:requestObj];
-    self.title = @"Youtube";
+    self.title = @"MOA Youtube Channel";
     }
 }
 

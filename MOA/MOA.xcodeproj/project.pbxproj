@@ -96,6 +96,8 @@
 		E4DEB84118CA822E0082DCBA /* AboutViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E4DEB84018CA822E0082DCBA /* AboutViewController.m */; };
 		E4FBA44418CD063900EFFA29 /* arrow_left.png in Resources */ = {isa = PBXBuildFile; fileRef = E4FBA44218CD063900EFFA29 /* arrow_left.png */; };
 		E4FBA44518CD063900EFFA29 /* close.png in Resources */ = {isa = PBXBuildFile; fileRef = E4FBA44318CD063900EFFA29 /* close.png */; };
+		E4FBA44A18CD553A00EFFA29 /* close-25.png in Resources */ = {isa = PBXBuildFile; fileRef = E4FBA44918CD553A00EFFA29 /* close-25.png */; };
+		E4FBA44C18CD561700EFFA29 /* close-50.png in Resources */ = {isa = PBXBuildFile; fileRef = E4FBA44B18CD561700EFFA29 /* close-50.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -251,6 +253,8 @@
 		E4DEB84018CA822E0082DCBA /* AboutViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutViewController.m; path = ../AboutViewController.m; sourceTree = "<group>"; };
 		E4FBA44218CD063900EFFA29 /* arrow_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow_left.png; sourceTree = "<group>"; };
 		E4FBA44318CD063900EFFA29 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
+		E4FBA44918CD553A00EFFA29 /* close-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close-25.png"; sourceTree = "<group>"; };
+		E4FBA44B18CD561700EFFA29 /* close-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close-50.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -419,6 +423,8 @@
 				E4CC126518B81952005A3905 /* Exhibitions */,
 				50F52905183C97DC002A463C /* LocalDatabase */,
 				BBA3406C1826D6F700B6E4B1 /* Main.storyboard */,
+				E4FBA44B18CD561700EFFA29 /* close-50.png */,
+				E4FBA44918CD553A00EFFA29 /* close-25.png */,
 				E4DEB83F18CA822E0082DCBA /* AboutViewController.h */,
 				E4DEB84018CA822E0082DCBA /* AboutViewController.m */,
 				45E3431F18CD009100B0FE8E /* TwitterPageViewController.h */,
@@ -637,6 +643,7 @@
 				E4B5A0E01858DC680047D9B8 /* 02_Exhibitions_25px.png in Resources */,
 				50CEBC001841463A0005B0F9 /* cafe-1.jpg in Resources */,
 				E4B5A0E31858DC680047D9B8 /* 04_Info_25px.png in Resources */,
+				E4FBA44A18CD553A00EFFA29 /* close-25.png in Resources */,
 				50FD065A1852AA66007AB4E6 /* MOA_Splash_640x1136.png in Resources */,
 				50CEBC021841463A0005B0F9 /* shop-1.jpg in Resources */,
 				BBA340651826D6F700B6E4B1 /* InfoPlist.strings in Resources */,
@@ -645,6 +652,7 @@
 				E458E62F18BBEB2100AFE8E1 /* 07_Twitter_22px.png in Resources */,
 				507B8E7018299BCE002365EF /* menu.png in Resources */,
 				BBA340961827024600B6E4B1 /* 320x170.gif in Resources */,
+				E4FBA44C18CD561700EFFA29 /* close-50.png in Resources */,
 				E438465D18BAD30C008F1E42 /* 01_Weekly_50px.png in Resources */,
 				50CEBC011841463A0005B0F9 /* cafe.JPG in Resources */,
 				E4B5A0E41858DC680047D9B8 /* 05_More_25px.png in Resources */,

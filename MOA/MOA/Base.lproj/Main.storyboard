@@ -1621,7 +1621,8 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="About the MOA App" id="B4b-bz-RD0">
-                                        <barButtonItem key="leftBarButtonItem" systemItem="stop" id="nWQ-yP-zrN">
+                                        <barButtonItem key="leftBarButtonItem" image="close-50.png" style="plain" id="nWQ-yP-zrN">
+                                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="exit:" destination="L6o-JR-mFV" id="3Jb-NT-O6L"/>
                                             </connections>
@@ -1705,6 +1706,7 @@
         <image name="07_Twitter_22px.png" width="22" height="22"/>
         <image name="08_YouTube_22px.png" width="22" height="22"/>
         <image name="MOA_Splash_640x1136.png" width="640" height="1136"/>
+        <image name="close-50.png" width="50" height="50"/>
         <image name="plan_a_visit.jpg" width="3072" height="2124"/>
         <image name="shop-1.jpg" width="1800" height="1200"/>
     </resources>

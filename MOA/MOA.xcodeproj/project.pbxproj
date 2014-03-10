@@ -306,6 +306,8 @@
 				E438ACCC183AD8AE0078FD2F /* plan_a_visit.jpg */,
 				507B8E6F18299BCE002365EF /* menu.png */,
 				E4CC126718B822D9005A3905 /* icon-ios7-arrow-down-512.png */,
+				E4FBA44B18CD561700EFFA29 /* close-50.png */,
+				E4FBA44918CD553A00EFFA29 /* close-25.png */,
 			);
 			name = IMAGE;
 			sourceTree = "<group>";
@@ -423,8 +425,6 @@
 				E4CC126518B81952005A3905 /* Exhibitions */,
 				50F52905183C97DC002A463C /* LocalDatabase */,
 				BBA3406C1826D6F700B6E4B1 /* Main.storyboard */,
-				E4FBA44B18CD561700EFFA29 /* close-50.png */,
-				E4FBA44918CD553A00EFFA29 /* close-25.png */,
 				E4DEB83F18CA822E0082DCBA /* AboutViewController.h */,
 				E4DEB84018CA822E0082DCBA /* AboutViewController.m */,
 				45E3431F18CD009100B0FE8E /* TwitterPageViewController.h */,

@@ -183,7 +183,7 @@
     if (indexPath.row == 8 || indexPath.row == 9) {
     
     //[self.revealViewController setFrontViewController:vcNew];
-    [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated:YES];
+    //[self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated:YES];
     
     EmailHandler* emailHandler = [[EmailHandler alloc]init];
         if (indexPath.row == 8) {

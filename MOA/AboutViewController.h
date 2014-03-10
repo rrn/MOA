@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Global.h"
 
 @interface AboutViewController : UIViewController
-- (IBAction)exit:(id)sender;
-//@property NSString* description;
 
-//- (UITextView*) prepareForDisplay:(int)yPosition;
+- (IBAction)exit:(id)sender;
+
 @property (weak, nonatomic) IBOutlet UITextView *description;
+
 @end
 
 NSMutableArray *generalTextArray;

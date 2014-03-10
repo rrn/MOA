@@ -180,25 +180,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
-    if ( indexPath.row == 10 ) {
-        NSLog(@"chosen");
-        NSString* vcName = @"TabBar";
-        UITabBarController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
-        
-        // Swap out the Front view controller and display
-        [self.revealViewController setFrontViewController:vcNew];
-        [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated:YES];
-        
-        [[TagList sharedInstance] setExtraPage:3];
-        // make the latest tab selected
-        [vcNew setSelectedIndex:4];
-    } else if (indexPath.row == 8 || indexPath.row == 9) {
-        
-        //[self.revealViewController setFrontViewController:vcNew];
-        [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated:YES];
-        
-        EmailHandler* emailHandler = [[EmailHandler alloc]init];
+    if (indexPath.row == 8 || indexPath.row == 9) {
+    
+    //[self.revealViewController setFrontViewController:vcNew];
+    [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated:YES];
+    
+    EmailHandler* emailHandler = [[EmailHandler alloc]init];
         if (indexPath.row == 8) {
             MFMailComposeViewController* controller = [emailHandler composeEmail:0];
             controller.mailComposeDelegate = self;
@@ -209,8 +196,6 @@
             controller.mailComposeDelegate = self;
             if (controller) [self presentViewController:controller animated:YES completion:nil];
         }
-        
-        
     }
 }
 

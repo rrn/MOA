@@ -40,27 +40,6 @@
         [_webView goForward];
     }
 }
-//After looking into it, canGoForward and canGoBack are flawed and not working properly at the moment,
-//Apple needs to fix this before button utility works better
-//Source: http://www.mobilexweb.com/blog/safari-ios7-html5-problems-apis-review
-//
-//- (void)webViewDidStartLoad:(UIWebView *)webView {
-//    _previousItem.enabled = (_webView.canGoBack);
-//    _nextItem.enabled = (_webView.canGoForward);
-//}
-//
-//- (void)webViewDidFinishLoad:(UIWebView *)webView {
-//    _previousItem.enabled = (_webView.canGoBack);
-//    _nextItem.enabled = (_webView.canGoForward);
-//}
-//
-//- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
-//    _previousItem.enabled = (_webView.canGoBack);
-//    _nextItem.enabled = (_webView.canGoForward);
-//    return YES;
-//}
-
-
 
 - (void)viewDidLoad
 {
@@ -156,13 +135,6 @@
     }
     }
 }
-
-
-//-(void) showAboutPage
-//{
-//    AboutViewController *destViewController = [[AboutViewController alloc]init];
-//    [self.view addSubview:[destViewController prepareForDisplay:self.navigationController.navigationBar.frame.size.height+10]];
-//}
 
 - (void)didReceiveMemoryWarning
 {

@@ -13,8 +13,10 @@
 - (IBAction)backButtonPressed:(id)sender;
 - (IBAction)refreshButtonPressed:(id)sender;
 
-@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (strong, nonatomic) IBOutlet UIWebView *webView;
 
 - (IBAction)forwardButtonPressed:(id)sender;
+@property (strong, nonatomic) IBOutlet UIToolbar *toolbar;
+@property (weak, nonatomic) IBOutlet UINavigationBar *navigationBar;
 
 @end

@@ -132,7 +132,7 @@
 {
     //todo
     UIButton* button = (UIButton*)sender;
-    self.selectedExhibition = [button tag];
+    self.selectedExhibition = (int)[button tag];
     
     [self performSegueWithIdentifier:@"ExhibitionChild" sender:self];
 }
@@ -147,7 +147,7 @@
 
 - (void)carousel:(iCarousel *)carousel didSelectItemAtIndex:(NSInteger)index
 {
-    self.selectedExhibition = index;
+    self.selectedExhibition = (int)index;
     [self performSegueWithIdentifier:@"ExhibitionChild" sender:self];
 }
 
@@ -173,7 +173,7 @@
             UIImage* image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
             buttonImage =[[UIImageView alloc] initWithImage:image];
         } else {
-            buttonImage = [database loadImageFromDB:@"moa_exhibitions" :@"image" :index];
+            buttonImage = [database loadImageFromDB:@"moa_exhibitions" :@"image" :(int)index];
         }
         [view addSubview:buttonImage];
         

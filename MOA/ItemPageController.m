@@ -236,11 +236,33 @@
 {
     NSArray *materials = [[data objectAtIndex:itemNumber] objectForKey:@"materials"];
     NSArray *institutionNotes = [[data objectAtIndex:itemNumber] objectForKey:@"institution_notes"];
+    NSMutableString *materialsList = [[NSMutableString alloc] init];
     
     //Only add the Field Name and corresponding value if it not null in the feed
     if([materials count] >0){
         if ([[[materials objectAtIndex:0] objectForKey:@"name"] rangeOfString:@"null"].location ==NSNotFound){
-            [generalDescription3 appendFormat:@"Materials: %@\n", [[materials objectAtIndex:0] objectForKey:@"name"]];
+            for(int x = 0; x < [materials count]; x++){
+                if(x==0){
+                    if(x==([materials count]-1)){
+                        [materialsList setString:[NSString stringWithFormat:@"Materials: %@\n",[[materials objectAtIndex:x] objectForKey:@"name"]]];
+                    }
+                    else{
+                        [materialsList setString:[NSString stringWithFormat:@"Materials: %@, ",[[materials objectAtIndex:x] objectForKey:@"name"]]];
+                    }
+            
+                }
+                else{
+                    if(x==([materials count]-1))
+                    {
+                        [materialsList appendString:[NSString stringWithFormat:@"%@\n",[[materials objectAtIndex:x] objectForKey:@"name"]]];
+                    }
+                    else{
+                        [materialsList appendString:[NSString stringWithFormat:@"%@, ",[[materials objectAtIndex:x] objectForKey:@"name"]]];
+                    }
+                }
+             
+            }
+            [generalDescription3 appendFormat:@"%@", materialsList];
         }
     }
     if([institutionNotes count]  > 0){

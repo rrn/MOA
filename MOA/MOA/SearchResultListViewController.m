@@ -158,7 +158,15 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
         }
         album.name = [NSString stringWithFormat:@"%@: %@", [[itemList objectAtIndex:a] objectForKey:@"name"], [[itemList objectAtIndex:a] objectForKey:@"identification_number"]];
         //add item country/dates
-        album.country = [[itemList objectAtIndex:a] objectForKey:@"name"];
+        if([[[[[itemList objectAtIndex:a] objectForKey:@"creation_locations"] objectAtIndex:0] objectForKey:@"name"] rangeOfString:@"null"].location ==NSNotFound){
+            album.date = [[[[itemList objectAtIndex:a] objectForKey:@"creation_locations"] objectAtIndex:0] objectForKey:@"name"];
+            album.country = [[[[itemList objectAtIndex:a] objectForKey:@"creation_locations"] objectAtIndex:0] objectForKey:@"name"];
+        }
+        else{
+            album.date = @"";
+            album.country = @"";
+        }
+
         
         [self.albums addObject:album];
         self.thumbnailQueue = [[NSOperationQueue alloc] init];
@@ -259,10 +267,11 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
 
     itemList = [[entireDictionary objectForKey:@"items"] mutableCopy];
     int x = [[entireDictionary objectForKey:@"result-count"] intValue];
+    NSLog(@"%i", x);
     //NSLog(@"%@", jsonString);
-    for(int b = 20; b < x; b= b+10){
+    for(int b = 10; b < x; b= b+10){
         NSString *jsonString = [ [NSString alloc]
-                      initWithContentsOfURL:[ [NSURL alloc] initWithString:[NSString stringWithFormat:@"http://www.rrnpilot.org/items.json?filters=held+at+MOA:+University+of+British+Columbia,+%@+%@&page=%i", catogeryType,searchType,(b/10)]]
+                      initWithContentsOfURL:[ [NSURL alloc] initWithString:[NSString stringWithFormat:@"http://www.rrnpilot.org/items.json?filters=held+at+MOA:+University+of+British+Columbia,+%@+%@&page=%i", catogeryType,searchType,(b/10)+1]]
                       encoding:NSUTF8StringEncoding
                       error:nil
                       ];
@@ -316,9 +325,9 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     BHAlbum *album = self.albums[indexPath.section];
     
     //Set cell title
-    titleView.titleLabel.numberOfLines=0;
-    titleView.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    titleView.titleLabel.text = [NSString stringWithFormat:@"%@\ntest\ntest", album.name];
+    titleView.titleLabel.numberOfLines=3;
+    titleView.titleLabel.lineBreakMode = NSLineBreakByClipping;
+    titleView.titleLabel.text = [NSString stringWithFormat:@"%@\n%@\ntest", album.name, album.country];
     
     return titleView;
 }

@@ -563,7 +563,7 @@
                                     <segue destination="L6o-JR-mFV" kind="modal" id="Qme-hN-C5r"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="hec-aQ-GYo" userLabel="Table View Cell - Cell11">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell11" id="hec-aQ-GYo" userLabel="Table View Cell - Cell11">
                                 <rect key="frame" x="0.0" y="506" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hec-aQ-GYo" id="uhK-ou-TKB">

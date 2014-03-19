@@ -48,7 +48,7 @@
     // set row and section data
     sectionData = [NSArray arrayWithObjects:@"Location",@"Directions & Parking", @"Hours", @"Rates", nil];
     
-    rowData = [NSArray arrayWithObject:(@"Museum of Anthropology at University of British Columbia 6393 NW Marine Drive Vancouver BC", nil)];
+    //rowData = [NSArray arrayWithObject:(@"Museum of Anthropology at University of British Columbia 6393 NW Marine Drive Vancouver BC", nil)];
 
     
     self.title = @"Plan a Visit";

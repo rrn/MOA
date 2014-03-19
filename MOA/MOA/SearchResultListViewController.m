@@ -158,14 +158,14 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
         }
         album.name = [NSString stringWithFormat:@"%@: %@", [[itemList objectAtIndex:a] objectForKey:@"name"], [[itemList objectAtIndex:a] objectForKey:@"identification_number"]];
         //add item country/dates
-        if([[[[[itemList objectAtIndex:a] objectForKey:@"creation_locations"] objectAtIndex:0] objectForKey:@"name"] rangeOfString:@"null"].location ==NSNotFound){
-            album.date = [[[[itemList objectAtIndex:a] objectForKey:@"creation_locations"] objectAtIndex:0] objectForKey:@"name"];
-            album.country = [[[[itemList objectAtIndex:a] objectForKey:@"creation_locations"] objectAtIndex:0] objectForKey:@"name"];
-        }
-        else{
-            album.date = @"";
-            album.country = @"";
-        }
+//        if([[[[[itemList objectAtIndex:a] objectForKey:@"creation_locations"] objectAtIndex:0] objectForKey:@"name"] rangeOfString:@"null"].location ==NSNotFound){
+//            album.date = [[[[itemList objectAtIndex:a] objectForKey:@"creation_locations"] objectAtIndex:0] objectForKey:@"name"];
+//            album.country = [[[[itemList objectAtIndex:a] objectForKey:@"creation_locations"] objectAtIndex:0] objectForKey:@"name"];
+//        }
+//        else{
+//            album.date = @"";
+//            album.country = @"";
+//        }
 
         
         [self.albums addObject:album];
@@ -327,7 +327,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     //Set cell title
     titleView.titleLabel.numberOfLines=3;
     titleView.titleLabel.lineBreakMode = NSLineBreakByClipping;
-    titleView.titleLabel.text = [NSString stringWithFormat:@"%@\n%@\ntest", album.name, album.country];
+    titleView.titleLabel.text = [NSString stringWithFormat:@"%@\ntest\ntest", album.name];
     
     return titleView;
 }

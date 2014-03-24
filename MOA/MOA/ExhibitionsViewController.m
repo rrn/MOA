@@ -130,7 +130,6 @@
 
 - (void) aMethod:(id) sender
 {
-    //todo
     UIButton* button = (UIButton*)sender;
     self.selectedExhibition = (int)[button tag];
     
@@ -209,6 +208,23 @@
     }
 
     return view;
+}
+
+- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [self adjustViewsForOrientation:toInterfaceOrientation];
+}
+- (void) adjustViewsForOrientation:(UIInterfaceOrientation)orientation {
+    if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight) {
+        [carousel layoutSubviews];
+        // set you subviews,Label button frame here for landscape mode,,
+    }
+    else if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown) {
+        // set you subviews,Label button frame here for portrait-mode,
+    }
+}
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
+    // Return YES for supported orientations
+    return YES;
 }
 
 - (void)dealloc

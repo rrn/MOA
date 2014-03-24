@@ -37,8 +37,10 @@
     _sideBarButton.target = self.revealViewController;
     _sideBarButton.action = @selector(rightRevealToggle:);
     
+    
     [self checkInternetConnection];
-    [self prepareForDisplay];
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    [self adjustViewsForOrientation:orientation];
     [super viewDidLoad];
 }
 
@@ -73,14 +75,27 @@
 }
 
 
--(void) prepareForDisplay
+-(void) prepareForDisplay:(int) orientation
 {
-
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
+    
+    int width, height;
+    if (orientation == 0) {
+        // orientation 0 is portrait
+        width = screenWidth;
+        height = screenHeight;
+    } else {
+        // orientation 1 is landscape
+        width = screenHeight;
+        height = screenWidth;
+    }
     int length = 0;
     int cursorPosition = 0;
     
     NSString* title = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:selectedTag] objectForKey:@"title"];
-    UITextView *titleTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, 75, 300, 10)];
+    UITextView *titleTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, 75, width, 10)];
     cursorPosition = 75;
     
     [titleTextView setFont:[UIFont boldSystemFontOfSize:18]];
@@ -90,14 +105,14 @@
     titleTextView.scrollEnabled= NO;
     length = [Utils textViewDidChange:titleTextView];
     
-    UIImageView *imageView =[UIImageView alloc];
+    UIImageView *imageView ;//=[UIImageView alloc];
     imageView = [database loadImageFromDB:@"moa_exhibitions" :@"detailImage" :selectedTag];
     cursorPosition = cursorPosition + length;
     
-    imageView.frame = CGRectMake(10, cursorPosition + 10, self.view.frame.size.width-20, 214);
+    imageView.frame = CGRectMake(10, cursorPosition + 10, width-20, 214);
     cursorPosition = 214+cursorPosition;
     NSString* subtitle = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:selectedTag] objectForKey:@"subtitle"];
-    UITextView *subtitleTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, cursorPosition + 10, self.view.frame.size.width-20, 10)];
+    UITextView *subtitleTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, cursorPosition + 10, width-20, 10)];
     
     [subtitleTextView setFont:[UIFont systemFontOfSize:14]];
     subtitleTextView.text = subtitle;
@@ -107,7 +122,7 @@
     cursorPosition = cursorPosition + length;
     
     NSString* imageCaption = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:selectedTag] objectForKey:@"imageCaption"];
-    UITextView *imageCaptionTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, cursorPosition+10, self.view.frame.size.width-20, 10)];
+    UITextView *imageCaptionTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, cursorPosition+10, width-20, 10)];
     
     [imageCaptionTextView setFont:[UIFont italicSystemFontOfSize:14]];
     imageCaptionTextView.text = imageCaption;
@@ -117,7 +132,7 @@
     cursorPosition = cursorPosition+length;
     
     NSString* desc = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:selectedTag] objectForKey:@"Summary"];
-    UITextView *descTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, cursorPosition + 10, self.view.frame.size.width-20, 10)];
+    UITextView *descTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, cursorPosition + 10, width-20, 10)];
     
     [descTextView setFont:[UIFont systemFontOfSize:12]];
     descTextView.text = desc;
@@ -127,8 +142,9 @@
     length = [Utils textViewDidChange:descTextView];
     cursorPosition = cursorPosition + length;
 
-    UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:self.view.frame];
-    scroll.contentSize = CGSizeMake(self.view.frame.size.width, cursorPosition + 75); //why 75? 75 spaces at the bottom to make it look better
+    scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
+    scroll.contentSize = CGSizeMake(width, cursorPosition + 75); //why 75? 75 spaces at the bottom to make it look better
+    NSLog(@"%d", width);
     scroll.scrollEnabled = YES;
     [scroll addSubview:imageView];
     [scroll addSubview:titleTextView];
@@ -136,6 +152,33 @@
     [scroll addSubview:imageCaptionTextView];
     [scroll addSubview:subtitleTextView];
     [self.view addSubview:scroll];
+    
+}
+
+- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+    [self adjustViewsForOrientation:toInterfaceOrientation];
+}
+- (void) adjustViewsForOrientation:(UIInterfaceOrientation)orientation {
+    if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight) {
+        
+        if (scroll != NULL){
+            // remove existing subviews
+            NSArray *viewsToRemove = [scroll subviews];
+            for (UIView *v in viewsToRemove) [v removeFromSuperview];
+        }
+        [self prepareForDisplay:1]; // 1 means the landscape orientation
+    }
+    else if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown) {
+        
+        if (scroll != NULL){
+            // remove existing subviews
+            NSArray *viewsToRemove = [scroll subviews];
+            for (UIView *v in viewsToRemove) [v removeFromSuperview];
+        }
+        [self prepareForDisplay:0]; // 0 means portrait orientation
+    }
+}
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{    return YES;
 }
 
 

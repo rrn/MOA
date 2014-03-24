@@ -13,6 +13,7 @@
     int selectedTag;
     bool internet;
     CrudOp* database;
+    UIScrollView *scroll;
 }
 
 -(void) setSelectedButton :(int)tag;

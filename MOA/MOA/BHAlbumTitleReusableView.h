@@ -11,6 +11,7 @@
 @interface BHAlbumTitleReusableView : UICollectionReusableView
 
 @property (nonatomic, strong, readonly) UILabel *titleLabel;
-
+@property (nonatomic, strong, readonly) UILabel *countryLabel;
+@property (nonatomic, strong, readonly) UILabel *dateLabel;
 @end
 

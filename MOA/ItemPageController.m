@@ -140,6 +140,7 @@
 {
     self.displayItemImageView.image = [UIImage imageNamed:@"emptySpace"];
     _titleText.title = [NSString stringWithFormat:@"%i of %i", self.itemNumber+1, self.count];
+    int iterator = 0;
     
     NSArray *digitalObjects = [[data objectAtIndex:itemNumber] objectForKey:@"digital_objects"];
     
@@ -178,9 +179,19 @@
     self.idNumberLabel.text =[[data objectAtIndex:itemNumber] objectForKey:@"identification_number"];
     
     NSArray *institution_notes = [[data objectAtIndex:itemNumber] objectForKey:@"institution_notes"];
+    NSString *temp;
     
     
-    self.itemDescriptionTextView.text= [NSString stringWithFormat:@"Description:\n%@\n\n %@\n %@",[[institution_notes objectAtIndex:0] objectForKey:@"text"], generalDescription2, generalDescription3];
+    if([institution_notes count]  > 0){
+        for(iterator=0; iterator < [institution_notes count] ; iterator++){
+            if([[[[institution_notes objectAtIndex:iterator] objectForKey:@"title"] lowercaseString] isEqualToString:@"description" ] ){
+                if ([[[institution_notes objectAtIndex:iterator] objectForKey:@"text"] rangeOfString:@"null"].location ==NSNotFound){
+                    temp = [NSString stringWithFormat:@"Description: \n%@", [[institution_notes objectAtIndex:iterator] objectForKey:@"text"]];
+                }
+            }
+        }
+    }
+    self.itemDescriptionTextView.text= [NSString stringWithFormat:@"\n%@\n\n %@\n %@",temp, generalDescription2, generalDescription3];
     
     
     
@@ -237,6 +248,7 @@
     NSArray *materials = [[data objectAtIndex:itemNumber] objectForKey:@"materials"];
     NSArray *institutionNotes = [[data objectAtIndex:itemNumber] objectForKey:@"institution_notes"];
     NSMutableString *materialsList = [[NSMutableString alloc] init];
+    int iterator=0;
     
     //Only add the Field Name and corresponding value if it not null in the feed
     if([materials count] >0){
@@ -266,14 +278,17 @@
         }
     }
     if([institutionNotes count]  > 0){
-        if ([[[institutionNotes objectAtIndex:0] objectForKey:@"text"] rangeOfString:@"null"].location ==NSNotFound){
-            [generalDescription3 appendFormat:@"History of Use: %@\n", [[institutionNotes objectAtIndex:0] objectForKey:@"text"]];
-        }
-    }
-    
-    if([institutionNotes count]  > 1){
-        if ([[[institutionNotes objectAtIndex:1] objectForKey:@"text"] rangeOfString:@"null"].location ==NSNotFound){
-            [generalDescription3 appendFormat:@"Narrative: %@\n", [[institutionNotes objectAtIndex:1] objectForKey:@"text"]];
+        for(iterator=0; iterator < [institutionNotes count] ; iterator++){
+            if([[[[institutionNotes objectAtIndex:iterator] objectForKey:@"title"] lowercaseString] isEqualToString:@"history of use" ] ){
+                if ([[[institutionNotes objectAtIndex:iterator] objectForKey:@"text"] rangeOfString:@"null"].location ==NSNotFound){
+                    [generalDescription3 appendFormat:@"History of Use: %@\n", [[institutionNotes objectAtIndex:iterator] objectForKey:@"text"]];
+                }
+            }
+            if([[[[institutionNotes objectAtIndex:iterator] objectForKey:@"title"] lowercaseString] isEqualToString:@"narrative" ] ){
+                if ([[[institutionNotes objectAtIndex:iterator] objectForKey:@"text"] rangeOfString:@"null"].location ==NSNotFound){
+                    [generalDescription3 appendFormat:@"Narrative: %@\n", [[institutionNotes objectAtIndex:iterator] objectForKey:@"text"]];
+                }
+            }
         }
     }
 }

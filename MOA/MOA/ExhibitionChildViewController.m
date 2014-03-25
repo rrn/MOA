@@ -75,24 +75,32 @@
 }
 
 
--(void) prepareForDisplay:(int) orientation
+-(void) prepareForDisplay:(Orientation) orientation
 {
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
-    
-    int width, height;
-    if (orientation == 0) {
-        // orientation 0 is portrait
-        width = screenWidth;
-        height = screenHeight;
-    } else {
-        // orientation 1 is landscape
-        width = screenHeight;
-        height = screenWidth;
-    }
+    int imageWidth = 0;
+    int imageXPos = 0;
     int length = 0;
     int cursorPosition = 0;
+    
+    int width, height;
+    if (orientation == ORIENTATION_PORTRAIT) {
+        
+        width = screenWidth;
+        height = screenHeight;
+        imageWidth = width-20;
+        imageXPos = 10;
+        
+    } else {
+        
+        width = screenHeight;
+        height = screenWidth;
+        imageWidth = width / 3 * 2;
+        imageXPos = width / 6;
+        
+    }
     
     NSString* title = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:selectedTag] objectForKey:@"title"];
     UITextView *titleTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, 75, width, 10)];
@@ -109,7 +117,7 @@
     imageView = [database loadImageFromDB:@"moa_exhibitions" :@"detailImage" :selectedTag];
     cursorPosition = cursorPosition + length;
     
-    imageView.frame = CGRectMake(10, cursorPosition + 10, width-20, 214);
+    imageView.frame = CGRectMake(imageXPos, cursorPosition + 10, imageWidth, 214);
     cursorPosition = 214+cursorPosition;
     NSString* subtitle = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:selectedTag] objectForKey:@"subtitle"];
     UITextView *subtitleTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, cursorPosition + 10, width-20, 10)];
@@ -155,6 +163,10 @@
     
 }
 
+-(NSUInteger)supportedInterfaceOrientations{
+    return UIInterfaceOrientationMaskAll; // etc
+}
+
 - (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     [self adjustViewsForOrientation:toInterfaceOrientation];
 }
@@ -166,7 +178,7 @@
             NSArray *viewsToRemove = [scroll subviews];
             for (UIView *v in viewsToRemove) [v removeFromSuperview];
         }
-        [self prepareForDisplay:1]; // 1 means the landscape orientation
+        [self prepareForDisplay:ORIENTATION_LANDSCAPE];
     }
     else if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown) {
         
@@ -175,7 +187,7 @@
             NSArray *viewsToRemove = [scroll subviews];
             for (UIView *v in viewsToRemove) [v removeFromSuperview];
         }
-        [self prepareForDisplay:0]; // 0 means portrait orientation
+        [self prepareForDisplay:ORIENTATION_PORTRAIT];
     }
 }
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{    return YES;

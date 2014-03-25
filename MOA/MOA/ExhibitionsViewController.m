@@ -10,7 +10,6 @@
 #import "SWRevealViewController.h"
 #import "Reachability.h"
 #import "TagList.h"
-#import "ExhibitionChildViewController.h"
 #import "Utils.h"
 
 @interface ExhibitionsViewController ()
@@ -57,10 +56,26 @@
         [database UpdateLocalDB:@"moa_exhibitions" :[[TagList sharedInstance].exhibitionEvents mutableCopy]];
 
     }
+    
+    UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
+    [self adjustViewsForOrientation:orientation];
 
+    
     [carousel reloadData];
     carousel.type = iCarouselTypeRotary;
     carousel.scrollEnabled = FALSE;
+    
+    scroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 20,self.carousel.frame.size.width, self.carousel.frame.size.height)];
+    [scroll setContentSize:CGSizeMake(self.carousel.frame.size.width, 300+50)];
+    [scroll addSubview:carousel];
+    scroll.userInteractionEnabled = YES;
+    scroll.delaysContentTouches = NO;
+    scroll.canCancelContentTouches = NO;
+    [self.view addSubview:scroll];
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    tapGesture.cancelsTouchesInView = NO;
+    [[self view] addGestureRecognizer:tapGesture];
     
     // swipe by 1 item at a time only
     UISwipeGestureRecognizer *forwardRecognizer = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(swipeLeftMethod)];
@@ -119,6 +134,13 @@
     [carousel scrollByNumberOfItems:-1 duration:0.5];
 }
 
+-(void)handleTap:(UITapGestureRecognizer*)sender
+{
+    self.selectedExhibition = (int)[carousel currentItemIndex];
+    [self performSegueWithIdentifier:@"ExhibitionChild" sender:self];
+
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"ExhibitionChild"])
@@ -126,14 +148,6 @@
         ExhibitionChildViewController *vc = [segue destinationViewController];
         [vc setSelectedButton:self.selectedExhibition];
     }
-}
-
-- (void) aMethod:(id) sender
-{
-    UIButton* button = (UIButton*)sender;
-    self.selectedExhibition = (int)[button tag];
-    
-    [self performSegueWithIdentifier:@"ExhibitionChild" sender:self];
 }
 
 #pragma mark -
@@ -154,11 +168,13 @@
 - (UIView *)carousel:(iCarousel *)carousel viewForItemAtIndex:(NSUInteger)index reusingView:(UIView *)view
 {
     UILabel *label = nil;
+    int width = 300.0f;
+    int height = 300.0f;
     
     if (view == nil)
     {
         int cursorPosition = 0;
-        view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 300.0f, 300.0f)];
+        view = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, width, height)];
         view.layer.backgroundColor = [UIColor whiteColor].CGColor;
         view.layer.borderColor = [UIColor colorWithRed:0.9333 green:0.9333 blue:0.9333 alpha:1.0].CGColor;
         view.layer.borderWidth = 2.0f;
@@ -170,14 +186,15 @@
         [self checkInternetConnection];
         if (internet == YES) {
             UIImage* image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
-            buttonImage =[[UIImageView alloc] initWithImage:image];
+            buttonImage = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,width, 200)];
+            [buttonImage setImage:image];
         } else {
             buttonImage = [database loadImageFromDB:@"moa_exhibitions" :@"image" :(int)index];
         }
+        buttonImage.exclusiveTouch = YES;
         [view addSubview:buttonImage];
         
-        
-        UITextView *nameTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, 210, 300.0f, 10)];
+        UITextView *nameTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, 210, width, 10)];
         nameTextView.text = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"title"];
         [nameTextView setFont:[UIFont boldSystemFontOfSize:14]];
         nameTextView.textAlignment= NSTextAlignmentCenter;
@@ -188,7 +205,7 @@
         
         NSString *startDate = [Utils convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"activationDate"]];
         NSString *endDate = [Utils convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"expiryDate"]];
-        UITextView *dateTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, cursorPosition, 300.0f, 10)];
+        UITextView *dateTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, cursorPosition, width, 10)];
         NSString *date = [NSString stringWithFormat:@"%@ to %@", startDate, endDate];
         dateTextView.text = date;
         [dateTextView setFont:[UIFont systemFontOfSize:14]];
@@ -206,7 +223,7 @@
         //get a reference to the label in the recycled view
         label = (UILabel *)[view viewWithTag:1];
     }
-
+   
     return view;
 }
 
@@ -214,17 +231,23 @@
     [self adjustViewsForOrientation:toInterfaceOrientation];
 }
 - (void) adjustViewsForOrientation:(UIInterfaceOrientation)orientation {
+    
+    CGRect screenRect = [[UIScreen mainScreen] bounds];
+    CGFloat screenWidth = screenRect.size.width;
+    CGFloat screenHeight = screenRect.size.height;
+
     if (orientation == UIInterfaceOrientationLandscapeLeft || orientation == UIInterfaceOrientationLandscapeRight) {
-        [carousel layoutSubviews];
-        // set you subviews,Label button frame here for landscape mode,,
-    }
+               deviceOrientation = ORIENTATION_LANDSCAPE;
+        carousel.frame = CGRectMake(0, 0, screenHeight, screenWidth);
+        scroll.frame = CGRectMake (0, 50, screenHeight, screenWidth);
+        }
     else if (orientation == UIInterfaceOrientationPortrait || orientation == UIInterfaceOrientationPortraitUpsideDown) {
-        // set you subviews,Label button frame here for portrait-mode,
+        deviceOrientation = ORIENTATION_PORTRAIT;
+        carousel.frame = CGRectMake(0, 0, screenWidth, screenHeight);
+        scroll.frame = CGRectMake(0,0, screenWidth, screenHeight);
     }
 }
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
-    // Return YES for supported orientations
-    return YES;
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{    return YES;
 }
 
 - (void)dealloc
@@ -238,30 +261,6 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-//- (void)checkForNetwork
-//{
-//    // check if we've got network connectivity
-//    Reachability *myNetwork = [Reachability reachabilityWithHostname:@"google.com"];
-//    NetworkStatus myStatus = [myNetwork currentReachabilityStatus];
-//    
-//    switch (myStatus) {
-//        case NotReachable:
-//            NSLog(@"There's no internet connection at all. Display error message now.");
-//            break;
-//            
-//        case ReachableViaWWAN:
-//            NSLog(@"We have a 3G connection");
-//            break;
-//            
-//        case ReachableViaWiFi:
-//            NSLog(@"We have WiFi.");
-//            break;
-//            
-//        default:
-//            break;
-//    }
-//}
 
 -(void) checkInternetConnection
 {

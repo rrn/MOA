@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "iCarousel.h"
 #import "CrudOp.h"
+#import "ExhibitionChildViewController.h"
 
 @interface ExhibitionsViewController : UIViewController <iCarouselDataSource, iCarouselDelegate>{
     CrudOp* database;
     bool internet;
     bool syncLocalDB;
+    Orientation deviceOrientation;
+    UIScrollView* scroll;
 };
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;

@@ -65,7 +65,10 @@
     carousel.type = iCarouselTypeRotary;
     carousel.scrollEnabled = FALSE;
     
-    scroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 20,self.carousel.frame.size.width, self.carousel.frame.size.height)];
+    if (deviceOrientation == ORIENTATION_LANDSCAPE)
+        scroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 50,self.carousel.frame.size.width, self.carousel.frame.size.height)];
+    else
+        scroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 0,self.carousel.frame.size.width, self.carousel.frame.size.height)];
     [scroll setContentSize:CGSizeMake(self.carousel.frame.size.width, 300+50)];
     [scroll addSubview:carousel];
     scroll.userInteractionEnabled = YES;
@@ -97,9 +100,6 @@
     [super viewWillAppear:animated];
 
     [self checkInternetConnection];
-    //if (internet == YES){
-    //    [database UpdateLocalDB:@"moa_exhibitions" :[[TagList sharedInstance].exhibitionEvents mutableCopy]];
-    //}
 }
 
 -(void) viewDidAppear:(BOOL)animated
@@ -247,7 +247,8 @@
         scroll.frame = CGRectMake(0,0, screenWidth, screenHeight);
     }
 }
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{    return YES;
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation{
+    return YES;
 }
 
 - (void)dealloc

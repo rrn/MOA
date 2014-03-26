@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="H5l-5b-yzz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="H5l-5b-yzz">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
         <!--Explore Main View Controller - Explore Our Collection-->
@@ -1701,10 +1701,10 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Qlf-L4-T27"/>
-        <segue reference="PS2-VE-2nm"/>
-        <segue reference="B3C-bd-MPA"/>
-        <segue reference="EyV-KQ-2Pa"/>
         <segue reference="A9d-PQ-Zkm"/>
+        <segue reference="PS2-VE-2nm"/>
+        <segue reference="EyV-KQ-2Pa"/>
+        <segue reference="B3C-bd-MPA"/>
+        <segue reference="Qlf-L4-T27"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -70,7 +70,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
-    return [Letters indexOfObject:title];
+        return [Letters indexOfObject:title];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

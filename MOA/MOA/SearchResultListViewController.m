@@ -50,7 +50,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
 {
     [super viewDidLoad];
     
-    
+    Type = @"";
     NSPredicate *predicate = [NSPredicate predicateWithFormat: @"SELF matches [c] %@", [self title]];
     searchArray = [[[[TagList sharedInstance] objectTypeTags] filteredArrayUsingPredicate:predicate] mutableCopy];
     if([searchArray count] == 1)
@@ -67,6 +67,8 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     searchArray = [[[[TagList sharedInstance] peopleTags] filteredArrayUsingPredicate:predicate] mutableCopy];
     if([searchArray count] == 1)
         Type = @"People";
+    if([Type isEqualToString:@""])
+        Type= @"id";
     
     
     // Set the side bar button action. When it's tapped, it'll show up the sidebar.
@@ -170,7 +172,6 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
             }
         }
         if([[[itemList objectAtIndex:a] objectForKey:@"creation_events"] count] > 0){
-            NSLog(@"%@", [[[itemList objectAtIndex:a] objectForKey:@"creation_events"] objectAtIndex:0]);
             if([[[[itemList objectAtIndex:a] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"start_year"] != [NSNull null]){
                 NSLog(@"first if %@", [[[[itemList objectAtIndex:a] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"start_year"]);
                 if([[[[itemList objectAtIndex:a] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"end_year"] != [NSNull null]){
@@ -283,6 +284,9 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
         
         
     }
+    else if ([tempCatogeryType isEqualToString:@"id"]){
+        catogeryType = @"id";
+    }
     
     searchType = [searchType stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     
@@ -297,7 +301,6 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     
     itemList = [[entireDictionary objectForKey:@"items"] mutableCopy];
     int x = [[entireDictionary objectForKey:@"result-count"] intValue];
-    NSLog(@"%i", x);
     //NSLog(@"%@", jsonString);
     for(int b = 10; b < x; b= b+10){
         NSString *jsonString = [ [NSString alloc]

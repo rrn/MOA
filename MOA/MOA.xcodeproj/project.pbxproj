@@ -51,7 +51,6 @@
 		50FA4071183B778F00EC0CEC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 50FA4070183B778F00EC0CEC /* libsqlite3.dylib */; };
 		50FA4074183B7F6600EC0CEC /* DBRemoteUpdater.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FA4073183B7F6600EC0CEC /* DBRemoteUpdater.m */; };
 		50FD065A1852AA66007AB4E6 /* MOA_Splash_640x1136.png in Resources */ = {isa = PBXBuildFile; fileRef = 50FD06591852AA66007AB4E6 /* MOA_Splash_640x1136.png */; };
-		BB0E65911835737F00163652 /* FilteredViewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0E65901835737F00163652 /* FilteredViewViewController.m */; };
 		BB0E6597183575E200163652 /* TagAdditionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0E6596183575E200163652 /* TagAdditionViewController.m */; };
 		BB0E659A1835926800163652 /* TagList.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0E65991835926800163652 /* TagList.m */; };
 		BB0E659D1835A61300163652 /* SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0E659C1835A61300163652 /* SplashScreen.m */; };
@@ -193,8 +192,6 @@
 		50FA4073183B7F6600EC0CEC /* DBRemoteUpdater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBRemoteUpdater.m; sourceTree = "<group>"; };
 		50FA407C183C811100EC0CEC /* Global.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Global.h; sourceTree = "<group>"; };
 		50FD06591852AA66007AB4E6 /* MOA_Splash_640x1136.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MOA_Splash_640x1136.png; sourceTree = SOURCE_ROOT; };
-		BB0E658F1835737F00163652 /* FilteredViewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FilteredViewViewController.h; sourceTree = "<group>"; };
-		BB0E65901835737F00163652 /* FilteredViewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FilteredViewViewController.m; sourceTree = "<group>"; };
 		BB0E6595183575E200163652 /* TagAdditionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagAdditionViewController.h; sourceTree = "<group>"; };
 		BB0E6596183575E200163652 /* TagAdditionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TagAdditionViewController.m; sourceTree = "<group>"; };
 		BB0E65981835926800163652 /* TagList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TagList.h; sourceTree = "<group>"; };
@@ -474,8 +471,6 @@
 				BBA340611826D6F700B6E4B1 /* Supporting Files */,
 				BB3179FB1827112F00CC9C38 /* ExploreMainViewController.h */,
 				BB3179FC1827112F00CC9C38 /* ExploreMainViewController.m */,
-				BB0E658F1835737F00163652 /* FilteredViewViewController.h */,
-				BB0E65901835737F00163652 /* FilteredViewViewController.m */,
 				BB0E659B1835A61300163652 /* SplashScreen.h */,
 				BB0E659C1835A61300163652 /* SplashScreen.m */,
 				50B40302188E71DA00697287 /* CrudOp.h */,
@@ -724,7 +719,6 @@
 				50CEBC061841467D0005B0F9 /* CafeMOAViewController.m in Sources */,
 				50CEBBEC184031310005B0F9 /* SearchResultListViewController.m in Sources */,
 				50CEBBEA183FF4950005B0F9 /* ItemPageController.m in Sources */,
-				BB0E65911835737F00163652 /* FilteredViewViewController.m in Sources */,
 				E4B5A0CB185544A10047D9B8 /* ExhibitionsViewController.m in Sources */,
 				45E3432718CD03FA00B0FE8E /* YoutubePageViewController.m in Sources */,
 				50B40304188E71DA00697287 /* CrudOp.m in Sources */,

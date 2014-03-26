@@ -9,10 +9,19 @@
 #import <UIKit/UIKit.h>
 #import "CrudOp.h"
 
+typedef enum orientationTypes
+{
+    ORIENTATION_PORTRAIT,
+    ORIENTATION_LANDSCAPE
+} Orientation;
+
+
 @interface ExhibitionChildViewController : UIViewController {
     int selectedTag;
     bool internet;
     CrudOp* database;
+    UIScrollView *scroll;
+    Orientation screenOrientation;
 }
 
 -(void) setSelectedButton :(int)tag;

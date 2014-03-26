@@ -28,6 +28,11 @@
     return self;
 }
 
+-(void) viewWillAppear:(BOOL)animated
+{
+
+}
+
 - (void)viewDidLoad
 {
     // CONSTANT NUMBER
@@ -73,6 +78,9 @@
     self.tableView = [self makeTableView:cursorPos+10]; // 10 is space between text and table
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Hours"];
     
+    
+
+    
     contentSize = cursorPos; // length of description
    
     [self.view addSubview:cafeImage];
@@ -115,6 +123,7 @@
     tableView.scrollEnabled = NO;
     tableView.delegate = self;
     tableView.dataSource = self;
+    [tableView reloadData];
     
     return tableView;
 }

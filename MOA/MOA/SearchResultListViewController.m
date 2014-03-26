@@ -144,7 +144,10 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
         
         
         if ([digitalObjects count] > 0){
-            NSURL *imageUrl = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"http:%@",[[digitalObjects objectAtIndex:0] objectForKey:@"thumbnail_url"]]];
+            
+            NSString *thumbnailURL70b70 = [[NSString alloc] initWithString:[[digitalObjects objectAtIndex:0] objectForKey:@"thumbnail_url"]];
+            NSString *thumbnailURL220b220 = [thumbnailURL70b70 stringByReplacingOccurrencesOfString:@"w70h70c" withString:@"w220h220c"];
+            NSURL *imageUrl = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"http:%@", thumbnailURL220b220]];
             
             NSURL *photoURL = imageUrl;
             BHPhoto *photo = [BHPhoto photoWithImageURL:photoURL];

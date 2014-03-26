@@ -22,6 +22,7 @@
 {
     NSMutableArray *characterList;
     NSMutableArray *sortedTagList;
+    NSArray *Letters;
 }
 
 @synthesize tagTable, activityLoader;
@@ -41,6 +42,7 @@
     self.tagTable.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
     characterList = [[NSMutableArray alloc] init];
     sortedTagList = [[NSMutableArray alloc] init];
+    Letters = [NSArray arrayWithObjects:@"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
     [self readItemJson:[self title]];
     
     
@@ -61,15 +63,15 @@
 
 #pragma mark - Table view data source
 
-//- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString*)title atIndex:(NSInteger)index {
-//    return <yourSectionIndexForTheSectionForSectionIndexTitle >;
-//}
-//
-//
-//
-//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
-//    return[NSArray arrayWithObjects:@"a", @"e", @"i", @"m", @"p", nil];
-//}
+
+
+- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+    return Letters;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString *)title atIndex:(NSInteger)index {
+    return [Letters indexOfObject:title];
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

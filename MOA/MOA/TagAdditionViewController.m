@@ -21,6 +21,7 @@
 
 {
     NSMutableArray *characterList;
+    NSMutableArray *sortedTagList;
 }
 
 @synthesize tagTable, activityLoader;
@@ -39,6 +40,7 @@
     [super viewDidLoad];
     self.tagTable.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
     characterList = [[NSMutableArray alloc] init];
+    sortedTagList = [[NSMutableArray alloc] init];
     [self readItemJson:[self title]];
     
     
@@ -59,16 +61,30 @@
 
 #pragma mark - Table view data source
 
+//- (NSInteger)tableView:(UITableView *)tableView sectionForSectionIndexTitle:(NSString*)title atIndex:(NSInteger)index {
+//    return <yourSectionIndexForTheSectionForSectionIndexTitle >;
+//}
+//
+//
+//
+//- (NSArray *)sectionIndexTitlesForTableView:(UITableView *)tableView {
+//    return[NSArray arrayWithObjects:@"a", @"e", @"i", @"m", @"p", nil];
+//}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 1;
+    return [sortedTagList count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [characterList count];
+    return [[sortedTagList objectAtIndex:section] count];
+}
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    // The header for the section is the region name -- get this from the region at the section index.
+    return [NSString stringWithFormat:@"%c", 65+section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -82,16 +98,17 @@
     }
     
     // Configure the cell...
-    cell.textLabel.text = [characterList objectAtIndex:indexPath.row];
+    cell.textLabel.text = [[sortedTagList objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
     return cell;
 }
 
 - (void)readItemJson:(NSString *)operation{
     
     NSInteger tempNumber = self.navigationController.viewControllers.count;
-    NSString *previousTitle = [[self.navigationController.viewControllers objectAtIndex:tempNumber-2] title];
-    
+    NSString *previousTitle = [[self.navigationController.viewControllers objectAtIndex:tempNumber-1] title];
+    NSInteger ascii = 65;
     [activityLoader setColor:[UIColor blackColor]];
+    NSLog(@"%@", previousTitle);
     
     Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
     NetworkStatus internetStatus = [reachability currentReachabilityStatus];
@@ -124,6 +141,7 @@
     
     
     NSArray *entireTagArrary = [[NSArray alloc] init];
+    
     if([previousTitle isEqualToString:@"Places"]){
         
         entireTagArrary = [[TagList sharedInstance] placesTags];
@@ -149,19 +167,23 @@
         entireTagArrary = [[TagList sharedInstance] peopleTags];
         
     }
-    
-    for(int i=0; i < [entireTagArrary count]; i++){
+    for(int x = 0; x<26; x++){
+        NSString *character = [NSString stringWithFormat:@"%c",ascii+x];
+        NSMutableArray *letterTagList = [[NSMutableArray alloc] init ];
         
-        if(![[[entireTagArrary objectAtIndex:i] lowercaseString] hasPrefix:self.title.lowercaseString] && [characterList count] > 0){
-            [tagTable reloadData];
-            return;
+        for(int i=0; i < [entireTagArrary count]; i++){
+//            if( [letterTagList count] > 0){
+//                [tagTable reloadData];
+//                return;
+//            }
+            
+            if([[[entireTagArrary objectAtIndex:i] uppercaseString] hasPrefix:character]){
+                [letterTagList addObject:[entireTagArrary objectAtIndex:i]];
+            
+            }
         }
         
-        if([[[entireTagArrary objectAtIndex:i] lowercaseString] hasPrefix:self.title.lowercaseString]){
-            
-            [characterList addObject:[entireTagArrary objectAtIndex:i]];
-            
-        }
+        [sortedTagList addObject:letterTagList];
     }
     
     [tagTable reloadData];
@@ -230,9 +252,9 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
-    SearchResultListViewController *view = [segue destinationViewController];
     NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    view.title = [characterList objectAtIndex:indexPath.row];
+    SearchResultListViewController *view = [segue destinationViewController];
+    view.title = [[sortedTagList objectAtIndex:indexPath.section] objectAtIndex:indexPath.row];
 }
 
 @end

@@ -7,11 +7,11 @@
 //
 
 #import "ExploreMainViewController.h"
-#import "FilteredViewViewController.h"
 #import "SWRevealViewController.h"
 #import "SearchResultListViewController.h"
 #import "TagList.h"
 #import "Reachability.h"
+#import "TagAdditionViewController.h"
 
 @interface ExploreMainViewController ()
 
@@ -173,7 +173,7 @@
     }
     else{
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        FilteredViewViewController *destViewController = segue.destinationViewController;
+        TagAdditionViewController *destViewController = segue.destinationViewController;
         destViewController.title = [tableData objectAtIndex:indexPath.row];
     }
 }

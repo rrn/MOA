@@ -56,7 +56,7 @@
                         <outlet property="sidebarButton" destination="XgO-sW-CLj" id="Lev-1U-NBJ"/>
                         <outlet property="view" destination="jcq-uG-RJP" id="4fy-BD-Z5v"/>
                         <segue destination="3vN-bk-U4p" kind="push" identifier="categoriesView" id="Qlf-L4-T27"/>
-                        <segue destination="teA-Ma-tfu" kind="push" identifier="alphabeticalView" id="AAm-Ts-ddd"/>
+                        <segue destination="VWa-FG-YO9" kind="push" identifier="alphabeticalView" id="d2y-vB-W0r"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KMD-lH-TQ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -71,43 +71,6 @@
                 </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1800" y="-2366"/>
-        </scene>
-        <!--Filtered View View Controller-->
-        <scene sceneID="aCx-p8-qX3">
-            <objects>
-                <tableViewController id="teA-Ma-tfu" customClass="FilteredViewViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="cgv-cT-ckG">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="AZ" id="Qv1-Sa-Qfk">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qv1-Sa-Qfk" id="oBt-db-aJ8">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="VWa-FG-YO9" kind="push" id="EOR-RF-5jK"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="teA-Ma-tfu" id="hZ2-cB-rjb"/>
-                            <outlet property="delegate" destination="teA-Ma-tfu" id="egy-IM-Irt"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="3r7-nU-Pkh">
-                        <barButtonItem key="rightBarButtonItem" image="05_More_25px.png" id="75P-Sh-Rgu"/>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="sideBarButton" destination="75P-Sh-Rgu" id="dFI-B1-P0E"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="9jc-gK-7EF" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2249" y="-2780"/>
         </scene>
         <!--Tag Addition View Controller-->
         <scene sceneID="L9A-5y-gCh">
@@ -1738,10 +1701,10 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="A9d-PQ-Zkm"/>
+        <segue reference="Qlf-L4-T27"/>
         <segue reference="PS2-VE-2nm"/>
         <segue reference="B3C-bd-MPA"/>
         <segue reference="EyV-KQ-2Pa"/>
-        <segue reference="Qlf-L4-T27"/>
+        <segue reference="A9d-PQ-Zkm"/>
     </inferredMetricsTieBreakers>
 </document>

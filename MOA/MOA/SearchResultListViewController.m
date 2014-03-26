@@ -241,7 +241,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
         
     }else{
         tempNumber = self.navigationController.viewControllers.count;
-        tempCatogeryType = [[self.navigationController.viewControllers objectAtIndex:tempNumber-3] title];
+        tempCatogeryType = [[self.navigationController.viewControllers objectAtIndex:tempNumber-2] title];
         temp = [self title];
         searchType = [temp stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     }

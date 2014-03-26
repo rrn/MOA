@@ -165,6 +165,7 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     
+    //adding events to array that occur within one week's time
     for(int eventIterator=0; eventIterator < [[temp objectForKey:@"whats_on"] count]; eventIterator++){
         NSString *eventDateString = [[[temp objectForKey:@"whats_on"] objectAtIndex:eventIterator] objectForKey:@"date"];
         NSDate *eventDate = [dateFormatter dateFromString:eventDateString];
@@ -175,6 +176,13 @@
             //NSLog(@"added an event");
         }
     }
+    //sorting events to be in chronological order
+    [temp2 sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSDate* date1 = [obj1 objectForKey:@"date"];
+        NSDate* date2 = [obj2 objectForKey:@"date"];
+        return [date1 compare:date2];
+    }];
+    
     [temp3 setObject:temp2 forKey:@"whats_on"];
     [[TagList sharedInstance] setCalendarEvents:[temp3 objectForKey:@"whats_on"]];
     [[TagList sharedInstance] setExhibitionEvents:[temp objectForKey:@"moa_exhibitions"]];

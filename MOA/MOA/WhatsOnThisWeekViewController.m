@@ -65,7 +65,6 @@
     }
     else{
         internet = YES;
-        if([[[TagList sharedInstance] calendarEvents]count]==0)
             [TagList loadInformation];
         
         // load image once the screen is shown - only when there is internet!

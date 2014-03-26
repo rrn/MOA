@@ -66,10 +66,10 @@
 
 - (void)filterContentForSearchText: (NSString*) searchText{
     NSPredicate *predicate = [NSPredicate predicateWithFormat: @"SELF contains [c] %@", searchText];
+    NSMutableArray *idTags = [[NSMutableArray alloc] init];
     
     Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
     NetworkStatus internetStatus = [reachability currentReachabilityStatus];
-    if([[[TagList sharedInstance] objectTypeTags] count] ==0){
         if(internetStatus == NotReachable) {
             
             UIAlertView *alert = [[UIAlertView alloc]
@@ -81,13 +81,32 @@
             [alert show];
         }
         else{
-            [TagList downloadCulturesJson];
-            [TagList downloadMaterialsJson];
-            [TagList downloadPeopleJson];
-            [TagList downloadPlacesJson];
-            [TagList downloadObjectJson];
+            if([[[TagList sharedInstance] objectTypeTags] count]==0){
+                [TagList downloadCulturesJson];
+                [TagList downloadMaterialsJson];
+                [TagList downloadPeopleJson];
+                [TagList downloadPlacesJson];
+                [TagList downloadObjectJson];
+            }
+            NSString *jsonString = [ [NSMutableString alloc]
+                                    initWithContentsOfURL:[ [NSURL alloc] initWithString:[NSString stringWithFormat:@"http://www.rrncommunity.org/filters/autocomplete_tags.json?filters=held+at+MOA+University+of+British+Columbia,+id+%@",searchText ]]
+                                    encoding:NSUTF8StringEncoding
+                                    error:nil
+                                    ];
+            NSData *jsonData = [[jsonString dataUsingEncoding:NSUTF8StringEncoding] mutableCopy];
+            
+            NSDictionary *entireDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+            
+            NSArray *entireIdTagArrary = [[entireDictionary objectEnumerator] allObjects];
+            
+            
+            for(int i=0; i < [entireIdTagArrary count]; i++){
+                
+                NSDictionary *temp = [entireIdTagArrary objectAtIndex:i];
+                [idTags addObject:[[temp objectForKey:@"name"] capitalizedString]];
+                
+            }
         }
-    }
     if([allTags count] < 1){
         allTags = [[TagList sharedInstance] objectTypeTags];
         allTags = [[allTags arrayByAddingObjectsFromArray:[[TagList sharedInstance] placesTags]] mutableCopy];
@@ -98,6 +117,7 @@
     
     
     searchArray = [[allTags filteredArrayUsingPredicate:predicate] mutableCopy];
+    [searchArray addObjectsFromArray:idTags];
 }
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString{

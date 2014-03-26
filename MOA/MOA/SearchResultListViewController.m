@@ -155,8 +155,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
         }
         else
         {
-            NSURL *imageUrl = [[NSURL alloc] initWithString:@"http://miacreative.com/ESW/Images/WHITE-BOX-MID.png"];
-            BHPhoto *photo = [BHPhoto photoWithImageURL:imageUrl];
+            BHPhoto* photo = [BHPhoto photoWithImageName:@"ImageNotAvailable"];
             [album addPhoto:photo];
         }
         album.name = [NSString stringWithFormat:@"%@: %@", [[itemList objectAtIndex:a] objectForKey:@"name"], [[itemList objectAtIndex:a] objectForKey:@"identification_number"]];

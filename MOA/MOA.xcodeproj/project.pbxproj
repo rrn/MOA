@@ -56,6 +56,7 @@
 		BB0E659A1835926800163652 /* TagList.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0E65991835926800163652 /* TagList.m */; };
 		BB0E659D1835A61300163652 /* SplashScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = BB0E659C1835A61300163652 /* SplashScreen.m */; };
 		BB3179FD1827112F00CC9C38 /* ExploreMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = BB3179FC1827112F00CC9C38 /* ExploreMainViewController.m */; };
+		BB38CCB118E363250089F54F /* ImageNotAvailable.png in Resources */ = {isa = PBXBuildFile; fileRef = BB38CCB018E363250089F54F /* ImageNotAvailable.png */; };
 		BBA3405B1826D6F700B6E4B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBA3405A1826D6F700B6E4B1 /* Foundation.framework */; };
 		BBA3405D1826D6F700B6E4B1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBA3405C1826D6F700B6E4B1 /* CoreGraphics.framework */; };
 		BBA3405F1826D6F700B6E4B1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBA3405E1826D6F700B6E4B1 /* UIKit.framework */; };
@@ -204,6 +205,7 @@
 		BB0E659F18371AA100163652 /* SearchResultListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResultListViewController.m; sourceTree = "<group>"; };
 		BB3179FB1827112F00CC9C38 /* ExploreMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExploreMainViewController.h; sourceTree = "<group>"; };
 		BB3179FC1827112F00CC9C38 /* ExploreMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExploreMainViewController.m; sourceTree = "<group>"; };
+		BB38CCB018E363250089F54F /* ImageNotAvailable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ImageNotAvailable.png; sourceTree = "<group>"; };
 		BBA340571826D6F700B6E4B1 /* MOA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MOA.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBA3405A1826D6F700B6E4B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		BBA3405C1826D6F700B6E4B1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -468,6 +470,7 @@
 				BB0E6595183575E200163652 /* TagAdditionViewController.h */,
 				BB0E6596183575E200163652 /* TagAdditionViewController.m */,
 				BBA340721826D6F700B6E4B1 /* Images.xcassets */,
+				BB38CCB018E363250089F54F /* ImageNotAvailable.png */,
 				BBA340611826D6F700B6E4B1 /* Supporting Files */,
 				BB3179FB1827112F00CC9C38 /* ExploreMainViewController.h */,
 				BB3179FC1827112F00CC9C38 /* ExploreMainViewController.m */,
@@ -651,6 +654,7 @@
 				E4FBA44518CD063900EFFA29 /* close.png in Resources */,
 				BBA34090182700FC00B6E4B1 /* 480x360.gif in Resources */,
 				E438465A18BAD126008F1E42 /* 06_Facebook_22px.png in Resources */,
+				BB38CCB118E363250089F54F /* ImageNotAvailable.png in Resources */,
 				50FA4065183B714900EC0CEC /* MOA.sqlite in Resources */,
 				E4FBA45118CE45F700EFFA29 /* 09_Connect_22px.png in Resources */,
 				BBA340731826D6F700B6E4B1 /* Images.xcassets in Resources */,

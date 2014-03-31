@@ -110,7 +110,7 @@
     NetworkStatus internetStatus = [reachability currentReachabilityStatus];
     
     if(internetStatus == NotReachable) {
-        self.displayItemImageView.image = [database loadImageFromDB:@"whats_on" :@"image" :index].image;
+        self.displayItemImageView.image = [database loadImageFromDB:@"whats_on" :@"image" :(int)index].image;
     }
     else{
         [self performSelectorInBackground:@selector(downloadImage:) withObject:imageURL];

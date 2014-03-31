@@ -18,6 +18,7 @@
 @property (nonatomic, strong, readonly) NSArray *photos;
 
 - (void)addPhoto:(BHPhoto *)photo;
+- (void)addPhotoI:(UIImage *)photo;
 - (BOOL)removePhoto:(BHPhoto *)photo;
 
 @end

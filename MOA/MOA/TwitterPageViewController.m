@@ -17,6 +17,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
+
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -26,9 +27,22 @@
 
 - (void)viewDidLoad
 {
+
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    CGRect frame;
+    CGRect frame2;
+    NSArray *toolbarItems = _toolbar.items;
+        frame= CGRectMake(0, _navigationBar.frame.size.height+20, screenBounds.size.width, screenBounds.size.height-(_navigationBar.frame.size.height+20) - _toolbar.frame.size.height);
+        frame2 =CGRectMake(_toolbar.frame.origin.x, screenBounds.size.height-_toolbar.frame.size.height, _toolbar.frame.size.width, _toolbar.frame.size.height);
+        _webView = [[UIWebView alloc] initWithFrame:frame];
+        _toolbar = [[UIToolbar alloc] initWithFrame:frame2];
+        _toolbar.items = toolbarItems;
+        
+        [self.view addSubview:_webView];
+        [self.view addSubview:_toolbar];
+
+
     Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
     NetworkStatus internetStatus = [reachability currentReachabilityStatus];
     

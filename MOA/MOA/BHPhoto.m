@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong, readwrite) NSURL *imageURL;
 @property (nonatomic, strong, readwrite) UIImage *image;
+@property (nonatomic, strong, readwrite) NSString *imageName;
 
 @end
 
@@ -26,6 +27,9 @@
         UIImage *image = [UIImage imageWithData:imageData scale:[UIScreen mainScreen].scale];
         
         _image = image;
+    }else if (!_image && self.imageName){
+        UIImage *image = [UIImage imageNamed:_imageName];
+        _image = image;
     }
     
     return _image;
@@ -37,6 +41,22 @@
 {
     return [[self alloc] initWithImageURL:imageURL];
 }
+
++(BHPhoto *)photoWithImageName:(NSString *)imageName
+{
+    return [[self alloc] initWithImageName:imageName];
+}
+
+
+- (id)initWithImageName:(NSString *)name
+{
+    self = [super init];
+    if (self) {
+        self.imageName = name;
+    }
+    return self;
+}
+
 
 - (id)initWithImageURL:(NSURL *)imageURL
 {

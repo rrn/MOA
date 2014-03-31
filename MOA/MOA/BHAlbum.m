@@ -42,6 +42,10 @@
 {
     [self.mutablePhotos addObject:photo];
 }
+- (void)addPhotoI:(UIImage *)photo
+{
+    [self.mutablePhotos addObject:photo];
+}
 
 - (BOOL)removePhoto:(BHPhoto *)photo
 {

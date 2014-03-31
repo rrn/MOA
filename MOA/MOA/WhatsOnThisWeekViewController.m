@@ -65,7 +65,6 @@
     }
     else{
         internet = YES;
-        if([[[TagList sharedInstance] calendarEvents]count]==0)
             [TagList loadInformation];
         
         // load image once the screen is shown - only when there is internet!
@@ -114,7 +113,7 @@
     if (internet == YES){
         cell.imageView.image = [UIImage imageWithData: [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[event objectForKey:@"image"]]]];
     } else {
-        cell.imageView.image = [database loadImageFromDB:@"whats_on" :@"image" :indexPath.row].image;
+        cell.imageView.image = [database loadImageFromDB:@"whats_on" :@"image" :(int)indexPath.row].image;
     }
     
     return cell;

@@ -9,13 +9,6 @@
 #import "CrudOp.h"
 
 @implementation CrudOp
-@synthesize  coldbl;
-@synthesize colint;
-@synthesize coltext;
-@synthesize dataId;
-@synthesize fileMgr;
-@synthesize homeDir;
-@synthesize title;
 
 
 void sqliteCallbackFunc(void *foo, const char* statement) {
@@ -44,7 +37,7 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     [fileMgr removeItemAtPath:copydbpath error:&err];
     if(![fileMgr copyItemAtPath:dbpath toPath:copydbpath error:&err])
     {
-        UIAlertView *tellErr = [[UIAlertView alloc] initWithTitle:title message:@"Unable to copy database." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *tellErr = [[UIAlertView alloc] initWithTitle:NULL message:@"Unable to copy database." delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [tellErr show];
         
     }
@@ -82,9 +75,10 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
         }
     }
     
-    char* errmsg;
+    char* errmsg = NULL;
     //sqlite3_trace(cruddb, sqliteCallbackFunc, NULL); // uncomment this for trace
     sqlite3_exec(cruddb, "COMMIT", NULL, NULL, &errmsg);
+    sqlite3_free(errmsg);
     if(SQLITE_DONE != sqlite3_step(stmt)){
         NSLog(@"Error while updating. %s", sqlite3_errmsg(cruddb));
     }
@@ -218,9 +212,10 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
         }
     }
     
-    char* errmsg;
+    char* errmsg = NULL;
     //sqlite3_trace(cruddb, sqliteCallbackFunc, NULL);
     sqlite3_exec(cruddb, "COMMIT", NULL, NULL, &errmsg);
+    sqlite3_free(errmsg);
     sqlite3_finalize(stmt);
     sqlite3_close(cruddb);
     return rowExists;
@@ -253,9 +248,10 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
         }
     }
     
-    char* errmsg;
+    char* errmsg = NULL;
     //sqlite3_trace(cruddb, sqliteCallbackFunc, NULL); // uncomment this for trace
     sqlite3_exec(cruddb, "COMMIT", NULL, NULL, &errmsg);
+    sqlite3_free(errmsg);
     
     if(SQLITE_DONE != sqlite3_step(stmt)){
         NSLog(@"Error while updating. %s", sqlite3_errmsg(cruddb));
@@ -312,6 +308,7 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     const char *dbpath = [crudddatabase UTF8String];
     NSString* sqlString = [NSString stringWithFormat:@"UPDATE %@ Set %@='%@' Where rowid=%d", tableName, attributeName, path, rowid+1];
     const char* sql = [sqlString UTF8String];
+    sqlString = NULL;
     
     int rc = sqlite3_open(dbpath, &cruddb);
     if(rc == SQLITE_OK)
@@ -323,9 +320,10 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
         }
     }
     
-    char* errmsg;
+    char* errmsg = NULL;
     //sqlite3_trace(cruddb, sqliteCallbackFunc, NULL); // uncomment this for trace
     sqlite3_exec(cruddb, "COMMIT", NULL, NULL, &errmsg);
+    sqlite3_free(errmsg);
     
     if(SQLITE_DONE != sqlite3_step(stmt)){
         NSLog(@"Error while updating. %s", sqlite3_errmsg(cruddb));

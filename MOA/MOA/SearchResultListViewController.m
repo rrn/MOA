@@ -50,7 +50,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
 {
     [super viewDidLoad];
     
-    
+    Type = @"";
     NSPredicate *predicate = [NSPredicate predicateWithFormat: @"SELF matches [c] %@", [self title]];
     searchArray = [[[[TagList sharedInstance] objectTypeTags] filteredArrayUsingPredicate:predicate] mutableCopy];
     if([searchArray count] == 1)
@@ -67,6 +67,8 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     searchArray = [[[[TagList sharedInstance] peopleTags] filteredArrayUsingPredicate:predicate] mutableCopy];
     if([searchArray count] == 1)
         Type = @"People";
+    if([Type isEqualToString:@""])
+        Type= @"id";
     
     
     // Set the side bar button action. When it's tapped, it'll show up the sidebar.
@@ -129,7 +131,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     
     //[NSThread sleepForTimeInterval:1.0f];
     
-    self.collectionView.backgroundColor = [UIColor colorWithWhite:0.25f alpha:1.0f];
+    self.collectionView.backgroundColor = [UIColor whiteColor];
     [self.collectionView registerClass:[ItemViewCell class]
             forCellWithReuseIdentifier:PhotoCellIdentifier];
     
@@ -144,7 +146,10 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
         
         
         if ([digitalObjects count] > 0){
-            NSURL *imageUrl = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"http:%@",[[digitalObjects objectAtIndex:0] objectForKey:@"thumbnail_url"]]];
+            
+            NSString *thumbnailURL70b70 = [[NSString alloc] initWithString:[[digitalObjects objectAtIndex:0] objectForKey:@"thumbnail_url"]];
+            NSString *thumbnailURL220b220 = [thumbnailURL70b70 stringByReplacingOccurrencesOfString:@"w70h70c" withString:@"w220h220c"];
+            NSURL *imageUrl = [[NSURL alloc] initWithString:[NSString stringWithFormat:@"http:%@", thumbnailURL220b220]];
             
             NSURL *photoURL = imageUrl;
             BHPhoto *photo = [BHPhoto photoWithImageURL:photoURL];
@@ -152,13 +157,47 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
         }
         else
         {
-            NSURL *imageUrl = [[NSURL alloc] initWithString:@"http://miacreative.com/ESW/Images/WHITE-BOX-MID.png"];
-            BHPhoto *photo = [BHPhoto photoWithImageURL:imageUrl];
+            BHPhoto* photo = [BHPhoto photoWithImageName:@"ImageNotAvailable"];
             [album addPhoto:photo];
         }
         album.name = [NSString stringWithFormat:@"%@: %@", [[itemList objectAtIndex:a] objectForKey:@"name"], [[itemList objectAtIndex:a] objectForKey:@"identification_number"]];
         //add item country/dates
-        album.country = [[itemList objectAtIndex:a] objectForKey:@"name"];
+        //        NSLog(@"%@", [[[itemList objectAtIndex:a] objectForKey:@"creation_locations"] objectAtIndex:0]);
+        if([[[itemList objectAtIndex:a] objectForKey:@"creation_locations"] count] > 0){
+            if([[[[[itemList objectAtIndex:a] objectForKey:@"creation_locations"] objectAtIndex:0] objectForKey:@"name"] rangeOfString:@"null"].location == NSNotFound){
+                album.country = [[[[itemList objectAtIndex:a] objectForKey:@"creation_locations"] objectAtIndex:0] objectForKey:@"name"];
+            }
+            else{
+                album.country = @"";
+            }
+        }
+        if([[[itemList objectAtIndex:a] objectForKey:@"creation_events"] count] > 0){
+            if([[[[itemList objectAtIndex:a] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"start_year"] != [NSNull null]){
+                NSLog(@"first if %@", [[[[itemList objectAtIndex:a] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"start_year"]);
+                if([[[[itemList objectAtIndex:a] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"end_year"] != [NSNull null]){
+                    if([[[[[itemList objectAtIndex:a] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"start_year"] intValue] !=[[[[[itemList objectAtIndex:a] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"end_year"] intValue]){
+                            album.date = [NSString stringWithFormat:@"%i to %i",[[[[[itemList objectAtIndex:a] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"start_year"] intValue], [[[[[itemList objectAtIndex:a] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"end_year"] intValue]];
+                    }else{
+                        album.date = [NSString stringWithFormat:@"During %i",[[[[[itemList objectAtIndex:a] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"end_year"] intValue]];
+                    }
+                    
+                }else{
+                    album.date = [NSString stringWithFormat:@"After %i",[[[[[itemList objectAtIndex:a] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"start_year"] intValue]];
+                }
+            }
+            else{
+                if([[[[itemList objectAtIndex:a] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"end_year"] != [NSNull null]){
+                    album.date = [NSString stringWithFormat:@"Before %i",[[[[[itemList objectAtIndex:a] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"end_year"] intValue]];
+                }
+                else{
+                    album.date = @"";
+                }
+                
+            }
+        }
+        else{
+            album.date = @"";
+        }
         
         [self.albums addObject:album];
         self.thumbnailQueue = [[NSOperationQueue alloc] init];
@@ -201,15 +240,15 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
         temp = [self title];
         tempCatogeryType = Type;
         searchType = [temp stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-
+        
         
     }else{
         tempNumber = self.navigationController.viewControllers.count;
-        tempCatogeryType = [[self.navigationController.viewControllers objectAtIndex:tempNumber-3] title];
+        tempCatogeryType = [[self.navigationController.viewControllers objectAtIndex:tempNumber-2] title];
         temp = [self title];
         searchType = [temp stringByReplacingOccurrencesOfString:@" " withString:@"+"];
     }
-
+    
     
     
     NSString *catogeryType = [[NSString alloc]init];
@@ -245,9 +284,12 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
         
         
     }
+    else if ([tempCatogeryType isEqualToString:@"id"]){
+        catogeryType = @"id";
+    }
     
     searchType = [searchType stringByReplacingOccurrencesOfString:@" " withString:@"+"];
-
+    
     NSString *jsonString = [ [NSMutableString alloc]
                             initWithContentsOfURL:[ [NSURL alloc] initWithString:[NSString stringWithFormat:@"http://www.rrnpilot.org/items.json?filters=held+at+MOA:+University+of+British+Columbia,+%@+%@", catogeryType,searchType]]
                             encoding:NSUTF8StringEncoding
@@ -256,16 +298,16 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     NSData *jsonData = [[jsonString dataUsingEncoding:NSUTF8StringEncoding] mutableCopy];
     
     NSDictionary *entireDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
-
+    
     itemList = [[entireDictionary objectForKey:@"items"] mutableCopy];
     int x = [[entireDictionary objectForKey:@"result-count"] intValue];
     //NSLog(@"%@", jsonString);
-    for(int b = 20; b < x; b= b+10){
+    for(int b = 10; b < x; b= b+10){
         NSString *jsonString = [ [NSString alloc]
-                      initWithContentsOfURL:[ [NSURL alloc] initWithString:[NSString stringWithFormat:@"http://www.rrnpilot.org/items.json?filters=held+at+MOA:+University+of+British+Columbia,+%@+%@&page=%i", catogeryType,searchType,(b/10)]]
-                      encoding:NSUTF8StringEncoding
-                      error:nil
-                      ];
+                                initWithContentsOfURL:[ [NSURL alloc] initWithString:[NSString stringWithFormat:@"http://www.rrnpilot.org/items.json?filters=held+at+MOA:+University+of+British+Columbia,+%@+%@&page=%i", catogeryType,searchType,(b/10)+1]]
+                                encoding:NSUTF8StringEncoding
+                                error:nil
+                                ];
         NSData* jsonData =[[jsonString dataUsingEncoding:NSUTF8StringEncoding] mutableCopy];
         NSDictionary *entireDictionary =[NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
         NSMutableArray *temp =[[entireDictionary objectForKey:@"items"] mutableCopy];
@@ -316,10 +358,13 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     BHAlbum *album = self.albums[indexPath.section];
     
     //Set cell title
-    titleView.titleLabel.numberOfLines=0;
-    titleView.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-    titleView.titleLabel.text = [NSString stringWithFormat:@"%@\ntest\ntest", album.name];
-    
+    titleView.titleLabel.numberOfLines=1;
+    titleView.titleLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+    titleView.dateLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+    titleView.countryLabel.lineBreakMode = NSLineBreakByTruncatingTail;
+    titleView.titleLabel.text = [NSString stringWithFormat:@"%@", album.name];
+    titleView.dateLabel.text =[NSString stringWithFormat:@"%@", album.date];
+    titleView.countryLabel.text =[NSString stringWithFormat:@"%@", album.country];
     return titleView;
 }
 

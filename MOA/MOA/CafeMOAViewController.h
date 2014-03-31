@@ -16,7 +16,7 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (nonatomic, weak) IBOutlet UIScrollView *scroll;
-@property (nonatomic, weak) UITableView *tableView;
+@property (nonatomic, retain) UITableView *tableView;
 
 
 

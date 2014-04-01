@@ -59,7 +59,6 @@
     
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     [self adjustViewsForOrientation:orientation];
-
     
     [carousel reloadData];
     carousel.type = iCarouselTypeRotary;
@@ -88,6 +87,8 @@
     [backwardsRecognizer setDirection:(UISwipeGestureRecognizerDirectionLeft)];
     [[self view] addGestureRecognizer:forwardRecognizer];
     [[self view] addGestureRecognizer:backwardsRecognizer];
+    
+    [self performSelectorInBackground:@selector(updateImageToDB) withObject:nil];
     [super viewDidLoad];
 
     // Sidebar button code
@@ -104,14 +105,6 @@
 
 -(void) viewDidAppear:(BOOL)animated
 {
-    // load image once the screen is shown - only when there is internet!
-    if (syncLocalDB == NO && internet == YES) {
-        for (int i = 0; i < [[TagList sharedInstance].exhibitionEvents count]; i++){
-            [database updateImageToLocalDB:@"moa_exhibitions" :@"image" :[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"image"] :i];
-            [database updateImageToLocalDB:@"moa_exhibitions" :@"detailImage" :[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"detailImage"] :i];
-        }
-        syncLocalDB = YES;
-    }
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)recognizer shouldReceiveTouch:(UITouch *)touch
@@ -133,6 +126,20 @@
 {
     [carousel scrollByNumberOfItems:-1 duration:0.5];
 }
+
+-(void)updateImageToDB
+{
+    if (syncLocalDB == NO && internet == YES) {
+        for (int i = 0; i < [[TagList sharedInstance].exhibitionEvents count]; i++){
+            [database updateImageToLocalDB:@"moa_exhibitions" :@"image" :[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"image"] :i];
+            [database updateImageToLocalDB:@"moa_exhibitions" :@"detailImage" :[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"detailImage"] :i];
+        }
+        syncLocalDB = YES;
+    }
+
+}
+
+
 
 -(void)handleTap:(UITapGestureRecognizer*)sender
 {

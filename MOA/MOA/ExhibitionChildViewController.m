@@ -141,9 +141,12 @@
     
     NSString* desc = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:selectedTag] objectForKey:@"Summary"];
     UITextView *descTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, cursorPosition + 10, width-20, 10)];
+
+    // Summary string as attributed string to render HTML
+    NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[desc dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
     
     [descTextView setFont:[UIFont systemFontOfSize:12]];
-    descTextView.text = desc;
+    descTextView.attributedText = attributedString;
     descTextView.userInteractionEnabled = NO;
     descTextView.scrollEnabled=NO;
     descTextView.textAlignment = NSTextAlignmentJustified;

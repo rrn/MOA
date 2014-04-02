@@ -1592,8 +1592,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="About the MOA App" id="B4b-bz-RD0">
-                                        <barButtonItem key="leftBarButtonItem" image="close-50.png" style="plain" id="nWQ-yP-zrN">
-                                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="stop" id="nWQ-yP-zrN">
                                             <connections>
                                                 <action selector="exit:" destination="L6o-JR-mFV" id="3Jb-NT-O6L"/>
                                             </connections>
@@ -1602,11 +1601,11 @@
                                 </items>
                             </navigationBar>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AQH-dS-dQd">
-                                <rect key="frame" x="0.0" y="-22" width="320" height="502"/>
+                                <rect key="frame" x="0.0" y="66" width="320" height="414"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" restorationIdentifier="AboutText" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JcI-KA-txa">
-                                        <rect key="frame" x="20" y="0.0" width="280" height="489"/>
+                                        <rect key="frame" x="20" y="0.0" width="280" height="413"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -1623,7 +1622,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DL9-uW-xAu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3177" y="-4282"/>
+            <point key="canvasLocation" x="3209" y="-4287"/>
         </scene>
         <!--Newsletter View Controller-->
         <scene sceneID="1W1-fs-d4g">
@@ -1681,7 +1680,6 @@
         <image name="12_Share_22px.png" width="22" height="22"/>
         <image name="13_App_22px.png" width="22" height="22"/>
         <image name="MOA_Splash_640x1136.png" width="640" height="1136"/>
-        <image name="close-50.png" width="50" height="50"/>
         <image name="plan_a_visit.jpg" width="3072" height="2124"/>
         <image name="shop-1.jpg" width="1800" height="1200"/>
     </resources>

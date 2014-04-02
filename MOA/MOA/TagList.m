@@ -185,7 +185,31 @@
     
     [temp3 setObject:temp2 forKey:@"whats_on"];
     [[TagList sharedInstance] setCalendarEvents:[temp3 objectForKey:@"whats_on"]];
-    [[TagList sharedInstance] setExhibitionEvents:[temp objectForKey:@"moa_exhibitions"]];
+    
+    // sort exhibitions, get the current and future exhibitions only
+    NSDate* currentDate = [NSDate date];
+    NSDate* exhibitionExpiryDate = [NSDate alloc];
+    NSMutableArray* filteredExhibitionsArray = [[NSMutableArray alloc] init];
+    NSMutableDictionary* filteredExhibitions = [[NSMutableDictionary alloc] init];
+    
+    for (int exhibitionIterator = 0; exhibitionIterator < [[temp objectForKey:@"moa_exhibitions"] count]; exhibitionIterator++){
+        
+        // get expiry Date for each exhibition
+        NSString* expiryDate = [[[temp objectForKey:@"moa_exhibitions"] objectAtIndex:exhibitionIterator] objectForKey:@"expiryDate"];
+        NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+        [dateFormat setDateFormat:@"yyyy-MM-dd"];
+        exhibitionExpiryDate = [dateFormat dateFromString:expiryDate];
+        
+        // compare with current date. only takes future exhibitions
+        NSComparisonResult result = [currentDate compare:exhibitionExpiryDate];
+        if (result == NSOrderedAscending || result == NSOrderedSame)
+        {
+            [filteredExhibitionsArray addObject:[[temp objectForKey:@"moa_exhibitions"] objectAtIndex: exhibitionIterator]];
+        }
+    }
+    
+    [filteredExhibitions setObject:filteredExhibitionsArray forKey:@"moa_exhibitions"];
+    [[TagList sharedInstance] setExhibitionEvents:[filteredExhibitions objectForKey:@"moa_exhibitions"]];
     
     // store remote data to database
     CrudOp* localdb = [[CrudOp alloc]init];

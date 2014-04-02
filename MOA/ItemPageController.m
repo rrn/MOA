@@ -25,6 +25,8 @@
 {
     NSMutableString *generalDescription2;
     NSMutableString *generalDescription3;
+    CGRect imageRect;
+    BOOL isImageDisplayed;
 }
 
 @synthesize data, itemNumber, count;
@@ -70,20 +72,7 @@
     _sideBarButton.target = self.revealViewController;
     _sideBarButton.action = @selector(rightRevealToggle:);
     
-    CGRect scrollFrame;
-    if ([[UIScreen mainScreen] bounds].size.height == 568)
-    {
-        //iphone 5
-        scrollFrame.origin = self.theScrollView.frame.origin;
-        scrollFrame.size = CGSizeMake(self.theScrollView.frame.size.width, 440);
-    }
-    else{
-        //other iphones
-        scrollFrame.origin = self.theScrollView.frame.origin;
-        scrollFrame.size = CGSizeMake(self.theScrollView.frame.size.width, 352);
-    }
-    
-    self.theScrollView = [[UIScrollView alloc] initWithFrame:scrollFrame];
+
     _nextItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(nextItem:)];
     _previousItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self action:@selector(previousItem:)];
     _titleText = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:self action:nil];
@@ -101,11 +90,18 @@
     float screenWidth =[UIScreen mainScreen].bounds.size.width;
     
     self.itemNameLabel =[[UILabel alloc] initWithFrame:CGRectMake(screenWidth/20, 10, screenWidth -screenWidth/20, 30)];
+    self.itemNameLabel.tag = 2;
+
     self.idNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth/20, 50, screenWidth -screenWidth/20, 30)];
-    self.displayItemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/20, 90, screenWidth -(2*screenWidth)/20, 200)];
+    
+    self.idNumberLabel.tag = 1;
+    
+    imageRect = CGRectMake(screenWidth/20, 90, screenWidth -(2*screenWidth)/20, 200);
+    self.displayItemImageView = [[UIImageView alloc] initWithFrame: imageRect];
+    self.displayItemImageView.tag = 3;
     self.itemDescriptionTextView = [[UITextView alloc] initWithFrame:CGRectMake(screenWidth/20, 300, screenWidth -(2*screenWidth)/20, 200)];
     self.itemDescriptionTextView.scrollEnabled = NO;
-    
+    isImageDisplayed = YES;
 
     
     [[self theScrollView] addSubview:[self itemNameLabel]];
@@ -168,7 +164,16 @@
     else{
         if([digitalObjects count] > 0){
             //http was dropped from feed so needed to be appended at front
+            if (!isImageDisplayed) {
+                isImageDisplayed = YES;
+                [self addImageView];
+            }
             [self performSelectorInBackground:@selector(downloadImage:) withObject:digitalObjects];
+        }else{
+            if (isImageDisplayed) {
+                isImageDisplayed = NO;
+                [self removeImageView];
+            }
         }
     }
 
@@ -197,12 +202,40 @@
     
     [self.itemDescriptionTextView sizeToFit];
     
-    float height = self.itemNameLabel.frame.size.height + self.idNumberLabel.frame.size.height + self.displayItemImageView.frame.size.height + self.itemDescriptionTextView.frame.size.height + 40;
+    
     
     self.itemDescriptionTextView.editable = NO;
     
-    [self.theScrollView setContentSize:CGSizeMake(self.theScrollView.frame.size.width, height)];
+    [self setScrollContentSize];
+    
 }
+
+-(void) addImageView
+{
+    [self.theScrollView addSubview:self.displayItemImageView];
+    NSArray* views = [self.theScrollView subviews];
+    for (UIView* singleView in views)
+    {
+        if (singleView.tag != 1 && singleView.tag != 2 && singleView.tag != 3) {
+            [singleView setFrame:CGRectMake(singleView.frame.origin.x, singleView.frame.origin.y + imageRect.size.height, singleView.frame.size.width, singleView.frame.size.height)];
+        }
+    }
+    [self setScrollContentSize];
+}
+-(void) removeImageView
+{
+    [self.displayItemImageView removeFromSuperview];
+    NSArray* views = [self.theScrollView subviews];
+    for (UIView* singleView in views)
+    {
+        if (singleView.tag != 1 && singleView.tag != 2) {
+            [singleView setFrame:CGRectMake(singleView.frame.origin.x, singleView.frame.origin.y - imageRect.size.height, singleView.frame.size.width, singleView.frame.size.height)];
+        }
+    }
+
+    [self setScrollContentSize];
+}
+
 
 - (void) generalDescription2Text
 {
@@ -293,6 +326,16 @@
     }
 }
 
+-(void) setScrollContentSize
+{
+    float height = self.itemNameLabel.frame.size.height + self.idNumberLabel.frame.size.height + self.itemDescriptionTextView.frame.size.height + 40;
+    
+    if (isImageDisplayed) {
+        height = height + self.displayItemImageView.frame.size.height;
+    }
+    
+    [self.theScrollView setContentSize:CGSizeMake(self.theScrollView.frame.size.width, height)];
+}
 
 - (void)didReceiveMemoryWarning
 {

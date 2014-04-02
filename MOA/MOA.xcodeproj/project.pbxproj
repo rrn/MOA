@@ -649,6 +649,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Museum of Anthropology UBC";
 				TargetAttributes = {
+					BBA340561826D6F700B6E4B1 = {
+						DevelopmentTeam = 3RVXS2ND9M;
+					};
 					BBA340771826D6F700B6E4B1 = {
 						TestTargetID = BBA340561826D6F700B6E4B1;
 					};

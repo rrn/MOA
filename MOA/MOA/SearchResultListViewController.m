@@ -33,6 +33,10 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     NSArray *imageList;
     NSString *Type;
     NSMutableArray *searchArray;
+    NSInteger resultSize;
+    NSInteger itemIterator;
+    NSString* catogeryType;
+    NSString* searchType;
 }
 
 @synthesize activityLoader;
@@ -107,6 +111,9 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
                 activityLoader.hidden =YES;
                 
                 [self.collectionView reloadData];
+                if (resultSize > 10) {
+                    [self performSelector:@selector(displayLoadMore) withObject:self afterDelay:.2];
+                }
             });
         });
     }
@@ -114,6 +121,54 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     
 }
 
+-(void) loadMoreButtonPressed:(UIButton*)sender
+{
+    [sender removeFromSuperview];
+    if (itemIterator < resultSize) {
+        NSString *jsonString = [ [NSString alloc]
+                                initWithContentsOfURL:[ [NSURL alloc] initWithString:[NSString stringWithFormat:@"http://www.rrnpilot.org/items.json?filters=held+at+MOA:+University+of+British+Columbia,+%@+%@&page=%i", catogeryType,searchType,(itemIterator/10)+1]]
+                                encoding:NSUTF8StringEncoding
+                                error:nil
+                                ];
+        NSData* jsonData =[[jsonString dataUsingEncoding:NSUTF8StringEncoding] mutableCopy];
+        NSDictionary *entireDictionary =[NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+        NSMutableArray *temp =[[entireDictionary objectForKey:@"items"] mutableCopy];
+        [itemList addObjectsFromArray:temp];
+        itemIterator = itemIterator + 10;
+    }
+    [self createAlbums];
+    [[self collectionView] reloadData];
+    if(itemIterator < resultSize){
+        [self performSelector:@selector(updateButtonLocation:) withObject:sender afterDelay:0.5];
+    }
+}
+
+-(void) updateButtonLocation:(UIButton*) button
+{
+    [self.collectionView addSubview:button];
+    [button setFrame:CGRectMake(20, self.collectionView.contentSize.height - 50, self.collectionView.contentSize.width - 40, 30)];
+}
+
+
+-(void)displayLoadMore
+{
+    UIButton* button = [[UIButton alloc] init];
+    button.frame = CGRectMake(20, self.collectionView.contentSize.height - 50, self.collectionView.contentSize.width - 40, 30);
+    [button setTitle:@"Load More..." forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+    
+    //button.backgroundColor = [UIColor whiteColor];
+    
+    //button.titleLabel.text = @"Load More...";
+    //button.titleLabel.textColor = [UIColor blackColor];
+    
+    [button addTarget:self action:@selector(loadMoreButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    //button.titleLabel.textColor = [UIColor grayColor];
+    
+    [self.collectionView addSubview:button];
+    
+    self.collectionView.contentSize = CGSizeMake(self.collectionView.contentSize.width, self.collectionView.contentSize.height + 30 + 30 + 30);
+}
 
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
@@ -138,8 +193,18 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     self.albums = [NSMutableArray array];
     
     
+    [self createAlbums];
     
-    for (NSInteger a = 0; a < [itemList count]; a++) {
+
+    [self.collectionView registerClass:[BHAlbumTitleReusableView class]
+            forSupplementaryViewOfKind:BHPhotoAlbumLayoutAlbumTitleKind
+                   withReuseIdentifier:AlbumTitleIdentifier];
+    
+}
+
+-(void) createAlbums
+{
+    for (NSInteger a = itemIterator-10; a < [itemList count]; a++) {
         BHAlbum *album = [[BHAlbum alloc] init];
         
         NSArray *digitalObjects = [[itemList objectAtIndex:a] objectForKey:@"digital_objects"];
@@ -176,7 +241,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
                 NSLog(@"first if %@", [[[[itemList objectAtIndex:a] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"start_year"]);
                 if([[[[itemList objectAtIndex:a] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"end_year"] != [NSNull null]){
                     if([[[[[itemList objectAtIndex:a] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"start_year"] intValue] !=[[[[[itemList objectAtIndex:a] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"end_year"] intValue]){
-                            album.date = [NSString stringWithFormat:@"%i to %i",[[[[[itemList objectAtIndex:a] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"start_year"] intValue], [[[[[itemList objectAtIndex:a] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"end_year"] intValue]];
+                        album.date = [NSString stringWithFormat:@"%i to %i",[[[[[itemList objectAtIndex:a] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"start_year"] intValue], [[[[[itemList objectAtIndex:a] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"end_year"] intValue]];
                     }else{
                         album.date = [NSString stringWithFormat:@"During %i",[[[[[itemList objectAtIndex:a] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"end_year"] intValue]];
                     }
@@ -204,10 +269,6 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
         self.thumbnailQueue.maxConcurrentOperationCount = 3;
         
     }
-    [self.collectionView registerClass:[BHAlbumTitleReusableView class]
-            forSupplementaryViewOfKind:BHPhotoAlbumLayoutAlbumTitleKind
-                   withReuseIdentifier:AlbumTitleIdentifier];
-    
 }
 - (void)didReceiveMemoryWarning
 {
@@ -232,7 +293,6 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     
     NSInteger tempNumber;
     NSString *tempCatogeryType;
-    NSString *searchType ;
     NSString *temp;
     
     if(self.navigationController.viewControllers.count <3){
@@ -251,7 +311,6 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     
     
     
-    NSString *catogeryType = [[NSString alloc]init];
     
     if([tempCatogeryType isEqualToString:@"Places"]){
         
@@ -300,19 +359,21 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     NSDictionary *entireDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
     
     itemList = [[entireDictionary objectForKey:@"items"] mutableCopy];
-    int x = [[entireDictionary objectForKey:@"result-count"] intValue];
+    resultSize = [[entireDictionary objectForKey:@"result-count"] intValue];
+    itemIterator = 10;
+    
     //NSLog(@"%@", jsonString);
-    for(int b = 10; b < x; b= b+10){
-        NSString *jsonString = [ [NSString alloc]
-                                initWithContentsOfURL:[ [NSURL alloc] initWithString:[NSString stringWithFormat:@"http://www.rrnpilot.org/items.json?filters=held+at+MOA:+University+of+British+Columbia,+%@+%@&page=%i", catogeryType,searchType,(b/10)+1]]
-                                encoding:NSUTF8StringEncoding
-                                error:nil
-                                ];
-        NSData* jsonData =[[jsonString dataUsingEncoding:NSUTF8StringEncoding] mutableCopy];
-        NSDictionary *entireDictionary =[NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
-        NSMutableArray *temp =[[entireDictionary objectForKey:@"items"] mutableCopy];
-        [itemList addObjectsFromArray:temp];
-    }
+//    for(int b = 10; b < x; b= b+10){
+//        NSString *jsonString = [ [NSString alloc]
+//                                initWithContentsOfURL:[ [NSURL alloc] initWithString:[NSString stringWithFormat:@"http://www.rrnpilot.org/items.json?filters=held+at+MOA:+University+of+British+Columbia,+%@+%@&page=%i", catogeryType,searchType,(b/10)+1]]
+//                                encoding:NSUTF8StringEncoding
+//                                error:nil
+//                                ];
+//        NSData* jsonData =[[jsonString dataUsingEncoding:NSUTF8StringEncoding] mutableCopy];
+//        NSDictionary *entireDictionary =[NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
+//        NSMutableArray *temp =[[entireDictionary objectForKey:@"items"] mutableCopy];
+//        [itemList addObjectsFromArray:temp];
+//    }
     
 }
 
@@ -344,6 +405,13 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     [self.thumbnailQueue addOperation:operation];
     
     return itemCell;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    NSLog(@"%f, %f, %f", self.collectionView.contentOffset.x , self.collectionView.contentOffset.y, self.collectionView.contentSize.height);
+    
+    
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView

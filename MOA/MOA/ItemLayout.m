@@ -154,7 +154,7 @@ NSString * const BHPhotoAlbumLayoutAlbumTitleKind = @"AlbumTitle";
     rowCount * self.titleHeight +
     self.itemInsets.bottom;
     
-    return CGSizeMake(self.collectionView.bounds.size.width, height);
+    return CGSizeMake(self.collectionView.bounds.size.width, height+ 50);
 }
 - (UICollectionViewLayoutAttributes *)layoutAttributesForSupplementaryViewOfKind:(NSString *)kind
                                                                      atIndexPath:(NSIndexPath *)indexPath

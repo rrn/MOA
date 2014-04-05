@@ -11,7 +11,7 @@
 #import "BHAlbum.h"
 #import "BHPhoto.h"
 
-@interface SearchResultListViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate, UIScrollViewDelegate>
+@interface SearchResultListViewController : UIViewController <UICollectionViewDataSource, UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sideBarButton;
 @property (weak, nonatomic) IBOutlet ItemLayout *itemViewLayout;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityLoader;

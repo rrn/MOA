@@ -69,9 +69,19 @@
     for(int i=0; i < [entireTagArrary count]; i++){
         
         NSDictionary *temp = [entireTagArrary objectAtIndex:i];
-        [[TagList sharedInstance].peopleTags addObject:[[temp objectForKey:@"name"] capitalizedString]];
+        
+        __block NSMutableString *lastWord = nil;
+        
+        [[[temp objectForKey:@"name"] capitalizedString] enumerateSubstringsInRange:NSMakeRange(0, [[[temp objectForKey:@"name"] capitalizedString] length]) options:NSStringEnumerationByWords | NSStringEnumerationReverse usingBlock:^(NSString *substring, NSRange subrange, NSRange enclosingRange, BOOL *stop) {
+            lastWord = [substring mutableCopy];
+            *stop = YES;
+        }];
+        NSString *firstName = [[[temp objectForKey:@"name"] capitalizedString] stringByReplacingOccurrencesOfString:lastWord withString:@""];
+        NSString *formattedString = [NSString stringWithFormat:@"%@, %@",lastWord,firstName];
+        [[TagList sharedInstance].peopleTags addObject:formattedString];
         
     }
+    [[TagList sharedInstance].peopleTags sortUsingSelector:@selector(caseInsensitiveCompare:)];
 }
 + (void)downloadPlacesJson{
     

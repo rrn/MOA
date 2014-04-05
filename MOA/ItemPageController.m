@@ -89,10 +89,10 @@
     
     float screenWidth =[UIScreen mainScreen].bounds.size.width;
     
-    self.itemNameLabel =[[UILabel alloc] initWithFrame:CGRectMake(screenWidth/20, 10, screenWidth -screenWidth/20, 30)];
+    self.itemNameLabel =[[UILabel alloc] initWithFrame:CGRectMake(screenWidth/20, 10, screenWidth -screenWidth/10, 30)];
     self.itemNameLabel.tag = 2;
 
-    self.idNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth/20, 50, screenWidth -screenWidth/20, 30)];
+    self.idNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(screenWidth/20, 50, screenWidth -screenWidth/10, 30)];
     
     self.idNumberLabel.tag = 1;
     
@@ -182,6 +182,10 @@
     self.displayItemImageView.contentMode = UIViewContentModeScaleAspectFit;
     self.itemNameLabel.text =[[data objectAtIndex:itemNumber] objectForKey:@"name"];
     self.idNumberLabel.text =[[data objectAtIndex:itemNumber] objectForKey:@"identification_number"];
+    self.itemNameLabel.font = [UIFont boldSystemFontOfSize:16.0f];
+    self.idNumberLabel.font = [UIFont boldSystemFontOfSize:16.0f];
+    self.itemNameLabel.textAlignment = NSTextAlignmentCenter;
+    self.idNumberLabel.textAlignment = NSTextAlignmentCenter;
     
     NSArray *institution_notes = [[data objectAtIndex:itemNumber] objectForKey:@"institution_notes"];
     NSString *temp;

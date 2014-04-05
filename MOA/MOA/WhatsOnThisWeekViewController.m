@@ -75,6 +75,8 @@
             syncLocalDb = YES;
         }
     }
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+    [super viewWillAppear:animated];
     
    
 }

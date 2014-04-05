@@ -103,7 +103,7 @@
     }
     
     NSString* title = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:selectedTag] objectForKey:@"title"];
-    UITextView *titleTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, 75, width, 10)];
+    UITextView *titleTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, 75, width, 10)];
     cursorPosition = 75;
     
     [titleTextView setFont:[UIFont boldSystemFontOfSize:18]];

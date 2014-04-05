@@ -39,7 +39,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.tagTable.contentInset = UIEdgeInsetsMake(-36, 0, 0, 0);
     characterList = [[NSMutableArray alloc] init];
     sortedTagList = [[NSMutableArray alloc] init];
     Letters = [NSArray arrayWithObjects:@"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
@@ -110,7 +109,6 @@
     NSString *previousTitle = [[self.navigationController.viewControllers objectAtIndex:tempNumber-1] title];
     NSInteger ascii = 65;
     [activityLoader setColor:[UIColor blackColor]];
-    NSLog(@"%@", previousTitle);
     
     Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
     NetworkStatus internetStatus = [reachability currentReachabilityStatus];

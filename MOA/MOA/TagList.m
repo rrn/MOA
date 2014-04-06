@@ -169,8 +169,8 @@
     NSMutableArray *temp2 = [[NSMutableArray alloc] init];
     NSMutableDictionary *temp3 = [[NSMutableDictionary alloc] init];
     NSDate *nowDate = [[NSDate alloc] init];
-//    NSCalendar *gregorian = [[NSCalendar alloc]
-//                             initWithCalendarIdentifier:NSGregorianCalendar];
+    //  NSCalendar *gregorian = [[NSCalendar alloc]
+    //                           initWithCalendarIdentifier:NSGregorianCalendar];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
@@ -196,12 +196,12 @@
     [temp3 setObject:temp2 forKey:@"whats_on"];
     [[TagList sharedInstance] setCalendarEvents:[temp3 objectForKey:@"whats_on"]];
     
-    // sort exhibitions, get the current and future exhibitions only
+    // ** INFORMATION FOR EXHIBITIONS PAGE**
+    // filter exhibitions, get the current and future exhibitions only
     NSDate* currentDate = [NSDate date];
     NSDate* exhibitionExpiryDate = [NSDate alloc];
     NSMutableArray* filteredExhibitionsArray = [[NSMutableArray alloc] init];
     NSMutableDictionary* filteredExhibitions = [[NSMutableDictionary alloc] init];
-    
     for (int exhibitionIterator = 0; exhibitionIterator < [[temp objectForKey:@"moa_exhibitions"] count]; exhibitionIterator++){
         
         // get expiry Date for each exhibition
@@ -217,6 +217,12 @@
             [filteredExhibitionsArray addObject:[[temp objectForKey:@"moa_exhibitions"] objectAtIndex: exhibitionIterator]];
         }
     }
+    // sort the exhibitions by expiryDate
+    [filteredExhibitionsArray sortUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        NSDate* date1 = [obj1 objectForKey:@"expiryDate"];
+        NSDate* date2 = [obj2 objectForKey:@"expiryDate"];
+        return [date1 compare:date2];
+    }];
     
     [filteredExhibitions setObject:filteredExhibitionsArray forKey:@"moa_exhibitions"];
     [[TagList sharedInstance] setExhibitionEvents:[filteredExhibitions objectForKey:@"moa_exhibitions"]];

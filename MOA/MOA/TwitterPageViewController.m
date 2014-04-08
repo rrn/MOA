@@ -95,5 +95,25 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+-(BOOL)shouldAutorotate
+{
+    
+    return UIInterfaceOrientationMaskPortrait;
+    
+}
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    
+    return UIInterfaceOrientationMaskPortrait;
+    
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    
+    return UIInterfaceOrientationPortrait;
+    
+}
 
 @end

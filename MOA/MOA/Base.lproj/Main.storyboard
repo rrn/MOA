@@ -1436,6 +1436,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="navigationBar" destination="S98-kx-aOL" id="QII-ou-osQ"/>
                         <outlet property="toolbar" destination="7lk-V1-1zn" id="RvA-am-k82"/>

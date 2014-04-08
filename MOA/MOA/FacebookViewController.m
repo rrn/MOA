@@ -91,4 +91,24 @@
 - (IBAction)refreshButtonPressed:(id)sender {
     [_webView reload];
 }
+-(BOOL)shouldAutorotate
+{
+    
+    return UIInterfaceOrientationMaskPortrait;
+    
+}
+
+-(NSUInteger)supportedInterfaceOrientations
+{
+    
+    return UIInterfaceOrientationMaskPortrait;
+    
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    
+    return UIInterfaceOrientationPortrait;
+    
+}
 @end

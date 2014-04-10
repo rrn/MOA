@@ -125,11 +125,7 @@
     _imageLoading.hidden = NO;
     [_imageLoading startAnimating];
     
-    NSString *imageUrlTemp = [NSString stringWithFormat:@"http:%@",[[digitalObjects objectAtIndex:0] objectForKey:@"url"]];
-    
-    //use smaller verison of image so it downloads faster changing dimensions downloads smaller verison
-    NSString *imageUrl = [imageUrlTemp stringByReplacingOccurrencesOfString:@"original" withString:@"w800h600"];
-    
+    NSString *imageUrl = [[NSString stringWithFormat:@"http:%@",[[digitalObjects objectAtIndex:0] objectForKey:@"url"]] stringByReplacingOccurrencesOfString:@"original" withString:@"w800h600"] ;
     NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: imageUrl]];
     self.displayItemImageView.image = [UIImage imageWithData:imageData];
     
@@ -206,11 +202,12 @@
         }
     }
     
-    if(!isImageDisplayed){
-        self.itemDescriptionTextView.text= [NSString stringWithFormat:@"%@\n %@\n %@",temp, generalDescription2, generalDescription3];
-    }
-    else{
-        self.itemDescriptionTextView.text= [NSString stringWithFormat:@"%@\n %@\n %@", generalDescription2, generalDescription3, temp];
+    if(isImageDisplayed){
+        self.itemDescriptionTextView.text= [NSString stringWithFormat:@"%@\n\n %@\n %@", generalDescription2, generalDescription3,temp];
+
+    }else{
+        self.itemDescriptionTextView.text= [NSString stringWithFormat:@"%@\n\n %@\n %@",temp, generalDescription2, generalDescription3];
+
     }
     
     

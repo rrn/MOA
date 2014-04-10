@@ -18,6 +18,7 @@
 // From: 01/01/2014
 // To: January 1, 2014
 +(NSString*)convertDate:(NSString*) short_date;
++(NSString*)convertDate2:(NSString*) short_date;
 +(NSString*)convertMonthToString:(NSString*) month_numeric;
 +(NSDictionary* )PullRemoteData:(NSString* )url;
 +(NSString*)ValidateJSONFormat:(NSString *)json;

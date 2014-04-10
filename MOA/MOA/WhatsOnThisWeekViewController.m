@@ -105,6 +105,7 @@
     return [[[TagList sharedInstance] calendarEvents] count];
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"eventCell";
@@ -122,7 +123,19 @@
     
     NSDictionary *event = [[[TagList sharedInstance] calendarEvents] objectAtIndex:indexPath.row];
     NSRange rangeToBold = NSMakeRange([[event objectForKey:@"programType"] length], [[event objectForKey:@"title"] length]+1);
-    NSString *cellInfoTemp = [NSString stringWithFormat:@"%@\n%@\n%@",[event objectForKey:@"programType"], [event objectForKey:@"title"], [Utils convertDate:[event objectForKey:@"date"]]];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    
+    NSString *eventDateString = [event objectForKey:@"date"];
+    NSDate *eventDate = [dateFormatter dateFromString:eventDateString];
+    
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] ;
+    NSDateComponents *comps = [gregorian components:NSWeekdayCalendarUnit fromDate:eventDate];
+    int weekday = [comps weekday];
+    NSString *dayOfTheWeek = [[dateFormatter weekdaySymbols] objectAtIndex:weekday-1];
+    
+    NSString *cellInfoTemp = [NSString stringWithFormat:@"%@\n%@\n%@, %@",[event objectForKey:@"programType"], [event objectForKey:@"title"], dayOfTheWeek, [Utils convertDate:[event objectForKey:@"date"]]];
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:cellInfoTemp];
     
     [attrString beginEditing];
@@ -134,16 +147,23 @@
 
     cell.textLabel.attributedText = attrString;
     
-    
     [self checkInternetConnection];
     if (internet == YES){
-        cell.imageView.image = [UIImage imageWithData: [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[event objectForKey:@"image"]]]];
+        cell.imageView.contentMode = UIViewContentModeCenter;
+        UIImage *cellImage = [UIImage imageWithData: [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[event objectForKey:@"image"]]]];
+        UIImage *borderedImage = [UIImage imageWithCGImage:cellImage.CGImage scale:3 orientation:cellImage.imageOrientation];
+        cell.imageView.image = borderedImage;
     } else {
-        cell.imageView.image = [database loadImageFromDB:@"whats_on" :@"image" :(int)indexPath.row].image;
+        cell.imageView.contentMode = UIViewContentModeCenter;
+        UIImage *cellImage =[database loadImageFromDB:@"whats_on" :@"image" :(int)indexPath.row].image;
+        UIImage *borderedImage = [UIImage imageWithCGImage:cellImage.CGImage scale:3 orientation:cellImage.imageOrientation];
+        cell.imageView.image = borderedImage;
     }
     
     return cell;
 }
+
+
 
 -(void) checkInternetConnection
 {

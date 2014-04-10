@@ -68,7 +68,7 @@
     self.programType =[[UILabel alloc] initWithFrame:CGRectMake(screenWidth/20, 10, screenWidth -screenWidth/10, 30)];
     self.eventTitle= [[UILabel alloc] initWithFrame:CGRectMake(screenWidth/20, 50, screenWidth -screenWidth/10, 30)];
     self.time =[[UILabel alloc] initWithFrame:CGRectMake(screenWidth/20, 90, screenWidth -screenWidth/10, 30)];
-    self.displayItemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/20, 130, screenWidth -(2*screenWidth)/20, 200)];
+    self.displayItemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/2 - 75, 130, 150, 150)];
     self.itemDescriptionTextView = [[UITextView alloc] initWithFrame:CGRectMake(screenWidth/20, 340, screenWidth -(2*screenWidth)/20, 200)];
     self.itemDescriptionTextView.scrollEnabled = NO;
     

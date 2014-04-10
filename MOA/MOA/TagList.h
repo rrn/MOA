@@ -27,5 +27,6 @@
 +(void) downloadCulturesJson;
 +(void) downloadPeopleJson;
 +(void) loadInformation;
++(void) loadExhibitionsInformation;
 
 @end

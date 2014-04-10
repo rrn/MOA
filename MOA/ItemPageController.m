@@ -125,7 +125,7 @@
     _imageLoading.hidden = NO;
     [_imageLoading startAnimating];
     
-    NSString *imageUrl = [NSString stringWithFormat:@"http:%@",[[digitalObjects objectAtIndex:0] objectForKey:@"url"]];
+    NSString *imageUrl = [[NSString stringWithFormat:@"http:%@",[[digitalObjects objectAtIndex:0] objectForKey:@"url"]] stringByReplacingOccurrencesOfString:@"original" withString:@"w800h600"] ;
     NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: imageUrl]];
     self.displayItemImageView.image = [UIImage imageWithData:imageData];
     
@@ -140,13 +140,7 @@
     
     NSArray *digitalObjects = [[data objectAtIndex:itemNumber] objectForKey:@"digital_objects"];
     
-    generalDescription2 = [[NSMutableString alloc] initWithFormat:@""];
-    [generalDescription2 appendFormat:@"\n"];
-    [self generalDescription2Text];
-    
-    generalDescription3 = [[NSMutableString alloc] initWithFormat:@""];
-    [generalDescription3 appendFormat:@"\n"];
-    [self generalDescription3Text];
+
     
     Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
     NetworkStatus internetStatus = [reachability currentReachabilityStatus];
@@ -176,6 +170,13 @@
             }
         }
     }
+    generalDescription2 = [[NSMutableString alloc] initWithFormat:@""];
+    [generalDescription2 appendFormat:@"\n"];
+    [self generalDescription2Text];
+    
+    generalDescription3 = [[NSMutableString alloc] initWithFormat:@""];
+    [generalDescription3 appendFormat:@"\n"];
+    [self generalDescription3Text];
 
 
     
@@ -200,7 +201,14 @@
             }
         }
     }
-    self.itemDescriptionTextView.text= [NSString stringWithFormat:@"\n%@\n\n %@\n %@",temp, generalDescription2, generalDescription3];
+    
+    if(isImageDisplayed){
+        self.itemDescriptionTextView.text= [NSString stringWithFormat:@"%@\n\n %@\n %@", generalDescription2, generalDescription3,temp];
+
+    }else{
+        self.itemDescriptionTextView.text= [NSString stringWithFormat:@"%@\n\n %@\n %@",temp, generalDescription2, generalDescription3];
+
+    }
     
     
     
@@ -290,6 +298,26 @@
     if([creationLocations count]  > 0){
         if ([[[creationLocations objectAtIndex:0] objectForKey:@"name"] rangeOfString:@"null"].location ==NSNotFound){
             [generalDescription2 appendFormat:@"Place Made: %@\n", [[creationLocations objectAtIndex:0] objectForKey:@"name"]];
+        }
+    }
+    
+    if([[[data objectAtIndex:itemNumber] objectForKey:@"creation_events"] count] > 0){
+        if([[[[data objectAtIndex:itemNumber] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"start_year"] != [NSNull null]){
+            if([[[[data objectAtIndex:itemNumber] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"end_year"] != [NSNull null]){
+                if([[[[[data objectAtIndex:itemNumber] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"start_year"] intValue] !=[[[[[data objectAtIndex:itemNumber] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"end_year"] intValue]){
+                    [generalDescription2 appendFormat:@"Date Made: %i to %i",[[[[[data objectAtIndex:itemNumber] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"start_year"] intValue], [[[[[data objectAtIndex:itemNumber] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"end_year"] intValue]];
+                }else{
+                    [generalDescription2 appendFormat:@"Date Made: During %i",[[[[[data objectAtIndex:itemNumber] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"end_year"] intValue]];
+                }
+                
+            }else{
+                [generalDescription2 appendFormat:@"Date Made: After %i",[[[[[data objectAtIndex:itemNumber] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"start_year"] intValue]];
+            }
+        }
+        else{
+            if([[[[data objectAtIndex:itemNumber] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"end_year"] != [NSNull null]){
+                [generalDescription2 appendFormat:@"Date Made: Before %i",[[[[[data objectAtIndex:itemNumber] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"end_year"] intValue]];
+            }
         }
     }
     

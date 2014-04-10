@@ -39,7 +39,7 @@
     self.tableView.backgroundColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
     self.tableView.separatorColor = [UIColor colorWithWhite:0.15f alpha:0.2f];
     
-    _menuItems = @[@"Cell0", @"Calendar", @"Cell2", @"Explore Our Collections", @"Cell4", @"Cell5", @"Cell6", @"Cell7", @"Cell8", @"Cell9", @"Cell10", @"Cell11"];
+    _menuItems = @[@"Cell0", @"Calendar", @"Cell4", @"Cell2", @"Explore Our Collections", @"Cell7", @"Cell11", @"Cell8", @"Cell9", @"Cell6", @"Cell5", @"Cell10"];
     
     
 }

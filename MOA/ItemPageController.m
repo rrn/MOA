@@ -125,7 +125,11 @@
     _imageLoading.hidden = NO;
     [_imageLoading startAnimating];
     
-    NSString *imageUrl = [NSString stringWithFormat:@"http:%@",[[digitalObjects objectAtIndex:0] objectForKey:@"url"]];
+    NSString *imageUrlTemp = [NSString stringWithFormat:@"http:%@",[[digitalObjects objectAtIndex:0] objectForKey:@"url"]];
+    
+    //use smaller verison of image so it downloads faster changing dimensions downloads smaller verison
+    NSString *imageUrl = [imageUrlTemp stringByReplacingOccurrencesOfString:@"original" withString:@"w800h600"];
+    
     NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: imageUrl]];
     self.displayItemImageView.image = [UIImage imageWithData:imageData];
     

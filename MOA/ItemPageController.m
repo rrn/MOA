@@ -255,9 +255,29 @@
             [generalDescription2 appendFormat:@"Object Type: %@\n", [[itemTypes objectAtIndex:0] objectForKey:@"name"]];
         }
     }
-    if([creators count]  > 0){
-        if ([[[creators objectAtIndex:0] objectForKey:@"first_name"] rangeOfString:@"null"].location ==NSNotFound){
-            [generalDescription2 appendFormat:@"Created By: %@ %@\n", [[creators objectAtIndex:0] objectForKey:@"first_name"], [[creators objectAtIndex:0] objectForKey:@"last_name"]];
+    if([creators count] >0){
+        if ([[[creators objectAtIndex:0] objectForKey:@"name"] rangeOfString:@"null"].location ==NSNotFound){
+            for(int x = 0; x < [creators count]; x++){
+                if(x==0){
+                    if(x==([creators count]-1)){
+                        [generalDescription2 appendFormat:@"Creators: %@\n",[[creators objectAtIndex:x] objectForKey:@"name"]];
+                    }
+                    else{
+                        [generalDescription2 appendFormat:@"Creators: %@, ",[[creators objectAtIndex:x] objectForKey:@"name"]];
+                    }
+                    
+                }
+                else{
+                    if(x==([creators count]-1))
+                    {
+                        [generalDescription2 appendFormat:@"%@\n",[[creators objectAtIndex:x] objectForKey:@"name"]];
+                    }
+                    else{
+                        [generalDescription2 appendFormat:@"%@, ",[[creators objectAtIndex:x] objectForKey:@"name"]];
+                    }
+                }
+                
+            }
         }
     }
     

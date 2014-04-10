@@ -65,20 +65,31 @@
     }
     else{
         internet = YES;
+        
+        if ([[[TagList sharedInstance] calendarEvents]count]==0)
             [TagList loadInformation];
         
-        // load image once the screen is shown - only when there is internet!
-        if (syncLocalDb == NO) {
-            for (int i = 0; i < [[TagList sharedInstance].calendarEvents count]; i++){
-                [database updateImageToLocalDB:@"whats_on" :@"image" :[[[[TagList sharedInstance] calendarEvents] objectAtIndex:i] objectForKey:@"image"] :i];
-            }
-            syncLocalDb = YES;
-        }
+        if ([[[TagList sharedInstance] exhibitionEvents]count]==0)
+            [TagList loadExhibitionsInformation];
+        
+        // updateDB in separate thread
+        [self performSelectorInBackground:@selector(updateImageToDB) withObject:nil];
     }
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
     [super viewWillAppear:animated];
     
    
+}
+
+-(void)updateImageToDB
+{
+    if (syncLocalDb == NO && internet == YES) {
+        for (int i = 0; i < [[TagList sharedInstance].calendarEvents count]; i++){
+            [database updateImageToLocalDB:@"whats_on" :@"image" :[[[[TagList sharedInstance] calendarEvents] objectAtIndex:i] objectForKey:@"image"] :i];
+        }
+        syncLocalDb = YES;
+    }
+    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

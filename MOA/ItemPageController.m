@@ -199,12 +199,18 @@
         for(iterator=0; iterator < [institution_notes count] ; iterator++){
             if([[[[institution_notes objectAtIndex:iterator] objectForKey:@"title"] lowercaseString] isEqualToString:@"description" ] ){
                 if ([[[institution_notes objectAtIndex:iterator] objectForKey:@"text"] rangeOfString:@"null"].location ==NSNotFound){
-                    temp = [NSString stringWithFormat:@"Description: \n%@", [[institution_notes objectAtIndex:iterator] objectForKey:@"text"]];
+                    temp = [NSString stringWithFormat:@"Image Description: \n%@", [[institution_notes objectAtIndex:iterator] objectForKey:@"text"]];
                 }
             }
         }
     }
-    self.itemDescriptionTextView.text= [NSString stringWithFormat:@"\n%@\n\n %@\n %@",temp, generalDescription2, generalDescription3];
+    
+    if(!isImageDisplayed){
+        self.itemDescriptionTextView.text= [NSString stringWithFormat:@"%@\n %@\n %@",temp, generalDescription2, generalDescription3];
+    }
+    else{
+        self.itemDescriptionTextView.text= [NSString stringWithFormat:@"%@\n %@\n %@", generalDescription2, generalDescription3, temp];
+    }
     
     
     

@@ -119,8 +119,20 @@
     cell.textLabel.numberOfLines=3;
     cell.textLabel.adjustsFontSizeToFitWidth = YES;
     
+    
     NSDictionary *event = [[[TagList sharedInstance] calendarEvents] objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@\n%@\n%@",[event objectForKey:@"programType"], [event objectForKey:@"title"], [Utils convertDate:[event objectForKey:@"date"]]];
+    NSRange rangeToBold = NSMakeRange([[event objectForKey:@"programType"] length], [[event objectForKey:@"title"] length]+1);
+    NSString *cellInfoTemp = [NSString stringWithFormat:@"%@\n%@\n%@",[event objectForKey:@"programType"], [event objectForKey:@"title"], [Utils convertDate:[event objectForKey:@"date"]]];
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:cellInfoTemp];
+    
+    [attrString beginEditing];
+    [attrString addAttribute:NSFontAttributeName
+                       value:[UIFont boldSystemFontOfSize:18]
+                       range:rangeToBold];
+    
+    [attrString endEditing];
+
+    cell.textLabel.attributedText = attrString;
     
     [self checkInternetConnection];
     if (internet == YES){

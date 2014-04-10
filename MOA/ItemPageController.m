@@ -196,7 +196,7 @@
         for(iterator=0; iterator < [institution_notes count] ; iterator++){
             if([[[[institution_notes objectAtIndex:iterator] objectForKey:@"title"] lowercaseString] isEqualToString:@"description" ] ){
                 if ([[[institution_notes objectAtIndex:iterator] objectForKey:@"text"] rangeOfString:@"null"].location ==NSNotFound){
-                    temp = [NSString stringWithFormat:@"Description: \n%@", [[institution_notes objectAtIndex:iterator] objectForKey:@"text"]];
+                    temp = [NSString stringWithFormat:@"Image Description: \n%@", [[institution_notes objectAtIndex:iterator] objectForKey:@"text"]];
                 }
             }
         }

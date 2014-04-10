@@ -134,6 +134,7 @@
 
     cell.textLabel.attributedText = attrString;
     
+    
     [self checkInternetConnection];
     if (internet == YES){
         cell.imageView.image = [UIImage imageWithData: [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[event objectForKey:@"image"]]]];

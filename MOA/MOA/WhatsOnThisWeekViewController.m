@@ -65,20 +65,31 @@
     }
     else{
         internet = YES;
+        
+        if ([[[TagList sharedInstance] calendarEvents]count]==0)
             [TagList loadInformation];
         
-        // load image once the screen is shown - only when there is internet!
-        if (syncLocalDb == NO) {
-            for (int i = 0; i < [[TagList sharedInstance].calendarEvents count]; i++){
-                [database updateImageToLocalDB:@"whats_on" :@"image" :[[[[TagList sharedInstance] calendarEvents] objectAtIndex:i] objectForKey:@"image"] :i];
-            }
-            syncLocalDb = YES;
-        }
+        if ([[[TagList sharedInstance] exhibitionEvents]count]==0)
+            [TagList loadExhibitionsInformation];
+        
+        // updateDB in separate thread
+        [self performSelectorInBackground:@selector(updateImageToDB) withObject:nil];
     }
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
     [super viewWillAppear:animated];
     
    
+}
+
+-(void)updateImageToDB
+{
+    if (syncLocalDb == NO && internet == YES) {
+        for (int i = 0; i < [[TagList sharedInstance].calendarEvents count]; i++){
+            [database updateImageToLocalDB:@"whats_on" :@"image" :[[[[TagList sharedInstance] calendarEvents] objectAtIndex:i] objectForKey:@"image"] :i];
+        }
+        syncLocalDb = YES;
+    }
+    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -94,6 +105,7 @@
     return [[[TagList sharedInstance] calendarEvents] count];
 }
 
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"eventCell";
@@ -108,18 +120,50 @@
     cell.textLabel.numberOfLines=3;
     cell.textLabel.adjustsFontSizeToFitWidth = YES;
     
+    
     NSDictionary *event = [[[TagList sharedInstance] calendarEvents] objectAtIndex:indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@\n%@\n%@",[event objectForKey:@"programType"], [event objectForKey:@"title"], [Utils convertDate:[event objectForKey:@"date"]]];
+    NSRange rangeToBold = NSMakeRange([[event objectForKey:@"programType"] length], [[event objectForKey:@"title"] length]+1);
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    
+    NSString *eventDateString = [event objectForKey:@"date"];
+    NSDate *eventDate = [dateFormatter dateFromString:eventDateString];
+    
+    NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] ;
+    NSDateComponents *comps = [gregorian components:NSWeekdayCalendarUnit fromDate:eventDate];
+    int weekday = [comps weekday];
+    NSString *dayOfTheWeek = [[dateFormatter weekdaySymbols] objectAtIndex:weekday-1];
+    
+    NSString *cellInfoTemp = [NSString stringWithFormat:@"%@\n%@\n%@, %@",[event objectForKey:@"programType"], [event objectForKey:@"title"], dayOfTheWeek, [Utils convertDate:[event objectForKey:@"date"]]];
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:cellInfoTemp];
+    
+    [attrString beginEditing];
+    [attrString addAttribute:NSFontAttributeName
+                       value:[UIFont boldSystemFontOfSize:18]
+                       range:rangeToBold];
+    
+    [attrString endEditing];
+
+    cell.textLabel.attributedText = attrString;
     
     [self checkInternetConnection];
     if (internet == YES){
-        cell.imageView.image = [UIImage imageWithData: [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[event objectForKey:@"image"]]]];
+        cell.imageView.contentMode = UIViewContentModeCenter;
+        UIImage *cellImage = [UIImage imageWithData: [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[event objectForKey:@"image"]]]];
+        UIImage *borderedImage = [UIImage imageWithCGImage:cellImage.CGImage scale:3 orientation:cellImage.imageOrientation];
+        cell.imageView.image = borderedImage;
     } else {
-        cell.imageView.image = [database loadImageFromDB:@"whats_on" :@"image" :(int)indexPath.row].image;
+        cell.imageView.contentMode = UIViewContentModeCenter;
+        UIImage *cellImage =[database loadImageFromDB:@"whats_on" :@"image" :(int)indexPath.row].image;
+        UIImage *borderedImage = [UIImage imageWithCGImage:cellImage.CGImage scale:3 orientation:cellImage.imageOrientation];
+        cell.imageView.image = borderedImage;
     }
     
     return cell;
 }
+
+
 
 -(void) checkInternetConnection
 {

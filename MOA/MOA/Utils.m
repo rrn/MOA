@@ -36,6 +36,21 @@
     return long_date;
 }
 
++ (NSString*) convertDate2:(NSString*) short_date
+{
+    //convert short date to long date
+    NSArray* components = [short_date componentsSeparatedByString:@"-"];
+    
+    NSString *year = [components objectAtIndex:0];
+    NSString *month_numeric = [components objectAtIndex:1];
+    NSString *month_string = [self convertMonthToString:month_numeric];
+    NSString *day = [components objectAtIndex:2];
+    
+    NSString *long_date = [NSString stringWithFormat:@"%@ %d %@", month_string, day.intValue, year];
+    
+    return long_date;
+}
+
 + (NSString*) convertMonthToString:(NSString*) month_numeric
 {
     switch (month_numeric.intValue)

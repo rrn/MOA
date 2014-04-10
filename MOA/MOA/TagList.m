@@ -180,8 +180,7 @@
         NSString *eventDateString = [[[temp objectForKey:@"whats_on"] objectAtIndex:eventIterator] objectForKey:@"date"];
         NSDate *eventDate = [dateFormatter dateFromString:eventDateString];
         NSTimeInterval secs = [eventDate timeIntervalSinceDate:nowDate];
-        //NSLog(@"time: %f", secs);
-        if(secs < (60*60*24*7) && secs > 0){
+        if(secs < (60*60*24*7) && secs >= -(60*60*24)){
             [temp2 addObject:[[temp objectForKey:@"whats_on"] objectAtIndex:eventIterator]];
             //NSLog(@"added an event");
         }
@@ -195,6 +194,28 @@
     
     [temp3 setObject:temp2 forKey:@"whats_on"];
     [[TagList sharedInstance] setCalendarEvents:[temp3 objectForKey:@"whats_on"]];
+    
+
+    
+    // store remote data to database
+    CrudOp* localdb = [[CrudOp alloc]init];
+    [localdb UpdateLocalDB:@"whats_on" :[temp objectForKey:@"whats_on"]];
+    
+    if (e) {
+        NSLog(@"Error serializing %@", e);
+    }
+}
+
++(void) loadExhibitionsInformation
+{
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString: @"http://pluto.moa.ubc.ca/_mobile_app_remoteData.php"]];
+    NSError * e;
+    NSData *remoteData = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&e];
+    NSMutableString* strRemoteData =[[NSMutableString alloc] initWithData:remoteData encoding:NSUTF8StringEncoding];
+    strRemoteData = [NSMutableString stringWithString:[self ValidateJSONFormat:strRemoteData]];
+    NSData *jsonData = [strRemoteData dataUsingEncoding:NSUTF8StringEncoding];
+    e = nil; // reset e variable
+    NSDictionary *temp = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingAllowFragments error:&e];
     
     // ** INFORMATION FOR EXHIBITIONS PAGE**
     // filter exhibitions, get the current and future exhibitions only
@@ -226,15 +247,8 @@
     
     [filteredExhibitions setObject:filteredExhibitionsArray forKey:@"moa_exhibitions"];
     [[TagList sharedInstance] setExhibitionEvents:[filteredExhibitions objectForKey:@"moa_exhibitions"]];
-    
-    // store remote data to database
-    CrudOp* localdb = [[CrudOp alloc]init];
-    [localdb UpdateLocalDB:@"whats_on" :[temp objectForKey:@"whats_on"]];
-    
-    if (e) {
-        NSLog(@"Error serializing %@", e);
-    }
 }
+
 
 
 

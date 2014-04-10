@@ -68,7 +68,7 @@
     self.programType =[[UILabel alloc] initWithFrame:CGRectMake(screenWidth/20, 10, screenWidth -screenWidth/10, 30)];
     self.eventTitle= [[UILabel alloc] initWithFrame:CGRectMake(screenWidth/20, 50, screenWidth -screenWidth/10, 30)];
     self.time =[[UILabel alloc] initWithFrame:CGRectMake(screenWidth/20, 90, screenWidth -screenWidth/10, 30)];
-    self.displayItemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/20, 130, screenWidth -(2*screenWidth)/20, 200)];
+    self.displayItemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/2 - 75, 130, 150, 150)];
     self.itemDescriptionTextView = [[UITextView alloc] initWithFrame:CGRectMake(screenWidth/20, 340, screenWidth -(2*screenWidth)/20, 200)];
     self.itemDescriptionTextView.scrollEnabled = NO;
     
@@ -121,7 +121,7 @@
     self.programType.text =[[[[TagList sharedInstance] calendarEvents] objectAtIndex:index] objectForKey:@"programType"];
     self.eventTitle.text=[[[[TagList sharedInstance] calendarEvents] objectAtIndex:index] objectForKey:@"title"];
     self.time.text=[[[[TagList sharedInstance] calendarEvents] objectAtIndex:index] objectForKey:@"time"];
-    self.itemDescriptionTextView.text= [NSString stringWithFormat:@"Description:\n%@", [[[[TagList sharedInstance] calendarEvents] objectAtIndex:index] objectForKey:@"description"]];
+    self.itemDescriptionTextView.text= [NSString stringWithFormat:@"%@", [[[[TagList sharedInstance] calendarEvents] objectAtIndex:index] objectForKey:@"description"]];
     self.eventTitle.font = [UIFont boldSystemFontOfSize:16.0f];
     self.programType.font = [UIFont boldSystemFontOfSize:16.0f];
     self.time.font = [UIFont boldSystemFontOfSize:16.0f];

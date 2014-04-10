@@ -242,7 +242,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
             BHPhoto* photo = [BHPhoto photoWithImageName:@"ImageNotAvailable"];
             [album addPhoto:photo];
         }
-        album.name = [NSString stringWithFormat:@"%@: %@", [[itemList objectAtIndex:a] objectForKey:@"name"], [[itemList objectAtIndex:a] objectForKey:@"identification_number"]];
+        album.name = [NSString stringWithFormat:@"%@", [[itemList objectAtIndex:a] objectForKey:@"name"]];
         //add item country/dates
         if([[[itemList objectAtIndex:a] objectForKey:@"creation_locations"] count] > 0){
             if([[[[[itemList objectAtIndex:a] objectForKey:@"creation_locations"] objectAtIndex:0] objectForKey:@"name"] rangeOfString:@"null"].location == NSNotFound){

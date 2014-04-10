@@ -181,7 +181,7 @@
         NSDate *eventDate = [dateFormatter dateFromString:eventDateString];
         NSTimeInterval secs = [eventDate timeIntervalSinceDate:nowDate];
         //NSLog(@"time: %f", secs);
-        if(secs < (60*60*24*7) && secs > 0){
+        if(secs < (60*60*24*7) && secs >= 0){
             [temp2 addObject:[[temp objectForKey:@"whats_on"] objectAtIndex:eventIterator]];
             //NSLog(@"added an event");
         }

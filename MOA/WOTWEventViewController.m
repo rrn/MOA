@@ -121,7 +121,7 @@
     self.programType.text =[[[[TagList sharedInstance] calendarEvents] objectAtIndex:index] objectForKey:@"programType"];
     self.eventTitle.text=[[[[TagList sharedInstance] calendarEvents] objectAtIndex:index] objectForKey:@"title"];
     self.time.text=[[[[TagList sharedInstance] calendarEvents] objectAtIndex:index] objectForKey:@"time"];
-    self.itemDescriptionTextView.text= [NSString stringWithFormat:@"Description:\n%@", [[[[TagList sharedInstance] calendarEvents] objectAtIndex:index] objectForKey:@"description"]];
+    self.itemDescriptionTextView.text= [NSString stringWithFormat:@"%@", [[[[TagList sharedInstance] calendarEvents] objectAtIndex:index] objectForKey:@"description"]];
     self.eventTitle.font = [UIFont boldSystemFontOfSize:16.0f];
     self.programType.font = [UIFont boldSystemFontOfSize:16.0f];
     self.time.font = [UIFont boldSystemFontOfSize:16.0f];

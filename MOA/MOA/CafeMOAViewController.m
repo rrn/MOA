@@ -76,11 +76,7 @@
     
     // load cafe hours into table
     self.tableView = [self makeTableView:cursorPos+10]; // 10 is space between text and table
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Hours"];
-    
-    
-
-    
+    //[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Hours"];
     contentSize = cursorPos; // length of description
    
     [self.view addSubview:cafeImage];
@@ -139,26 +135,8 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1  reuseIdentifier:MyIdentifier];
     }
 
-    NSString *string = [NSString stringWithFormat:@"  %@ \t %@", [[cafeHoursArray objectAtIndex:indexPath.row] objectForKey:@"Day"], [[cafeHoursArray objectAtIndex:indexPath.row] objectForKey:@"Hours"] ];
-    UITextView *textV = [[UITextView alloc] initWithFrame:CGRectMake(5, 5, 290, hoursFontSize+10)];
-    
-    NSMutableParagraphStyle *paragraphStyle = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    CGFloat tabInterval = 180.0;
-    paragraphStyle.defaultTabInterval = tabInterval;
-    NSMutableArray *tabs = [NSMutableArray array];
-    [tabs addObject:[[NSTextTab alloc] initWithTextAlignment:NSTextAlignmentLeft location:tabInterval options:nil]];
-    paragraphStyle.tabStops = tabs;
-    textV.typingAttributes = [NSDictionary dictionaryWithObject:paragraphStyle forKey:NSParagraphStyleAttributeName];
-    
-    textV.font = [UIFont systemFontOfSize:hoursFontSize];
-    textV.text = string;
-    textV.textColor = [UIColor blackColor];
-    textV.editable = NO;
-    textV.selectable = NO;
-    textV.scrollEnabled = NO;
-    [cell.contentView addSubview:textV];
-    
-    
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", [[cafeHoursArray objectAtIndex:indexPath.row] objectForKey:@"Day"]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@", [[cafeHoursArray objectAtIndex:indexPath.row] objectForKey:@"Hours"]];
     return cell;
 }
 

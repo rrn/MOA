@@ -37,7 +37,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
     self.tableView.backgroundColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
-    self.tableView.separatorColor = [UIColor colorWithWhite:0.15f alpha:0.2f];
+    self.tableView.separatorColor = [UIColor colorWithWhite:0.5f alpha:0.5f];
     
     _menuItems = @[@"Cell0", @"Calendar", @"Cell4", @"Cell2", @"Explore Our Collections", @"Cell7", @"Cell11", @"Cell8", @"Cell9", @"Cell6", @"Cell5", @"Cell10"];
     
@@ -175,6 +175,7 @@
     NSString *CellIdentifier = [self.menuItems objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
+    cell.backgroundColor = [UIColor colorWithRed:68.0f/255.0f green:68.0f/255.0f blue:68.0f/255.0f alpha:1.0f];
     return cell;
 }
 

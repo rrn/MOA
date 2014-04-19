@@ -26,6 +26,7 @@
 
 - (void)viewDidLoad
 {
+
     [super viewDidLoad];
 	self.title = @"Directions";
     self.description.text = [[parkingInformationArray objectAtIndex:1] objectForKey:@"Description"];

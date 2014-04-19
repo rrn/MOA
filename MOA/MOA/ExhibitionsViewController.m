@@ -32,6 +32,8 @@
 
 - (void)viewDidLoad
 {
+    [self.navigationController.navigationBar setBackgroundColor:[UIColor colorWithRed:255.0f/255.0f green:194.0f/255.0f blue:14.0f/255.0f alpha:1.0f]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:255.0f/255.0f green:194.0f/255.0f blue:14.0f/255.0f alpha:1.0f]];
     //CrudOp* database = [CrudOp alloc];
     if (!database || database == NULL){
         database = [CrudOp alloc];

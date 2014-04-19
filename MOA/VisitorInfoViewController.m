@@ -43,6 +43,8 @@
 
 - (void)viewDidLoad
 {
+    [self.navigationController.navigationBar setBackgroundColor:[UIColor colorWithRed:242.0f/255.0f green:101.0f/255.0f blue:34.0f/255.0f alpha:1.0f]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:242.0f/255.0f green:101.0f/255.0f blue:34.0f/255.0f alpha:1.0f]];
     [super viewDidLoad];
     //self.title = @"Visitor Information";
     

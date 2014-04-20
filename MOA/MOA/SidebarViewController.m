@@ -102,45 +102,8 @@
                 [vcNew setSelectedIndex:3];
                 
             }
-            else if ([segue.identifier isEqualToString:@"showFacebook"]){
-                vcName = @"TabBar";
-                UITabBarController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
-                
-                // Swap out the Front view controller and display
-                [self.revealViewController setFrontViewController:vcNew];
-                [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated:YES];
-                
-                
-                [[TagList sharedInstance] setExtraPage:0];
-                // select index 3, which is Visitor Information
-                [vcNew setSelectedIndex:4];
-            }
-            else if ([segue.identifier isEqualToString:@"showTwitter"]){
-                vcName = @"TabBar";
-                UITabBarController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
-                
-                // Swap out the Front view controller and display
-                [self.revealViewController setFrontViewController:vcNew];
-                [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated:YES];
-                
-                
-                [[TagList sharedInstance] setExtraPage:1];
-                // select index 3, which is Visitor Information
-                [vcNew setSelectedIndex:4];
-            }
-            else if ([segue.identifier isEqualToString:@"showYoutube"]){
-                vcName = @"TabBar";
-                UITabBarController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
-                
-                // Swap out the Front view controller and display
-                [self.revealViewController setFrontViewController:vcNew];
-                [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated:YES];
-                
-                
-                [[TagList sharedInstance] setExtraPage:2];
-                // select index 3, which is Visitor Information
-                [vcNew setSelectedIndex:4];
-            }
+
+
         };
         }
     }
@@ -181,15 +144,17 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 8 || indexPath.row == 9) {
+    if (indexPath.row == 7 || indexPath.row == 8) {
     
     EmailHandler* emailHandler = [[EmailHandler alloc]init];
-        if (indexPath.row == 8) {
+        if (indexPath.row == 7) {
+            //emailing a friend
             MFMailComposeViewController* controller = [emailHandler composeEmail:0];
             controller.mailComposeDelegate = self;
             if (controller) [self presentViewController:controller animated:YES completion:nil];
         }
         else {
+            //emailing feedback
             MFMailComposeViewController* controller = [emailHandler composeEmail:1];
             controller.mailComposeDelegate = self;
             if (controller) [self presentViewController:controller animated:YES completion:nil];

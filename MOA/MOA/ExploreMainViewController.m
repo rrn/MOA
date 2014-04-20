@@ -35,12 +35,21 @@
     return self;
 }
 
+-(void) viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tabBarController.tabBar setSelectedImageTintColor:[UIColor colorWithRed:237.0f/255.0f green:12.0f/255.0f blue:110.0f/255.0f alpha:1.0f]];
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationController.navigationBar setBackgroundColor:[UIColor colorWithRed:237.0f/255.0f green:12.0f/255.0f blue:110.0f/255.0f alpha:1.0f]];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:237.0f/255.0f green:12.0f/255.0f blue:110.0f/255.0f alpha:1.0f]];
+    
+
     
     tableData = [NSArray arrayWithObjects:@"Object Type", @"Places", @"Cultures", @"Materials", @"People", nil];
     

@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		455C469B18B5B0C30047D7AA /* SocialMediaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 455C469A18B5B0C30047D7AA /* SocialMediaViewController.m */; };
 		4582C9931898BE8800DC9000 /* WOTWEventViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4582C9921898BE8800DC9000 /* WOTWEventViewController.m */; };
+		45A5FFA91903D8E400E3B9FA /* 01_Weekly_22px.png in Resources */ = {isa = PBXBuildFile; fileRef = 45A5FFA51903D8E400E3B9FA /* 01_Weekly_22px.png */; };
+		45A5FFAA1903D8E400E3B9FA /* 02_Exhibitions_22px.png in Resources */ = {isa = PBXBuildFile; fileRef = 45A5FFA61903D8E400E3B9FA /* 02_Exhibitions_22px.png */; };
+		45A5FFAB1903D8E400E3B9FA /* 03_Collections02_22px.png in Resources */ = {isa = PBXBuildFile; fileRef = 45A5FFA71903D8E400E3B9FA /* 03_Collections02_22px.png */; };
+		45A5FFAC1903D8E400E3B9FA /* 04_Info_22px.png in Resources */ = {isa = PBXBuildFile; fileRef = 45A5FFA81903D8E400E3B9FA /* 04_Info_22px.png */; };
 		45E3431B18CC8A0600B0FE8E /* FacebookViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E3431A18CC8A0600B0FE8E /* FacebookViewController.m */; };
 		45E3432118CD009100B0FE8E /* TwitterPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E3432018CD009100B0FE8E /* TwitterPageViewController.m */; };
 		45E3432718CD03FA00B0FE8E /* YoutubePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 45E3432618CD03FA00B0FE8E /* YoutubePageViewController.m */; };
@@ -133,6 +137,10 @@
 		455C469A18B5B0C30047D7AA /* SocialMediaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialMediaViewController.m; sourceTree = "<group>"; };
 		4582C9911898BE8800DC9000 /* WOTWEventViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WOTWEventViewController.h; path = ../WOTWEventViewController.h; sourceTree = "<group>"; };
 		4582C9921898BE8800DC9000 /* WOTWEventViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WOTWEventViewController.m; path = ../WOTWEventViewController.m; sourceTree = "<group>"; };
+		45A5FFA51903D8E400E3B9FA /* 01_Weekly_22px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 01_Weekly_22px.png; path = ../../../22x22/01_Weekly_22px.png; sourceTree = "<group>"; };
+		45A5FFA61903D8E400E3B9FA /* 02_Exhibitions_22px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 02_Exhibitions_22px.png; path = ../../../22x22/02_Exhibitions_22px.png; sourceTree = "<group>"; };
+		45A5FFA71903D8E400E3B9FA /* 03_Collections02_22px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 03_Collections02_22px.png; path = ../../../22x22/03_Collections02_22px.png; sourceTree = "<group>"; };
+		45A5FFA81903D8E400E3B9FA /* 04_Info_22px.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = 04_Info_22px.png; path = ../../../22x22/04_Info_22px.png; sourceTree = "<group>"; };
 		45E3431918CC8A0600B0FE8E /* FacebookViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookViewController.h; sourceTree = "<group>"; };
 		45E3431A18CC8A0600B0FE8E /* FacebookViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookViewController.m; sourceTree = "<group>"; };
 		45E3431F18CD009100B0FE8E /* TwitterPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterPageViewController.h; sourceTree = "<group>"; };
@@ -551,6 +559,10 @@
 		E4B5A0CC1858DAC10047D9B8 /* Tab Icons */ = {
 			isa = PBXGroup;
 			children = (
+				45A5FFA51903D8E400E3B9FA /* 01_Weekly_22px.png */,
+				45A5FFA61903D8E400E3B9FA /* 02_Exhibitions_22px.png */,
+				45A5FFA71903D8E400E3B9FA /* 03_Collections02_22px.png */,
+				45A5FFA81903D8E400E3B9FA /* 04_Info_22px.png */,
 				E42037C818F331CB001CA7C9 /* 01_Weekly_22px.png */,
 				E42037C918F331CB001CA7C9 /* 02_Exhibitions_22px.png */,
 				E42037CA18F331CB001CA7C9 /* 03_Collections02_22px.png */,
@@ -717,6 +729,8 @@
 				E4F9AB0318EC80A6006A9F5D /* AppIcon76x76.png in Resources */,
 				E4B5A0E01858DC680047D9B8 /* 02_Exhibitions_25px.png in Resources */,
 				50CEBC001841463A0005B0F9 /* cafe-1.jpg in Resources */,
+				45A5FFAA1903D8E400E3B9FA /* 02_Exhibitions_22px.png in Resources */,
+				45A5FFA91903D8E400E3B9FA /* 01_Weekly_22px.png in Resources */,
 				E4B5A0E31858DC680047D9B8 /* 04_Info_25px.png in Resources */,
 				E4FBA44A18CD553A00EFFA29 /* close-25.png in Resources */,
 				50FD065A1852AA66007AB4E6 /* MOA_Splash_640x1136.png in Resources */,
@@ -724,6 +738,7 @@
 				BBA340651826D6F700B6E4B1 /* InfoPlist.strings in Resources */,
 				E4F9AB0418EC80A6006A9F5D /* AppIcon76x76@2x.png in Resources */,
 				E4B5A0E11858DC680047D9B8 /* 03_Collections01_25px.png in Resources */,
+				45A5FFAC1903D8E400E3B9FA /* 04_Info_22px.png in Resources */,
 				BBA34094182701F500B6E4B1 /* 320x200.gif in Resources */,
 				E458E62F18BBEB2100AFE8E1 /* 07_Twitter_22px.png in Resources */,
 				507B8E7018299BCE002365EF /* menu.png in Resources */,
@@ -740,6 +755,7 @@
 				E438465B18BAD126008F1E42 /* 08_YouTube_22px.png in Resources */,
 				E4FBA44418CD063900EFFA29 /* arrow_left.png in Resources */,
 				E42037CC18F331CB001CA7C9 /* 01_Weekly_22px.png in Resources */,
+				45A5FFAB1903D8E400E3B9FA /* 03_Collections02_22px.png in Resources */,
 				BBA3406E1826D6F700B6E4B1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

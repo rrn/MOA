@@ -28,12 +28,15 @@
 //    return self;
 //}
 
+
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationController.navigationBar setBackgroundColor:[UIColor colorWithRed:166.0f/255.0f green:206.0f/255.0f blue:57.0f/255.0f alpha:1.0f]];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:166.0f/255.0f green:206.0f/255.0f blue:57.0f/255.0f alpha:1.0f]];
+    
 
     if (database == NULL){
         database = [[CrudOp alloc]init];
@@ -51,6 +54,7 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
+        [self.tabBarController.tabBar setSelectedImageTintColor:[UIColor colorWithRed:166.0f/255.0f green:206.0f/255.0f blue:57.0f/255.0f alpha:1.0f]];
     Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
     NetworkStatus internetStatus = [reachability currentReachabilityStatus];
     

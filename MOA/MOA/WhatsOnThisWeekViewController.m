@@ -28,11 +28,6 @@
 //    return self;
 //}
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return NO;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];

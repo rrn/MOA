@@ -135,7 +135,7 @@
 -(void) pageSetup
 {
     self.displayItemImageView.image = [UIImage imageNamed:@"emptySpace"];
-    _titleText.title = [NSString stringWithFormat:@"%i of %i", self.itemNumber+1, self.count];
+    _titleText.title = [NSString stringWithFormat:@"%i of %i", ((int)self.itemNumber)+1, (int)self.count];
     int iterator = 0;
     
     NSArray *digitalObjects = [[data objectAtIndex:itemNumber] objectForKey:@"digital_objects"];

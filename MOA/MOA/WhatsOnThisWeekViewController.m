@@ -139,7 +139,7 @@
     
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] ;
     NSDateComponents *comps = [gregorian components:NSWeekdayCalendarUnit fromDate:eventDate];
-    int weekday = [comps weekday];
+    int weekday = (int)[comps weekday];
     NSString *dayOfTheWeek = [[dateFormatter weekdaySymbols] objectAtIndex:weekday-1];
     
     NSString *cellInfoTemp = [NSString stringWithFormat:@"%@\n%@\n%@, %@",[event objectForKey:@"programType"], [event objectForKey:@"title"], dayOfTheWeek, [Utils convertDate:[event objectForKey:@"date"]]];

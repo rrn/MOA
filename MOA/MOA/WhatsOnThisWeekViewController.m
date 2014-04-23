@@ -37,7 +37,9 @@
     [self.navigationController.navigationBar setBackgroundColor:[UIColor colorWithRed:166.0f/255.0f green:206.0f/255.0f blue:57.0f/255.0f alpha:1.0f]];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:166.0f/255.0f green:206.0f/255.0f blue:57.0f/255.0f alpha:1.0f]];
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    
+    [self.tabBarController.tabBar setBarTintColor:[UIColor colorWithRed:68.0f/255.0f green:68.0f/255.0f blue:68.0f/255.0f alpha:1.0f]];
+    self.tabBarController.tabBar.tintColor = [UIColor whiteColor];
+    [self.tabBarController.tabBar setTintColor:[UIColor whiteColor]];
 
     if (database == NULL){
         database = [[CrudOp alloc]init];

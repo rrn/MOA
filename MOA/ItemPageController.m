@@ -305,24 +305,25 @@
         if([[[[data objectAtIndex:itemNumber] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"start_year"] != [NSNull null]){
             if([[[[data objectAtIndex:itemNumber] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"end_year"] != [NSNull null]){
                 if([[[[[data objectAtIndex:itemNumber] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"start_year"] intValue] !=[[[[[data objectAtIndex:itemNumber] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"end_year"] intValue]){
-                    [generalDescription2 appendFormat:@"Date Made: %i to %i",[[[[[data objectAtIndex:itemNumber] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"start_year"] intValue], [[[[[data objectAtIndex:itemNumber] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"end_year"] intValue]];
+                    [generalDescription2 appendFormat:@"Date Made: %i to %i\n",[[[[[data objectAtIndex:itemNumber] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"start_year"] intValue], [[[[[data objectAtIndex:itemNumber] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"end_year"] intValue]];
                 }else{
-                    [generalDescription2 appendFormat:@"Date Made: During %i",[[[[[data objectAtIndex:itemNumber] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"end_year"] intValue]];
+                    [generalDescription2 appendFormat:@"Date Made: During %i\n",[[[[[data objectAtIndex:itemNumber] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"end_year"] intValue]];
                 }
                 
             }else{
-                [generalDescription2 appendFormat:@"Date Made: After %i",[[[[[data objectAtIndex:itemNumber] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"start_year"] intValue]];
+                [generalDescription2 appendFormat:@"Date Made: After %i\n",[[[[[data objectAtIndex:itemNumber] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"start_year"] intValue]];
             }
         }
         else{
             if([[[[data objectAtIndex:itemNumber] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"end_year"] != [NSNull null]){
-                [generalDescription2 appendFormat:@"Date Made: Before %i",[[[[[data objectAtIndex:itemNumber] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"end_year"] intValue]];
+                [generalDescription2 appendFormat:@"Date Made: Before %i\n",[[[[[data objectAtIndex:itemNumber] objectForKey:@"creation_events"] objectAtIndex:0] objectForKey:@"end_year"] intValue]];
             }
         }
     }
     
     if([institutionTags count]  > 2){
         if ([[[institutionTags objectAtIndex:2] objectForKey:@"name"] rangeOfString:@"null"].location ==NSNotFound){
+            if([[[institutionTags objectAtIndex:2] objectForKey:@"name"] rangeOfString:@"Location"].location!= NSNotFound)
             [generalDescription2 appendFormat:@"Museum Location: %@\n", [[institutionTags objectAtIndex:2] objectForKey:@"text"]];
         }
     }

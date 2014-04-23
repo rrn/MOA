@@ -48,6 +48,8 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationController.navigationBar setBackgroundColor:[UIColor colorWithRed:237.0f/255.0f green:12.0f/255.0f blue:110.0f/255.0f alpha:1.0f]];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:237.0f/255.0f green:12.0f/255.0f blue:110.0f/255.0f alpha:1.0f]];
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+
     
 
     
@@ -99,6 +101,10 @@
                 [TagList downloadPlacesJson];
                 [TagList downloadObjectJson];
             }
+            
+//            NSCharacterSet * set = [[NSCharacterSet characterSetWithCharactersInString:@"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLKMNOPQRSTUVWXYZ0123456789/- "] invertedSet];
+//            
+//            if ([searchText rangeOfCharacterFromSet:set].location == NSNotFound){
             NSString *jsonString = [ [NSMutableString alloc]
                                     initWithContentsOfURL:[ [NSURL alloc] initWithString:[NSString stringWithFormat:@"http://www.rrncommunity.org/filters/autocomplete_tags.json?filters=held+at+MOA+University+of+British+Columbia,+id+%@",searchText ]]
                                     encoding:NSUTF8StringEncoding
@@ -106,6 +112,7 @@
                                     ];
             NSData *jsonData = [[jsonString dataUsingEncoding:NSUTF8StringEncoding] mutableCopy];
             
+            if(jsonData != nil){
             NSDictionary *entireDictionary = [NSJSONSerialization JSONObjectWithData:jsonData options:0 error:nil];
             
             NSArray *entireIdTagArrary = [[entireDictionary objectEnumerator] allObjects];
@@ -117,6 +124,8 @@
                 [idTags addObject:[[temp objectForKey:@"name"] capitalizedString]];
                 
             }
+            }
+//            }
         }
     if([allTags count] < 1){
         allTags = [[TagList sharedInstance] objectTypeTags];

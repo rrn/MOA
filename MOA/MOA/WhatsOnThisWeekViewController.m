@@ -36,6 +36,7 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationController.navigationBar setBackgroundColor:[UIColor colorWithRed:166.0f/255.0f green:206.0f/255.0f blue:57.0f/255.0f alpha:1.0f]];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:166.0f/255.0f green:206.0f/255.0f blue:57.0f/255.0f alpha:1.0f]];
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     
 
     if (database == NULL){

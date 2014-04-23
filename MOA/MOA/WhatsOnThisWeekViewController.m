@@ -28,10 +28,35 @@
 //    return self;
 //}
 
+
+
 - (void)viewDidLoad
 {
+    UIImage *image0 = [UIImage imageNamed:@"01_Weekly_22px.png"];
+    UIImage *image2 = [UIImage imageNamed:@"02_Exhibitions_22px.png"];
+    UIImage *image1 = [UIImage imageNamed:@"03_Collections02_22px.png"];
+    UIImage *image3 = [UIImage imageNamed:@"04_Info_22px.png"];
+    UITabBar *tabBar = self.tabBarController.tabBar;
+    UITabBarItem *item0 = [tabBar.items objectAtIndex:0];
+    UITabBarItem *item1 = [tabBar.items objectAtIndex:1];
+    UITabBarItem *item2 = [tabBar.items objectAtIndex:2];
+    UITabBarItem *item3 = [tabBar.items objectAtIndex:3];
+    
+    self.tabBarController.tabBar.tintColor = [UIColor whiteColor];
+    [self.tabBarController.tabBar setTintColor:[UIColor whiteColor]];
+    
+    item0.selectedImage = [image0 imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item1.selectedImage = [image1 imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item2.selectedImage = [image2 imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    item3.selectedImage = [image3 imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController.navigationBar setBackgroundColor:[UIColor colorWithRed:166.0f/255.0f green:206.0f/255.0f blue:57.0f/255.0f alpha:1.0f]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:166.0f/255.0f green:206.0f/255.0f blue:57.0f/255.0f alpha:1.0f]];
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
+    [self.tabBarController.tabBar setBarTintColor:[UIColor colorWithRed:68.0f/255.0f green:68.0f/255.0f blue:68.0f/255.0f alpha:1.0f]];
+
 
     if (database == NULL){
         database = [[CrudOp alloc]init];
@@ -49,6 +74,7 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
+    [self.tabBarController.tabBar setSelectedImageTintColor:[UIColor colorWithRed:166.0f/255.0f green:206.0f/255.0f blue:57.0f/255.0f alpha:1.0f]];
     Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
     NetworkStatus internetStatus = [reachability currentReachabilityStatus];
     
@@ -132,7 +158,7 @@
     
     NSCalendar *gregorian = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] ;
     NSDateComponents *comps = [gregorian components:NSWeekdayCalendarUnit fromDate:eventDate];
-    int weekday = [comps weekday];
+    int weekday = (int)[comps weekday];
     NSString *dayOfTheWeek = [[dateFormatter weekdaySymbols] objectAtIndex:weekday-1];
     
     NSString *cellInfoTemp = [NSString stringWithFormat:@"%@\n%@\n%@, %@",[event objectForKey:@"programType"], [event objectForKey:@"title"], dayOfTheWeek, [Utils convertDate:[event objectForKey:@"date"]]];

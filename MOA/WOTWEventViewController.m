@@ -48,20 +48,6 @@
     _sideBarButton.target = self.revealViewController;
     _sideBarButton.action = @selector(rightRevealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
-
-    CGRect scrollFrame;
-    if ([[UIScreen mainScreen] bounds].size.height == 568)
-    {
-        //iphone 5
-        scrollFrame.origin = self.theScrollView.frame.origin;
-        scrollFrame.size = CGSizeMake(self.theScrollView.frame.size.width, 440);
-    }
-    else{
-        //other iphones
-        scrollFrame.origin = self.theScrollView.frame.origin;
-        scrollFrame.size = CGSizeMake(self.theScrollView.frame.size.width, 352);
-    }
-    self.theScrollView = [[UIScrollView alloc] initWithFrame:scrollFrame];
     
     float screenWidth =[UIScreen mainScreen].bounds.size.width;
     
@@ -69,7 +55,7 @@
     self.eventTitle= [[UILabel alloc] initWithFrame:CGRectMake(screenWidth/20, 50, screenWidth -screenWidth/10, 30)];
     self.time =[[UILabel alloc] initWithFrame:CGRectMake(screenWidth/20, 90, screenWidth -screenWidth/10, 30)];
     self.displayItemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/2 - 75, 130, 150, 150)];
-    self.itemDescriptionTextView = [[UITextView alloc] initWithFrame:CGRectMake(screenWidth/20, 340, screenWidth -(2*screenWidth)/20, 200)];
+    self.itemDescriptionTextView = [[UITextView alloc] initWithFrame:CGRectMake(screenWidth/20, 300, screenWidth -(2*screenWidth)/20, 200)];
     self.itemDescriptionTextView.scrollEnabled = NO;
     
     
@@ -133,7 +119,7 @@
     
     [self.itemDescriptionTextView sizeToFit];
 
-    float height = self.programType.frame.size.height + self.eventTitle.frame.size.height + self.displayItemImageView.frame.size.height + self.itemDescriptionTextView.frame.size.height + self.time.frame.size.height+50;
+    float height = self.programType.frame.size.height + self.eventTitle.frame.size.height + self.displayItemImageView.frame.size.height + self.itemDescriptionTextView.frame.size.height + self.time.frame.size.height+60;
 
     
     

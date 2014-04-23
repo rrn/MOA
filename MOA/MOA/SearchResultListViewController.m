@@ -34,7 +34,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     NSString *Type;
     NSMutableArray *searchArray;
     NSInteger resultSize;
-    NSInteger itemIterator;
+    int itemIterator;
     NSString* catogeryType;
     NSString* searchType;
     UIActivityIndicatorView* loadMoreLoader;
@@ -139,7 +139,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
 {
     if (itemIterator < resultSize) {
         NSString *jsonString = [ [NSString alloc]
-                                initWithContentsOfURL:[ [NSURL alloc] initWithString:[NSString stringWithFormat:@"http://www.rrnpilot.org/items.json?filters=held+at+MOA:+University+of+British+Columbia,+%@+%@&page=%i", catogeryType,searchType,(itemIterator/10)+1]]
+                                initWithContentsOfURL:[ [NSURL alloc] initWithString:[NSString stringWithFormat:@"http://www.rrnpilot.org/items.json?filters=held+at+MOA:+University+of+British+Columbia,+%@+%@&page=%i", catogeryType,searchType, (itemIterator/10)+1]]
                                 encoding:NSUTF8StringEncoding
                                 error:nil
                                 ];

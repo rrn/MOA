@@ -1315,6 +1315,9 @@ static NSString * const SWSegueRightIdentifier = @"sw_right";
     return (id)parent;
 }
 
+- (BOOL)shouldAutorotate {
+    return NO;
+}
 @end
 
 

@@ -37,7 +37,7 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
     self.tableView.backgroundColor = [UIColor colorWithWhite:0.2f alpha:1.0f];
-    self.tableView.separatorColor = [UIColor colorWithWhite:0.15f alpha:0.2f];
+    self.tableView.separatorColor = [UIColor colorWithWhite:0.5f alpha:0.5f];
     
     _menuItems = @[@"Cell0", @"Calendar", @"Cell4", @"Cell2", @"Explore Our Collections", @"Cell7", @"Cell11", @"Cell8", @"Cell9", @"Cell6", @"Cell5", @"Cell10"];
     
@@ -102,45 +102,8 @@
                 [vcNew setSelectedIndex:3];
                 
             }
-            else if ([segue.identifier isEqualToString:@"showFacebook"]){
-                vcName = @"TabBar";
-                UITabBarController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
-                
-                // Swap out the Front view controller and display
-                [self.revealViewController setFrontViewController:vcNew];
-                [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated:YES];
-                
-                
-                [[TagList sharedInstance] setExtraPage:0];
-                // select index 3, which is Visitor Information
-                [vcNew setSelectedIndex:4];
-            }
-            else if ([segue.identifier isEqualToString:@"showTwitter"]){
-                vcName = @"TabBar";
-                UITabBarController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
-                
-                // Swap out the Front view controller and display
-                [self.revealViewController setFrontViewController:vcNew];
-                [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated:YES];
-                
-                
-                [[TagList sharedInstance] setExtraPage:1];
-                // select index 3, which is Visitor Information
-                [vcNew setSelectedIndex:4];
-            }
-            else if ([segue.identifier isEqualToString:@"showYoutube"]){
-                vcName = @"TabBar";
-                UITabBarController *vcNew = [[UIStoryboard storyboardWithName:@"Main" bundle:NULL] instantiateViewControllerWithIdentifier:vcName];
-                
-                // Swap out the Front view controller and display
-                [self.revealViewController setFrontViewController:vcNew];
-                [self.revealViewController setFrontViewPosition: FrontViewPositionLeft animated:YES];
-                
-                
-                [[TagList sharedInstance] setExtraPage:2];
-                // select index 3, which is Visitor Information
-                [vcNew setSelectedIndex:4];
-            }
+
+
         };
         }
     }
@@ -175,20 +138,23 @@
     NSString *CellIdentifier = [self.menuItems objectAtIndex:indexPath.row];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
+    cell.backgroundColor = [UIColor colorWithRed:68.0f/255.0f green:68.0f/255.0f blue:68.0f/255.0f alpha:1.0f];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 8 || indexPath.row == 9) {
+    if (indexPath.row == 7 || indexPath.row == 8) {
     
     EmailHandler* emailHandler = [[EmailHandler alloc]init];
-        if (indexPath.row == 8) {
+        if (indexPath.row == 7) {
+            //emailing a friend
             MFMailComposeViewController* controller = [emailHandler composeEmail:0];
             controller.mailComposeDelegate = self;
             if (controller) [self presentViewController:controller animated:YES completion:nil];
         }
         else {
+            //emailing feedback
             MFMailComposeViewController* controller = [emailHandler composeEmail:1];
             controller.mailComposeDelegate = self;
             if (controller) [self presentViewController:controller animated:YES completion:nil];

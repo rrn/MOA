@@ -20,5 +20,6 @@ extern NSMutableArray *visitorInformationArray;
 extern NSMutableString *cafeDescription;
 extern NSMutableString *shopDescription;
 extern NSMutableArray *exhibitionImages;
+extern NSMutableArray *eventImages;
 
 #endif

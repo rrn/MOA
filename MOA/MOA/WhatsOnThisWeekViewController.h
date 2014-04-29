@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CrudOp.h"
+#import "Global.h"
 
 @interface WhatsOnThisWeekViewController : UITableViewController{
     CrudOp* database;
@@ -19,3 +20,4 @@
 @end
 
 BOOL selectIt;
+NSMutableArray* eventImages;

@@ -34,3 +34,4 @@
 @end
 
 NSMutableArray *exhibitionImages;
+NSMutableArray *eventImages;

@@ -146,7 +146,6 @@
     cell.textLabel.numberOfLines=3;
     cell.textLabel.adjustsFontSizeToFitWidth = YES;
     
-    
     NSDictionary *event = [[[TagList sharedInstance] calendarEvents] objectAtIndex:indexPath.row];
     NSRange rangeToBold = NSMakeRange([[event objectForKey:@"programType"] length], [[event objectForKey:@"title"] length]+1);
     
@@ -174,18 +173,15 @@
     cell.textLabel.attributedText = attrString;
     
     [self checkInternetConnection];
-    if (internet == YES){
-        cell.imageView.contentMode = UIViewContentModeCenter;
-        UIImage *cellImage = [UIImage imageWithData: [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[event objectForKey:@"image"]]]];
-        UIImage *borderedImage = [UIImage imageWithCGImage:cellImage.CGImage scale:3 orientation:cellImage.imageOrientation];
-        cell.imageView.image = borderedImage;
-    } else {
+    cell.imageView.contentMode = UIViewContentModeCenter;
+    if (!eventImages || ![eventImages count]){
         cell.imageView.contentMode = UIViewContentModeCenter;
         UIImage *cellImage =[database loadImageFromDB:@"whats_on" :@"image" :(int)indexPath.row].image;
         UIImage *borderedImage = [UIImage imageWithCGImage:cellImage.CGImage scale:3 orientation:cellImage.imageOrientation];
         cell.imageView.image = borderedImage;
+    } else {
+        cell.imageView.image = [eventImages objectAtIndex:indexPath.row];
     }
-    
     return cell;
 }
 

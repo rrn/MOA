@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "iCarousel.h"
 #import "CrudOp.h"
+#import "Global.h"
 #import "ExhibitionChildViewController.h"
 
 @interface ExhibitionsViewController : UIViewController <iCarouselDataSource, iCarouselDelegate>{
@@ -25,3 +26,5 @@
 @property int selectedExhibition;
 
 @end
+
+NSMutableArray *exhibitionImages;

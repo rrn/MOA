@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Global.h"
 
 @interface TagList : NSObject
 
@@ -29,4 +30,7 @@
 +(void) loadInformation;
 +(void) loadExhibitionsInformation;
 
+
 @end
+
+NSMutableArray *exhibitionImages;

@@ -247,6 +247,26 @@
     
     [filteredExhibitions setObject:filteredExhibitionsArray forKey:@"moa_exhibitions"];
     [[TagList sharedInstance] setExhibitionEvents:[filteredExhibitions objectForKey:@"moa_exhibitions"]];
+    // load exhibition images
+    [self performSelectorInBackground:@selector(loadExhibitionImages) withObject:nil];
+
+    
+}
+
++(void)loadExhibitionImages{
+    
+    if (!exhibitionImages){
+        exhibitionImages = [[NSMutableArray alloc] init];
+    }
+    for (int i = 0; i < [[[TagList sharedInstance] exhibitionEvents] count]; i++)
+    {
+        NSString *imageURL = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"image"];
+        UIImage* image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+        UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,300.0f, 200)];
+        [imgView setImage:image];
+        [exhibitionImages insertObject:imgView atIndex:i];
+        
+    }
 }
 
 

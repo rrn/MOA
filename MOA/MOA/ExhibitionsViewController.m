@@ -77,6 +77,17 @@
         if (![TagList sharedInstance].exhibitionEvents || ![[TagList sharedInstance].exhibitionEvents count])
             [[TagList sharedInstance] setExhibitionEvents:[database PullFromLocalDB:@"moa_exhibitions"]];
         
+        if(!exhibitionImages){
+            exhibitionImages = [[NSMutableArray alloc]init];
+        }
+        
+        if (![exhibitionImages count]){
+            for (int i = 0; i < [[[TagList sharedInstance] exhibitionEvents] count]; i++){
+                UIImageView* imageView = [database loadImageFromDB:@"moa_exhibitions" :@"image" :(int)i];
+                [exhibitionImages insertObject:imageView atIndex:i];
+            }
+        }
+               
     } else {
         internet = YES;
         [database UpdateLocalDB:@"moa_exhibitions" :[[TagList sharedInstance].exhibitionEvents mutableCopy]];
@@ -216,17 +227,20 @@
         view.layer.borderWidth = 2.0f;
         
         //show the image
-        NSString *imageURL = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"image"];
         UIImageView* buttonImage;
         
         [self checkInternetConnection];
-        if (internet == YES) {
-            UIImage* image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+        //if (internet == YES) {
+            buttonImage = [exhibitionImages objectAtIndex:(int)index];
+            NSLog(@"%d", [exhibitionImages count]);
+            //[buttonImage setImage:(UIImage*)[exhibitionImages objectAtIndex:(int)index]];
+        /*} else {
             buttonImage = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,width, 200)];
-            [buttonImage setImage:image];
-        } else {
+            [buttonImage setImage:(UIImage*)[exhibitionImages objectAtIndex:(int)index]];
             buttonImage = [database loadImageFromDB:@"moa_exhibitions" :@"image" :(int)index];
-        }
+        }*/
+        
+        
         buttonImage.exclusiveTouch = YES;
         [view addSubview:buttonImage];
         

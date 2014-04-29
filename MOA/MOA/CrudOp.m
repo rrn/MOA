@@ -289,7 +289,7 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     };
     [self bindInsertSQLStatement:stmt :object :rowid :tableName];
    
-    sqlite3_trace(cruddb, sqliteCallbackFunc, NULL); // uncomment this code to print queries
+    //sqlite3_trace(cruddb, sqliteCallbackFunc, NULL); // uncomment this code to print queries
     if (sqlite3_step(stmt) != SQLITE_DONE)
         NSLog(@"Error %s", sqlite3_errmsg(cruddb));
     
@@ -917,7 +917,7 @@ void sqliteCallbackFunc(void *foo, const char* statement) {
     [self updateImagePath:tableName :attributeName :jpegPath :index];
 }
 
--(UIImage*) loadImageFromDB:(NSString*)tableName :(NSString*)attributeName :(int)index
+-(UIImageView*) loadImageFromDB:(NSString*)tableName :(NSString*)attributeName :(int)index
 {
     UIImage* image;
     UIImageView* buttonImage;

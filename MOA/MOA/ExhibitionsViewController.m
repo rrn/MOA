@@ -230,17 +230,8 @@
         UIImageView* buttonImage;
         
         [self checkInternetConnection];
-        //if (internet == YES) {
-            buttonImage = [exhibitionImages objectAtIndex:(int)index];
-            NSLog(@"%d", [exhibitionImages count]);
-            //[buttonImage setImage:(UIImage*)[exhibitionImages objectAtIndex:(int)index]];
-        /*} else {
-            buttonImage = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,width, 200)];
-            [buttonImage setImage:(UIImage*)[exhibitionImages objectAtIndex:(int)index]];
-            buttonImage = [database loadImageFromDB:@"moa_exhibitions" :@"image" :(int)index];
-        }*/
-        
-        
+        buttonImage = [exhibitionImages objectAtIndex:(int)index];
+        NSLog(@"%d", [exhibitionImages count]);
         buttonImage.exclusiveTouch = YES;
         [view addSubview:buttonImage];
         

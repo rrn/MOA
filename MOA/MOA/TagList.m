@@ -195,7 +195,16 @@
     [temp3 setObject:temp2 forKey:@"whats_on"];
     [[TagList sharedInstance] setCalendarEvents:[temp3 objectForKey:@"whats_on"]];
     
-
+    if (!eventImages || ![eventImages count]){
+        eventImages = [[NSMutableArray alloc] init];
+    }
+    
+    for (int i = 0; i < [[[TagList sharedInstance] calendarEvents] count]; i++){
+        UIImage *cellImage = [UIImage imageWithData: [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:[[[[TagList sharedInstance] calendarEvents] objectAtIndex:i] objectForKey:@"image"]]]];
+        UIImage *borderedImage = [UIImage imageWithCGImage:cellImage.CGImage scale:3 orientation:cellImage.imageOrientation];
+        [eventImages insertObject:borderedImage atIndex:i];
+    }
+    NSLog(@"The total of event images is %d", [eventImages count]);
     
     // store remote data to database
     CrudOp* localdb = [[CrudOp alloc]init];
@@ -247,6 +256,26 @@
     
     [filteredExhibitions setObject:filteredExhibitionsArray forKey:@"moa_exhibitions"];
     [[TagList sharedInstance] setExhibitionEvents:[filteredExhibitions objectForKey:@"moa_exhibitions"]];
+    // load exhibition images
+    //[self performSelectorInBackground:@selector(loadExhibitionImages) withObject:nil];
+    [self loadExhibitionImages];
+    
+}
+
++(void)loadExhibitionImages{
+    
+    if (!exhibitionImages){
+        exhibitionImages = [[NSMutableArray alloc] init];
+    }
+    for (int i = 0; i < [[[TagList sharedInstance] exhibitionEvents] count]; i++)
+    {
+        NSString *imageURL = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:i] objectForKey:@"image"];
+        UIImage* image = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+        UIImageView* imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,300.0f, 200)];
+        [imgView setImage:image];
+        [exhibitionImages insertObject:imgView atIndex:i];
+        
+    }
 }
 
 

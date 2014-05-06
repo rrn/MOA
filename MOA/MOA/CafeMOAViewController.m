@@ -10,7 +10,6 @@
 #import "SWRevealViewController.h"
 #import "VisitorInfoViewController.h"
 #import "CrudOp.h"
-#import "Reachability.h"
 #import "Utils.h"
 
 @interface CafeMOAViewController ()
@@ -49,7 +48,7 @@
     if (!cafeHoursArray || !cafeHoursArray.count || !generalTextArray || !generalTextArray.count){
         
         Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.com"];
-        NetworkStatus internetStatus = [reachability currentReachabilityStatus];
+        internetStatus = [reachability currentReachabilityStatus];
         
         if (internetStatus == NotReachable){
             cafeHoursArray = [database PullFromLocalDB:@"cafe_hours"];
@@ -57,7 +56,6 @@
             cafeDescription = [[generalTextArray objectAtIndex:1] objectForKey:@"Description"];
         } else {
             [self PullFromRemote];
-            [self UpdateLocalDB];
         }
         
     }
@@ -75,7 +73,22 @@
     int cursorPos = 246 + [Utils textViewDidChange:cafeText];
     
     // load cafe hours into table
-    self.tableView = [self makeTableView:cursorPos+10]; // 10 is space between text and table
+    CGFloat x = 0;
+    CGFloat y = cursorPos+10;
+    CGFloat width = self.view.frame.size.width;
+    CGFloat height = self.view.frame.size.height - 50;
+    CGRect tableFrame = CGRectMake(x, y, width, height);
+
+    if (!self.tableView){
+        self.tableView = [[UITableView alloc]initWithFrame:tableFrame style:UITableViewStylePlain];
+        self.tableView.userInteractionEnabled = NO;
+        self.tableView.scrollEnabled = NO;
+        self.tableView.delegate = self;
+        self.tableView.dataSource = self;
+        [self.tableView reloadData];
+    }
+    
+    //[self makeTableView:cursorPos+10]; // 10 is space between text and table
     //[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"Hours"];
     contentSize = cursorPos; // length of description
    
@@ -91,10 +104,18 @@
     [super viewDidLoad];
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+    [self performSelectorInBackground:@selector(UpdateLocalDB) withObject:nil];
+}
+
 -(void) UpdateLocalDB
 {
-    CrudOp *dbCrud = [[CrudOp alloc] init];
-    [dbCrud UpdateLocalDB:@"cafe_hours" :cafeHoursArray];
+    if (syncLocalDB == false && internetStatus != NotReachable){
+        CrudOp *dbCrud = [[CrudOp alloc] init];
+        [dbCrud UpdateLocalDB:@"cafe_hours" :cafeHoursArray];
+        syncLocalDB = true;
+    } 
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -104,27 +125,6 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 7;
 }
-
--(UITableView *)makeTableView:(int) yPos
-{
-    CGFloat x = 0;
-    CGFloat y = yPos;
-    CGFloat width = self.view.frame.size.width;
-    CGFloat height = self.view.frame.size.height - 50;
-    CGRect tableFrame = CGRectMake(x, y, width, height);
-    
-    UITableView *tableView = [[UITableView alloc]initWithFrame:tableFrame style:UITableViewStylePlain];
-    
-    tableView.userInteractionEnabled = NO;
-    tableView.scrollEnabled = NO;
-    tableView.delegate = self;
-    tableView.dataSource = self;
-    [tableView reloadData];
-    
-    return tableView;
-}
-
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -149,7 +149,6 @@
             sectionName = NSLocalizedString(@"Cafe Hours:", @"Cafe Hours:");
             break;
         default:
-            sectionName = @"";
             break;
     }
     return sectionName;

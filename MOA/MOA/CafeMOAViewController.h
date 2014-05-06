@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "Global.h"
+#import "Reachability.h"
 
 @interface CafeMOAViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
     int hoursFontSize;
     int contentSize;
+    BOOL syncLocalDB;
+    NetworkStatus internetStatus;
 }
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;

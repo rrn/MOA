@@ -56,7 +56,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
 {
     [super viewDidLoad];
     itemIterator=0;
-    
+    //Matching the search text to a category
     Type = @"";
     NSPredicate *predicate = [NSPredicate predicateWithFormat: @"SELF matches [c] %@", [self title]];
     searchArray = [[[[TagList sharedInstance] objectTypeTags] filteredArrayUsingPredicate:predicate] mutableCopy];
@@ -127,6 +127,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     [loadMoreLoader setFrame:CGRectMake(70, 5, 20, 20)];
 }
 
+//Code for the loadmore button
 -(void) loadMoreButtonPressed:(UIButton*)sender
 {
     [sender setSelected:YES];
@@ -134,7 +135,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     [self performSelectorInBackground:@selector(downloadMore:) withObject:sender];
 }
 
-
+//Downloads more content as needed
 -(void) downloadMore:(UIButton*) sender
 {
     if (itemIterator < resultSize) {
@@ -158,6 +159,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     }
 }
 
+//if loadmore button is pressed, button position must be shifted down
 -(void) updateButtonLocation:(UIButton*) button
 {
     [self performSelector:@selector(showButtonAtNewLocation:) withObject:button afterDelay:.1];
@@ -171,6 +173,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     [button setFrame:CGRectMake(20, self.collectionView.contentSize.height - 50, self.collectionView.contentSize.width - 40, 30)];
 }
 
+//Displays a loading message while loading more info
 -(void)displayLoadMore
 {
     UIButton* button = [[UIButton alloc] init];
@@ -219,6 +222,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     
 }
 
+//Allocate information from JSON file into relevant positions/variables
 -(void) createAlbums
 {
     for (NSInteger a = itemIterator-10; a < [itemList count]; a++) {
@@ -306,6 +310,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     return album.photos.count;
 }
 
+//Downloads information in JSON format
 - (void) downloadItemJsonFeed{
     
     NSInteger tempNumber;
@@ -395,6 +400,7 @@ static NSString * const AlbumTitleIdentifier = @"AlbumTitle";
     
 }
 
+//Configures cells
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView
                   cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {

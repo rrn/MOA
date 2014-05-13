@@ -113,12 +113,16 @@
     titleTextView.scrollEnabled= NO;
     length = [Utils textViewDidChange:titleTextView];
     
-    UIImageView *imageView ;//=[UIImageView alloc];
+    UIImageView *imageView ;
     imageView = [database loadImageFromDB:@"moa_exhibitions" :@"detailImage" :selectedTag];
     cursorPosition = cursorPosition + length;
     
-    imageView.frame = CGRectMake(imageXPos, cursorPosition + 10, imageWidth, 214);
-    cursorPosition = 214+cursorPosition;
+    int imageHeightRaw = imageView.image.size.height;
+    int imageWidthRaw = imageView.image.size.width;
+    int frameHeight = (imageHeightRaw * imageWidth) / imageWidthRaw;
+    
+    imageView.frame = CGRectMake(imageXPos, cursorPosition + 10, imageWidth, frameHeight);
+    cursorPosition = frameHeight+cursorPosition;
     NSString* subtitle = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:selectedTag] objectForKey:@"subtitle"];
     UITextView *subtitleTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, cursorPosition + 10, width-20, 10)];
     

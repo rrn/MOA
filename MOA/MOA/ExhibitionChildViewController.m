@@ -38,6 +38,16 @@
     _sideBarButton.action = @selector(rightRevealToggle:);
     
     
+    // SideBar Menu
+    [[UIBarButtonItem appearance] setTintColor:[UIColor whiteColor]];
+    
+    // color txt
+    self.navigationController.navigationBar.tintColor = [UIColor grayColor];
+    
+    // Side Bar Menu
+    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor] ];
+
+    
     [self checkInternetConnection];
     UIInterfaceOrientation orientation = [[UIApplication sharedApplication] statusBarOrientation];
     [self adjustViewsForOrientation:orientation];
@@ -77,6 +87,16 @@
 
 -(void) prepareForDisplay:(Orientation) orientation
 {
+    
+    
+    // Font global
+    UIFont *myFont = [ UIFont fontWithName: @"HelveticaNeue-thin" size: 16.0 ];
+    UIFont *myBoldFont = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+    UIFont *myLightFont = [UIFont fontWithName:@"HelveticaNeue-light" size:18];
+    UIFont *myItalicFont = [ UIFont fontWithName: @"HelveticaNeue-MediumItalic" size: 16.0 ];
+    
+    
+    
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
@@ -106,9 +126,10 @@
     UITextView *titleTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, 75, width, 10)];
     cursorPosition = 75;
     
-    [titleTextView setFont:[UIFont boldSystemFontOfSize:18]];
+   
     titleTextView.text = title;
     titleTextView.textAlignment=NSTextAlignmentCenter;
+    titleTextView.font = myBoldFont; //[titleTextView setFont:[UIFont boldSystemFontOfSize:18]];
     titleTextView.userInteractionEnabled = NO;
     titleTextView.scrollEnabled= NO;
     length = [Utils textViewDidChange:titleTextView];
@@ -126,32 +147,39 @@
     NSString* subtitle = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:selectedTag] objectForKey:@"subtitle"];
     UITextView *subtitleTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, cursorPosition + 10, width-20, 10)];
     
-    [subtitleTextView setFont:[UIFont systemFontOfSize:14]];
+    
+
+    // sub title
+    
     subtitleTextView.text = subtitle;
+    subtitleTextView.font = myFont; //[subtitleTextView setFont:[UIFont systemFontOfSize:14]];
     subtitleTextView.userInteractionEnabled = NO;
     subtitleTextView.scrollEnabled =NO;
     length = [Utils textViewDidChange:subtitleTextView];
     cursorPosition = cursorPosition + length;
     
+    //image caption
     NSString* imageCaption = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:selectedTag] objectForKey:@"imageCaption"];
     UITextView *imageCaptionTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, cursorPosition+10, width-20, 10)];
     
-    [imageCaptionTextView setFont:[UIFont italicSystemFontOfSize:14]];
+    imageCaptionTextView.font = myItalicFont; //[imageCaptionTextView setFont:[UIFont italicSystemFontOfSize:14]];
     imageCaptionTextView.text = imageCaption;
     imageCaptionTextView.userInteractionEnabled = NO;
     imageCaptionTextView.scrollEnabled=NO;
     length = [Utils textViewDidChange:imageCaptionTextView];
     cursorPosition = cursorPosition+length;
     
+    
+    //Description
     NSString* desc = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:selectedTag] objectForKey:@"Summary"];
     UITextView *descTextView = [[UITextView alloc] initWithFrame:CGRectMake(10, cursorPosition + 10, width-20, 10)];
 
     // Summary string as attributed string to render HTML
     NSAttributedString *attributedString = [[NSAttributedString alloc] initWithData:[desc dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
     
-    [descTextView setFont:[UIFont systemFontOfSize:12]];
     descTextView.attributedText = attributedString;
     descTextView.userInteractionEnabled = NO;
+    descTextView.font = myLightFont;
     descTextView.scrollEnabled=NO;
     descTextView.textAlignment = NSTextAlignmentJustified;
     length = [Utils textViewDidChange:descTextView];

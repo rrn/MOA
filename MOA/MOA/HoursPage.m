@@ -43,6 +43,9 @@
     _sidebarButton.action = @selector(rightRevealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
+    // Side Bar Menu
+    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor] ];
+    
     if (!generalHoursArray || !generalHoursArray.count){
         
         Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.com"];
@@ -92,8 +95,10 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     // Make the subtitle multiline
-    cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
-    cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
+   // cell.textLabel.font = [UIFont boldSystemFontOfSize:14];
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-medium" size:18];
+    //cell.detailTextLabel.font = [UIFont systemFontOfSize:12];
+     cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-light" size:18];
     cell.detailTextLabel.numberOfLines = 0;
     cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
     

@@ -29,11 +29,16 @@
     [super viewDidLoad];
     self.title = @"Directions";
     self.description.text = [[parkingInformationArray objectAtIndex:2] objectForKey:@"Description"];
+        [self.description setFont:[UIFont fontWithName:@"HelveticaNeue-light" size:18]];
     
     // Sidebar menu code
     _sidebarButton.target = self.revealViewController;
     _sidebarButton.action = @selector(rightRevealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    
+    // Side Bar Menu
+    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor] ];
+    
     
     [self.scroll setScrollEnabled:YES];
     [self.scroll setContentSize:CGSizeMake(320, 700)];

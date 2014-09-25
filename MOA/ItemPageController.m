@@ -74,9 +74,11 @@
     
 
     _nextItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFastForward target:self action:@selector(nextItem:)];
+    _nextItem.tintColor=[UIColor whiteColor];
     _previousItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemRewind target:self action:@selector(previousItem:)];
+    _previousItem.tintColor=[UIColor whiteColor];
     _titleText = [[UIBarButtonItem alloc] initWithTitle:@"" style:UIBarButtonItemStyleDone target:self action:nil];
-    _titleText.tintColor=[UIColor blackColor];
+    _titleText.tintColor=[UIColor whiteColor];
     
     if(itemNumber==0)
         [_previousItem setEnabled:NO];
@@ -113,6 +115,11 @@
     _imageLoading = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake((screenWidth -(2*screenWidth)/20)/2-10, 90, 20, 20)];
     _imageLoading.color = [UIColor grayColor];
     [self.displayItemImageView addSubview:_imageLoading];
+    
+    
+    // Side Bar Menu
+    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor] ];
+    
     
     [self.view addSubview:[self theScrollView]];
     
@@ -178,13 +185,21 @@
     [generalDescription3 appendFormat:@"\n"];
     [self generalDescription3Text];
 
+    
+
+    
+    
+    // Font global
+    UIFont *myFont = [ UIFont fontWithName: @"HelveticaNeue-thin" size: 16.0 ];
+    UIFont *myBoldFont = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+    UIFont *myLightFont = [UIFont fontWithName:@"HelveticaNeue-light" size:18];
 
     
     self.displayItemImageView.contentMode = UIViewContentModeScaleAspectFit;
     self.itemNameLabel.text =[[data objectAtIndex:itemNumber] objectForKey:@"name"];
     self.idNumberLabel.text =[[data objectAtIndex:itemNumber] objectForKey:@"identification_number"];
-    self.itemNameLabel.font = [UIFont boldSystemFontOfSize:16.0f];
-    self.idNumberLabel.font = [UIFont boldSystemFontOfSize:16.0f];
+    self.itemNameLabel.font = myBoldFont;
+    self.idNumberLabel.font = myBoldFont;
     self.itemNameLabel.textAlignment = NSTextAlignmentCenter;
     self.idNumberLabel.textAlignment = NSTextAlignmentCenter;
     
@@ -201,6 +216,11 @@
             }
         }
     }
+    
+
+    // set font
+    self.itemDescriptionTextView.font = myLightFont;
+    
     
     if(isImageDisplayed){
         self.itemDescriptionTextView.text= [NSString stringWithFormat:@"%@\n\n %@\n %@", generalDescription2, generalDescription3,temp];

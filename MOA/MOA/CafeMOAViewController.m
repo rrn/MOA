@@ -68,7 +68,7 @@
     UITextView *cafeText = [[UITextView alloc] initWithFrame:CGRectMake(10, 246, 300.0f, 10)];
     cafeText.text = cafeDescription;
     cafeText.textAlignment = NSTextAlignmentJustified;
-    cafeText.font = [UIFont systemFontOfSize:14];
+    cafeText.font = [UIFont fontWithName:@"HelveticaNeue-light" size:18];
     cafeText.userInteractionEnabled = NO;
     int cursorPos = 246 + [Utils textViewDidChange:cafeText];
     
@@ -99,6 +99,9 @@
     [self.scroll addSubview:cafeText];
     [self.scroll addSubview:self.tableView];
     [self.scroll setScrollEnabled:YES];
+    
+    // Side Bar Menu
+    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor] ];
 
     self.title = @"Cafe MOA";
     [super viewDidLoad];

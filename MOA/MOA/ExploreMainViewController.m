@@ -54,21 +54,36 @@
     UITabBarItem *item2 = [tabBar.items objectAtIndex:2];
     UITabBarItem *item3 = [tabBar.items objectAtIndex:3];
     
-    self.tabBarController.tabBar.tintColor = [UIColor whiteColor];
-    [self.tabBarController.tabBar setTintColor:[UIColor whiteColor]];
+    
+    
+    
+    self.tabBarController.tabBar.tintColor = [UIColor blackColor];
+    [self.tabBarController.tabBar setTintColor:[UIColor blackColor]];
     
     item0.selectedImage = [image0 imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     item1.selectedImage = [image1 imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     item2.selectedImage = [image2 imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     item3.selectedImage = [image3 imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
-    [super viewDidLoad];
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [self.navigationController.navigationBar setBackgroundColor:[UIColor colorWithRed:237.0f/255.0f green:12.0f/255.0f blue:110.0f/255.0f alpha:1.0f]];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:237.0f/255.0f green:12.0f/255.0f blue:110.0f/255.0f alpha:1.0f]];
-    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    [self.tabBarController.tabBar setBarTintColor:[UIColor colorWithRed:68.0f/255.0f green:68.0f/255.0f blue:68.0f/255.0f alpha:1.0f]];
 
     
+    [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController.navigationBar setBackgroundColor:[UIColor colorWithRed:28.0f/255.0f green:28.0f/255.0f blue:28.0f/255.0f alpha:1.0f]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:28.0f/255.0f green:28.0f/255.0f blue:28.0f/255.0f alpha:1.0f]];
+    self.navigationController.navigationBar.tintColor = [UIColor grayColor];
+    
+    // Title Color
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    
+    // Side Bar Menu
+    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor] ];
+    
+    //Tab bar
+    [self.tabBarController.tabBar setBarTintColor:[UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:1.0f]];
+
+    
+    
+
 
     
     tableData = [NSArray arrayWithObjects:@"Object Type", @"Places", @"Cultures", @"Materials", @"People", nil];

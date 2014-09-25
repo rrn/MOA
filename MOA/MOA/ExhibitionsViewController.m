@@ -43,8 +43,8 @@
     UITabBarItem *item2 = [tabBar.items objectAtIndex:2];
     UITabBarItem *item3 = [tabBar.items objectAtIndex:3];
     
-    self.tabBarController.tabBar.tintColor = [UIColor whiteColor];
-    [self.tabBarController.tabBar setTintColor:[UIColor whiteColor]];
+    self.tabBarController.tabBar.tintColor = [UIColor blackColor];
+    [self.tabBarController.tabBar setTintColor:[UIColor blackColor]];
     
     item0.selectedImage = [image0 imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     item1.selectedImage = [image1 imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -53,7 +53,27 @@
     [self.navigationController.navigationBar setBackgroundColor:[UIColor colorWithRed:255.0f/255.0f green:194.0f/255.0f blue:14.0f/255.0f alpha:1.0f]];
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:255.0f/255.0f green:194.0f/255.0f blue:14.0f/255.0f alpha:1.0f]];
     self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    [self.tabBarController.tabBar setBarTintColor:[UIColor colorWithRed:68.0f/255.0f green:68.0f/255.0f blue:68.0f/255.0f alpha:1.0f]];
+   // [self.tabBarController.tabBar setBarTintColor:[UIColor colorWithRed:68.0f/255.0f green:68.0f/255.0f blue:68.0f/255.0f alpha:1.0f]];
+
+    
+
+    [super viewDidLoad];
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController.navigationBar setBackgroundColor:[UIColor colorWithRed:28.0f/255.0f green:28.0f/255.0f blue:28.0f/255.0f alpha:1.0f]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:28.0f/255.0f green:28.0f/255.0f blue:28.0f/255.0f alpha:1.0f]];
+    self.navigationController.navigationBar.tintColor = [UIColor grayColor];
+    
+    // Title Color
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+    
+    // Side Bar Menu
+    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor] ];
+    
+    //Tab bar
+    [self.tabBarController.tabBar setBarTintColor:[UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:1.0f]];
+    
+    
+    
 
     
     
@@ -235,21 +255,29 @@
         buttonImage.exclusiveTouch = YES;
         [view addSubview:buttonImage];
         
+        
+        // Font global
+        UIFont *myFont = [ UIFont fontWithName: @"HelveticaNeue-thin" size: 16.0 ];
+        UIFont *myBoldFont = [UIFont fontWithName:@"HelveticaNeue-Medium" size:16];
+        
+        
+        // title
         UITextView *nameTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, 210, width, 10)];
         nameTextView.text = [[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"title"];
-        [nameTextView setFont:[UIFont boldSystemFontOfSize:14]];
+        nameTextView.font = myBoldFont; //[nameTextView setFont:[UIFont boldSystemFontOfSize:14]];
         nameTextView.textAlignment= NSTextAlignmentCenter;
         nameTextView.userInteractionEnabled = NO;
         nameTextView.scrollEnabled= NO;
         cursorPosition = 210 + [Utils textViewDidChange:nameTextView];
         [view addSubview:nameTextView];
         
+        // dates
         NSString *startDate = [Utils convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"activationDate"]];
         NSString *endDate = [Utils convertDate:[[[[TagList sharedInstance] exhibitionEvents] objectAtIndex:index] objectForKey:@"expiryDate"]];
         UITextView *dateTextView = [[UITextView alloc] initWithFrame:CGRectMake(0, cursorPosition, width, 10)];
         NSString *date = [NSString stringWithFormat:@"%@ to %@", startDate, endDate];
         dateTextView.text = date;
-        [dateTextView setFont:[UIFont systemFontOfSize:14]];
+        dateTextView.font = myFont; //[dateTextView setFont:[UIFont systemFontOfSize:14]];
         dateTextView.userInteractionEnabled = NO;
         dateTextView.scrollEnabled = NO;
         dateTextView.textAlignment = NSTextAlignmentCenter;

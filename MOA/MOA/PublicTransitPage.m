@@ -30,6 +30,7 @@
     [super viewDidLoad];
 	self.title = @"Directions";
     self.description.text = [[parkingInformationArray objectAtIndex:1] objectForKey:@"Description"];
+        [self.description setFont:[UIFont fontWithName:@"HelveticaNeue-light" size:18]];
     
     // Sidebar menu code
     _sidebarButton.target = self.revealViewController;
@@ -37,7 +38,10 @@
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
     [self.scroll setScrollEnabled:YES];
-    [self.scroll setContentSize:CGSizeMake(320, 700)];
+    [self.scroll setContentSize:CGSizeMake(320, 600)];
+    
+    // Side Bar Menu
+    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor] ];
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,7 +52,7 @@
 
 // this code is needed since iOS 7 has different layout
 - (void) viewDidLayoutSubviews {
-    [self.scroll setContentSize:CGSizeMake(320, 700)];
+    [self.scroll setContentSize:CGSizeMake(320, 600)];
 }
 
 @end

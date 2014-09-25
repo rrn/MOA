@@ -29,8 +29,6 @@
 
 - (void)viewDidLoad
 {
-    [self.scroll setScrollEnabled:YES];
-    [self.scroll setContentSize:CGSizeMake(320, 700)];
     
     // Sidebar menu code
     _sidebarButton.target = self.revealViewController;
@@ -61,7 +59,24 @@
     self.description.numberOfLines = 0;
     self.description.text = text;
     self.description.textAlignment = NSTextAlignmentJustified;
-    [self.description sizeToFit];
+    [self.description setFont:[UIFont fontWithName:@"HelveticaNeue-light" size:18]];
+    
+  //  [self.description sizeToFit];
+    
+    
+   // [self.scroll setScrollEnabled:YES];
+   // [self.scroll setContentSize:CGSizeMake(320,100)];
+    
+    //[self.view addSubview:self.description];
+
+    //[self.view addSubview:self.description];
+    //[self.scroll addSubview:self.description];
+    
+    // Side Bar Menu
+    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor] ];
+    
+    [self.scroll setScrollEnabled:YES];
+    [self.scroll setContentSize:CGSizeMake(320,1000)];
 
     [super viewDidLoad];
 	// Do any additional setup after loading the view.

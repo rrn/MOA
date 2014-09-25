@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5053" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="H5l-5b-yzz">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C64" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="H5l-5b-yzz">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--Explore Main View Controller - Explore Our Collection-->
+        <!--Explore Main View Controller - EXPLORE OUR COLLECTIONS-->
         <scene sceneID="4X4-zB-mdP">
             <objects>
                 <tableViewController id="kcg-3N-BfQ" customClass="ExploreMainViewController" sceneMemberID="viewController">
@@ -46,7 +46,7 @@
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Item" id="ezO-XQ-BH5"/>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Explore Our Collection" id="cM7-vx-dcK">
+                    <navigationItem key="navigationItem" title="EXPLORE OUR COLLECTIONS" id="cM7-vx-dcK">
                         <barButtonItem key="rightBarButtonItem" image="05_More_25px.png" id="XgO-sW-CLj">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
@@ -244,7 +244,7 @@
             </objects>
             <point key="canvasLocation" x="1728" y="-221"/>
         </scene>
-        <!--Exhibitions View Controller - Exhibitions-->
+        <!--Exhibitions View Controller - CURRENT EXHIBITIONS-->
         <scene sceneID="9Ny-Gj-W1U">
             <objects>
                 <viewController id="dcg-jU-hnK" customClass="ExhibitionsViewController" sceneMemberID="viewController">
@@ -272,7 +272,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Exhibitions" id="8mF-kF-rkg">
+                    <navigationItem key="navigationItem" title="CURRENT EXHIBITIONS" id="8mF-kF-rkg">
                         <barButtonItem key="rightBarButtonItem" image="05_More_25px.png" id="x62-pS-ikN">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
@@ -601,7 +601,7 @@
             </objects>
             <point key="canvasLocation" x="831" y="-1780"/>
         </scene>
-        <!--Whats On This Week View Controller - This Week at MOA-->
+        <!--Whats On This Week View Controller - THIS WEEK AT MOA-->
         <scene sceneID="jTp-XG-Q4o">
             <objects>
                 <tableViewController storyboardIdentifier="this" useStoryboardIdentifierAsRestorationIdentifier="YES" id="tin-y9-PNF" customClass="WhatsOnThisWeekViewController" sceneMemberID="viewController">
@@ -640,7 +640,7 @@
                             <outlet property="delegate" destination="tin-y9-PNF" id="Z7j-Vj-n27"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="This Week at MOA" id="zo7-6c-2Z9">
+                    <navigationItem key="navigationItem" title="THIS WEEK AT MOA" id="zo7-6c-2Z9">
                         <barButtonItem key="rightBarButtonItem" image="05_More_25px.png" id="zs8-pf-wGQ">
                             <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
@@ -1748,10 +1748,10 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="FBm-kZ-g3R"/>
+        <segue reference="KG7-G5-5Wz"/>
         <segue reference="B3C-bd-MPA"/>
-        <segue reference="PS2-VE-2nm"/>
-        <segue reference="A9d-PQ-Zkm"/>
         <segue reference="EyV-KQ-2Pa"/>
-        <segue reference="IRn-MX-Zpd"/>
+        <segue reference="A9d-PQ-Zkm"/>
     </inferredMetricsTieBreakers>
 </document>

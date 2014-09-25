@@ -39,6 +39,9 @@
     _sidebarButton.target = self.revealViewController;
     _sidebarButton.action = @selector(rightRevealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    
+    // Side Bar Menu
+    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor] ];
 
     if (!parkingInformationArray || !parkingInformationArray.count) {
         
@@ -55,7 +58,7 @@
     }
     
     NSString *locationInfo = @"MOA is located on the campus of the University of British Columbia, 20 minutes from downtown Vancouver. Museum of Anthropology at University of British Columbia 6393 NW Marine Drive Vancouver BC";
-    
+  
     rowData = [NSArray arrayWithObjects:locationInfo, @"From Vancouver Intl Airport", @"From Lower Mainland", @"Public Transit", @"Parking", nil];
 }
 
@@ -103,6 +106,8 @@
         cell.userInteractionEnabled = NO;
         cell.textLabel.numberOfLines = 0;
         cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
+        cell.textLabel.font = [UIFont fontWithName: @"HelveticaNeue" size: 18.0 ];
+   
     }
     else
     {
@@ -114,6 +119,7 @@
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     cell.textLabel.text = rowData[indexPath.row];
+    cell.textLabel.font = [UIFont fontWithName: @"HelveticaNeue" size: 18.0 ];
     
     return cell;
 }

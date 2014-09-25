@@ -51,13 +51,25 @@
     
     float screenWidth =[UIScreen mainScreen].bounds.size.width;
     
+    
+    // Title
+    self.title = @" ";
+    
     self.programType =[[UILabel alloc] initWithFrame:CGRectMake(screenWidth/20, 10, screenWidth -screenWidth/10, 30)];
-    self.eventTitle= [[UILabel alloc] initWithFrame:CGRectMake(screenWidth/20, 50, screenWidth -screenWidth/10, 30)];
-    self.time =[[UILabel alloc] initWithFrame:CGRectMake(screenWidth/20, 90, screenWidth -screenWidth/10, 30)];
-    self.displayItemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/2 - 75, 130, 150, 150)];
-    self.itemDescriptionTextView = [[UITextView alloc] initWithFrame:CGRectMake(screenWidth/20, 300, screenWidth -(2*screenWidth)/20, 200)];
+    self.eventTitle= [[UILabel alloc] initWithFrame:CGRectMake(screenWidth/20, 30, screenWidth -screenWidth/10, 30)];
+    self.time =[[UILabel alloc] initWithFrame:CGRectMake(screenWidth/20, 50, screenWidth -screenWidth/10, 30)];
+    //self.displayItemImageView = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/2 - 75, 130, 150, 150)];
+    
+
+    
+    
+    self.itemDescriptionTextView = [[UITextView alloc] initWithFrame:CGRectMake(screenWidth/20, 90, screenWidth -(2*screenWidth)/20, 200)];
     self.itemDescriptionTextView.scrollEnabled = NO;
     
+    
+    
+    // Side Bar Menu
+    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor] ];
     
     
     [[self theScrollView] addSubview:[self programType]];
@@ -103,25 +115,37 @@
     }
     
     
+    // set text
     self.displayItemImageView.contentMode = UIViewContentModeScaleAspectFit;
     self.programType.text =[[[[TagList sharedInstance] calendarEvents] objectAtIndex:index] objectForKey:@"programType"];
     self.eventTitle.text=[[[[TagList sharedInstance] calendarEvents] objectAtIndex:index] objectForKey:@"title"];
     self.time.text=[[[[TagList sharedInstance] calendarEvents] objectAtIndex:index] objectForKey:@"time"];
     self.itemDescriptionTextView.text= [NSString stringWithFormat:@"%@", [[[[TagList sharedInstance] calendarEvents] objectAtIndex:index] objectForKey:@"description"]];
-    self.eventTitle.font = [UIFont boldSystemFontOfSize:16.0f];
-    self.programType.font = [UIFont boldSystemFontOfSize:16.0f];
-    self.time.font = [UIFont boldSystemFontOfSize:16.0f];
     
-    self.eventTitle.textAlignment = NSTextAlignmentCenter;
-    self.programType.textAlignment = NSTextAlignmentCenter;
-    self.time.textAlignment = NSTextAlignmentCenter;
+
+    
+    // Font global
+    UIFont *myFont = [ UIFont fontWithName: @"HelveticaNeue-thin" size: 16.0 ];
+    UIFont *myBoldFont = [UIFont fontWithName:@"HelveticaNeue-Medium" size:18];
+    
+    // set font
+    self.eventTitle.font = myBoldFont;
+    self.programType.font = myFont;
+    self.time.font = myFont;
+    
+    //special set font - description
+    [self.itemDescriptionTextView setFont:[UIFont fontWithName:@"HelveticaNeue-light" size:18]];
+
+    // set alignment
+    self.eventTitle.textAlignment = NSTextAlignmentLeft;
+    self.programType.textAlignment = NSTextAlignmentLeft;
+    self.time.textAlignment = NSTextAlignmentLeft;
+    self.itemDescriptionTextView.textAlignment = NSTextAlignmentLeft;
     
     
     [self.itemDescriptionTextView sizeToFit];
 
     float height = self.programType.frame.size.height + self.eventTitle.frame.size.height + self.displayItemImageView.frame.size.height + self.itemDescriptionTextView.frame.size.height + self.time.frame.size.height+60;
-
-    
     
     self.itemDescriptionTextView.editable = NO;
     

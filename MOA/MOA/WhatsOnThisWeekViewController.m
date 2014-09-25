@@ -32,6 +32,8 @@
 
 - (void)viewDidLoad
 {
+    
+    
     UIImage *image0 = [UIImage imageNamed:@"01_Weekly_22px.png"];
     UIImage *image2 = [UIImage imageNamed:@"02_Exhibitions_22px.png"];
     UIImage *image1 = [UIImage imageNamed:@"03_Collections02_22px.png"];
@@ -42,8 +44,8 @@
     UITabBarItem *item2 = [tabBar.items objectAtIndex:2];
     UITabBarItem *item3 = [tabBar.items objectAtIndex:3];
     
-    self.tabBarController.tabBar.tintColor = [UIColor whiteColor];
-    [self.tabBarController.tabBar setTintColor:[UIColor whiteColor]];
+    self.tabBarController.tabBar.tintColor = [UIColor blackColor];
+    [self.tabBarController.tabBar setTintColor:[UIColor blackColor]];
     
     item0.selectedImage = [image0 imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     item1.selectedImage = [image1 imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
@@ -52,10 +54,19 @@
 
     [super viewDidLoad];
     [self.navigationController setNavigationBarHidden:NO animated:YES];
-    [self.navigationController.navigationBar setBackgroundColor:[UIColor colorWithRed:166.0f/255.0f green:206.0f/255.0f blue:57.0f/255.0f alpha:1.0f]];
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:166.0f/255.0f green:206.0f/255.0f blue:57.0f/255.0f alpha:1.0f]];
-    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-    [self.tabBarController.tabBar setBarTintColor:[UIColor colorWithRed:68.0f/255.0f green:68.0f/255.0f blue:68.0f/255.0f alpha:1.0f]];
+    [self.navigationController.navigationBar setBackgroundColor:[UIColor colorWithRed:28.0f/255.0f green:28.0f/255.0f blue:28.0f/255.0f alpha:1.0f]];
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:28.0f/255.0f green:28.0f/255.0f blue:28.0f/255.0f alpha:1.0f]];
+    self.navigationController.navigationBar.tintColor = [UIColor grayColor];
+    
+    
+    // Title Color
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
+
+    // Side Bar Menu
+    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor] ];
+    
+    //Tab bar
+    [self.tabBarController.tabBar setBarTintColor:[UIColor colorWithRed:255.0f/255.0f green:255.0f/255.0f blue:255.0f/255.0f alpha:1.0f]];
 
 
     if (database == NULL){
@@ -74,7 +85,8 @@
 
 -(void) viewWillAppear:(BOOL)animated
 {
-    [self.tabBarController.tabBar setSelectedImageTintColor:[UIColor colorWithRed:166.0f/255.0f green:206.0f/255.0f blue:57.0f/255.0f alpha:1.0f]];
+   [self.tabBarController.tabBar setSelectedImageTintColor:[UIColor colorWithRed:166.0f/255.0f green:206.0f/255.0f blue:57.0f/255.0f alpha:1.0f]];
+    
     Reachability *reachability = [Reachability reachabilityWithHostname:@"www.google.ca"];
     NetworkStatus internetStatus = [reachability currentReachabilityStatus];
     
@@ -147,7 +159,10 @@
     cell.textLabel.adjustsFontSizeToFitWidth = YES;
     
     NSDictionary *event = [[[TagList sharedInstance] calendarEvents] objectAtIndex:indexPath.row];
+    
     NSRange rangeToBold = NSMakeRange([[event objectForKey:@"programType"] length], [[event objectForKey:@"title"] length]+1);
+    NSRange programRange = NSMakeRange(0, [[event objectForKey:@"programType"] length]);
+   // NSRange dateRange = NSMakeRange([[event objectForKey:@"title"] length]+ [[event objectForKey:@"programType"] length] + 1, [[event objectForKey:@"title"] length]+ [[event objectForKey:@"programType"] length] + [[event objectForKey:@"date"] length]);
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
@@ -163,12 +178,35 @@
     NSString *cellInfoTemp = [NSString stringWithFormat:@"%@\n%@\n%@, %@",[event objectForKey:@"programType"], [event objectForKey:@"title"], dayOfTheWeek, [Utils convertDate:[event objectForKey:@"date"]]];
     NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:cellInfoTemp];
     
+    
+    
+    NSRange dateRange = NSMakeRange([[event objectForKey:@"title"] length]+ [[event objectForKey:@"programType"] length] + 1, [dayOfTheWeek length] + [[Utils convertDate:[event objectForKey:@"date"]] length] + 3);
+    
+    
     [attrString beginEditing];
+    
+    
+    [attrString addAttribute:NSForegroundColorAttributeName
+                       value:[UIColor grayColor]
+                       range:programRange];
+    
+    
+    [attrString addAttribute:NSForegroundColorAttributeName
+                       value:[UIColor grayColor]
+                       range:dateRange];
+    
     [attrString addAttribute:NSFontAttributeName
-                       value:[UIFont boldSystemFontOfSize:18]
+                       //value:[UIFont boldSystemFontOfSize:18]
+                       value: [UIFont fontWithName:@"HelveticaNeue-Medium" size:17.0]
                        range:rangeToBold];
     
     [attrString endEditing];
+    
+    
+    
+    
+
+    
 
     cell.textLabel.attributedText = attrString;
     

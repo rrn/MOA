@@ -44,7 +44,7 @@
         [alert show];
     }
     else{
-        NSString *urlAddress = @"http://eepurl.com/OeKOH";
+        NSString *urlAddress = @"http://eepurl.com/S_foL";
         NSURL *url = [NSURL URLWithString:urlAddress];
         NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
         _webView.hidden = NO;

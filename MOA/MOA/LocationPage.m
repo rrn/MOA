@@ -36,6 +36,9 @@
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
     self.description.text = @"Museum of Anthropology at University of British Columbia 6393 NW Marine Drive Vancouver BC";
+    
+    // Side Bar Menu
+    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor] ];
 }
 
 - (void)didReceiveMemoryWarning

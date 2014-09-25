@@ -27,7 +27,7 @@
     if (theArray == nil)
     {
         theArray = [[NSMutableArray alloc] init];
-        [theArray addObject:@"Recorded msg(24hr)  \t604.822.5087"];
+        [theArray addObject:@"Main   \t604.822.5087"];
         [theArray addObject:@"Reception  \t604.822.5932"];
         [theArray addObject:@"Email   \tinfo@moa.ubc.ca"];
         [theArray addObject:@"Fax \t604.822.2974"];
@@ -61,6 +61,9 @@
     _sidebarButton.action = @selector(rightRevealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
+    // Side Bar Menu
+    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor] ];
+    
     [super viewDidLoad];
     
 }
@@ -85,7 +88,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault  reuseIdentifier:MyIdentifier];
     }
     NSString *string= [self.contactsDataArray objectAtIndex:indexPath.row];
-    CGSize stringSize = [string sizeWithFont:[UIFont boldSystemFontOfSize:15] constrainedToSize:CGSizeMake(320, 9999) lineBreakMode:NSLineBreakByWordWrapping];
+    CGSize stringSize = [string sizeWithFont:[UIFont fontWithName:@"HelveticaNeue-medium" size:18] constrainedToSize:CGSizeMake(320, 9999) lineBreakMode:NSLineBreakByWordWrapping];
     
     UITextView *textV = [[UITextView alloc] initWithFrame:CGRectMake(5, 5, 290, stringSize.height+10)];
     
@@ -97,7 +100,8 @@
     paragraphStyle.tabStops = tabs;
     textV.typingAttributes = [NSDictionary dictionaryWithObject:paragraphStyle forKey:NSParagraphStyleAttributeName];
     
-    textV.font = [UIFont systemFontOfSize:15.0];
+    
+    textV.font  = [UIFont fontWithName:@"HelveticaNeue-light" size:17];
     textV.text = string;
     textV.textColor = [UIColor blackColor];
     textV.editable = NO;

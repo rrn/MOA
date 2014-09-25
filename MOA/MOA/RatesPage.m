@@ -40,6 +40,9 @@
     _sidebarButton.action = @selector(rightRevealToggle:);
     [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     
+    // Side Bar Menu
+    [self.navigationItem.rightBarButtonItem setTintColor:[UIColor whiteColor] ];
+    
     CrudOp* database = [CrudOp alloc];
     if (!ratesGeneralArray || !ratesGeneralArray.count ||
         !ratesGroupArray || !ratesGroupArray.count){
@@ -102,10 +105,14 @@
     
     // Make title and subtitle multiline
     cell.textLabel.numberOfLines = 0;
-    cell.textLabel.font = [UIFont boldSystemFontOfSize:16];
+    //cell.textLabel.font = [UIFont boldSystemFontOfSize:16];
+    cell.textLabel.font = [UIFont fontWithName:@"HelveticaNeue-medium" size:18];
     cell.textLabel.lineBreakMode = NSLineBreakByWordWrapping;
     cell.detailTextLabel.numberOfLines = 0;
-    cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
+    //cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
+    cell.detailTextLabel.font = [UIFont fontWithName:@"HelveticaNeue-light" size:18];
+    
+        //[self.description setFont:[UIFont fontWithName:@"HelveticaNeue-light" size:18]];
     cell.detailTextLabel.lineBreakMode = NSLineBreakByWordWrapping;
     
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
